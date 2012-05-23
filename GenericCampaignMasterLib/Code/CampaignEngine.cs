@@ -14,12 +14,12 @@ namespace GenericCampaignMasterLib
             throw new System.NotImplementedException();
         }
 
-        public void getUnitsForPlayer()
+        public List<Unit> getUnitsForPlayer(Player p)
         {
             throw new System.NotImplementedException();
         }
 
-        public void getActionsForUnit()
+        public List<ICommand> getCommandsForUnit(Unit u)
         {
             throw new System.NotImplementedException();
         }
@@ -28,12 +28,13 @@ namespace GenericCampaignMasterLib
         {
             throw new System.NotImplementedException();
         }
+		
         public void RestoreState(CampaignState state)
         {
             throw new System.NotImplementedException();
         }
 
-        public void getViewableSectors()
+        public List<Sektor> getViewableSectors(Unit u)
         {
             throw new System.NotImplementedException();
         }
