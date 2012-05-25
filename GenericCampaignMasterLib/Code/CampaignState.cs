@@ -20,7 +20,7 @@ namespace GenericCampaignMasterLib
             return this;
         }
         
-        public CampaignEngine Restore(CampaignState state)
+        public CampaignEngine Restore()
         {
             stream.Seek(0, SeekOrigin.Begin);
             CampaignEngine engine = (CampaignEngine)formatter.Deserialize(stream);
