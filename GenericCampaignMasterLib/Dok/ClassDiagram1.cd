@@ -10,8 +10,8 @@
       <FileName>Code\Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Unit" />
       <Property Name="Ressourcen" />
+      <Property Name="Unit" />
     </ShowAsAssociation>
   </Class>
   <Class Name="GenericCampaignMasterLib.Sektor">
@@ -24,17 +24,10 @@
       <Property Name="Unit" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="GenericCampaignMasterLib.Unit">
-    <Position X="8.75" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Code\Unit.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="GenericCampaignMasterLib.CampaignEngine">
     <Position X="2.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AoAAQAAAAgAAAAAAAAAAAAAAAAgAAAIAAAAAAgAAAAA=</HashCode>
+      <HashCode>AoAAQAAAAgAAAAAAAAAAAAAAAAgAAAIAAAAAAIAAAAA=</HashCode>
       <FileName>Code\CampaignEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -86,6 +79,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Code\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GenericCampaignMasterLib.Unit" Collapsed="true">
+    <Position X="9.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Code\Unit.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Tahoma" Size="8.25" />

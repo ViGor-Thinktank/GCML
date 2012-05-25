@@ -5,6 +5,7 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
+    [Serializable()]
     public class Field
     {
         public Sektor Sektor

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
-    public abstract class Unit
+    [Serializable()]
+    public interface Unit
     {
+        public int Id { get; set; }             // Dummy
+        public string Bezeichnung { get; set; } // Dummy
     }
 }
