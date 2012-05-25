@@ -14,12 +14,12 @@ namespace GenericCampaignMasterLib
             throw new System.NotImplementedException();
         }
 
-        public List<Unit> getUnitsForPlayer(Player p)
+        public List<IUnit> getUnitsForPlayer(Player p)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<ICommand> getCommandsForUnit(Unit u)
+        public List<ICommand> getCommandsForUnit(IUnit u)
         {
             throw new System.NotImplementedException();
         }
@@ -34,7 +34,7 @@ namespace GenericCampaignMasterLib
             throw new System.NotImplementedException();
         }
 
-        public List<Sektor> getViewableSectors(Unit u)
+        public List<Sektor> getViewableSectors(IUnit u)
         {
             throw new System.NotImplementedException();
         }
