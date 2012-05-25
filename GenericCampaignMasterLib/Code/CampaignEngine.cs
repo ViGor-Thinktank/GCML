@@ -8,8 +8,6 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class CampaignEngine
     {
-        private int listUnitsActed;
-
         public List<Player> CPlayers { get; set; }
         public Field CField { get; set; }
 

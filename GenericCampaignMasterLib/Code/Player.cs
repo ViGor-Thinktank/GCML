@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class Player
     {
-        public IUnit Unit
+        public List<IUnit> ListUnits
         {
             get
             {

@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class Sektor
     {
-        public IUnit Unit
+        public List<IUnit> ListUnits
         {
             get
             {

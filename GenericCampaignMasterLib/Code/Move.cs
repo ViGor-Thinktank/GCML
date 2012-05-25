@@ -7,7 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public int Unit
+        public IUnit Unit
         {
             get
             {
@@ -18,7 +18,7 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public int TargetField
+        public Sektor TargetField
         {
             get
             {
