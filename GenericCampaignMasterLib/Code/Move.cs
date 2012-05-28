@@ -7,6 +7,8 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
+		public int Fields { get; set; }
+		
         public IUnit Unit
         {
             get
@@ -28,6 +30,9 @@ namespace GenericCampaignMasterLib
             {
             }
         }
+		
+		
+		
         #region ICommand Member
 
         public void Execute()

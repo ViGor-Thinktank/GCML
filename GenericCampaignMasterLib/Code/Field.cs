@@ -10,16 +10,10 @@ namespace GenericCampaignMasterLib
     {
         public int Id { get; set; }
 
-        public Sektor Sektor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+		public List<Sektor> SektorList { get; set; }
+			
+		
+		
         
         #region IEquatable<Field> Member
 

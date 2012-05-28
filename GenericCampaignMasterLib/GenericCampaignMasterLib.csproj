@@ -51,6 +51,7 @@
     <Compile Include="Code\Sektor.cs" />
     <Compile Include="Code\Unit.cs" />
     <Compile Include="Code\Ressourcen.cs" />
+    <Compile Include="Code\DummyUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dok\ClassDiagram1.cd" />

@@ -11,9 +11,11 @@ namespace GenericCampaignMasterLib
         public List<Player> CPlayers { get; set; }
         public Field CField { get; set; }
 
-        public List<IUnit> getUnitsForPlayer(Player p)
+		// Todo: Methode soll nur die Units zurückliefern die aktivierbar sind
+		// Auf die Liste aller Units des Players kann über die List-Property zugegriffen werden.
+        public List<IUnit> getActiveUnitsForPlayer(Player p)
         {
-            throw new System.NotImplementedException();
+			return p.ListUnits;
         }
 
         public List<ICommand> getCommandsForUnit(IUnit u)
