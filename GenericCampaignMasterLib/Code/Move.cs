@@ -7,15 +7,15 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-		public int Fields { get; set; }
-        public IUnit Unit { get; set; }
-        public Sektor TargetField { get; set; }
+		public Field CField { get; set; }
+        public IUnit CUnit { get; set; }
+        public Sektor TargetSektor { get; set; }
         
         #region ICommand Member
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            CField.putUnit(CUnit, TargetSektor);
         }
 
         #endregion
