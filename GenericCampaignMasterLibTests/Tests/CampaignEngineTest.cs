@@ -34,7 +34,7 @@ namespace GenericCampaignMasterLibTests.Tests
         }
 
         [Test]
-        public void testCampaignEngineFunctions()
+        public void testPutUnit()
         {
             DummyUnit unit1 = new DummyUnit();
             Sektor targetSektor = testEngine.CField.SektorList[0];
@@ -42,6 +42,20 @@ namespace GenericCampaignMasterLibTests.Tests
 
             Assert.Contains(unit1, targetSektor);
         }
+
+        //[Test]
+        //public void testMoveUnit()
+        //{
+        //    DummyUnit unit1 = new DummyUnit();
+        //    testEngine.CField.putUnit(unit1, testEngine.CField.SektorList[0]);
+
+        //    List<ICommand> cmdList = unit1.getCommands();
+           
+            
+
+
+
+        //}
         
     }       
 
