@@ -9,11 +9,12 @@ namespace GenericCampaignMasterLib
     public class Field : IEquatable<Field>
     {
         public int Id { get; set; }
-		public List<Sektor> SektorList { get; set; }
+		public List<Sektor> ListSektors { get; set; }
 
-        public void putUnit(IUnit unit, Sektor target)
+        /*
+		public void putUnit(IUnit unit, Sektor target)
         {
-            if (!SektorList.Contains(target))
+            if (!ListSektors.Contains(target))
                 throw new Exception("Sektor nicht vorhanden");
 
             Sektor oldPos = getSektorContainingUnit(unit);
@@ -21,21 +22,19 @@ namespace GenericCampaignMasterLib
                 oldPos.Remove(unit);
 
             target.Add(unit);
-        }
-
-        private Sektor getSektorContainingUnit(IUnit unit)
+        }*/
+		
+        public Sektor getSektorContainingUnit(IUnit unit)
         {
             // Erstmal so gelöst. Geht besser.      
-            foreach(Sektor s in SektorList)
+            foreach(Sektor s in ListSektors)
             {
-                if(s.Contains(unit))
+                if(s.ListUnits.Contains(unit))
                     return s;
             }
 
             return null;
-        }
-
-		
+        }	
         
         #region IEquatable<Field> Member
 

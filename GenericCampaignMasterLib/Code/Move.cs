@@ -7,16 +7,17 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public int SektorRange { get; set; }
-		public Field CField { get; set; }
-        public IUnit CUnit { get; set; }
+        public int IntRange { get; set; }
+		public IUnit Unit { get; set; }
         public Sektor TargetSektor { get; set; }
+		public Sektor OriginSektor { get; set; }
         
         #region ICommand Member
 
-        public void Execute()
-        {
-            CField.putUnit(CUnit, TargetSektor);
+        public void Execute ()
+		{
+			OriginSektor.removeUnit (this.Unit);
+			TargetSektor.addUnit(this.Unit);
         }
 
         #endregion

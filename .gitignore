@@ -1,7 +1,7 @@
-
+﻿
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
-test-results/{BEC6091B-9AE8-43C5-9C0C-C1CA9080E85B}-default-2012-05-28.xml
+test-results/*.*
 
 GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-05-28.xml
 
