@@ -25,12 +25,14 @@ namespace GenericCampaignMasterLib
 
         private Sektor getSektorContainingUnit(IUnit unit)
         {
-            // Erstmal so gelöst. Geht wahrscheinlich besser.
-            Sektor sektor = (Sektor)from s in SektorList
-                                    where s.Contains(unit)
-                                    select s;
+            // Erstmal so gelöst. Geht besser.      
+            foreach(Sektor s in SektorList)
+            {
+                if(s.Contains(unit))
+                    return s;
+            }
 
-            return sektor;
+            return null;
         }
 
 		

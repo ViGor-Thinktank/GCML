@@ -23,11 +23,10 @@ namespace GenericCampaignMasterLib
             return u.getCommands();
         }
 
-        public List<Sektor> getViewableSectors(IUnit u)
+        public List<Sektor> getViewableSectorsForUnit(IUnit u)
         {
             List<Sektor> sektorList = CField.SektorList;
-
-            sektorList.
+            return sektorList;
         }
     }
 }

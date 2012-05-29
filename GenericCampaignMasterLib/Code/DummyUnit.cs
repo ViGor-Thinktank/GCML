@@ -5,7 +5,7 @@ namespace GenericCampaignMasterLib
 {
 	
 	/// <summary>
-	/// Testimplementierung für das IUnit Interface. Kann sich Feld fortbewegen.
+	/// Testimplementierung für das IUnit Interface. Kann sich 1 Feld fortbewegen.
 	/// </summary>
 	public class DummyUnit : IUnit
 	{
@@ -18,7 +18,7 @@ namespace GenericCampaignMasterLib
 		public List<ICommand> getCommands ()
 		{
 			Move cmd = new Move();
-			cmd.Fields = 1;
+			cmd.SektorRange = 1;
 		    List<ICommand> cmdlist = new List<ICommand>();
 			cmdlist.Add(cmd);
 			return cmdlist;

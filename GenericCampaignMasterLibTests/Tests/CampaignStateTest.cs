@@ -8,22 +8,39 @@ using NUnit.Framework;
 namespace GenericCampaignMasterLibTests.Tests
 {
     [TestFixture]
-    public class CampaignStateTest
+    public class CampaignEngineTest
     {
+        CampaignEngine testEngine;
+        
+        [SetUp]
+        public void init()
+        {
+            testEngine = new CampaignEngine();
+            testEngine.CField = new Field();
+            testEngine.CField.Id = 123;
+            testEngine.CField.SektorList = new List<Sektor>() { new Sektor(1), new Sektor(2), new Sektor(3) };
+            testEngine.CPlayers = new List<Player>() { new Player(1), new Player(2) };
+        }
+
         [Test]
         public void saveAndRestoreCampaignState()
         {
-            CampaignEngine engine_origin = new CampaignEngine();
-            engine_origin.CField = new Field();
-            engine_origin.CField.Id = 123;
-            engine_origin.CPlayers = new List<Player>() { new Player(123), new Player(456) };
-
             CampaignState state = new CampaignState();
-            state.Save(engine_origin);
+            state.Save(testEngine);
 
-            CampaignEngine engine1 = state.Restore();
-            Assert.AreEqual(engine_origin.CField, engine1.CField, "CField aus dem wiederhergestellten State ist nicht identisch.");
-            Assert.AreEqual(engine_origin.CPlayers, engine1.CPlayers, "CPlayers aus dem wiederhergestellten State ist nicht identisch.");
+            CampaignEngine engineRestored = state.Restore();
+            Assert.AreEqual(testEngine.CField, engineRestored.CField, "CField aus dem wiederhergestellten State ist nicht identisch.");
+            Assert.AreEqual(testEngine.CPlayers, engineRestored.CPlayers, "CPlayers aus dem wiederhergestellten State ist nicht identisch.");
+        }
+
+        [Test]
+        public void testCampaignEngineFunctions()
+        {
+            DummyUnit unit1 = new DummyUnit();
+            Sektor targetSektor = testEngine.CField.SektorList[0];
+            testEngine.CField.putUnit(unit1, targetSektor);
+
+            Assert.Contains(unit1, targetSektor);
         }
         
     }       
