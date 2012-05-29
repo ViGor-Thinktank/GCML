@@ -7,7 +7,9 @@ namespace GenericCampaignMasterLib
 {
     public interface IUnit
     {
-         int Id { get; set; }             // Dummy
+         int Id { get; }             // Dummy
          string Bezeichnung { get; set; } // Dummy
+		
+		 List<ICommand> getCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
     }
 }

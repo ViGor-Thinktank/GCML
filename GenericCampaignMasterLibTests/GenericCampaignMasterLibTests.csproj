@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</ProjectGuid>
+    <ProjectGuid>{021DC51A-DA4F-4666-AACE-C679C5D674BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GenericCampaignMasterLib</RootNamespace>
-    <AssemblyName>GenericCampaignMasterLib</AssemblyName>
+    <RootNamespace>GenericCampaignMasterLibTests</RootNamespace>
+    <AssemblyName>GenericCampaignMasterLibTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,23 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\CampaignController.cs" />
-    <Compile Include="Code\Attack.cs" />
-    <Compile Include="Code\CampaignEngine.cs" />
-    <Compile Include="Code\CampaignState.cs" />
-    <Compile Include="Code\Field.cs" />
-    <Compile Include="Code\ICommand.cs" />
-    <Compile Include="Code\Move.cs" />
-    <Compile Include="Code\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\Sektor.cs" />
-    <Compile Include="Code\Unit.cs" />
-    <Compile Include="Code\Ressourcen.cs" />
-    <Compile Include="Code\DummyUnit.cs" />
+    <Compile Include="Tests\CampaignEngineTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dok\ClassDiagram1.cd" />
+    <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
+      <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
+      <Name>GenericCampaignMasterLib</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

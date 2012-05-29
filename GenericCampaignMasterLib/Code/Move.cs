@@ -7,32 +7,17 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public IUnit Unit
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Sektor TargetField
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public int IntRange { get; set; }
+		public IUnit Unit { get; set; }
+        public Sektor TargetSektor { get; set; }
+		public Sektor OriginSektor { get; set; }
+        
         #region ICommand Member
 
-        public void Execute()
-        {
-            throw new NotImplementedException();
+        public void Execute ()
+		{
+			OriginSektor.removeUnit (this.Unit);
+			TargetSektor.addUnit(this.Unit);
         }
 
         #endregion
