@@ -8,31 +8,9 @@ namespace GenericCampaignMasterLib
     public class Move : ICommand
     {
 		public int Fields { get; set; }
-		
-        public IUnit Unit
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Sektor TargetField
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-		
-		
-		
+        public IUnit Unit { get; set; }
+        public Sektor TargetField { get; set; }
+        
         #region ICommand Member
 
         public void Execute()

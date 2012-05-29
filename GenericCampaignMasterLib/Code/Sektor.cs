@@ -6,17 +6,8 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
     [Serializable()]
-    public class Sektor
+    public class Sektor : List<IUnit>
     {
-        public List<IUnit> ListUnits
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+
     }
 }

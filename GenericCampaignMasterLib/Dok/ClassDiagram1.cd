@@ -6,31 +6,32 @@
   <Class Name="GenericCampaignMasterLib.Player">
     <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAACAAABAAAAAAAAgABAAAAAEAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Code\Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Ressourcen" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="GenericCampaignMasterLib.Sektor">
-    <Position X="7.25" Y="5.25" Width="1.5" />
+    <Position X="9" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Code\Sektor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GenericCampaignMasterLib.CampaignEngine">
     <Position X="4.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAQAAAAAAAAAAAAAAAAAIAAAAAAIAAAQA=</HashCode>
+      <HashCode>AAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAQQ=</HashCode>
       <FileName>Code\CampaignEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GenericCampaignMasterLib.Move">
     <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAAAAAABgAA=</HashCode>
       <FileName>Code\Move.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -56,15 +57,13 @@
   <Class Name="GenericCampaignMasterLib.Field">
     <Position X="7.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Code\Field.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Sektor" />
-    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="GenericCampaignMasterLib.Ressourcen">
-    <Position X="7.25" Y="2" Width="1.5" />
+    <Position X="9.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Code\Ressourcen.cs</FileName>
@@ -87,7 +86,7 @@
   <Interface Name="GenericCampaignMasterLib.IUnit" Collapsed="true">
     <Position X="7.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABA=</HashCode>
       <FileName>Code\Unit.cs</FileName>
     </TypeIdentifier>
   </Interface>

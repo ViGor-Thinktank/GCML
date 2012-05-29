@@ -20,12 +20,14 @@ namespace GenericCampaignMasterLib
 
         public List<ICommand> getCommandsForUnit(IUnit u)
         {
-            throw new System.NotImplementedException();
+            return u.getCommands();
         }
 
         public List<Sektor> getViewableSectors(IUnit u)
         {
-            throw new System.NotImplementedException();
+            List<Sektor> sektorList = CField.SektorList;
+
+            sektorList.
         }
     }
 }
