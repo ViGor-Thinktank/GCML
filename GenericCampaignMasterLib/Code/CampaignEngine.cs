@@ -26,7 +26,7 @@ namespace GenericCampaignMasterLib
 				if (cmd.GetType() == typeof(Move))
 				{
 					Move cmdMove = (Move)cmd;
-					cmdMove.OriginSektor = FieldField.getSektorContainingUnit(u);
+					cmdMove.OriginSektor = getSektorContainingUnit(u);
 					
 					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
 					int intFieldsMoved = 0;
@@ -58,5 +58,18 @@ namespace GenericCampaignMasterLib
             List<Sektor> sektorList = FieldField.ListSektors;
             return sektorList;
         }
+
+        public Sektor getSektorContainingUnit(IUnit u)
+        {
+            // Erstmal so gelöst. Geht besser.      
+            foreach (Sektor s in FieldField.ListSektors)
+            {
+                if (s.ListUnits.Contains(u))
+                    return s;
+            }
+
+            return null;
+        }	
+
     }
 }

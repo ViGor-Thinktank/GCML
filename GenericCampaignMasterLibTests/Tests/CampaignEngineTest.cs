@@ -41,7 +41,7 @@ namespace GenericCampaignMasterLibTests.Tests
 			DummyUnit du = new DummyUnit(666);
 			testEngine.FieldField.ListSektors[startPos].addUnit(du);
 			
-			Assert.AreEqual(startPos, testEngine.FieldField.getSektorContainingUnit(du).ListUnits.IndexOf(du));
+			Assert.AreEqual(startPos, testEngine.getSektorContainingUnit(du).ListUnits.IndexOf(du));
 			
 			
 			List<ICommand> cmds = testEngine.getCommandsForUnit(du);
@@ -55,7 +55,7 @@ namespace GenericCampaignMasterLibTests.Tests
 				
 			}
 			
-			Sektor newSektor = testEngine.FieldField.getSektorContainingUnit(du);
+			Sektor newSektor = testEngine.getSektorContainingUnit(du);
 			int newPos = testEngine.FieldField.ListSektors.IndexOf(newSektor);
 			
 			Assert.AreEqual(1, newPos);
