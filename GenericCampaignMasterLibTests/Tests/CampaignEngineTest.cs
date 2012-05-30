@@ -12,6 +12,7 @@ namespace GenericCampaignMasterLibTests.Tests
     {
         CampaignEngine testEngine;
         
+        
         [SetUp]
         public void init()
         {
@@ -35,34 +36,42 @@ namespace GenericCampaignMasterLibTests.Tests
 
 		
         [Test]
-		public void testMoveUnit()
+		public void testMoveUnitOneSektor()
 		{
-			int startPos = 0;
-			DummyUnit du = new DummyUnit(666);
-			testEngine.FieldField.ListSektors[startPos].addUnit(du);
-			
-			Assert.AreEqual(startPos, testEngine.getSektorContainingUnit(du).ListUnits.IndexOf(du));
-			
-			
-			List<ICommand> cmds = testEngine.getCommandsForUnit(du);
-			foreach (ICommand c in cmds)
-			{
-				if (c.GetType() == typeof(Move))
-				{
-					c.Execute();
-					break;
-				}
-				
-			}
-			
-			Sektor newSektor = testEngine.getSektorContainingUnit(du);
-			int newPos = testEngine.FieldField.ListSektors.IndexOf(newSektor);
-			
-			Assert.AreEqual(1, newPos);
-			Assert.AreNotEqual(newPos, startPos);			
+            // Testfall: Bewegung um einen Sektor
+            DummyUnit testUnit = new DummyUnit(666); ;
+            int startPos = 0;
+            int targetPos = 1;
+            Sektor targetSektor = testEngine.FieldField.ListSektors[targetPos];
+
+            testEngine.FieldField.ListSektors[startPos].addUnit(testUnit);
+            Assert.AreEqual(startPos, testEngine.getSektorContainingUnit(testUnit).ListUnits.IndexOf(testUnit));
+
+            List<Move> possibleMoves = testEngine.getDefaultMoveCommandsForUnit(testUnit);
+
+            Move commandToTest = null;
+            foreach (Move m in possibleMoves)
+            {
+                if (m.TargetSektor == targetSektor)
+                {
+                    commandToTest = m;
+                    break;
+                }
+            }
+            commandToTest.Execute();
+
+			Sektor newPosition = testEngine.getSektorContainingUnit(testUnit);
+            Assert.AreEqual(targetSektor, newPosition);
 		}
 
+        [Test]
+        public void testMoveCycle()
+        {
+            // Testfall: Bewegung durch alle Sektoren
+            int startPos = 0;
 
+
+        }
         
     }       
 

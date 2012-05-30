@@ -20,18 +20,19 @@ namespace GenericCampaignMasterLib
 
         public List<ICommand> getCommandsForUnit(IUnit u)
 		{
-			List<ICommand> listCommands = u.getCommands();
-			foreach (ICommand cmd in listCommands)
+            List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
+            List<ICommand> listReadyCommands = new List<ICommand>();    // Liste mit vollständigen Commands - wird zurückgeliefert.
+        	
+			foreach (ICommand cmdRaw in listRawCommands)
 			{
-				if (cmd.GetType() == typeof(Move))
+				if (cmdRaw.GetType() == typeof(Move))
 				{
-					Move cmdMove = (Move)cmd;
-					cmdMove.OriginSektor = getSektorContainingUnit(u);
-					
+					Move cmdMove = (Move)cmdRaw;
+					Sektor originSektor = getSektorContainingUnit(u);
+
 					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
 					int intFieldsMoved = 0;
-					int intPos = FieldField.ListSektors.IndexOf(cmdMove.OriginSektor);
-					Sektor targetSektor = null;
+					int intPos = FieldField.ListSektors.IndexOf(originSektor);
 					while (intFieldsMoved <= cmdMove.IntRange)
 					{
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
@@ -41,16 +42,36 @@ namespace GenericCampaignMasterLib
 							continue;
 						}
 						
-						targetSektor = FieldField.ListSektors [intPos++];
-						
+                        Move readyCmd = new Move();
+                        readyCmd.Unit = u;
+                        readyCmd.OriginSektor = originSektor;
+                        readyCmd.TargetSektor = FieldField.ListSektors [intPos++];
+                        readyCmd.IntRange = cmdMove.IntRange;
+                        listReadyCommands.Add(readyCmd);
+
 						intFieldsMoved++;
 					}
-					
-					cmdMove.TargetSektor = targetSektor;
 				}
 			}
 			
-			return listCommands;
+			return listReadyCommands;
+        }
+
+        /// <summary>
+        /// Erstmal zum Testen: Einheit liefert i.d.R. nur ein Command für Move.
+        /// Liefert nur eine Collection aus möglichen Moves.
+        /// </summary>
+        public List<Move> getDefaultMoveCommandsForUnit(IUnit u)
+        {
+            List<Move> listMoves = new List<Move>();
+            List<ICommand> cmds = getCommandsForUnit(u);
+			foreach (ICommand c in cmds)
+			{
+                if (c.GetType() == typeof(Move))
+                    listMoves.Add((Move)c);
+			}
+
+            return listMoves;
         }
 
         public List<Sektor> getViewableSectorsForUnit(IUnit u)
