@@ -47,11 +47,12 @@
     <Compile Include="Code\ICommand.cs" />
     <Compile Include="Code\Move.cs" />
     <Compile Include="Code\Player.cs" />
+    <Compile Include="Code\Unit\UnitType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Sektor.cs" />
-    <Compile Include="Code\Unit.cs" />
+    <Compile Include="Code\Unit\Unit.cs" />
     <Compile Include="Code\Ressourcen.cs" />
-    <Compile Include="Code\DummyUnit.cs" />
+    <Compile Include="Code\Unit\DummyUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dok\ClassDiagram1.cd" />
