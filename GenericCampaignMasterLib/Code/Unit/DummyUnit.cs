@@ -11,11 +11,10 @@ namespace GenericCampaignMasterLib.Code.Unit
 	{
         public DummyUnit(int unitId) : base(unitId, new UnitTypeDummy())
 		{
-
+            intMovementRate = 1;
 		}
 
-        #region IUnit implementation
-
+        
 		public List<ICommand> getCommands()
 		{
             List<ICommand> lisPossibleCommands = base.getCommands();
@@ -24,10 +23,6 @@ namespace GenericCampaignMasterLib.Code.Unit
 
 		}
 		
-		
-			
-		
-		#endregion
 	}
 }
 

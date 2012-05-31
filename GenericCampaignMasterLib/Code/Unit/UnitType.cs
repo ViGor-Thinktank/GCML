@@ -15,7 +15,7 @@ namespace GenericCampaignMasterLib.Code.Unit
         public override List<ICommand> getCommands(Unit.BaseUnit CallingUnit)
         {
             Move cmd = new Move();
-            cmd.IntRange = 1;
+            cmd.IntRange = CallingUnit.intMovementRate;
             cmd.Unit = CallingUnit;
 
             List<ICommand> cmdlist = new List<ICommand>();

@@ -34,15 +34,17 @@ namespace GenericCampaignMasterLib.Code.Unit
 
         private string m_strBezeichnung = "";
         public string Bezeichnung 
-            { 
-                get { return m_strBezeichnung; } 
-                set { m_strBezeichnung = value; } 
-            }
+        { 
+            get { return m_strBezeichnung; } 
+            set { m_strBezeichnung = value; } 
+        }
 
         private UnitTypeBase m_objUnitType;
         public List<ICommand> getCommands()
         {
             return m_objUnitType.getCommands(this);
         }
+
+        public int intMovementRate = -1;
     }
 }
