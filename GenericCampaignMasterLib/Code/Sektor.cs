@@ -14,6 +14,8 @@ namespace GenericCampaignMasterLib
 		
         public int Id { get { return m_intId; } }
 		public List<IUnit> ListUnits { get { return m_ListUnits; }}
+        public event EventHandler UnitEnteredSektor;
+        public event EventHandler UnitLeftSektor; 
 
         public Sektor (int sektorId)
 		{
@@ -24,12 +26,17 @@ namespace GenericCampaignMasterLib
 		public void addUnit (IUnit unit)
 		{
 			m_ListUnits.Add (unit);
+
+            if(UnitEnteredSektor != null)
+                UnitEnteredSektor(this, new EventArgs());
 		}
 		
 		public void removeUnit (IUnit unit)
 		{
 			m_ListUnits.Remove (unit);
-			
+
+            if(UnitLeftSektor != null)
+                UnitLeftSektor(this, new EventArgs());
 		}
 		
 

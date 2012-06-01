@@ -44,10 +44,30 @@ namespace GenericCampaignMasterLibTests.Tests
 		}
 
         [Test]
-        public void EqualsTest()
+        public void UnitEnteredSektorEventTest()
         {
+            bool eventFired = false;
+            sektorTest.UnitEnteredSektor += delegate(object sender, EventArgs args){
+                eventFired = true;
+            };
 
+            DummyUnit testUnit = new DummyUnit(669);
+            sektorTest.addUnit(testUnit);
+            Assert.AreEqual(true, eventFired);
+        }
 
+        [Test]
+        public void UnitLeftSektorEventTest()
+        {
+            bool eventFired = false;
+            sektorTest.UnitLeftSektor += delegate(object sender, EventArgs args)
+            {
+                eventFired = true;
+            };
+
+            DummyUnit testUnit = new DummyUnit(670);
+            sektorTest.removeUnit(testUnit);
+            Assert.AreEqual(true, eventFired);
         }
 
     }
