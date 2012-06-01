@@ -18,10 +18,10 @@ namespace GenericCampaignMasterLibTests.Tests
         public void init()
         {
             testEngine = new CampaignEngine();
-            testEngine.FieldField = new Field();
+            testEngine.FieldField = new Field(new Field_Schlauch(new List<Sektor>() { new Sektor(0), new Sektor(1), new Sektor(2) }));
             testEngine.FieldField.Id = 123;
-            testEngine.FieldField.ListSektors = new List<Sektor>() { new Sektor(1), new Sektor(2), new Sektor(3) };
-            testEngine.ListPlayers = new List<Player>() { new Player(1), new Player(2) };
+            
+            testEngine.setPlayerList(new List<Player>() { new Player(1), new Player(2) });
         }
 
         [Test]
@@ -43,9 +43,10 @@ namespace GenericCampaignMasterLibTests.Tests
             DummyUnit testUnit = new DummyUnit(666); ;
             int startPos = 0;
             int targetPos = 1;
-            Sektor targetSektor = testEngine.FieldField.ListSektors[targetPos];
+            
+            Sektor targetSektor = testEngine.FieldField.objSektorCollection.get(targetPos);
 
-            testEngine.FieldField.ListSektors[startPos].addUnit(testUnit);
+            testEngine.FieldField.objSektorCollection.get(startPos).addUnit(testUnit);
             Assert.AreEqual(startPos, testEngine.getSektorContainingUnit(testUnit).ListUnits.IndexOf(testUnit));
 
             List<Move> possibleMoves = testEngine.getDefaultMoveCommandsForUnit(testUnit);

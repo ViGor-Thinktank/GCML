@@ -18,11 +18,14 @@ namespace GenericCampaignMasterLib
             this._id = playerId;
         }
 
+        private List<IUnit> m_Units = null;
+
         public List<IUnit> ListUnits
         {
             get
             {
-                throw new System.NotImplementedException();
+                if (m_Units == null) { m_Units = new List<IUnit>(); }
+                return m_Units;
             }
             set
             {

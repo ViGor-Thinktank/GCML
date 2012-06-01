@@ -9,10 +9,28 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class CampaignEngine
     {
-        public List<Player> ListPlayers { get; set; }
-        public Field FieldField { get; set; }
+     
+        #region " Properties && Felder "
+        private List<Player> m_Players = null;
+        public List<Player> ListPlayers
+        {
+            get
+            {
+                return m_Players;
+            }
+        }
 
-		// Todo: Methode soll nur die Units zurückliefern die aktivierbar sind
+        private Field m_FieldField;
+
+        public Field FieldField
+        {
+            get { return m_FieldField; }
+            set { m_FieldField = value; }
+        }
+
+        #endregion
+
+        // Todo: Methode soll nur die Units zurückliefern die aktivierbar sind
 		// Auf die Liste aller Units des Players kann über die List-Property zugegriffen werden.
         public List<IUnit> getActiveUnitsForPlayer(Player p)
         {
@@ -33,20 +51,25 @@ namespace GenericCampaignMasterLib
 
 					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
 					int intFieldsMoved = 0;
-					int intPos = FieldField.ListSektors.IndexOf(originSektor);
-					while (intFieldsMoved <= cmdMove.IntRange)
+
+					Sektor aktSek = FieldField.objSektorCollection.get(originSektor.Id);
+
+                    while (intFieldsMoved <= cmdMove.IntRange)
 					{
+                        List<clsSektorCollection.clsSektorKoordinaten> MoveVektors = FieldField.objSektorCollection.getMoveVektors(1);
+                        Sektor newSek = FieldField.objSektorCollection.move(aktSek, MoveVektors[2]); 
+
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
-						if (intFieldsMoved == FieldField.ListSektors.Count)
+                        if (newSek == null)
 						{
-							intPos = 0;
+                            newSek = FieldField.objSektorCollection.get(0);
 							continue;
 						}
 						
                         Move readyCmd = new Move();
                         readyCmd.Unit = u;
                         readyCmd.OriginSektor = originSektor;
-                        readyCmd.TargetSektor = FieldField.ListSektors [intPos++];
+                        readyCmd.TargetSektor = FieldField.objSektorCollection.get(newSek.Id);
                         readyCmd.IntRange = cmdMove.IntRange;
                         listReadyCommands.Add(readyCmd);
 
@@ -77,21 +100,28 @@ namespace GenericCampaignMasterLib
 
         public List<Sektor> getViewableSectorsForUnit(IUnit u)
         {
-            List<Sektor> sektorList = FieldField.ListSektors;
+            /*List<Sektor> sektorList = FieldField.objSektorCollection.getSektorList();
             return sektorList;
+*/
+            return null;
         }
 
         public Sektor getSektorContainingUnit(IUnit u)
         {
-            // Erstmal so gelöst. Geht besser.      
-            foreach (Sektor s in FieldField.ListSektors)
-            {
-                if (s.ListUnits.Contains(u))
-                    return s;
-            }
+            return FieldField.objSektorCollection.getSektorForUnit(u);
+            
+        }
 
-            return null;
-        }	
 
+        public void AddPlayer(Player player)
+        {
+            if (m_Players == null) { m_Players = new List<Player>(); }
+            m_Players.Add(player);
+        }
+
+        public void setPlayerList(List<Player> list)
+        {
+            m_Players = list;
+        }
     }
 }
