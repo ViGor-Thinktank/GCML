@@ -6,7 +6,7 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
     
-    public class Field_Schachbrett : clsSektorCollection
+    public class Field_Schachbrett : Field
     {
         private int m_width = -1;
         private int m_height = -1;
@@ -54,20 +54,20 @@ namespace GenericCampaignMasterLib
             throw new NotImplementedException();
         }
 
-        public override Sektor get(clsSektorCollection.clsSektorKoordinaten objSektorKoord)
+        public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
         {
             return ListSektors[objSektorKoord];
         }
 
-        public override bool checkKoordsValid(clsSektorCollection.clsSektorKoordinaten objSektorKoord)
+        public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
         {
             clsSektorKoordinaten_Schachbrett objSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)objSektorKoord;
             return objSektorKoordSchach.X < this.m_height && objSektorKoordSchach.Y < m_width;
         }
 
-        public override List<clsSektorCollection.clsSektorKoordinaten> getMoveVektors(int range)
+        public override List<Field.clsSektorKoordinaten> getMoveVektors(int range)
         {
-            List<clsSektorCollection.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
+            List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -range; i <= range; i++)
             {
                 for (int j = -range; i <= range; i++)
@@ -78,7 +78,7 @@ namespace GenericCampaignMasterLib
             return lisVektors;
         }
 
-        public override Sektor move(Sektor aktSek, clsSektorCollection.clsSektorKoordinaten Vektor)
+        public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
         {
             clsSektorKoordinaten_Schachbrett objSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord;
             clsSektorKoordinaten_Schachbrett objVektorKoordSchach = (clsSektorKoordinaten_Schachbrett)Vektor;
@@ -93,7 +93,7 @@ namespace GenericCampaignMasterLib
         }
     }
 
-    public class Field_Schlauch : clsSektorCollection
+    public class Field_Schlauch : Field
     {
         public Field_Schlauch(List<Sektor> lisNewSektors)
         { 
@@ -130,19 +130,19 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
-        public override Sektor get(clsSektorCollection.clsSektorKoordinaten objSektorKoord)
+        public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
         {
             return ListSektors[(clsSektorKoordinaten_Schlauch)objSektorKoord];
         }
 
-        public override bool checkKoordsValid(clsSektorCollection.clsSektorKoordinaten objSektorKoord)
+        public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
         {
             return ((clsSektorKoordinaten_Schlauch)objSektorKoord).X < this.ListSektors.Count;
         }
 
-        public override List<clsSektorCollection.clsSektorKoordinaten> getMoveVektors(int range)
+        public override List<Field.clsSektorKoordinaten> getMoveVektors(int range)
         {
-            List<clsSektorCollection.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
+            List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -range; i <=range; i++)
             {
                 lisVektors.Add(new clsSektorKoordinaten_Schlauch(i));
@@ -150,7 +150,7 @@ namespace GenericCampaignMasterLib
             return lisVektors;
         }
 
-        public override Sektor move(Sektor aktSek, clsSektorCollection.clsSektorKoordinaten Vektor)
+        public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
         {
             int newID = aktSek.Id + ((clsSektorKoordinaten_Schlauch)Vektor).X;
             foreach (Sektor aktSektor in ListSektors.Values)
@@ -163,7 +163,7 @@ namespace GenericCampaignMasterLib
         }
     }
 
-    public abstract class clsSektorCollection
+    public abstract class Field : IEquatable<Field>
     {
         public abstract class clsSektorKoordinaten
         {
@@ -190,33 +190,16 @@ namespace GenericCampaignMasterLib
         }
 
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
-        public abstract List<clsSektorCollection.clsSektorKoordinaten> getMoveVektors(int range);
-        
-    }
-    
-    public class Field : IEquatable<Field>
-    {
+        public abstract List<Field.clsSektorKoordinaten> getMoveVektors(int range);
 
-        public Field(clsSektorCollection newSektorCollection)
-        {
-            this.objSektorCollection = newSektorCollection;
-        }
         public int Id { get; set; }
-        public clsSektorCollection objSektorCollection;
-            
-	        
-        #region IEquatable<Field> Member
-
-        // TODO: Nur Temporär um die Testklasse auszuprobieren.
-        // Muss die Sektoren vergleichen.
+        
         public bool Equals(Field other)
         {
-            if (this.Id == other.Id)
-                return true;
-            else
-                return false;
+            return (this.Id == other.Id);
         }
 
-        #endregion
     }
+    
+ 
 }

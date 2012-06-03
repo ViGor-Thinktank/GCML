@@ -52,24 +52,24 @@ namespace GenericCampaignMasterLib
 					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
 					int intFieldsMoved = 0;
 
-					Sektor aktSek = FieldField.objSektorCollection.get(originSektor.Id);
+					Sektor aktSek = FieldField.get(originSektor.Id);
 
                     while (intFieldsMoved <= cmdMove.IntRange)
 					{
-                        List<clsSektorCollection.clsSektorKoordinaten> MoveVektors = FieldField.objSektorCollection.getMoveVektors(1);
-                        Sektor newSek = FieldField.objSektorCollection.move(aktSek, MoveVektors[2]); 
+                        List<Field.clsSektorKoordinaten> MoveVektors = FieldField.getMoveVektors(1);
+                        Sektor newSek = FieldField.move(aktSek, MoveVektors[2]); 
 
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
                         if (newSek == null)
 						{
-                            newSek = FieldField.objSektorCollection.get(0);
+                            newSek = FieldField.get(0);
 							continue;
 						}
 						
                         Move readyCmd = new Move();
                         readyCmd.Unit = u;
                         readyCmd.OriginSektor = originSektor;
-                        readyCmd.TargetSektor = FieldField.objSektorCollection.get(newSek.Id);
+                        readyCmd.TargetSektor = FieldField.get(newSek.Id);
                         readyCmd.IntRange = cmdMove.IntRange;
                         listReadyCommands.Add(readyCmd);
 
@@ -108,7 +108,7 @@ namespace GenericCampaignMasterLib
 
         public Sektor getSektorContainingUnit(IUnit u)
         {
-            return FieldField.objSektorCollection.getSektorForUnit(u);
+            return FieldField.getSektorForUnit(u);
             
         }
 

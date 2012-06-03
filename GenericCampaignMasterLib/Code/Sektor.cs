@@ -17,7 +17,7 @@ namespace GenericCampaignMasterLib
         public event EventHandler UnitEnteredSektor;
         public event EventHandler UnitLeftSektor; 
 
-        public clsSektorCollection.clsSektorKoordinaten objSektorKoord;
+        public Field.clsSektorKoordinaten objSektorKoord;
 
         public Sektor (int sektorId)
 		{

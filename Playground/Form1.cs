@@ -26,7 +26,7 @@ namespace Playground
         {
             m_objEngine = new CampaignEngine();
 
-            m_objEngine.FieldField = new Field(new Field_Schlauch(new List<Sektor>() { new Sektor(0), new Sektor(1), new Sektor(2) }));
+            m_objEngine.FieldField = new Field_Schlauch(new List<Sektor>() { new Sektor(0), new Sektor(1), new Sektor(2) });
 
             m_objEngine.AddPlayer(new Player(1));
             Player p1 = m_objEngine.ListPlayers[0];
@@ -34,7 +34,7 @@ namespace Playground
 
             List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(p1);
 
-            m_objEngine.FieldField.objSektorCollection.get(1).ListUnits.Add(lisEinheiten[0]);
+            m_objEngine.FieldField.get(1).ListUnits.Add(lisEinheiten[0]);
             m_objEngine.getCommandsForUnit(lisEinheiten[0]);
         }
     }
