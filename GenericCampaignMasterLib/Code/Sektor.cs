@@ -9,19 +9,19 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class Sektor : IEquatable<Sektor>
     {
-        private int m_intId;
+        private string m_strID;
 		private List<IUnit> m_ListUnits;
-		
-        public int Id { get { return m_intId; } }
+
+        public string Id { get { return m_strID; } }
 		public List<IUnit> ListUnits { get { return m_ListUnits; }}
         public event EventHandler UnitEnteredSektor;
         public event EventHandler UnitLeftSektor; 
 
         public Field.clsSektorKoordinaten objSektorKoord;
 
-        public Sektor (int sektorId)
+        public Sektor(string sektorId)
 		{
-			m_intId = sektorId;
+			m_strID = sektorId;
 			m_ListUnits = new List<IUnit> ();
         }
 

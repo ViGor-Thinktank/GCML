@@ -16,7 +16,7 @@ namespace GenericCampaignMasterLibTests.Tests
         [SetUp]
         public void init()
         {
-            sektorTest = new Sektor(666);
+            sektorTest = new Sektor("666");
         }
 
         [Test]

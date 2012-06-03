@@ -15,7 +15,7 @@ namespace GenericCampaignMasterLib.Code.Unit
 		}
 
         
-		public List<ICommand> getCommands()
+		public new List<ICommand> getCommands()
 		{
             List<ICommand> lisPossibleCommands = base.getCommands();
             //ggf. Unit- oder Situationspezifisches hinzufügen

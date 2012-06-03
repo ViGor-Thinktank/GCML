@@ -18,7 +18,7 @@ namespace GenericCampaignMasterLibTests.Tests
         public void init()
         {
             testEngine = new CampaignEngine();
-            testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { new Sektor(0), new Sektor(1), new Sektor(2) });
+            testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { new Sektor("0"), new Sektor("1"), new Sektor("2") });
             testEngine.FieldField.Id = 123;
             
             testEngine.setPlayerList(new List<Player>() { new Player(1), new Player(2) });
@@ -41,8 +41,8 @@ namespace GenericCampaignMasterLibTests.Tests
 		{
             // Testfall: Bewegung um einen Sektor
             DummyUnit testUnit = new DummyUnit(666); ;
-            int startPos = 0;
-            int targetPos = 1;
+            string startPos = "0";
+            string targetPos = "1";
             
             Sektor targetSektor = testEngine.FieldField.get(targetPos);
 

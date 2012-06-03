@@ -62,7 +62,7 @@ namespace GenericCampaignMasterLib
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
                         if (newSek == null)
 						{
-                            newSek = FieldField.get(0);
+                            newSek = FieldField.get("0");
 							continue;
 						}
 						
@@ -122,6 +122,12 @@ namespace GenericCampaignMasterLib
         public void setPlayerList(List<Player> list)
         {
             m_Players = list;
+        }
+
+        private List<string> HandlerList = new List<string>();
+        public void testHandler(object sender, EventArgs e)
+        {
+            HandlerList.Add(((Sektor)sender).Id);
         }
     }
 }

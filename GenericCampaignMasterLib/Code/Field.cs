@@ -29,8 +29,11 @@ namespace GenericCampaignMasterLib
                 return (this.X == otherCast.X && this.Y == otherCast.Y);    
             }
 
-
             
+            public override string uniqueIDstr()
+            {
+                return X.ToString() + "|" + Y.ToString();
+            }
         }
 
         public Field_Schachbrett(int width, int height)
@@ -42,21 +45,21 @@ namespace GenericCampaignMasterLib
             {
                 for (int j = 0; i < height; j++)
                 {
-                    Sektor newSek = new Sektor(this.ListSektors.Count);
+                    Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
-                    this.ListSektors.Add(newSek.objSektorKoord, newSek);
+                    this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
                 }
             }
         }
 
-        public override Sektor get(int intSektorID)
+        public override Sektor get(string strSektorID)
         {
             throw new NotImplementedException();
         }
 
         public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
         {
-            return ListSektors[objSektorKoord];
+            return ListSektors[objSektorKoord.uniqueIDstr()];
         }
 
         public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
@@ -86,8 +89,8 @@ namespace GenericCampaignMasterLib
             objSektorKoordSchach.X += objVektorKoordSchach.X;
             objSektorKoordSchach.Y += objVektorKoordSchach.Y;
 
-            if (ListSektors.ContainsKey(objSektorKoordSchach))
-                return ListSektors[objSektorKoordSchach];
+            if (ListSektors.ContainsKey(objSektorKoordSchach.uniqueIDstr()))
+                return ListSektors[objSektorKoordSchach.uniqueIDstr()];
             else
                 return null;
         }
@@ -95,18 +98,37 @@ namespace GenericCampaignMasterLib
 
     public class Field_Schlauch : Field
     {
+        
         public Field_Schlauch(List<Sektor> lisNewSektors)
         { 
             foreach (Sektor sekNew in lisNewSektors)
             {
-                this.ListSektors.Add(new clsSektorKoordinaten_Schlauch(sekNew.Id), sekNew);
+                this.ListSektors.Add(new clsSektorKoordinaten_Schlauch(sekNew.Id).uniqueIDstr(), sekNew);
             }
         }
 
+        public Field_Schlauch(int p)
+        {
+            for (int i = 0; i < p; i++)
+            {
+                Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
+                newSek.objSektorKoord = new clsSektorKoordinaten_Schlauch(i);
+                this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+            }
+        }
+
+        
+
+        
         public class clsSektorKoordinaten_Schlauch : clsSektorKoordinaten
         {
             public int X = -1;
 
+            public clsSektorKoordinaten_Schlauch(string newX)
+            {
+                this.X = Convert.ToInt32(newX);
+            }
+            
             public clsSektorKoordinaten_Schlauch(int newX)
             {
                 this.X = newX;
@@ -117,13 +139,18 @@ namespace GenericCampaignMasterLib
                 clsSektorKoordinaten_Schlauch otherCast = (clsSektorKoordinaten_Schlauch)other;
                 return (this.X == otherCast.X);
             }
-}
 
-        public override Sektor get(int intSektorID)
+            public override string uniqueIDstr()
+            {
+                return this.X.ToString();
+            }
+        }
+
+        public override Sektor get(string  strSektorID)
         {
             foreach (Sektor aktSektor in ListSektors.Values)
             {
-                if (aktSektor.Id == intSektorID)
+                if (aktSektor.Id == strSektorID)
                     return aktSektor;
             }
 
@@ -132,7 +159,7 @@ namespace GenericCampaignMasterLib
 
         public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
         {
-            return ListSektors[(clsSektorKoordinaten_Schlauch)objSektorKoord];
+            return ListSektors[objSektorKoord.uniqueIDstr()];
         }
 
         public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
@@ -152,15 +179,17 @@ namespace GenericCampaignMasterLib
 
         public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
         {
-            int newID = aktSek.Id + ((clsSektorKoordinaten_Schlauch)Vektor).X;
+            int newID = ((clsSektorKoordinaten_Schlauch)aktSek.objSektorKoord).X + ((clsSektorKoordinaten_Schlauch)Vektor).X;
             foreach (Sektor aktSektor in ListSektors.Values)
             {
-                if (aktSektor.Id == newID)
+                if (aktSektor.Id == newID.ToString())
                     return aktSektor;
             }
 
             return null;
         }
+
+       
     }
 
     public abstract class Field : IEquatable<Field>
@@ -168,15 +197,17 @@ namespace GenericCampaignMasterLib
         public abstract class clsSektorKoordinaten
         {
             public abstract bool Equals(clsSektorKoordinaten other);
-        }
-        
-        public abstract Sektor get(int intSektorID);
-        public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
 
+            public abstract string uniqueIDstr();
+            
+        }
+
+        public abstract Sektor get(string strSektorID);
+        public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
 
         public abstract bool checkKoordsValid(clsSektorKoordinaten objSektorKoord);
 
-        protected Dictionary<clsSektorKoordinaten, Sektor> ListSektors = new Dictionary<clsSektorKoordinaten, Sektor>();
+        protected Dictionary<string, Sektor> ListSektors = new Dictionary<string, Sektor>();
         public Sektor getSektorForUnit(Code.Unit.IUnit u)
         {
             // Erstmal so gelöst. Geht besser.      
@@ -199,6 +230,7 @@ namespace GenericCampaignMasterLib
             return (this.Id == other.Id);
         }
 
+        
     }
     
  
