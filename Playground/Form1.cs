@@ -26,16 +26,20 @@ namespace Playground
         {
             m_objEngine = new CampaignEngine();
 
-            m_objEngine.FieldField = new Field_Schlauch(3);
+            m_objEngine.FieldField = new Field_Schachbrett(3, 3);
 
-            m_objEngine.AddPlayer(new Player(1));
-            Player p1 = m_objEngine.ListPlayers[0];
-            p1.ListUnits.Add(new DummyUnit(1));
+            m_objEngine.addPlayer(new Player(1));
+            
+            Player p1 = m_objEngine.addPlayer(new Player(1));
+
+            m_objEngine.addUnit(p1.Id, new DummyUnit(0));
 
             List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(p1);
+            IUnit unitArsch = lisEinheiten[0];
+            m_objEngine.FieldField.get("0|0").ListUnits.Add(unitArsch );
 
-            m_objEngine.FieldField.get("1").ListUnits.Add(lisEinheiten[0]);
-            m_objEngine.getCommandsForUnit(lisEinheiten[0])[0].Execute();
+            List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(unitArsch);
+            lisCommands[2].Execute();
         }
     }
 }

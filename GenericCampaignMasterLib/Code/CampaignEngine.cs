@@ -52,24 +52,26 @@ namespace GenericCampaignMasterLib
 					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
 					int intFieldsMoved = 0;
 
-					Sektor aktSek = FieldField.get(originSektor.Id);
+					Sektor aktSek = FieldField.get(originSektor.objSektorKoord);
 
-                    while (intFieldsMoved <= cmdMove.IntRange)
-					{
-                        List<Field.clsSektorKoordinaten> MoveVektors = FieldField.getMoveVektors(1);
-                        Sektor newSek = FieldField.move(aktSek, MoveVektors[2]); 
+                    //while (intFieldsMoved <= cmdMove.IntRange)
+                    List<Field.clsSektorKoordinaten> MoveVektors = FieldField.getMoveVektors(u.intMovement);
+                    foreach (Field.clsSektorKoordinaten aktKoord in MoveVektors)
+                    {
+                        Sektor newSek = FieldField.move(aktSek, aktKoord); 
 
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
                         if (newSek == null)
 						{
-                            newSek = FieldField.get("0");
+                            
+                            //newSek = FieldField.get("1|1");
 							continue;
 						}
 						
                         Move readyCmd = new Move();
                         readyCmd.Unit = u;
                         readyCmd.OriginSektor = originSektor;
-                        readyCmd.TargetSektor = FieldField.get(newSek.Id);
+                        readyCmd.TargetSektor = FieldField.get(newSek.objSektorKoord);
                         readyCmd.IntRange = cmdMove.IntRange;
                         listReadyCommands.Add(readyCmd);
 
@@ -111,12 +113,20 @@ namespace GenericCampaignMasterLib
             return FieldField.getSektorForUnit(u);
             
         }
+        #region " Uuitfaktory "
+        
+        public void addUnit(int intPlayerID, IUnit newUnit)
+        {
+            m_Players[intPlayerID].ListUnits.Add(newUnit);
+        }
 
 
-        public void AddPlayer(Player player)
+        #endregion
+        public Player addPlayer(Player objNewPlayer)
         {
             if (m_Players == null) { m_Players = new List<Player>(); }
-            m_Players.Add(player);
+            m_Players.Add(objNewPlayer);
+            return objNewPlayer;
         }
 
         public void setPlayerList(List<Player> list)
@@ -129,5 +139,7 @@ namespace GenericCampaignMasterLib
         {
             HandlerList.Add(((Sektor)sender).Id);
         }
+
+        
     }
 }

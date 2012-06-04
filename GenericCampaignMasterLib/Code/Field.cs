@@ -12,15 +12,21 @@ namespace GenericCampaignMasterLib
         private int m_height = -1;
 
         public class clsSektorKoordinaten_Schachbrett : clsSektorKoordinaten
-
         {
             public int X = -1;
             public int Y = -1;
+            private clsSektorKoordinaten_Schachbrett objSektorKoordSchach;
 
             public clsSektorKoordinaten_Schachbrett(int newX, int newY)
             {
                 this.X = newX;
                 this.Y = newY;
+            }
+
+            public clsSektorKoordinaten_Schachbrett(clsSektorKoordinaten_Schachbrett objSektorKoordSchach)
+            {
+                this.X = objSektorKoordSchach.X;
+                this.Y = objSektorKoordSchach.Y;
             }
 
             public override bool Equals(clsSektorKoordinaten other)
@@ -29,6 +35,10 @@ namespace GenericCampaignMasterLib
                 return (this.X == otherCast.X && this.Y == otherCast.Y);    
             }
 
+            public static clsSektorKoordinaten_Schachbrett operator +(clsSektorKoordinaten_Schachbrett c1, clsSektorKoordinaten_Schachbrett c2)
+            {
+                return new clsSektorKoordinaten_Schachbrett(c1.X + c2.X, c1.Y + c2.Y);
+            }
             
             public override string uniqueIDstr()
             {
@@ -43,7 +53,7 @@ namespace GenericCampaignMasterLib
                 
             for (int i = 0; i < width; i++)
             {
-                for (int j = 0; i < height; j++)
+                for (int j = 0; j < height; j++)
                 {
                     Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
@@ -54,7 +64,7 @@ namespace GenericCampaignMasterLib
 
         public override Sektor get(string strSektorID)
         {
-            throw new NotImplementedException();
+            return this.ListSektors[strSektorID];
         }
 
         public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
@@ -73,7 +83,7 @@ namespace GenericCampaignMasterLib
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -range; i <= range; i++)
             {
-                for (int j = -range; i <= range; i++)
+                for (int j = -range; j <= range; j++)
                 {
                     lisVektors.Add(new clsSektorKoordinaten_Schachbrett(i, j));
                 }
@@ -85,11 +95,9 @@ namespace GenericCampaignMasterLib
         {
             clsSektorKoordinaten_Schachbrett objSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord;
             clsSektorKoordinaten_Schachbrett objVektorKoordSchach = (clsSektorKoordinaten_Schachbrett)Vektor;
+            clsSektorKoordinaten_Schachbrett objZielSektorKoordSchach = objSektorKoordSchach + objVektorKoordSchach;
 
-            objSektorKoordSchach.X += objVektorKoordSchach.X;
-            objSektorKoordSchach.Y += objVektorKoordSchach.Y;
-
-            if (ListSektors.ContainsKey(objSektorKoordSchach.uniqueIDstr()))
+            if (ListSektors.ContainsKey(objZielSektorKoordSchach.uniqueIDstr()))
                 return ListSektors[objSektorKoordSchach.uniqueIDstr()];
             else
                 return null;

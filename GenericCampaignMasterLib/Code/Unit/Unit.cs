@@ -11,6 +11,8 @@ namespace GenericCampaignMasterLib.Code.Unit
          string Bezeichnung { get; set; } // Dummy
 		
 		 List<ICommand> getCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
+
+         int intMovement { get; }
     }
 
     public abstract class BaseUnit : IUnit
@@ -29,6 +31,8 @@ namespace GenericCampaignMasterLib.Code.Unit
             m_strBezeichnung = UnitType.strDefaultBez;
         }
 
+        public int intMovement { get { return m_objUnitType.intMovement; } }
+
         private int m_intId = -1;
         public int Id { get { return m_intId; } }
 
@@ -40,11 +44,12 @@ namespace GenericCampaignMasterLib.Code.Unit
         }
 
         private UnitTypeBase m_objUnitType;
+        
         public List<ICommand> getCommands()
         {
             return m_objUnitType.getCommands(this);
         }
 
-        public int intMovementRate = -1;
+        
     }
 }

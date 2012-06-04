@@ -13,7 +13,14 @@ namespace GenericCampaignMasterLib
 		private List<IUnit> m_ListUnits;
 
         public string Id { get { return m_strID; } }
-		public List<IUnit> ListUnits { get { return m_ListUnits; }}
+		public List<IUnit> ListUnits 
+        { 
+            get 
+            {
+                if (m_ListUnits == null) { m_ListUnits = new List<IUnit>(); }
+                return m_ListUnits; 
+            }
+        }
         public event EventHandler UnitEnteredSektor;
         public event EventHandler UnitLeftSektor; 
 

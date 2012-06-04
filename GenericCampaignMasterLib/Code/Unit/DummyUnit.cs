@@ -11,7 +11,7 @@ namespace GenericCampaignMasterLib.Code.Unit
 	{
         public DummyUnit(int unitId) : base(unitId, new UnitTypeDummy())
 		{
-            intMovementRate = 1;
+            
 		}
 
         
