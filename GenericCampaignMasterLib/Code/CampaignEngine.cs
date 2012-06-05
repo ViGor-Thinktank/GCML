@@ -62,9 +62,8 @@ namespace GenericCampaignMasterLib
                         Sektor newSek = FieldField.move(aktSek, aktKoord); 
 
 						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
-                        if (newSek == null)
-						{
-                            
+                        if (newSek == null || newSek.strUniqueID == aktSek.strUniqueID)
+						{                            
                             //newSek = FieldField.get("1|1");
 							continue;
 						}
