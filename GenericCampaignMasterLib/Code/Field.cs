@@ -44,6 +44,8 @@ namespace GenericCampaignMasterLib
             {
                 return X.ToString() + "|" + Y.ToString();
             }
+
+            
         }
 
         public Field_Schachbrett(int width, int height)
@@ -57,7 +59,7 @@ namespace GenericCampaignMasterLib
                 {
                     Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
-                    this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+                    this.ListSektors.Add(newSek.strUniqueID, newSek);
                 }
             }
         }
@@ -91,14 +93,14 @@ namespace GenericCampaignMasterLib
             return lisVektors;
         }
 
+        
+
         public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
         {
-            clsSektorKoordinaten_Schachbrett objSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord;
-            clsSektorKoordinaten_Schachbrett objVektorKoordSchach = (clsSektorKoordinaten_Schachbrett)Vektor;
-            clsSektorKoordinaten_Schachbrett objZielSektorKoordSchach = objSektorKoordSchach + objVektorKoordSchach;
+             clsSektorKoordinaten_Schachbrett objZielSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord + (clsSektorKoordinaten_Schachbrett)Vektor;
 
             if (ListSektors.ContainsKey(objZielSektorKoordSchach.uniqueIDstr()))
-                return ListSektors[objSektorKoordSchach.uniqueIDstr()];
+                return ListSektors[objZielSektorKoordSchach.uniqueIDstr()];
             else
                 return null;
         }
@@ -141,6 +143,8 @@ namespace GenericCampaignMasterLib
             {
                 this.X = newX;
             }
+
+            
 
             public override bool Equals(clsSektorKoordinaten other)
             {
@@ -204,9 +208,9 @@ namespace GenericCampaignMasterLib
     {
         public abstract class clsSektorKoordinaten
         {
-            public abstract bool Equals(clsSektorKoordinaten other);
+           public abstract bool Equals(clsSektorKoordinaten other);
 
-            public abstract string uniqueIDstr();
+           public abstract string uniqueIDstr();
             
         }
 

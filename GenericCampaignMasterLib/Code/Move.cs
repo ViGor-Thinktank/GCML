@@ -17,8 +17,10 @@ namespace GenericCampaignMasterLib
 
         public void Execute ()
 		{
-			OriginSektor.removeUnit (this.Unit);
+			OriginSektor.removeUnit(this.Unit);
 			TargetSektor.addUnit(this.Unit);
+
+            int i = 0;
         }
 
         #endregion

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GenericCampaignMasterLib.Code.Unit;
+using GenericCampaignMasterLib.Code;
 
 namespace GenericCampaignMasterLib
 {
@@ -11,8 +12,8 @@ namespace GenericCampaignMasterLib
     {
      
         #region " Properties && Felder "
-        private List<Player> m_Players = null;
-        public List<Player> ListPlayers
+        private Dictionary<int, Player> m_Players = null;
+        public Dictionary<int, Player> dicPlayers
         {
             get
             {
@@ -124,16 +125,28 @@ namespace GenericCampaignMasterLib
         #endregion
         public Player addPlayer(Player objNewPlayer)
         {
-            if (m_Players == null) { m_Players = new List<Player>(); }
-            m_Players.Add(objNewPlayer);
+            if (m_Players == null) { m_Players = new Dictionary<int, Player>(); }
+
+            if (m_Players.ContainsKey(objNewPlayer.Id))
+            {
+                throw new Exception_Engine_Player("PlayerID ist bereits vergeben!");
+            }
+            
+            m_Players.Add(objNewPlayer.Id, objNewPlayer);
+            
             return objNewPlayer;
         }
 
         public void setPlayerList(List<Player> list)
         {
-            m_Players = list;
+            foreach (Player aktPlayer in list)
+            {
+                m_Players.Add(aktPlayer.Id, aktPlayer);
+            }
         }
 
+
+        //TMP Bastelkram
         private List<string> HandlerList = new List<string>();
         public void testHandler(object sender, EventArgs e)
         {

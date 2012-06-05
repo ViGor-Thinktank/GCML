@@ -32,7 +32,7 @@ namespace GenericCampaignMasterLibTests.Tests
 
             CampaignEngine engineRestored = state.Restore();
             Assert.AreEqual(testEngine.FieldField.Id, engineRestored.FieldField.Id, "FieldField aus dem wiederhergestellten State ist nicht identisch.");
-            Assert.AreEqual(testEngine.ListPlayers, engineRestored.ListPlayers, "ListPlayers aus dem wiederhergestellten State ist nicht identisch.");
+            Assert.AreEqual(testEngine.dicPlayers, engineRestored.dicPlayers, "ListPlayers aus dem wiederhergestellten State ist nicht identisch.");
         }
 
 		

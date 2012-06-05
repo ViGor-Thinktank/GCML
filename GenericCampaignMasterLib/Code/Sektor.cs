@@ -22,7 +22,9 @@ namespace GenericCampaignMasterLib
             }
         }
         public event EventHandler UnitEnteredSektor;
-        public event EventHandler UnitLeftSektor; 
+        public event EventHandler UnitLeftSektor;
+
+        public string strUniqueID { get { return (this.objSektorKoord != null) ? this.objSektorKoord.uniqueIDstr():"" ; } }
 
         public Field.clsSektorKoordinaten objSektorKoord;
 
@@ -42,7 +44,7 @@ namespace GenericCampaignMasterLib
 		
 		public void removeUnit (IUnit unit)
 		{
-			m_ListUnits.Remove (unit);
+			m_ListUnits.Remove(unit);
 
             if(UnitLeftSektor != null)
                 UnitLeftSektor(this, new EventArgs());
