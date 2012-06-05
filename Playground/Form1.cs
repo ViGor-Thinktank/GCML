@@ -43,20 +43,11 @@ namespace Playground
             Player p1 = m_objEngine.addPlayer(new Player(1));
 
             m_objEngine.addUnit(p1.Id, new DummyUnit(0));
-
-            List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(p1);
-
-
+            List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
             m_objEngine.FieldField.get(m_objEngine.FieldField.nullSektor).ListUnits.Add(lisEinheiten[0]);
 
-        
-            List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(lisEinheiten[0]);
-            
-        
-            foreach (ICommand aktCommand in lisCommands)
-            {
-                this.addButton(aktCommand, lisCommands.IndexOf(aktCommand));
-            }
+            raiseTick();
+           
         }
 
         void FieldField_onFieldStatus(string strText)
@@ -64,12 +55,14 @@ namespace Playground
             frmStatus.Status(strText);
         }
 
+        private int hoffset = 0;
+
         private void addButton(ICommand aktCommand, int offset)
         {
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
             btnNew.Size = new System.Drawing.Size(125, 25);
-            btnNew.Location = new System.Drawing.Point((12 + offset * btnNew.Size.Width), 50);
+            btnNew.Location = new System.Drawing.Point((12 + offset * btnNew.Size.Width), 50 + hoffset * btnNew.Size.Height);
             btnNew.Name = "movecmd" + offset.ToString();
             btnNew.Tag = aktCommand;
             btnNew.TabIndex = 0;
@@ -84,6 +77,23 @@ namespace Playground
         private void button_Click(object sender, EventArgs e)
         {
             ((ICommand)((Button)sender).Tag).Execute();
+            raiseTick();
+        }
+
+        private void raiseTick()
+        {
+            List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
+                       
+
+
+            List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(lisEinheiten[0]);
+
+            hoffset += 1;
+
+            foreach (ICommand aktCommand in lisCommands)
+            {
+                this.addButton(aktCommand, lisCommands.IndexOf(aktCommand));
+            }
         }
 
     }
