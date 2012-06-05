@@ -36,5 +36,18 @@ namespace GenericCampaignMasterLib
         }
 
         #endregion
+
+
+        public string strInfo
+        {
+            get
+            {
+                return "attack";
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

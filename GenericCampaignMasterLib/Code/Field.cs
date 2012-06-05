@@ -59,11 +59,16 @@ namespace GenericCampaignMasterLib
                 {
                     Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
+                    
+                    newSek.onUnitEnteredSektor += new EventHandler(newSek_onUnitEnteredSektor);
+                    newSek.onUnitLeftSektor += new EventHandler(newSek_onUnitLeftSektor); 
+                    
                     this.ListSektors.Add(newSek.strUniqueID, newSek);
                 }
             }
         }
 
+        
         public override Sektor get(string strSektorID)
         {
             return this.ListSektors[strSektorID];
@@ -104,6 +109,11 @@ namespace GenericCampaignMasterLib
             else
                 return null;
         }
+
+        protected override void setNullSektor()
+        {
+            this.nullSektor = new clsSektorKoordinaten_Schachbrett(0, 0);
+        }
     }
 
     public class Field_Schlauch : Field
@@ -123,11 +133,17 @@ namespace GenericCampaignMasterLib
             {
                 Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                 newSek.objSektorKoord = new clsSektorKoordinaten_Schlauch(i);
+                newSek.onUnitEnteredSektor += new EventHandler(newSek_onUnitEnteredSektor);
+                newSek.onUnitLeftSektor += new EventHandler(newSek_onUnitLeftSektor); 
+                    
                 this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
             }
         }
 
-        
+        protected override void setNullSektor()
+        {
+            this.nullSektor = new clsSektorKoordinaten_Schlauch(1);
+        }
 
         
         public class clsSektorKoordinaten_Schlauch : clsSektorKoordinaten
@@ -214,6 +230,15 @@ namespace GenericCampaignMasterLib
             
         }
 
+        public Field()
+        {
+            setNullSektor();
+        }
+        
+        public clsSektorKoordinaten nullSektor = null;
+        protected abstract void setNullSektor();
+
+
         public abstract Sektor get(string strSektorID);
         public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
 
@@ -240,6 +265,24 @@ namespace GenericCampaignMasterLib
         public bool Equals(Field other)
         {
             return (this.Id == other.Id);
+        }
+
+        public delegate void delFieldStatus(string strText);
+        public event delFieldStatus onFieldStatus;
+
+
+        protected  void newSek_onUnitEnteredSektor(object sender, EventArgs e)
+        {
+            Sektor SekSender = (Sektor)sender;
+            if (onFieldStatus != null)
+                onFieldStatus("UnitEnter " + SekSender.strUniqueID);
+        }
+
+        protected void newSek_onUnitLeftSektor(object sender, EventArgs e)
+        {
+            Sektor SekSender = (Sektor)sender;
+            if (onFieldStatus != null)
+                onFieldStatus("UnitLeft " + SekSender.strUniqueID);
         }
 
         

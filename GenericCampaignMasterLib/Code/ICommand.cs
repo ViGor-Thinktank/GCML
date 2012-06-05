@@ -8,5 +8,7 @@ namespace GenericCampaignMasterLib
     public interface ICommand
     {
         void Execute();
+
+        string strInfo { get; }
     }
 }

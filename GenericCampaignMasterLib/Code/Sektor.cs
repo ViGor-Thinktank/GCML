@@ -21,8 +21,8 @@ namespace GenericCampaignMasterLib
                 return m_ListUnits; 
             }
         }
-        public event EventHandler UnitEnteredSektor;
-        public event EventHandler UnitLeftSektor;
+        public event EventHandler onUnitEnteredSektor;
+        public event EventHandler onUnitLeftSektor;
 
         public string strUniqueID { get { return (this.objSektorKoord != null) ? this.objSektorKoord.uniqueIDstr():"" ; } }
 
@@ -38,16 +38,16 @@ namespace GenericCampaignMasterLib
 		{
 			m_ListUnits.Add (unit);
 
-            if(UnitEnteredSektor != null)
-                UnitEnteredSektor(this, new EventArgs());
+            if(onUnitEnteredSektor != null)
+                onUnitEnteredSektor(this, new EventArgs());
 		}
 		
 		public void removeUnit (IUnit unit)
 		{
 			m_ListUnits.Remove(unit);
 
-            if(UnitLeftSektor != null)
-                UnitLeftSektor(this, new EventArgs());
+            if(onUnitLeftSektor != null)
+                onUnitLeftSektor(this, new EventArgs());
 		}
 		
 

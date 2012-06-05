@@ -20,9 +20,25 @@ namespace GenericCampaignMasterLib
 			OriginSektor.removeUnit(this.Unit);
 			TargetSektor.addUnit(this.Unit);
 
-            int i = 0;
         }
 
         #endregion
+
+
+        public string strInfo
+        {
+            get
+            {
+                try
+                {
+                    return "Move: " + this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
+            
+                }
+                catch 
+                {
+                    return "";
+                }
+                }
+        }
     }
 }
