@@ -11,6 +11,7 @@ namespace GenericCampaignMasterLibTests.Tests
     [TestFixture]
     public class CampaignControllerTest
     {
+        CampaignEngine testEngine = new CampaignEngine();
         CampaignController testController;
         Player player1 = new Player(664);
         Player player2 = new Player(665);
@@ -23,7 +24,6 @@ namespace GenericCampaignMasterLibTests.Tests
         [SetUp]
         public void init()
         {
-            CampaignEngine testEngine = new CampaignEngine();
             testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { sektor1, sektor2, sektor3 });
             testEngine.FieldField.Id = 123;
 
@@ -42,10 +42,13 @@ namespace GenericCampaignMasterLibTests.Tests
         [Test]
         public void testUnitCollisions()
         {
-            
+            List<Move> lstCmd = testEngine.getDefaultMoveCommandsForUnit(unit1);
+            Move move = (from m in lstCmd where m.TargetSektor == sektor2 select m).First();
+            move.Execute();
 
+            List<Sektor> collisions = testController.getUnitCollisions();
 
-
+            Assert.Contains(sektor2, collisions);
         }
     }
 }
