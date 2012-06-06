@@ -45,7 +45,9 @@
     <Compile Include="Code\CampaignState.cs" />
     <Compile Include="Code\clsMoveFactory.cs" />
     <Compile Include="Code\Exception_Engine_Player.cs" />
-    <Compile Include="Code\Field.cs" />
+    <Compile Include="Code\Field\Field.cs" />
+    <Compile Include="Code\Field\Field_Schachbrett.cs" />
+    <Compile Include="Code\Field\Field_Schlauch.cs" />
     <Compile Include="Code\ICommand.cs" />
     <Compile Include="Code\Move.cs" />
     <Compile Include="Code\Player.cs" />
