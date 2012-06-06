@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using GenericCampaignMasterLib.Code.Unit;
 using GenericCampaignMasterLib.Code;
 
@@ -106,13 +107,28 @@ namespace GenericCampaignMasterLib
             return FieldField.getSektorForUnit(u);
             
         }
+
+        public Player getUnitOwner(IUnit unit)
+        {
+            foreach (Player player in m_Players.Values)
+            {
+                var playerUnit = (from u in player.ListUnits
+                                  where u.Id == unit.Id
+                                  select u).First();
+                if (playerUnit != null)
+                    return player;
+            }
+
+            return null;
+        }
+
+
         #region " Uuitfaktory "
         
         public void addUnit(int intPlayerID, IUnit newUnit)
         {
             m_Players[intPlayerID].ListUnits.Add(newUnit);
         }
-
 
         #endregion
         public Player addPlayer(Player objNewPlayer)
@@ -133,7 +149,7 @@ namespace GenericCampaignMasterLib
         {
             foreach (Player aktPlayer in list)
             {
-                m_Players.Add(aktPlayer.Id, aktPlayer);
+                addPlayer(aktPlayer);
             }
         }
 

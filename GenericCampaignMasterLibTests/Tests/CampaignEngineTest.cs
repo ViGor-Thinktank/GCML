@@ -67,12 +67,14 @@ namespace GenericCampaignMasterLibTests.Tests
 		}
 
         [Test]
-        public void testMoveCycle()
+        public void testGetUnitOwner()
         {
-            // Testfall: Bewegung durch alle Sektoren
-            int startPos = 0;
+            DummyUnit testUnit = new DummyUnit(999);
+            testEngine.dicPlayers[1].ListUnits.Add(testUnit);
 
+            Player owner = testEngine.getUnitOwner(testUnit);
 
+            Assert.AreEqual(testEngine.dicPlayers[1], owner);
         }
         
     }       
