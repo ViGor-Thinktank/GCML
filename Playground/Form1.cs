@@ -30,15 +30,15 @@ namespace Playground
 
             if (MessageBox.Show("Schachbrett?", "", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                m_objEngine.FieldField = new Field_Schachbrett(3, 3);
+                m_objEngine.FieldField = new Field_Schachbrett(5, 5);
             }
             else
             {
                 m_objEngine.FieldField = new Field_Schlauch(3);
             }
 
-            m_objEngine.FieldField.onFieldStatus += new Field.delFieldStatus(FieldField_onFieldStatus);
-
+            m_objEngine.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
+            m_objEngine.onEngineStatus += new Field.delStatus(Global_onStatus);
 
             Player p1 = m_objEngine.addPlayer(new Player(1));
 
@@ -50,7 +50,7 @@ namespace Playground
            
         }
 
-        void FieldField_onFieldStatus(string strText)
+        void Global_onStatus(string strText)
         {
             frmStatus.Status(strText);
         }
@@ -83,8 +83,6 @@ namespace Playground
         private void raiseTick()
         {
             List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
-                       
-
 
             List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(lisEinheiten[0]);
 

@@ -9,13 +9,12 @@ namespace GenericCampaignMasterLib.Code.Unit
     {
         public UnitTypeDummy() : base("UnitTypeDummy")
         {
-            this.intMovement = 1;
+            this.intMovement = 2;
         }
 
         public override List<ICommand> getCommands(Unit.BaseUnit CallingUnit)
         {
             Move cmd = new Move();
-            cmd.IntRange = CallingUnit.intMovement;
             cmd.Unit = CallingUnit;
 
             List<ICommand> cmdlist = new List<ICommand>();

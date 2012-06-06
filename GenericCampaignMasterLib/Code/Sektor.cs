@@ -62,5 +62,7 @@ namespace GenericCampaignMasterLib
         }
 
         #endregion
+        private int m_intMoveCost = 1;
+        public int intMoveCost { get { return m_intMoveCost; } }
     }
 }

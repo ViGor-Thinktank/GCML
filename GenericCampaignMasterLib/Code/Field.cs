@@ -85,12 +85,12 @@ namespace GenericCampaignMasterLib
             return objSektorKoordSchach.X < this.m_height && objSektorKoordSchach.Y < m_width;
         }
 
-        public override List<Field.clsSektorKoordinaten> getMoveVektors(int range)
+        public override List<Field.clsSektorKoordinaten> getMoveVektors()
         {
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
-            for (int i = -range; i <= range; i++)
+            for (int i = -1; i <= 1; i++)
             {
-                for (int j = -range; j <= range; j++)
+                for (int j = -1; j <= 1; j++)
                 {
                     lisVektors.Add(new clsSektorKoordinaten_Schachbrett(i, j));
                 }
@@ -195,10 +195,10 @@ namespace GenericCampaignMasterLib
             return ((clsSektorKoordinaten_Schlauch)objSektorKoord).X < this.ListSektors.Count;
         }
 
-        public override List<Field.clsSektorKoordinaten> getMoveVektors(int range)
+        public override List<Field.clsSektorKoordinaten> getMoveVektors()
         {
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
-            for (int i = -range; i <=range; i++)
+            for (int i = -1; i <=1; i++)
             {
                 lisVektors.Add(new clsSektorKoordinaten_Schlauch(i));
             }
@@ -258,7 +258,7 @@ namespace GenericCampaignMasterLib
         }
 
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
-        public abstract List<Field.clsSektorKoordinaten> getMoveVektors(int range);
+        public abstract List<Field.clsSektorKoordinaten> getMoveVektors();
 
         public int Id { get; set; }
         
@@ -267,8 +267,9 @@ namespace GenericCampaignMasterLib
             return (this.Id == other.Id);
         }
 
-        public delegate void delFieldStatus(string strText);
-        public event delFieldStatus onFieldStatus;
+        public delegate void delStatus(string strText);
+        
+        public event delStatus onFieldStatus;
 
 
         protected  void newSek_onUnitEnteredSektor(object sender, EventArgs e)

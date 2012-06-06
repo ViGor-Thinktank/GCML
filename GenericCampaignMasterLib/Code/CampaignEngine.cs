@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using GenericCampaignMasterLib.Code.Unit;
 using GenericCampaignMasterLib.Code;
@@ -38,51 +37,45 @@ namespace GenericCampaignMasterLib
 			return p.ListUnits;
         }
 
+        
+
+        clsMoveFactory m_objMovFactory;
+        List<ICommand> listReadyCommands;
+        	
         public List<ICommand> getCommandsForUnit(IUnit u)
 		{
             List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
-            List<ICommand> listReadyCommands = new List<ICommand>();    // Liste mit vollständigen Commands - wird zurückgeliefert.
+            listReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.
         	
 			foreach (ICommand cmdRaw in listRawCommands)
 			{
 				if (cmdRaw.GetType() == typeof(Move))
 				{
-					Move cmdMove = (Move)cmdRaw;
-					Sektor originSektor = getSektorContainingUnit(u);
-
-					// Target Sektor ermitteln zu Testzwecken: Unit kann durch die Liste navigieren, wenn Ende erreicht wieder von vorne beginnen
-					int intFieldsMoved = 0;
-
-					Sektor aktSek = FieldField.get(originSektor.objSektorKoord);
-
-                    //while (intFieldsMoved <= cmdMove.IntRange)
-                    List<Field.clsSektorKoordinaten> MoveVektors = FieldField.getMoveVektors(u.intMovement);
-                    foreach (Field.clsSektorKoordinaten aktKoord in MoveVektors)
-                    {
-                        Sektor newSek = FieldField.move(aktSek, aktKoord); 
-
-						// Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
-                        if (newSek == null || newSek.strUniqueID == aktSek.strUniqueID)
-						{                            
-                            //newSek = FieldField.get("1|1");
-							continue;
-						}
-						
-                        Move readyCmd = new Move();
-                        readyCmd.Unit = u;
-                        readyCmd.OriginSektor = originSektor;
-                        readyCmd.TargetSektor = FieldField.get(newSek.objSektorKoord);
-                        readyCmd.IntRange = cmdMove.IntRange;
-                        listReadyCommands.Add(readyCmd);
-
-						intFieldsMoved++;
-					}
+                    m_objMovFactory = new clsMoveFactory(u, FieldField);
+                    m_objMovFactory.onNewMoveCommand += new clsMoveFactory.delNewMoveCommand(m_objMovFactory_onNewMoveCommand);
+                    m_objMovFactory.onNewStatus += new clsMoveFactory.delNewStatus(m_objMovFactory_onNewStatus);
+                    m_objMovFactory.go();
 				}
 			}
 			
 			return listReadyCommands;
         }
 
+        //public delegate void delStatus(string strText);
+        public event Field.delStatus onEngineStatus;
+
+        void m_objMovFactory_onNewStatus(string strStatus)
+        {
+            if (this.onEngineStatus != null)
+                this.onEngineStatus(strStatus);
+        }
+
+        void m_objMovFactory_onNewMoveCommand(Move readyCmd)
+        {
+            listReadyCommands.Add(readyCmd);
+        }
+
+        
         /// <summary>
         /// Erstmal zum Testen: Einheit liefert i.d.R. nur ein Command für Move.
         /// Liefert nur eine Collection aus möglichen Moves.
@@ -144,13 +137,6 @@ namespace GenericCampaignMasterLib
             }
         }
 
-
-        //TMP Bastelkram
-        private List<string> HandlerList = new List<string>();
-        public void testHandler(object sender, EventArgs e)
-        {
-            HandlerList.Add(((Sektor)sender).Id);
-        }
 
         
     }

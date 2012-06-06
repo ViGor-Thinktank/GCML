@@ -8,8 +8,7 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public int IntRange { get; set; }
-		public IUnit Unit { get; set; }
+        public IUnit Unit { get; set; }
         public Sektor TargetSektor { get; set; }
 		public Sektor OriginSektor { get; set; }
         
