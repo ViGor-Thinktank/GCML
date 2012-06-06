@@ -47,8 +47,14 @@ namespace GenericCampaignMasterLibTests.Tests
             move.Execute();
 
             List<Sektor> collisions = testController.getUnitCollisions();
+            Assert.AreEqual(true, collisions.Contains(sektor2));
 
-            Assert.Contains(sektor2, collisions);
+            // Unit 1 verliert - Rückzug
+            Move retreat = (from m in lstCmd where m.TargetSektor == sektor1 select m).First();
+            retreat.Execute();
+
+            collisions = testController.getUnitCollisions();
+            Assert.AreEqual(false, collisions.Contains(sektor2));
         }
     }
 }

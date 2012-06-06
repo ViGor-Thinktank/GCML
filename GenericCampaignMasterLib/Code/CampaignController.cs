@@ -26,19 +26,18 @@ namespace GenericCampaignMasterLib
         {
             return unitCollisionStack;
         }
-
-
-        public void resolveUnitCollision(Sektor sektor)
-        {
-            if (!checkSektorForUnitCollision(sektor))
-                unitCollisionStack.Remove(sektor);
-        }
-        
+       
         private void onUnitMove(object sender, EventArgs args)
         {
             Sektor sektor = sender as Sektor;
             if (checkSektorForUnitCollision(sektor))
+            {
                 unitCollisionStack.Add(sektor);
+            }
+            else if (unitCollisionStack.Contains(sektor))
+            {
+                unitCollisionStack.Remove(sektor);
+            }
         }
 
         private bool checkSektorForUnitCollision(Sektor sektor)
