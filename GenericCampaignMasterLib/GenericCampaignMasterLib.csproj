@@ -44,6 +44,8 @@
     <Compile Include="Code\CampaignEngine.cs" />
     <Compile Include="Code\CampaignState.cs" />
     <Compile Include="Code\clsMoveFactory.cs" />
+    <Compile Include="Code\Field\clsSektorType_heavyTerrain.cs" />
+    <Compile Include="Code\Sektor\clsSektorType_base.cs" />
     <Compile Include="Code\Exception_Engine_Player.cs" />
     <Compile Include="Code\Field\Field.cs" />
     <Compile Include="Code\Field\Field_Schachbrett.cs" />
@@ -53,7 +55,7 @@
     <Compile Include="Code\Player.cs" />
     <Compile Include="Code\Unit\UnitType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\Sektor.cs" />
+    <Compile Include="Code\Sektor\clsSektor.cs" />
     <Compile Include="Code\Unit\Unit.cs" />
     <Compile Include="Code\Ressourcen.cs" />
     <Compile Include="Code\Unit\DummyUnit.cs" />

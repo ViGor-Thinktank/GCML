@@ -3,14 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GenericCampaignMasterLib.Code.Unit;
+using GenericCampaignMasterLib.Code;
 
 namespace GenericCampaignMasterLib
 {
     [Serializable()]
     public class Sektor : IEquatable<Sektor>
     {
+        public Sektor(string sektorId) 
+        {
+            m_strID = sektorId;
+            m_objSektorType = new clsSektorType_base();
+        }
+        public Sektor(string sektorId, clsSektorType_base objSektorType) 
+        {
+            m_strID = sektorId;
+            m_objSektorType = objSektorType; 
+        }
+        
+
         private string m_strID;
-		private List<IUnit> m_ListUnits;
+		private List<IUnit> m_ListUnits = new List<IUnit>();
+
+        private clsSektorType_base m_objSektorType;
 
         public string Id { get { return m_strID; } }
 		public List<IUnit> ListUnits 
@@ -28,11 +43,7 @@ namespace GenericCampaignMasterLib
 
         public Field.clsSektorKoordinaten objSektorKoord;
 
-        public Sektor(string sektorId)
-		{
-			m_strID = sektorId;
-			m_ListUnits = new List<IUnit> ();
-        }
+        
 
 		public void addUnit (IUnit unit)
 		{
@@ -49,7 +60,6 @@ namespace GenericCampaignMasterLib
             if(onUnitLeftSektor != null)
                 onUnitLeftSektor(this, new EventArgs());
 		}
-		
 
         #region IEquatable<Sektor> Member
         
@@ -62,7 +72,7 @@ namespace GenericCampaignMasterLib
         }
 
         #endregion
-        private int m_intMoveCost = 1;
-        public int intMoveCost { get { return m_intMoveCost; } }
+        
+        public int intMoveCost { get { return m_objSektorType.intMoveCost; } }
     }
 }
