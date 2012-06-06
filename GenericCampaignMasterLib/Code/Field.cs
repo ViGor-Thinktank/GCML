@@ -257,6 +257,11 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
+        public List<Sektor> getSektorList()
+        {
+            return ListSektors.Values.ToList<Sektor>();
+        }
+
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
         public abstract List<Field.clsSektorKoordinaten> getMoveVektors();
 
@@ -285,8 +290,7 @@ namespace GenericCampaignMasterLib
             if (onFieldStatus != null)
                 onFieldStatus("UnitLeft " + SekSender.strUniqueID);
         }
-
-        
+ 
     }
     
  

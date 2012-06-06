@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CampaignControllerTest.cs" />
     <Compile Include="Tests\CampaignEngineTest.cs" />
     <Compile Include="Tests\SektorTest.cs" />
   </ItemGroup>
