@@ -34,7 +34,7 @@ namespace Playground
             }
             else
             {
-                m_objEngine.FieldField = new Field_Schlauch(3);
+                m_objEngine.FieldField = new Field_Schlauch(8);
             }
 
             m_objEngine.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
@@ -57,16 +57,22 @@ namespace Playground
 
         private int hoffset = 0;
 
-        private void addButton(ICommand aktCommand, int offset)
+        private void addButton(ICommand aktCommand, ref int offset)
         {
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
-            btnNew.Size = new System.Drawing.Size(125, 25);
+            btnNew.Size = new System.Drawing.Size(65, 25);
+            if ((12 + offset * btnNew.Size.Width) > this.Width - 65)
+            {
+                offset = 1;
+                hoffset += 1;
+            }
             btnNew.Location = new System.Drawing.Point((12 + offset * btnNew.Size.Width), 50 + hoffset * btnNew.Size.Height);
+            
             btnNew.Name = "movecmd" + offset.ToString();
             btnNew.Tag = aktCommand;
             btnNew.TabIndex = 0;
-            btnNew.Text = aktCommand.strInfo;
+            btnNew.Text = aktCommand.strInfo.Replace("Move", "").Replace(":", "").Trim();
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += new System.EventHandler(button_Click);
 
@@ -88,10 +94,14 @@ namespace Playground
 
             hoffset += 1;
 
+            int offset = 1;
             foreach (ICommand aktCommand in lisCommands)
             {
-                this.addButton(aktCommand, lisCommands.IndexOf(aktCommand));
+                this.addButton(aktCommand, ref offset);
+                offset += 1;
             }
+
+            hoffset += 1;
         }
 
     }

@@ -7,10 +7,12 @@ namespace GenericCampaignMasterLib.Code
 {
     public class clsMoveFactory
     {
-        Field m_FieldField = null;
-        Unit.IUnit m_Unit;
-        List<Field.clsSektorKoordinaten> m_MoveVektors;
-        Sektor m_originSektor;
+        private Field m_FieldField = null;
+        private Unit.IUnit m_Unit;
+        private List<Field.clsSektorKoordinaten> m_MoveVektors;
+        private Sektor m_originSektor;
+
+        private List<string> m_listKnownMovements = new List<string>();
 
         public delegate void delNewMoveCommand(Move readyCmd);
         public event delNewMoveCommand onNewMoveCommand;
@@ -40,41 +42,47 @@ namespace GenericCampaignMasterLib.Code
             //Init Stuff
             m_originSektor = FieldField.getSektorForUnit(u);
             m_MoveVektors = FieldField.getMoveVektors();
-            
-            
+            m_listKnownMovements.Add(m_originSektor.strUniqueID);
+
             
         }
 
         private void createMoveCommandsForSektor(Sektor aktSek, int intFieldsMoved)
         {
-            Status("Enter createMoveCommandsForSektor " + aktSek.strUniqueID + " " + intFieldsMoved.ToString());
             foreach (Field.clsSektorKoordinaten aktKoord in m_MoveVektors)
             {
                 Sektor newSek = m_FieldField.move(aktSek, aktKoord);
 
                 // Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
-                if (newSek == null || newSek.strUniqueID == aktSek.strUniqueID)
+                if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
-                    //newSek = FieldField.get("1|1");
-                    continue;
-                }
+                    string strStatus = aktSek.strUniqueID + "->" + newSek.strUniqueID;
+                    Status(strStatus);
 
-                Status(aktSek.strUniqueID + ": make Command " + newSek.strUniqueID);
+                    if (!m_listKnownMovements.Contains(newSek.strUniqueID))
+                    {
+                        m_listKnownMovements.Add(newSek.strUniqueID);
+
+                        Move readyCmd = new Move();
+                        readyCmd.Unit = m_Unit;
+                        readyCmd.strCreate = strStatus;
+                        readyCmd.OriginSektor = m_originSektor;
+                        Sektor targetSek = m_FieldField.get(newSek.objSektorKoord);
+                        readyCmd.TargetSektor = targetSek;
+                        raiseOnNewMoveCommand(readyCmd);
+                    }
+
+                    int intNewFieldsMoved = intFieldsMoved + newSek.intMoveCost;
                     
-                Move readyCmd = new Move();
-                readyCmd.Unit = m_Unit;
-                readyCmd.OriginSektor = m_originSektor;
-                readyCmd.TargetSektor = m_FieldField.get(newSek.objSektorKoord);
-                raiseOnNewMoveCommand(readyCmd);
-
-                intFieldsMoved += readyCmd.TargetSektor.intMoveCost;
-                if (intFieldsMoved  < m_Unit.intMovement)
-                {
-                    createMoveCommandsForSektor(newSek, intFieldsMoved);
+                    if (intNewFieldsMoved < m_Unit.intMovement)
+                    {
+                        createMoveCommandsForSektor(newSek, intNewFieldsMoved);
+                    }
                 }
+
             }
                 
-            intFieldsMoved++;
+            
         }
 
 

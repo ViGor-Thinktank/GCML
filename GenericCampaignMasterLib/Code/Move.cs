@@ -8,6 +8,7 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
+        public string strCreate;
         public IUnit Unit { get; set; }
         public Sektor TargetSektor { get; set; }
 		public Sektor OriginSektor { get; set; }
@@ -30,7 +31,7 @@ namespace GenericCampaignMasterLib
             {
                 try
                 {
-                    return "Move: " + this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
+                    return this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
             
                 }
                 catch 
@@ -39,5 +40,7 @@ namespace GenericCampaignMasterLib
                 }
                 }
         }
+
+        
     }
 }

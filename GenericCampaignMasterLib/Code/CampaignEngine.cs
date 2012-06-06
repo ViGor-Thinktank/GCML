@@ -38,15 +38,15 @@ namespace GenericCampaignMasterLib
 			return p.ListUnits;
         }
 
-        
 
-        clsMoveFactory m_objMovFactory;
-        List<ICommand> listReadyCommands;
-        	
-        public List<ICommand> getCommandsForUnit(IUnit u)
+
+        private clsMoveFactory m_objMovFactory;
+       private List<ICommand>m_lisReadyCommands;
+
+       public List<ICommand> getCommandsForUnit(IUnit u)
 		{
             List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
-            listReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.
+            m_lisReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.
         	
 			foreach (ICommand cmdRaw in listRawCommands)
 			{
@@ -59,7 +59,7 @@ namespace GenericCampaignMasterLib
 				}
 			}
 			
-			return listReadyCommands;
+			return m_lisReadyCommands;
         }
 
         //public delegate void delStatus(string strText);
@@ -73,7 +73,7 @@ namespace GenericCampaignMasterLib
 
         void m_objMovFactory_onNewMoveCommand(Move readyCmd)
         {
-            listReadyCommands.Add(readyCmd);
+            m_lisReadyCommands.Add(readyCmd);
         }
 
         
