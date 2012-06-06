@@ -50,6 +50,7 @@ namespace GenericCampaignMasterLibTests.Tests
             Assert.AreEqual(true, collisions.Contains(sektor2));
 
             // Unit 1 verliert - Rückzug
+            lstCmd = testEngine.getDefaultMoveCommandsForUnit(unit1);
             Move retreat = (from m in lstCmd where m.TargetSektor == sektor1 select m).First();
             retreat.Execute();
 

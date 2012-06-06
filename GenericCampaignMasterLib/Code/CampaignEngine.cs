@@ -110,16 +110,11 @@ namespace GenericCampaignMasterLib
 
         public Player getUnitOwner(IUnit unit)
         {
-            foreach (Player player in m_Players.Values)
-            {
-                var playerUnit = (from u in player.ListUnits
-                                  where u.Id == unit.Id
-                                  select u).First();
-                if (playerUnit != null)
-                    return player;
-            }
+            var owner = (from p in m_Players.Values
+                         where p.ListUnits.Contains(unit)
+                         select p).First();
 
-            return null;
+            return owner as Player;
         }
 
 

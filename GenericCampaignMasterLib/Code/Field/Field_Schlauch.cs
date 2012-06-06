@@ -12,7 +12,8 @@ namespace GenericCampaignMasterLib
         {
             foreach (Sektor sekNew in lisNewSektors)
             {
-                this.ListSektors.Add(new clsSektorKoordinaten_Schlauch(sekNew.Id).uniqueIDstr(), sekNew);
+                sekNew.objSektorKoord = new clsSektorKoordinaten_Schlauch(sekNew.Id);
+                this.ListSektors.Add(sekNew.objSektorKoord.uniqueIDstr(), sekNew);
             }
         }
 
