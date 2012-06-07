@@ -28,8 +28,11 @@ namespace GenericCampaignMasterLib
         public abstract Sektor get(string strSektorID);
         public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
 
-        public abstract bool checkKoordsValid(clsSektorKoordinaten objSektorKoord);
+        public bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
+        {
+            return this.ListSektors.ContainsKey(objSektorKoord.uniqueIDstr());
 
+        }
         protected Dictionary<string, Sektor> ListSektors = new Dictionary<string, Sektor>();
         public Sektor getSektorForUnit(Code.Unit.IUnit u)
         {

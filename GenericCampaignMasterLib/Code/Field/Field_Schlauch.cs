@@ -80,11 +80,7 @@ namespace GenericCampaignMasterLib
             return ListSektors[objSektorKoord.uniqueIDstr()];
         }
 
-        public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
-        {
-            return ((clsSektorKoordinaten_Schlauch)objSektorKoord).X < this.ListSektors.Count;
-        }
-
+        
         public override List<Field.clsSektorKoordinaten> getMoveVektors()
         {
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();

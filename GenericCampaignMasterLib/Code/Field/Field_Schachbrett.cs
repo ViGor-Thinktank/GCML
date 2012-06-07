@@ -7,10 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public class Field_Schachbrett : Field
     {
-        private int m_width = -1;
-        private int m_height = -1;
-
-        public class clsSektorKoordinaten_Schachbrett : clsSektorKoordinaten
+       public class clsSektorKoordinaten_Schachbrett : clsSektorKoordinaten
         {
             public int X = -1;
             public int Y = -1;
@@ -49,9 +46,7 @@ namespace GenericCampaignMasterLib
 
         public Field_Schachbrett(int width, int height)
         {
-            m_width = width;
-            m_height = height;
-
+            
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -69,24 +64,15 @@ namespace GenericCampaignMasterLib
                 }
             }
         }
-
-
         public override Sektor get(string strSektorID)
         {
             return this.ListSektors[strSektorID];
         }
-
         public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
         {
             return ListSektors[objSektorKoord.uniqueIDstr()];
         }
-
-        public override bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
-        {
-            clsSektorKoordinaten_Schachbrett objSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)objSektorKoord;
-            return objSektorKoordSchach.X < this.m_height && objSektorKoordSchach.Y < m_width;
-        }
-
+      
         public override List<Field.clsSektorKoordinaten> getMoveVektors()
         {
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
