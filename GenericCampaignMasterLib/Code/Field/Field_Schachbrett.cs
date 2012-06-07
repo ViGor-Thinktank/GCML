@@ -114,7 +114,7 @@ namespace GenericCampaignMasterLib
 
         protected override void setNullSektor()
         {
-            this.nullSektor = new clsSektorKoordinaten_Schachbrett(0, 0);
+            this.nullSektorKoord = new clsSektorKoordinaten_Schachbrett(0, 0);
         }
     }
 }

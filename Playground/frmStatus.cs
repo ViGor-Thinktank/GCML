@@ -21,8 +21,8 @@ namespace Playground
                 frmStat = new frmStatus();
                 frmStat.Show();
             }
-            else
-                frmStat.BringToFront();
+            //else
+              //  frmStat.BringToFront();
 
             frmStat.textBox1.Text = strStatus + Environment.NewLine + frmStat.textBox1.Text;
         }

@@ -32,7 +32,7 @@ namespace GenericCampaignMasterLib
 
         protected override void setNullSektor()
         {
-            this.nullSektor = new clsSektorKoordinaten_Schlauch(1);
+            this.nullSektorKoord = new clsSektorKoordinaten_Schlauch(0);
         }
 
 
@@ -104,7 +104,7 @@ namespace GenericCampaignMasterLib
                     return aktSektor;
             }
 
-            return null;
+            return nullSektor;
         }
 
 

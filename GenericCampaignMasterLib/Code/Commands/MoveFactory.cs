@@ -53,12 +53,10 @@ namespace GenericCampaignMasterLib.Code
             {
                 Sektor newSek = m_FieldField.move(aktSek, aktKoord);
 
-                // Wenn über die Collectiongrenze rausgelaufen wird -> wieder am Anfang beginnen
                 if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
                     string strStatus = aktSek.strUniqueID + "->" + newSek.strUniqueID;
-                    Status(strStatus);
-
+                    
                     if (!m_listKnownMovements.Contains(newSek.strUniqueID))
                     {
                         m_listKnownMovements.Add(newSek.strUniqueID);

@@ -44,7 +44,7 @@ namespace Playground
 
             m_objEngine.addUnit(p1.Id, new DummyUnit(0));
             List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
-            m_objEngine.FieldField.get(m_objEngine.FieldField.nullSektor).ListUnits.Add(lisEinheiten[0]);
+            m_objEngine.FieldField.get(m_objEngine.FieldField.nullSektorKoord).ListUnits.Add(lisEinheiten[0]);
 
             raiseTick();
            
@@ -62,7 +62,7 @@ namespace Playground
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
             btnNew.Size = new System.Drawing.Size(65, 25);
-            if ((12 + offset * btnNew.Size.Width) > this.Width - 65)
+            if (offset > 5)
             {
                 offset = 1;
                 hoffset += 1;
@@ -88,13 +88,16 @@ namespace Playground
 
         private void raiseTick()
         {
+            this.Controls.Clear();
+
             List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
 
             List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(lisEinheiten[0]);
 
-            hoffset += 1;
+            hoffset = 1;
 
             int offset = 1;
+            
             foreach (ICommand aktCommand in lisCommands)
             {
                 this.addButton(aktCommand, ref offset);

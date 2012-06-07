@@ -19,10 +19,11 @@ namespace GenericCampaignMasterLib
         {
             setNullSektor();
         }
-        
-        public clsSektorKoordinaten nullSektor = null;
-        protected abstract void setNullSektor();
 
+        public clsSektorKoordinaten nullSektorKoord = null;
+        protected abstract void setNullSektor();
+        public Sektor nullSektor { get { return this.ListSektors[this.nullSektorKoord.uniqueIDstr()]; } }
+        
 
         public abstract Sektor get(string strSektorID);
         public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
