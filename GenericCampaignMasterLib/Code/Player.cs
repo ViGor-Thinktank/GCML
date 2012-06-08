@@ -13,13 +13,11 @@ namespace GenericCampaignMasterLib
         public int Id { get { return _id; } }
         public string Playername { get; set; }
 
-        public Player(int playerId, CampaignEngine myEngine)
+        public Player(int playerId)
         {
             this._id = playerId;
-            this.m_objMyEngine = myEngine;
+            
         }
-
-        private CampaignEngine m_objMyEngine;
 
         private List<IUnit> m_lisEinheiten; 
         public List<IUnit> ListUnits
@@ -32,6 +30,18 @@ namespace GenericCampaignMasterLib
 
         }
 
+        private Dictionary<string, Sektor> m_dicVisibleSectors;
+        public Dictionary<string, Sektor> dicVisibleSectors
+        {
+            get
+            {
+                if (m_dicVisibleSectors == null) { m_dicVisibleSectors = new Dictionary<string, Sektor>(); }
+                return m_dicVisibleSectors;
+            }
+
+        }
+
+
         public Ressourcen Ressourcen
         {
             get
@@ -43,8 +53,7 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        //tmp
-        public List<ICommand> lisCommands; 
+               
             
     
         #region IEquatable<Player> Member
@@ -62,15 +71,6 @@ namespace GenericCampaignMasterLib
 
         #endregion
 
-        public void createNewUnit(Type UnitType)
-        {
-            m_objMyEngine.addUnit(this.Id, UnitType);
-        }
-
-        public void getGameState()
-        {
-            m_lisEinheiten = m_objMyEngine.getActiveUnitsForPlayer(this);
-            lisCommands = m_objMyEngine.getCommandsForUnit(ListUnits[0]);
-        }
+        
     }
 }

@@ -21,18 +21,19 @@ namespace Playground
             InitializeComponent();            
         }        
 
+        public void Tick()
+        {
+            this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[0]);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             
             myPlayer = Program.m_objCampaign.addPlayer(txtPlayerName.Text);
             this.Text = myPlayer.Playername;
-            myPlayer.createNewUnit(typeof(DummyUnit));
 
-            myPlayer.getGameState();
-
+            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
             
-            raiseTick();
-           
         }
 
         void Global_onStatus(string strText)
@@ -59,29 +60,27 @@ namespace Playground
             btnNew.TabIndex = 0;
             btnNew.Text = aktCommand.strInfo.Replace("Move", "").Replace(":", "").Trim();
             btnNew.UseVisualStyleBackColor = true;
-            btnNew.Click += new System.EventHandler(button_Click);
+            btnNew.Click += new System.EventHandler(CommandButton_Click);
 
             this.Controls.Add(btnNew);
             
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private void CommandButton_Click(object sender, EventArgs e)
         {
-            ((ICommand)((Button)sender).Tag).Execute();
-            
+            ((Button)sender).BackColor = Color.LightGreen;
+            ((ICommand)((Button)sender).Tag).Execute();         
         }
 
-        private void raiseTick()
+        private void erzeugeCommandButtonsForUnit(IUnit unit)
         {
             this.Controls.Clear();
-
-            myPlayer.getGameState();
 
             hoffset = 1;
 
             int offset = 1;
             
-            foreach (ICommand aktCommand in this.myPlayer.lisCommands)
+            foreach (ICommand aktCommand in Program.m_objCampaign.getCommandsForUnit(unit))
             {
                 this.addButton(aktCommand, ref offset);
                 offset += 1;

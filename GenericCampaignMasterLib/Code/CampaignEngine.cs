@@ -52,8 +52,6 @@ namespace GenericCampaignMasterLib
             return p.ListUnits;
         }
 
-
-
         private clsMoveFactory m_objMovFactory;
         private List<ICommand>m_lisReadyCommands;
 
@@ -76,7 +74,6 @@ namespace GenericCampaignMasterLib
 			return m_lisReadyCommands;
         }
 
-        //public delegate void delStatus(string strText);
         public event Field.delStatus onEngineStatus;
 
         void m_objMovFactory_onNewStatus(string strStatus)
@@ -169,7 +166,7 @@ namespace GenericCampaignMasterLib
 
         public Player addPlayer(string strPlayerName)
         {
-            Player newPlayer = new Player(Players.Count, this);
+            Player newPlayer = new Player(Players.Count);
             newPlayer.Playername = strPlayerName;
 
             return this.addPlayer(newPlayer);

@@ -84,6 +84,16 @@ namespace GenericCampaignMasterLib
         {
             return this.m_campaignEngine.addPlayer(p);
         }
+
+        public void createNewUnit(int intPlayerID, Type type)
+        {
+            this.m_campaignEngine.addUnit(intPlayerID, type);
+        }
+
+        public List<ICommand> getCommandsForUnit(IUnit unit)
+        {
+            return this.m_campaignEngine.getCommandsForUnit(unit);
+        }
     }
 
 }
