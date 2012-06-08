@@ -81,7 +81,7 @@ namespace GenericCampaignMasterLib
         }
 
         
-        public override List<Field.clsSektorKoordinaten> getMoveVektors()
+        public override List<Field.clsSektorKoordinaten> getDirectionVectors()
         {
             List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -1; i <= 1; i++)

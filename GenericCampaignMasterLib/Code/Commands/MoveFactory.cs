@@ -41,7 +41,7 @@ namespace GenericCampaignMasterLib.Code
 
             //Init Stuff
             m_originSektor = FieldField.getSektorForUnit(u);
-            m_MoveVektors = FieldField.getMoveVektors();
+            m_MoveVektors = FieldField.getDirectionVectors();
             m_listKnownMovements.Add(m_originSektor.strUniqueID);
 
             

@@ -52,7 +52,7 @@ namespace GenericCampaignMasterLib
         }
 
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
-        public abstract List<Field.clsSektorKoordinaten> getMoveVektors();
+        public abstract List<Field.clsSektorKoordinaten> getDirectionVectors();
 
         public int Id { get; set; }
         
