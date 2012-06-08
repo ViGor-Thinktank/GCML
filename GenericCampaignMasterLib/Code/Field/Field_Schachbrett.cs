@@ -41,11 +41,25 @@ namespace GenericCampaignMasterLib
             }
 
 
+        
+        
+        
+        }
+
+        public Field_Schachbrett(List<int> lstDimension)
+        {
+            int width = lstDimension [0];
+            int height = lstDimension [1];
+            init(width, height);
         }
 
         public Field_Schachbrett(int width, int height)
         {
-            
+            init(width, height);
+        }
+
+        private void init(int width, int height)
+        {
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)

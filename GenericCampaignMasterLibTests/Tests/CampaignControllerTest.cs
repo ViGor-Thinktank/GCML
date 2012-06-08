@@ -16,9 +16,9 @@ namespace GenericCampaignMasterLibTests.Tests
         Player player2 = null;
         DummyUnit unit1 = new DummyUnit(666);
         DummyUnit unit2 = new DummyUnit(667);
-        Sektor sektor1 = new Sektor("1");
-        Sektor sektor2 = new Sektor("2");
-        Sektor sektor3 = new Sektor("3");
+        Sektor sektor1 = new Sektor("0");
+        Sektor sektor2 = new Sektor("1");
+        Sektor sektor3 = new Sektor("2");
 
         [SetUp]
         public void init()

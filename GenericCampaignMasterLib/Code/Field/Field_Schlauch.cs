@@ -17,7 +17,18 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public Field_Schlauch(int p)
+        public Field_Schlauch(List<int> lstDimension)
+        {
+            int p = lstDimension [0];
+            init(p);
+        }
+
+        public Field_Schlauch(int p) : base()
+        {
+            init(p);
+        }
+
+        private void init(int p)
         {
             for (int i = 0; i < p; i++)
             {

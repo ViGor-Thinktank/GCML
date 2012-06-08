@@ -20,6 +20,11 @@ namespace GenericCampaignMasterLib
             setNullSektor();
         }
 
+        public Field(List<int> lstDimension)
+        {
+
+        }
+
         public clsSektorKoordinaten nullSektorKoord = null;
         protected abstract void setNullSektor();
         public Sektor nullSektor { get { return this.ListSektors[this.nullSektorKoord.uniqueIDstr()]; } }
