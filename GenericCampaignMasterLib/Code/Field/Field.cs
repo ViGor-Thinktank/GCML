@@ -22,8 +22,11 @@ namespace GenericCampaignMasterLib
 
         public Field(List<int> lstDimension)
         {
-
+            m_lstDimensions = ListDimensions;
         }
+
+        private List<int> m_lstDimensions;
+        public List<int> ListDimensions { get { return m_lstDimensions;} }
 
         public clsSektorKoordinaten nullSektorKoord = null;
         protected abstract void setNullSektor();

@@ -46,14 +46,14 @@ namespace GenericCampaignMasterLib
         
         }
 
-        public Field_Schachbrett(List<int> lstDimension)
+        public Field_Schachbrett(List<int> lstDimension) : base(lstDimension)
         {
             int width = lstDimension [0];
             int height = lstDimension [1];
             init(width, height);
         }
 
-        public Field_Schachbrett(int width, int height)
+        public Field_Schachbrett(int width, int height): base(new List<int> (){ width, height})
         {
             init(width, height);
         }
