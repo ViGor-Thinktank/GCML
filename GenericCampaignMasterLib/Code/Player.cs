@@ -43,7 +43,9 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        
+        //tmp
+        public List<ICommand> lisCommands; 
+            
     
         #region IEquatable<Player> Member
         
@@ -68,7 +70,7 @@ namespace GenericCampaignMasterLib
         public void getGameState()
         {
             m_lisEinheiten = m_objMyEngine.getActiveUnitsForPlayer(this);
-            
+            lisCommands = m_objMyEngine.getCommandsForUnit(ListUnits[0]);
         }
     }
 }

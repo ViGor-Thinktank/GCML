@@ -8,7 +8,7 @@ namespace Playground
 {
     static class Program
     {
-        public static CampaignEngine m_objEngine;
+        public static CampaignController m_objCampaign;
 
         public static void Global_onStatus(string strText)
         {
@@ -22,24 +22,18 @@ namespace Playground
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            Program.m_objEngine = new CampaignEngine();
+            Application.SetCompatibleTextRenderingDefault(false);                        
 
             if (MessageBox.Show("Schachbrett?", "", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                m_objEngine.FieldField = new Field_Schachbrett(5, 5);
+                Program.m_objCampaign = new CampaignController(new CampaignEngine(new Field_Schachbrett(5, 5)));                
             }
             else
             {
-                m_objEngine.FieldField = new Field_Schlauch(8);
+                Program.m_objCampaign = new CampaignController(new CampaignEngine(new Field_Schlauch(8)));                
             }
-
-            m_objEngine.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
-            m_objEngine.onEngineStatus += new Field.delStatus(Global_onStatus);
-
-            
-            Application.Run(new frmPlayerMainForm());
+            Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);
+            Application.Run(new frmGameMainForm());            
         }
     }
 }

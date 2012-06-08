@@ -9,9 +9,17 @@ namespace GenericCampaignMasterLib
 {
     public class CampaignController
     {
-        private CampaignEngine m_campaignEngine;
+        private CampaignEngine m_campaignEngine;        
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         
+        public event Field.delStatus onStatus;
+        
+        public void Global_onStatus(string strText)
+        {
+            if (onStatus != null)
+                onStatus(strText);
+        }
+
         public CampaignController(CampaignEngine engine)
         {
             m_campaignEngine = engine;
@@ -32,12 +40,18 @@ namespace GenericCampaignMasterLib
             Sektor sektor = sender as Sektor;
             if (checkSektorForUnitCollision(sektor))
             {
-                unitCollisionStack.Add(sektor);
+                unitCollisionStack_Add(sektor);
             }
             else if (unitCollisionStack.Contains(sektor))
             {
                 unitCollisionStack.Remove(sektor);
             }
+        }
+
+        private void unitCollisionStack_Add(Sektor sektor)
+        {
+            Global_onStatus("Collision: " + sektor.strUniqueID);
+            unitCollisionStack.Add(sektor);
         }
 
         private bool checkSektorForUnitCollision(Sektor sektor)
@@ -65,6 +79,11 @@ namespace GenericCampaignMasterLib
         }
 
 
+
+        public Player addPlayer(string p)
+        {
+            return this.m_campaignEngine.addPlayer(p);
+        }
     }
 
 }

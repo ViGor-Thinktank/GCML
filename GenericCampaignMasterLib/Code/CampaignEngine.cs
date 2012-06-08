@@ -10,7 +10,22 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class CampaignEngine
     {
-     
+        public event Field.delStatus onStatus;
+
+        public CampaignEngine(Field newField)
+        {
+            this.FieldField = newField;
+            this.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
+            this.onEngineStatus += new Field.delStatus(Global_onStatus);
+        }
+
+        public void Global_onStatus(string strText)
+        {
+            if (onStatus != null)
+                onStatus(strText);
+        }
+        
+
         #region " Properties && Felder "
         private Dictionary<int, Player> m_Players = null;
         public Dictionary<int, Player> dicPlayers
@@ -41,9 +56,9 @@ namespace GenericCampaignMasterLib
 
 
         private clsMoveFactory m_objMovFactory;
-       private List<ICommand>m_lisReadyCommands;
+        private List<ICommand>m_lisReadyCommands;
 
-       public List<ICommand> getCommandsForUnit(IUnit u)
+        public List<ICommand> getCommandsForUnit(IUnit u)
 		{
             List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
             m_lisReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.

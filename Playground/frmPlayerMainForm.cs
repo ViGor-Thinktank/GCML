@@ -18,15 +18,14 @@ namespace Playground
 
         public frmPlayerMainForm()
         {
-            InitializeComponent();
-            
-            
-        }
+            InitializeComponent();            
+        }        
 
         private void button1_Click(object sender, EventArgs e)
         {
             
-            myPlayer = Program.m_objEngine.addPlayer(txtPlayerName.Text);
+            myPlayer = Program.m_objCampaign.addPlayer(txtPlayerName.Text);
+            this.Text = myPlayer.Playername;
             myPlayer.createNewUnit(typeof(DummyUnit));
 
             myPlayer.getGameState();
@@ -69,7 +68,7 @@ namespace Playground
         private void button_Click(object sender, EventArgs e)
         {
             ((ICommand)((Button)sender).Tag).Execute();
-            raiseTick();
+            
         }
 
         private void raiseTick()
@@ -78,12 +77,11 @@ namespace Playground
 
             myPlayer.getGameState();
 
-            List<ICommand> lisCommands = Program.m_objEngine.getCommandsForUnit(myPlayer.ListUnits[0]);
-                hoffset = 1;
+            hoffset = 1;
 
             int offset = 1;
             
-            foreach (ICommand aktCommand in lisCommands)
+            foreach (ICommand aktCommand in this.myPlayer.lisCommands)
             {
                 this.addButton(aktCommand, ref offset);
                 offset += 1;

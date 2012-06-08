@@ -11,8 +11,7 @@ namespace GenericCampaignMasterLib
         {
             public int X = -1;
             public int Y = -1;
-            private clsSektorKoordinaten_Schachbrett objSektorKoordSchach;
-
+            
             public clsSektorKoordinaten_Schachbrett(int newX, int newY)
             {
                 this.X = newX;
