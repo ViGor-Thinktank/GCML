@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GenericCampaignMasterLib.Code;
-using GenericCampaignMasterLib.Code.Unit;
+using GenericCampaignMasterLib;
 
 namespace GenericCampaignMasterLib
 {

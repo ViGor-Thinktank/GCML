@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GenericCampaignMasterLib.Code
+namespace GenericCampaignMasterLib
 {
     public class clsMoveFactory
     {
         private Field m_FieldField = null;
-        private Unit.IUnit m_Unit;
+        private IUnit m_Unit;
         private List<Field.clsSektorKoordinaten> m_MoveVektors;
         private Sektor m_originSektor;
 
@@ -32,7 +32,7 @@ namespace GenericCampaignMasterLib.Code
 
 
 
-        public clsMoveFactory(Unit.IUnit u, Field FieldField)
+        public clsMoveFactory(IUnit u, Field FieldField)
         {
             
             //set Members

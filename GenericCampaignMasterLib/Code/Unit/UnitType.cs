@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GenericCampaignMasterLib.Code.Unit
+namespace GenericCampaignMasterLib
 {
     public class UnitTypeDummy : UnitTypeBase 
     {
@@ -12,7 +12,7 @@ namespace GenericCampaignMasterLib.Code.Unit
             this.intMovement = 2;
         }
 
-        public override List<ICommand> getCommands(Unit.BaseUnit CallingUnit)
+        public override List<ICommand> getCommands(BaseUnit CallingUnit)
         {
             Move cmd = new Move();
             cmd.Unit = CallingUnit;
@@ -36,6 +36,6 @@ namespace GenericCampaignMasterLib.Code.Unit
             m_strDefaultBez = strDefaultBez;
         }
 
-        public abstract List<ICommand> getCommands(Unit.BaseUnit CallingUnit);
+        public abstract List<ICommand> getCommands(BaseUnit CallingUnit);
     }
 }

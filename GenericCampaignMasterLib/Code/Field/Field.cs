@@ -34,7 +34,7 @@ namespace GenericCampaignMasterLib
 
         }
         protected Dictionary<string, Sektor> ListSektors = new Dictionary<string, Sektor>();
-        public Sektor getSektorForUnit(Code.Unit.IUnit u)
+        public Sektor getSektorForUnit(IUnit u)
         {
             // Erstmal so gelöst. Geht besser.      
             foreach (Sektor s in ListSektors.Values)

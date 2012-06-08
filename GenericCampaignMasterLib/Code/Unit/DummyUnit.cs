@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GenericCampaignMasterLib.Code.Unit
+namespace GenericCampaignMasterLib
 {
 	
 	/// <summary>

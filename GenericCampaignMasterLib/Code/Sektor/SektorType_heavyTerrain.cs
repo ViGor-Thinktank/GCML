@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GenericCampaignMasterLib.Code
+namespace GenericCampaignMasterLib
 {
     public class clsSektorType_heavyTerrain : clsSektorType_base 
     {

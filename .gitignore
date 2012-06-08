@@ -1,7 +1,7 @@
 ﻿
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
-test-results/*.*
+test-results
 
 GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-05-28.xml
 
@@ -16,3 +16,4 @@ GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll
 
 Playground/Program.cs
+*.userprefs

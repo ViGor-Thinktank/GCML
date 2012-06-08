@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GenericCampaignMasterLib;
-using GenericCampaignMasterLib.Code.Unit;
 using NUnit.Framework;
 
 namespace GenericCampaignMasterLibTests.Tests

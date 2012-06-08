@@ -53,7 +53,7 @@ namespace GenericCampaignMasterLib
                     
                     Sektor newSek;
                     if (i != j) { newSek = new Sektor(this.ListSektors.Count.ToString()); }
-                    else { newSek = new Sektor(this.ListSektors.Count.ToString(), new Code.clsSektorType_heavyTerrain() ); }
+                    else { newSek = new Sektor(this.ListSektors.Count.ToString(), new clsSektorType_heavyTerrain() ); }
                     
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
                     newSek.onUnitEnteredSektor += new EventHandler(newSek_onUnitEnteredSektor);
