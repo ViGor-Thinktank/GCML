@@ -11,7 +11,7 @@ namespace GenericCampaignMasterLibTests.Tests
     [TestFixture]
     public class CampaignControllerTest
     {
-        CampaignEngine testEngine = new CampaignEngine();
+        CampaignEngine testEngine = null;
         CampaignController testController;
         Player player1 = null;
         Player player2 = null;
@@ -24,7 +24,7 @@ namespace GenericCampaignMasterLibTests.Tests
         [SetUp]
         public void init()
         {
-            testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { sektor1, sektor2, sektor3 });
+            testEngine = new CampaignEngine(new Field_Schlauch(new List<Sektor>() { sektor1, sektor2, sektor3 }));
             testEngine.FieldField.Id = 123;
 
             player1.ListUnits.Add(unit1);

@@ -14,8 +14,8 @@ namespace GenericCampaignMasterLib
 
         public CampaignEngine(Field newField)
         {
-            this.FieldField = newField;
-            this.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
+            this.m_FieldField = newField;
+            this.m_FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
             this.onEngineStatus += new Field.delStatus(Global_onStatus);
         }
 
@@ -41,8 +41,7 @@ namespace GenericCampaignMasterLib
         public Field FieldField
         {
             get { return m_FieldField; }
-            set { m_FieldField = value; }
-        }
+            }
 
         #endregion
 

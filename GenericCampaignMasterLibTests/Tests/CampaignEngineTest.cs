@@ -17,8 +17,8 @@ namespace GenericCampaignMasterLibTests.Tests
         [SetUp]
         public void init()
         {
-            testEngine = new CampaignEngine();
-            testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { new Sektor("0"), new Sektor("1"), new Sektor("2") });
+            testEngine = new CampaignEngine(new Field_Schlauch(new List<Sektor>() { new Sektor("0"), new Sektor("1"), new Sektor("2") }));
+            
             testEngine.FieldField.Id = 123;
 
             testEngine.addPlayer("Player 1");
