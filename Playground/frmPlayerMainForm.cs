@@ -12,40 +12,26 @@ using GenericCampaignMasterLib.Code.Unit;
 
 namespace Playground
 {
-    public partial class Form1 : Form
+    public partial class frmPlayerMainForm : Form
     {
-        private CampaignEngine m_objEngine;
-        public Form1()
+        Player myPlayer; 
+
+        public frmPlayerMainForm()
         {
             InitializeComponent();
             
             
         }
 
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
-            m_objEngine = new CampaignEngine();
+            
+            myPlayer = Program.m_objEngine.addPlayer(txtPlayerName.Text);
+            myPlayer.createNewUnit(typeof(DummyUnit));
 
-            if (MessageBox.Show("Schachbrett?", "", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-            {
-                m_objEngine.FieldField = new Field_Schachbrett(5, 5);
-            }
-            else
-            {
-                m_objEngine.FieldField = new Field_Schlauch(8);
-            }
+            myPlayer.getGameState();
 
-            m_objEngine.FieldField.onFieldStatus += new Field.delStatus(Global_onStatus);
-            m_objEngine.onEngineStatus += new Field.delStatus(Global_onStatus);
-
-            Player p1 = m_objEngine.addPlayer(new Player(1));
-
-            m_objEngine.addUnit(p1.Id, new DummyUnit(0));
-            List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
-            m_objEngine.FieldField.get(m_objEngine.FieldField.nullSektorKoord).ListUnits.Add(lisEinheiten[0]);
-
+            
             raiseTick();
            
         }
@@ -90,11 +76,10 @@ namespace Playground
         {
             this.Controls.Clear();
 
-            List<IUnit> lisEinheiten = m_objEngine.getActiveUnitsForPlayer(m_objEngine.dicPlayers[1]);
+            myPlayer.getGameState();
 
-            List<ICommand> lisCommands = m_objEngine.getCommandsForUnit(lisEinheiten[0]);
-
-            hoffset = 1;
+            List<ICommand> lisCommands = Program.m_objEngine.getCommandsForUnit(myPlayer.ListUnits[0]);
+                hoffset = 1;
 
             int offset = 1;
             

@@ -13,23 +13,23 @@ namespace GenericCampaignMasterLib
         public int Id { get { return _id; } }
         public string Playername { get; set; }
 
-        public Player(int playerId)
+        public Player(int playerId, CampaignEngine myEngine)
         {
             this._id = playerId;
+            this.m_objMyEngine = myEngine;
         }
 
-        private List<IUnit> m_Units = null;
+        private CampaignEngine m_objMyEngine;
 
+        private List<IUnit> m_lisEinheiten; 
         public List<IUnit> ListUnits
         {
             get
             {
-                if (m_Units == null) { m_Units = new List<IUnit>(); }
-                return m_Units;
+                if (m_lisEinheiten == null) { m_lisEinheiten = new List<IUnit>(); }
+                return m_lisEinheiten;
             }
-            set
-            {
-            }
+
         }
 
         public Ressourcen Ressourcen
@@ -59,5 +59,16 @@ namespace GenericCampaignMasterLib
         }
 
         #endregion
+
+        public void createNewUnit(Type UnitType)
+        {
+            m_objMyEngine.addUnit(this.Id, UnitType);
+        }
+
+        public void getGameState()
+        {
+            m_lisEinheiten = m_objMyEngine.getActiveUnitsForPlayer(this);
+            
+        }
     }
 }

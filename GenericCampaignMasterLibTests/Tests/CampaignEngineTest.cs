@@ -20,8 +20,9 @@ namespace GenericCampaignMasterLibTests.Tests
             testEngine = new CampaignEngine();
             testEngine.FieldField = new Field_Schlauch(new List<Sektor>() { new Sektor("0"), new Sektor("1"), new Sektor("2") });
             testEngine.FieldField.Id = 123;
-            
-            testEngine.setPlayerList(new List<Player>() { new Player(1), new Player(2) });
+
+            testEngine.addPlayer("Player 1");
+            testEngine.addPlayer("Player 2");
         }
 
         [Test]

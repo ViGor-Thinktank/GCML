@@ -79,7 +79,9 @@ namespace GenericCampaignMasterLib
             if (onFieldStatus != null)
                 onFieldStatus("UnitLeft " + SekSender.strUniqueID);
         }
- 
+
+
+        
     }
     
  

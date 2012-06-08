@@ -13,8 +13,8 @@ namespace GenericCampaignMasterLibTests.Tests
     {
         CampaignEngine testEngine = new CampaignEngine();
         CampaignController testController;
-        Player player1 = new Player(664);
-        Player player2 = new Player(665);
+        Player player1 = null;
+        Player player2 = null;
         DummyUnit unit1 = new DummyUnit(666);
         DummyUnit unit2 = new DummyUnit(667);
         Sektor sektor1 = new Sektor("1");

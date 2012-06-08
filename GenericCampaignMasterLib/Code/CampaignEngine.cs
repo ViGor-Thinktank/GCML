@@ -35,7 +35,7 @@ namespace GenericCampaignMasterLib
 		// Auf die Liste aller Units des Players kann über die List-Property zugegriffen werden.
         public List<IUnit> getActiveUnitsForPlayer(Player p)
         {
-			return p.ListUnits;
+            return p.ListUnits;
         }
 
 
@@ -118,24 +118,57 @@ namespace GenericCampaignMasterLib
         }
 
 
-        #region " Uuitfaktory "
-        
-        public void addUnit(int intPlayerID, IUnit newUnit)
+        #region " Unitfactory "
+
+        internal IUnit addUnit(int intPlayerID, Type UnitType)
         {
-            m_Players[intPlayerID].ListUnits.Add(newUnit);
+            IUnit newUnit = null;
+
+            if (UnitType == typeof(DummyUnit))
+            {
+                newUnit = new DummyUnit(m_Players[intPlayerID].ListUnits.Count);
+            }
+
+            return addUnit(intPlayerID, newUnit, this.FieldField.nullSektorKoord);
+        }
+
+        public IUnit addUnit(int intPlayerID, IUnit newUnit, Field.clsSektorKoordinaten objSektorKoord)
+        {
+            Players[intPlayerID].ListUnits.Add(newUnit);
+            newUnit = Players[intPlayerID].ListUnits[newUnit.Id];
+
+            this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
+
+            return newUnit;
         }
 
         #endregion
+
+        private Dictionary<int, Player> Players 
+        { 
+            get 
+            {
+                if (m_Players == null) { m_Players = new Dictionary<int, Player>(); }
+                return m_Players;
+            }
+        }
+
+        public Player addPlayer(string strPlayerName)
+        {
+            Player newPlayer = new Player(Players.Count, this);
+            newPlayer.Playername = strPlayerName;
+
+            return this.addPlayer(newPlayer);
+        }
+
         public Player addPlayer(Player objNewPlayer)
         {
-            if (m_Players == null) { m_Players = new Dictionary<int, Player>(); }
-
-            if (m_Players.ContainsKey(objNewPlayer.Id))
+            if (Players.ContainsKey(objNewPlayer.Id))
             {
                 throw new Exception_Engine_Player("PlayerID ist bereits vergeben!");
             }
             
-            m_Players.Add(objNewPlayer.Id, objNewPlayer);
+            Players.Add(objNewPlayer.Id, objNewPlayer);
             
             return objNewPlayer;
         }
@@ -147,8 +180,7 @@ namespace GenericCampaignMasterLib
                 addPlayer(aktPlayer);
             }
         }
-
-
+        
         
     }
 }

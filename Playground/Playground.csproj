@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmPlayerMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmPlayerMainForm.Designer.cs">
+      <DependentUpon>frmPlayerMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="frmStatus.cs">
       <SubType>Form</SubType>
@@ -62,8 +62,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmPlayerMainForm.resx">
+      <DependentUpon>frmPlayerMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStatus.resx">
       <DependentUpon>frmStatus.cs</DependentUpon>
