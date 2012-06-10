@@ -14,15 +14,13 @@ namespace GenericCampaignMasterLib
     {
         Dictionary <string, object> state = null;
 
-
         public CampaignState Save(CampaignEngine engine)
         {
             state = new Dictionary<string, object>();
             state ["players"] = engine.dicPlayers.Values;
-            state ["fieldtype"] = engine.FieldField.GetType();
-            state ["fielddimension"] = engine.FieldField.ListDimensions;
             state ["sektors"] = engine.FieldField.getSektorList();
-
+            state ["fielddimension"] = engine.FieldField.ListDimensions;
+            state ["fieldtype"] = engine.FieldField.GetType();
             return this;
         }
         

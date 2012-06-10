@@ -44,6 +44,8 @@
     <Compile Include="Tests\CampaignControllerTest.cs" />
     <Compile Include="Tests\CampaignEngineTest.cs" />
     <Compile Include="Tests\SektorTest.cs" />
+    <Compile Include="Tests\CampaignStateTest.cs" />
+    <Compile Include="Tests\TestSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">

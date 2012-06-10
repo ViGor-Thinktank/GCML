@@ -23,18 +23,6 @@ namespace GenericCampaignMasterLibTests.Tests
             testEngine.addPlayer("Player 1");
             testEngine.addPlayer("Player 2");
         }
-
-        [Test]
-        public void testSaveAndRestoreCampaignState()
-        {
-            CampaignState state = new CampaignState();
-            state.Save(testEngine);
-
-            CampaignEngine engineRestored = state.Restore();
-            Assert.AreEqual(testEngine.FieldField.Id, engineRestored.FieldField.Id, "FieldField aus dem wiederhergestellten State ist nicht identisch.");
-            Assert.AreEqual(testEngine.dicPlayers, engineRestored.dicPlayers, "ListPlayers aus dem wiederhergestellten State ist nicht identisch.");
-        }
-
 		
         [Test]
 		public void testMoveUnitOneSektor()
