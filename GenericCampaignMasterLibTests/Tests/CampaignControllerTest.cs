@@ -26,8 +26,8 @@ namespace GenericCampaignMasterLibTests.Tests
             testEngine = new CampaignEngine(new Field_Schlauch(new List<Sektor>() { sektor1, sektor2, sektor3 }));
             testEngine.FieldField.Id = 123;
 
-            player1 = new Player(1, testEngine);
-            player2 = new Player(2, testEngine);
+            player1 = new Player(1);
+            player2 = new Player(2);
 
             player1.ListUnits.Add(unit1);
             player2.ListUnits.Add(unit2);

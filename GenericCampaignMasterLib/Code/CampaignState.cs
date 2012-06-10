@@ -20,6 +20,7 @@ namespace GenericCampaignMasterLib
             state = new Dictionary<string, object>();
             state ["players"] = engine.dicPlayers.Values;
             state ["fieldtype"] = engine.FieldField.GetType();
+            state ["fielddimension"] = engine.FieldField.ListDimensions;
             state ["sektors"] = engine.FieldField.getSektorList();
 
             return this;
@@ -30,10 +31,10 @@ namespace GenericCampaignMasterLib
             List<Player> lstPlayers = (List <Player>)state ["players"];
             List<Sektor> lstSektors = (List <Sektor>)state ["sektors"];
 
+            List<int> lstDim = (List <int>)state ["fielddimension"];
             string fieldTypeName = (string)state ["fieldtype"];
             Type fieldType = Type.GetType(fieldTypeName);
-
-            Field f = (Field) Activator.CreateInstance(fieldType, new object[]{ lstSektors });
+            Field f = (Field) Activator.CreateInstance(fieldType, new object[]{ lstDim });
 
             CampaignEngine engine = new CampaignEngine((Field)f);
             engine.setPlayerList(lstPlayers);
