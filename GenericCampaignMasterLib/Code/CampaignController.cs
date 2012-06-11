@@ -41,27 +41,21 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public void loadGameState(Guid gameid, Dictionary <Guid, CampaignState> gameStateCollection)
+        public void loadGameState(string strState)
         {
-            CampaignState loadedState = gameStateCollection[gameid];
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            CampaignState loadedState = (CampaignState) serializer.Deserialize(strState, typeof(CampaignState));
             CampaignEngine loadedEngine = loadedState.Restore();
 
             init(loadedEngine);
         }
 
-        public void loadLastGameState()
-        {
-
-
-        }
-
-
-        public void saveGameState()
+        public string getGameState()
         {
             CampaignState state = m_campaignEngine.getState();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-            string strState = serializer.Serialize(state);
+            return serializer.Serialize(state);
         }
 
 
