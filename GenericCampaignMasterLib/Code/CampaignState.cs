@@ -20,7 +20,7 @@ namespace GenericCampaignMasterLib
             state ["players"] = engine.dicPlayers.Values.ToList();
             state ["sektors"] = engine.FieldField.getSektorList();
             state ["fielddimension"] = engine.FieldField.ListDimensions;
-            state ["fieldtype"] = engine.FieldField.GetType();
+            state ["fieldtype"] = engine.FieldField.GetType().ToString();
             return this;
         }
         
