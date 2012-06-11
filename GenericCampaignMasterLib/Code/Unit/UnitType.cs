@@ -9,7 +9,8 @@ namespace GenericCampaignMasterLib
     {
         public UnitTypeDummy() : base("UnitTypeDummy")
         {
-            this.intMovement = 2;
+            this.m_intMovement = 1;
+            this.m_intSichtweite = 2;
         }
 
         public override List<ICommand> getCommands(BaseUnit CallingUnit)
@@ -28,8 +29,11 @@ namespace GenericCampaignMasterLib
         private string m_strDefaultBez = "";
         public string strDefaultBez { get { return m_strDefaultBez; } }
 
-        private int m_intMovement = 0;
-        public int intMovement { get { return m_intMovement; } set { m_intMovement = value; } }
+        protected  int m_intMovement = 0;
+        protected int m_intSichtweite = 0;
+        
+        public int intSichtweite { get { return m_intSichtweite; } }
+        public int intMovement { get { return m_intMovement; } }
 
         public UnitTypeBase(string strDefaultBez )
         {

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace GenericCampaignMasterLib
 {
-    public class clsMoveFactory
+    public class clsMoveFactory : clsSektorFactoryBase
     {
-        private Field m_FieldField = null;
         private IUnit m_Unit;
-        private List<Field.clsSektorKoordinaten> m_MoveVektors;
-        private Sektor m_originSektor;
-
+        
         private List<string> m_listKnownMovements = new List<string>();
 
         public delegate void delNewMoveCommand(Move readyCmd);
@@ -22,26 +20,15 @@ namespace GenericCampaignMasterLib
                 onNewMoveCommand(readyCmd);
         }
 
-        public delegate void delNewStatus(string strStatus);
-        public event delNewStatus onNewStatus;
-        private void Status(string strStatus)
-        {
-            if (onNewStatus != null)
-                onNewStatus(strStatus);
-        }
-
-
-
-        public clsMoveFactory(IUnit u, Field FieldField)
+        public clsMoveFactory(IUnit u, Field FieldField) : base(FieldField)
         {
             
             //set Members
             m_Unit = u;
-            m_FieldField = FieldField;
+            
 
             //Init Stuff
             m_originSektor = FieldField.getSektorForUnit(u);
-            m_MoveVektors = FieldField.getDirectionVectors();
             m_listKnownMovements.Add(m_originSektor.strUniqueID);
 
             
@@ -49,9 +36,9 @@ namespace GenericCampaignMasterLib
 
         private void createMoveCommandsForSektor(Sektor aktSek, int intFieldsMoved)
         {
-            foreach (Field.clsSektorKoordinaten aktKoord in m_MoveVektors)
+            foreach (Field.clsSektorKoordinaten aktVektor in m_DirectionVektors)
             {
-                Sektor newSek = m_FieldField.move(aktSek, aktKoord);
+                Sektor newSek = this.FieldField.move(aktSek, aktVektor);
 
                 if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
@@ -65,7 +52,7 @@ namespace GenericCampaignMasterLib
                         readyCmd.Unit = m_Unit;
                         readyCmd.strCreate = strStatus;
                         readyCmd.OriginSektor = m_originSektor;
-                        Sektor targetSek = m_FieldField.get(newSek.objSektorKoord);
+                        Sektor targetSek = this.FieldField.get(newSek.objSektorKoord);
                         readyCmd.TargetSektor = targetSek;
                         raiseOnNewMoveCommand(readyCmd);
                     }
@@ -87,7 +74,7 @@ namespace GenericCampaignMasterLib
         internal void go()
         {
             //go
-            this.createMoveCommandsForSektor(m_FieldField.get(m_originSektor.objSektorKoord), 0);
+            this.createMoveCommandsForSektor(this.FieldField.get(m_originSektor.objSektorKoord), 0);
         }
     }
 }

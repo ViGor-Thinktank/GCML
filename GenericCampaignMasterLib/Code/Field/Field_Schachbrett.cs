@@ -51,6 +51,7 @@ namespace GenericCampaignMasterLib
             int width = lstDimension [0];
             int height = lstDimension [1];
             init(width, height);
+            
         }
 
         public Field_Schachbrett(int width, int height): base(new List<int> (){ width, height})
@@ -60,6 +61,8 @@ namespace GenericCampaignMasterLib
 
         private void init(int width, int height)
         {
+            setNullSektor();
+
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)

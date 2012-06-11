@@ -23,6 +23,7 @@ namespace Playground
         public void Tick()
         {
             this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[0]);
+            List<Sektor> listVisibleSektors = Program.m_objCampaign.getVisibleSektorsForPlayer(myPlayer);
         }
 
         private void button1_Click(object sender, EventArgs e)

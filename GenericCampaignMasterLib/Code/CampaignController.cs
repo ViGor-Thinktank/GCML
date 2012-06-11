@@ -123,6 +123,12 @@ namespace GenericCampaignMasterLib
         {
             return this.m_campaignEngine.getCommandsForUnit(unit);
         }
+
+        public List<Sektor> getVisibleSektorsForPlayer(Player p)
+        {
+            return this.m_campaignEngine.getVisibleSektorsForPlayer(p);
+        }
+  
     }
 
 }

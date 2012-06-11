@@ -195,7 +195,21 @@ namespace GenericCampaignMasterLib
                 addPlayer(aktPlayer);
             }
         }
-        
-        
+
+
+
+        public List<Sektor> getVisibleSektorsForPlayer(Player p)
+        {
+            clsViewableSectorFactory facViewSek = new clsViewableSectorFactory(this.FieldField);
+
+            foreach (IUnit aktUnit in p.ListUnits)
+            {
+                facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.intSichtweite);
+    
+            }
+
+            
+            return facViewSek.ListVisibleSektors;
+        }
     }
 }
