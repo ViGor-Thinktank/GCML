@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Script.Serialization;
 using GenericCampaignMasterLib;
 
 namespace GenericCampaignMasterLib
@@ -19,7 +20,18 @@ namespace GenericCampaignMasterLib
                 onStatus(strText);
         }
 
+        public CampaignController()
+        {
+
+
+        }
+
         public CampaignController(CampaignEngine engine)
+        {
+            init(engine);
+        }
+
+        private void init(CampaignEngine engine)
         {
             m_campaignEngine = engine;
             foreach (Sektor sektor in engine.FieldField.getSektorList())
@@ -28,6 +40,30 @@ namespace GenericCampaignMasterLib
                 sektor.onUnitLeftSektor += onUnitMove;
             }
         }
+
+        public void loadGameState(Guid gameid, Dictionary <Guid, CampaignState> gameStateCollection)
+        {
+            CampaignState loadedState = gameStateCollection[gameid];
+            CampaignEngine loadedEngine = loadedState.Restore();
+
+            init(loadedEngine);
+        }
+
+        public void loadLastGameState()
+        {
+
+
+        }
+
+
+        public void saveGameState()
+        {
+            CampaignState state = m_campaignEngine.getState();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            string strState = serializer.Serialize(state);
+        }
+
 
         public List<Sektor> getUnitCollisions()
         {

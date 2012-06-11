@@ -23,7 +23,12 @@ namespace GenericCampaignMasterLib
             if (onStatus != null)
                 onStatus(strText);
         }
-        
+
+        public CampaignState getState()
+        {
+            CampaignState state = new CampaignState();
+            return state.Save(this);
+        }
 
         #region " Properties && Felder "
         private Dictionary<int, Player> m_Players = null;

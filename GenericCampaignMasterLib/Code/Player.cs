@@ -18,7 +18,8 @@ namespace GenericCampaignMasterLib
             
         }
 
-        private List<IUnit> m_lisEinheiten; 
+        private List<IUnit> m_lisEinheiten;
+
         public List<IUnit> ListUnits
         {
             get
@@ -30,6 +31,7 @@ namespace GenericCampaignMasterLib
         }
 
         private Dictionary<string, Sektor> m_dicVisibleSectors;
+
         public Dictionary<string, Sektor> dicVisibleSectors
         {
             get
@@ -40,12 +42,12 @@ namespace GenericCampaignMasterLib
 
         }
 
-
         public Ressourcen Ressourcen
         {
             get
             {
-                throw new System.NotImplementedException();
+                //throw new System.NotImplementedException();
+                return new Ressourcen();
             }
             set
             {

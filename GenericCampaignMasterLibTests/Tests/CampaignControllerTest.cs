@@ -20,6 +20,15 @@ namespace GenericCampaignMasterLibTests.Tests
             testController = new CampaignController(testEngine);
         }
 
+
+        [Test]
+        public void testLoadAndSaveState()
+        {
+            testController.saveGameState();
+        }
+
+
+
         [Test]
         public void testUnitCollisions()
         {
