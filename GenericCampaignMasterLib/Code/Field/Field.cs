@@ -22,7 +22,7 @@ namespace GenericCampaignMasterLib
 
         public Field(List<int> lstDimension)
         {
-            m_lstDimensions = ListDimensions;
+            m_lstDimensions = lstDimension;
         }
 
         private List<int> m_lstDimensions;
