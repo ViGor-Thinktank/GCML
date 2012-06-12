@@ -9,14 +9,16 @@ namespace GenericCampaignMasterLib
     {
         int intSichtweite { get; }             
          int Id { get; }             // Dummy
-         string Bezeichnung { get; set; } // Dummy
+        string Bezeichnung { get; set; } // Dummy
+		UnitTypeBase UnitType { get; }
 		
 		 List<ICommand> getCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
 
          int intMovement { get; }
     }
-
-    public abstract class BaseUnit : IUnit
+	
+	
+    public class BaseUnit : IUnit
     {
 
         public BaseUnit(int unitId, UnitTypeBase UnitType, string strBezeichnung)
@@ -47,12 +49,22 @@ namespace GenericCampaignMasterLib
         }
 
         private UnitTypeBase m_objUnitType;
-        
+        public UnitTypeBase UnitType
+		{
+			
+			get { return m_objUnitType; }
+			
+		}
+			
+		
+		
         public List<ICommand> getCommands()
         {
             return m_objUnitType.getCommands(this);
         }
 
+		
+		
         
     }
 }
