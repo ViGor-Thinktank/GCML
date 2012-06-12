@@ -123,6 +123,27 @@ namespace GenericCampaignMasterLib
             
         }
 
+        public List<UnitInfo> getUnitInfo()
+        {
+            List<UnitInfo> result = new List<UnitInfo>();
+            foreach(Player p in Players.Values)
+            {
+                foreach(IUnit u in p.ListUnits)
+                {
+                    Sektor s = getSektorContainingUnit(u);
+                    
+                    UnitInfo uInfo = new UnitInfo();
+                    uInfo.sektorId = s.Id.ToString();
+                    uInfo.unitId = u.Id.ToString();
+                    uInfo.playerId = p.Id.ToString();
+                    result.Add(uInfo);
+                }
+                
+            }
+
+            return result;
+        }
+
         public Player getUnitOwner(IUnit unit)
         {
             var owner = (from p in m_ListPlayers.Values
@@ -157,6 +178,7 @@ namespace GenericCampaignMasterLib
             return newUnit;
         }
 
+ 
         #endregion
 
         private Dictionary<int, Player> Players 
