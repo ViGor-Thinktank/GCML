@@ -52,14 +52,12 @@ namespace GenericCampaignMasterLib
         
         public Sektor getSektorForUnit(IUnit u)
         {
-            // Erstmal so gelöst. Geht besser.      
-            foreach (Sektor s in ListSektors.Values)
-            {
-                if (s.ListUnits.Contains(u))
-                    return s;
-            }
+            var aktSek = (from s in ListSektors.Values
+                         where s.ListUnits.Contains(u)
+                         select s).First();
 
-            return null;
+            return aktSek as Sektor;
+            
         }
 
         
