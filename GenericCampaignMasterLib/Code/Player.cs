@@ -9,9 +9,15 @@ namespace GenericCampaignMasterLib
     public class Player : IEquatable<Player>
     {
         private int _id;
-        public int Id { get { return _id; } }
+        public int Id 
+        { 
+            get { return _id; }
+            set { this._id = value;  }
+        }
+
         public string Playername { get; set; }
 
+        public Player() { }
         public Player(int playerId)
         {
             this._id = playerId;
@@ -28,6 +34,10 @@ namespace GenericCampaignMasterLib
                 return m_lisEinheiten;
             }
 
+            set
+            {
+                m_lisEinheiten = value;
+            }
         }
 
         private Dictionary<string, Sektor> m_dicVisibleSectors;
