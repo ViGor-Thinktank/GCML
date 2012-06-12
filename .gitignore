@@ -1,7 +1,11 @@
-﻿
+
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
+<<<<<<< HEAD
 test-results
+=======
+test-results/
+>>>>>>> ignore
 
 GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-05-28.xml
 
@@ -15,5 +19,10 @@ GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll
 
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll
 
+<<<<<<< HEAD
 Playground/Program.cs
 *.userprefs
+=======
+Playground/Program.cs
+GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-06-08.xml
+>>>>>>> ignore
