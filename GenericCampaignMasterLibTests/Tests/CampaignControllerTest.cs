@@ -42,8 +42,8 @@ namespace GenericCampaignMasterLibTests.Tests
         [Test]
         public void testUnitCollisions()
         {
-            Player player1 = testEngine.dicPlayers.Values.ElementAt(0);
-            Player player2 = testEngine.dicPlayers.Values.ElementAt(1);
+            Player player1 = testEngine.ListPlayers.Values.ElementAt(0);
+            Player player2 = testEngine.ListPlayers.Values.ElementAt(1);
 
             Sektor sektor1 = testEngine.FieldField.getSektorList() [0];
             Sektor sektor2 = testEngine.FieldField.getSektorList() [1];

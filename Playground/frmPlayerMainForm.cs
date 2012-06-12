@@ -18,13 +18,16 @@ namespace Playground
         public frmPlayerMainForm()
         {
             InitializeComponent();            
-        }        
+        }
+
+        private CampaignState m_aktState = null;
 
         public void Tick()
         {
-            this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[0]);
-            List<Sektor> listVisibleSektors = Program.m_objCampaign.getVisibleSektorsForPlayer(myPlayer);
-        }
+            this.m_aktState = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+
+            //this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[0]);
+            }
 
         private void button1_Click(object sender, EventArgs e)
         {

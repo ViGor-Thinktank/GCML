@@ -124,11 +124,18 @@ namespace GenericCampaignMasterLib
             return this.m_campaignEngine.getCommandsForUnit(unit);
         }
 
-        public List<Sektor> getVisibleSektorsForPlayer(Player p)
+        
+
+        public CampaignState getCampaignStateForPlayer(int pID)
         {
-            return this.m_campaignEngine.getVisibleSektorsForPlayer(p);
+            Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
+            CampaignState newState = new CampaignState();
+
+            newState.ListSektors = this.m_campaignEngine.getVisibleSektorsForPlayer(askingPlayer);
+
+
+            return newState;
         }
-  
     }
 
 }

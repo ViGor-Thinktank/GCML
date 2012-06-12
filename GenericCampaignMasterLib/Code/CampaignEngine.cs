@@ -31,12 +31,12 @@ namespace GenericCampaignMasterLib
         }
 
         #region " Properties && Felder "
-        private Dictionary<int, Player> m_Players = null;
-        public Dictionary<int, Player> dicPlayers
+        private Dictionary<int, Player> m_ListPlayers = null;
+        public Dictionary<int, Player> ListPlayers
         {
             get
             {
-                return m_Players;
+                return m_ListPlayers;
             }
         }
 
@@ -125,7 +125,7 @@ namespace GenericCampaignMasterLib
 
         public Player getUnitOwner(IUnit unit)
         {
-            var owner = (from p in m_Players.Values
+            var owner = (from p in m_ListPlayers.Values
                          where p.ListUnits.Contains(unit)
                          select p).First();
 
@@ -141,7 +141,7 @@ namespace GenericCampaignMasterLib
 
             if (UnitType == typeof(DummyUnit))
             {
-                newUnit = new DummyUnit(m_Players[intPlayerID].ListUnits.Count);
+                newUnit = new DummyUnit(m_ListPlayers[intPlayerID].ListUnits.Count);
             }
 
             return addUnit(intPlayerID, newUnit, this.FieldField.nullSektorKoord);
@@ -163,8 +163,8 @@ namespace GenericCampaignMasterLib
         { 
             get 
             {
-                if (m_Players == null) { m_Players = new Dictionary<int, Player>(); }
-                return m_Players;
+                if (m_ListPlayers == null) { m_ListPlayers = new Dictionary<int, Player>(); }
+                return m_ListPlayers;
             }
         }
 
@@ -198,7 +198,7 @@ namespace GenericCampaignMasterLib
 
 
 
-        public List<Sektor> getVisibleSektorsForPlayer(Player p)
+        public Dictionary<string, Sektor> getVisibleSektorsForPlayer(Player p)
         {
             clsViewableSectorFactory facViewSek = new clsViewableSectorFactory(this.FieldField);
 

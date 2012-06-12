@@ -58,11 +58,11 @@ namespace GenericCampaignMasterLibTests.Tests
         public void testGetUnitOwner()
         {
             DummyUnit testUnit = new DummyUnit(999);
-            testEngine.dicPlayers[1].ListUnits.Add(testUnit);
+            testEngine.ListPlayers[1].ListUnits.Add(testUnit);
 
             Player owner = testEngine.getUnitOwner(testUnit);
 
-            Assert.AreEqual(testEngine.dicPlayers[1], owner);
+            Assert.AreEqual(testEngine.ListPlayers[1], owner);
         }
         
     }       

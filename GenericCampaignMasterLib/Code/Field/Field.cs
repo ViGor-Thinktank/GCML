@@ -41,7 +41,15 @@ namespace GenericCampaignMasterLib
             return this.ListSektors.ContainsKey(objSektorKoord.uniqueIDstr());
 
         }
-        protected Dictionary<string, Sektor> ListSektors = new Dictionary<string, Sektor>();
+
+        private Dictionary<string, Sektor> m_ListSektors = new Dictionary<string, Sektor>();
+
+        public Dictionary<string, Sektor> ListSektors
+        {
+            get { return m_ListSektors; }
+        }
+        
+        
         public Sektor getSektorForUnit(IUnit u)
         {
             // Erstmal so gelöst. Geht besser.      
@@ -54,6 +62,7 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
+        
         public List<Sektor> getSektorList()
         {
             return ListSektors.Values.ToList<Sektor>();

@@ -8,8 +8,8 @@ namespace GenericCampaignMasterLib
     
     public class clsViewableSectorFactory : clsSektorFactoryBase
     {
-        private List<Sektor> m_ListVisibleSektors = new List<Sektor>();
-        public List<Sektor> ListVisibleSektors { get { return m_ListVisibleSektors; } }
+        private Dictionary<string, Sektor> m_ListVisibleSektors = new Dictionary<string, Sektor>();
+        public Dictionary<string, Sektor> ListVisibleSektors { get { return m_ListVisibleSektors; } }
 
         public clsViewableSectorFactory(Field FieldField)
             : base(FieldField)
@@ -28,9 +28,9 @@ namespace GenericCampaignMasterLib
 
                 if (newSek != null)
                 {
-                    if (!this.m_ListVisibleSektors.Contains(newSek))
+                    if (!this.m_ListVisibleSektors.ContainsKey(newSek.strUniqueID))
                     {
-                        this.m_ListVisibleSektors.Add(newSek);
+                        this.m_ListVisibleSektors.Add(newSek.strUniqueID, newSek);
                     }
 
                     if (intSichtweite > 0)
