@@ -34,10 +34,6 @@ namespace GenericCampaignMasterLib
                 return m_lisEinheiten;
             }
 
-            set
-            {
-                m_lisEinheiten = value;
-            }
         }
 
         private Dictionary<string, Sektor> m_dicVisibleSectors;
