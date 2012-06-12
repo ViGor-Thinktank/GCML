@@ -6,84 +6,73 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
+using System.Web.Script.Serialization;
 
 namespace GenericCampaignMasterLib
 {
-    public class CampaignState : Dictionary<string, object>
+    public struct UnitInfo
     {
-        public Dictionary<string, Sektor> ListSektors
+        public string playerId;
+        public string sektorId;
+        public string unitId;
+    }
+
+    public class CampaignState : Dictionary<string, string>
+    {
+
+        private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
+
+        public List<Sektor> getListSektors()
         {
-            get
-            {
-                return (Dictionary<string, Sektor>)this["sektors"];
-            }
-            set
-            {
-                this["sektors"] = value;
-            }
+            return (List<Sektor>) m_serializer.Deserialize(this["sektors"], typeof(List<Sektor>));
         }
 
-        public Dictionary<int, Player> ListPlayers
+        public List<Player> getListPlayers()
         {
-            get
-            {
-                return (Dictionary<int, Player>)this["players"];
-            }
-            set
-            {
-                this["players"] = value;
-            }
+
+            string p = this["players"];
+            return (List<Player>)m_serializer.Deserialize(this["players"], typeof(List<Player>));
         }
 
-        public List<int> ListDimensions
+        public List<int> getListDimensions()
         {
-            get
-            {
-                return null;
-                
-            }
-            set
-            {
-                this["fielddimension"] = value;
-            }
+            return (List<int>)m_serializer.Deserialize(this["fielddimension"], typeof(List<int>));
         }
 
-        public string strFieldtype
+        public string getFieldtype()
         {
-            get
-            {
-                return (string)this["fieldtype"];
-            }
-            set 
-            {
-                this["fieldtype"] = value;
-            }
+        
+            return this["fieldtype"];
         }
 
         public CampaignState Save(CampaignEngine engine)
         {
-            this.ListPlayers = engine.ListPlayers;
-            this.ListSektors = engine.FieldField.ListSektors;
-            this.ListDimensions = engine.FieldField.ListDimensions;
-            this.strFieldtype = engine.FieldField.GetType().ToString();
+            this["players"] = m_serializer.Serialize (engine.ListPlayers.Values);
+            this["sektors"] = m_serializer.Serialize (engine.FieldField.ListSektors.Values);
+            this["fielddimension"] = m_serializer.Serialize(engine.FieldField.ListDimensions);
+            this["fieldtype"] = engine.FieldField.GetType().ToString();
             return this;
         }
         
         public CampaignEngine Restore()
         {
-            List<Player> lstPlayers = this.ListPlayers.Values.ToList();
-            List<Sektor> lstSektors = this.ListSektors.Values.ToList();
+            List<Player> lstPlayers = getListPlayers();
+            List<Sektor> lstSektors = getListSektors();
 
-            List<int> lstDim = this.ListDimensions;
+            List<int> lstDim = getListDimensions();
 
-
-            Type fieldType = Type.GetType(this.strFieldtype);
+            Type fieldType = Type.GetType(getFieldtype());
             Field f = (Field) Activator.CreateInstance(fieldType, new object[]{ lstDim });
 
             CampaignEngine engine = new CampaignEngine((Field)f);
             engine.setPlayerList(lstPlayers);
 
             return engine;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
 
     }
