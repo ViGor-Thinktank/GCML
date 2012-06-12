@@ -44,7 +44,7 @@ namespace GenericCampaignMasterLib
         public void loadGameState(string strState)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            CampaignState loadedState = (CampaignState) serializer.Deserialize(strState, typeof(CampaignState));
+			CampaignState loadedState = (CampaignState) serializer.DeserializeObject(strState);
             CampaignEngine loadedEngine = loadedState.Restore();
 
             init(loadedEngine);
