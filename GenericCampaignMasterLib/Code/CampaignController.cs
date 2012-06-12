@@ -128,13 +128,15 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getCampaignStateForPlayer(int pID)
         {
-            Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
-            CampaignState newState = new CampaignState();
+            //Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
+            //CampaignState newState = new CampaignState();
 
-            newState.ListSektors = this.m_campaignEngine.getVisibleSektorsForPlayer(askingPlayer);
+            //newState.ListSektors = this.m_campaignEngine.getVisibleSektorsForPlayer(askingPlayer);
+
+            return this.m_campaignEngine.getState();
 
 
-            return newState;
+            //return newState;
         }
     }
 
