@@ -36,7 +36,7 @@ namespace GenericCampaignMasterLib
 
         private void createMoveCommandsForSektor(Sektor aktSek, int intFieldsMoved)
         {
-            foreach (Field.clsSektorKoordinaten aktVektor in m_DirectionVektors)
+            foreach (clsSektorKoordinaten aktVektor in m_DirectionVektors)
             {
                 Sektor newSek = this.FieldField.move(aktSek, aktVektor);
 

@@ -7,14 +7,6 @@ namespace GenericCampaignMasterLib
 {
     public abstract class Field : IEquatable<Field>
     {
-        public abstract class clsSektorKoordinaten
-        {
-           public abstract bool Equals(clsSektorKoordinaten other);
-
-           public abstract string uniqueIDstr();
-            
-        }
-
         public Field()
         {
             setNullSektor();
@@ -36,7 +28,7 @@ namespace GenericCampaignMasterLib
         public abstract Sektor get(string strSektorID);
         public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
 
-        public bool checkKoordsValid(Field.clsSektorKoordinaten objSektorKoord)
+        public bool checkKoordsValid(clsSektorKoordinaten objSektorKoord)
         {
             return this.ListSektors.ContainsKey(objSektorKoord.uniqueIDstr());
 
@@ -46,7 +38,14 @@ namespace GenericCampaignMasterLib
 
         public Dictionary<string, Sektor> ListSektors
         {
-            get { return m_ListSektors; }
+            get 
+            { 
+                return m_ListSektors; 
+            }
+            set
+            {
+                m_ListSektors = value;
+            }
         }
         
         
@@ -67,7 +66,7 @@ namespace GenericCampaignMasterLib
         }
 
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
-        public abstract List<Field.clsSektorKoordinaten> getDirectionVectors();
+        public abstract List<clsSektorKoordinaten> getDirectionVectors();
 
         public int Id { get; set; }
         

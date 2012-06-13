@@ -13,7 +13,7 @@ namespace GenericCampaignMasterLib
             this.m_DirectionVektors = m_FieldField.getDirectionVectors();
         }
 
-        protected List<Field.clsSektorKoordinaten> m_DirectionVektors;
+        protected List<clsSektorKoordinaten> m_DirectionVektors;
         protected Sektor m_originSektor;
         private Field m_FieldField = null;
         protected Field FieldField { get { return m_FieldField ;} } 

@@ -169,7 +169,7 @@ namespace GenericCampaignMasterLib
             return addUnit(intPlayerID, newUnit, this.FieldField.nullSektorKoord);
         }
 
-        public IUnit addUnit(int intPlayerID, IUnit newUnit, Field.clsSektorKoordinaten objSektorKoord)
+        public IUnit addUnit(int intPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
             Players[intPlayerID].ListUnits.Add(newUnit);
             newUnit = Players[intPlayerID].ListUnits[newUnit.Id];

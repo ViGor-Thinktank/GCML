@@ -8,6 +8,12 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class Sektor : IEquatable<Sektor>
     {
+        public Sektor()
+        {
+            m_objSektorType = new clsSektorType_base();
+        }
+
+
         public Sektor(string sektorId) 
         {
             m_strID = sektorId;
@@ -25,7 +31,18 @@ namespace GenericCampaignMasterLib
 
         private clsSektorType_base m_objSektorType;
 
-        public string Id { get { return m_strID; } }
+        public string Id 
+        { 
+            get 
+        { 
+                return m_strID; 
+            }
+            set
+            {
+                m_strID = value;
+            }
+        }
+
 		public List<IUnit> ListUnits 
         { 
             get 
@@ -39,7 +56,7 @@ namespace GenericCampaignMasterLib
 
         public string strUniqueID { get { return (this.objSektorKoord != null) ? this.objSektorKoord.uniqueIDstr():"" ; } }
 
-        public Field.clsSektorKoordinaten objSektorKoord;
+        public clsSektorKoordinaten objSektorKoord { get; set; } 
 
         
 

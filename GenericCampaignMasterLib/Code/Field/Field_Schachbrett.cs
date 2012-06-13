@@ -84,14 +84,14 @@ namespace GenericCampaignMasterLib
         {
             return this.ListSektors[strSektorID];
         }
-        public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
+        public override Sektor get(clsSektorKoordinaten objSektorKoord)
         {
             return ListSektors[objSektorKoord.uniqueIDstr()];
         }
       
-        public override List<Field.clsSektorKoordinaten> getDirectionVectors()
+        public override List<clsSektorKoordinaten> getDirectionVectors()
         {
-            List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
+            List<clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
@@ -104,7 +104,7 @@ namespace GenericCampaignMasterLib
 
 
 
-        public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
+        public override Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor)
         {
             clsSektorKoordinaten_Schachbrett objZielSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord + (clsSektorKoordinaten_Schachbrett)Vektor;
 

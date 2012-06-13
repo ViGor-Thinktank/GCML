@@ -22,7 +22,7 @@ namespace GenericCampaignMasterLib
         {
             intSichtweite -= 1;
 
-            foreach (Field.clsSektorKoordinaten aktVektor in m_DirectionVektors)
+            foreach (clsSektorKoordinaten aktVektor in m_DirectionVektors)
             {
                 Sektor newSek = this.FieldField.move(aktOriginSektor, aktVektor);
 

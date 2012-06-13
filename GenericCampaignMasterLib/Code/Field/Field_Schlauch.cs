@@ -86,15 +86,15 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
-        public override Sektor get(Field.clsSektorKoordinaten objSektorKoord)
+        public override Sektor get(clsSektorKoordinaten objSektorKoord)
         {
             return ListSektors[objSektorKoord.uniqueIDstr()];
         }
 
         
-        public override List<Field.clsSektorKoordinaten> getDirectionVectors()
+        public override List<clsSektorKoordinaten> getDirectionVectors()
         {
-            List<Field.clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
+            List<clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
             for (int i = -1; i <= 1; i++)
             {
                 lisVektors.Add(new clsSektorKoordinaten_Schlauch(i));
@@ -102,7 +102,7 @@ namespace GenericCampaignMasterLib
             return lisVektors;
         }
 
-        public override Sektor move(Sektor aktSek, Field.clsSektorKoordinaten Vektor)
+        public override Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor)
         {
             int newID = ((clsSektorKoordinaten_Schlauch)aktSek.objSektorKoord).X + ((clsSektorKoordinaten_Schlauch)Vektor).X;
             foreach (Sektor aktSektor in ListSektors.Values)
