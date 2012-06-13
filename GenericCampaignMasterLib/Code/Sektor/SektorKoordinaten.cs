@@ -5,11 +5,35 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
-    public abstract class clsSektorKoordinaten
+    public class clsSektorKoordinaten
     {
-        public abstract bool Equals(clsSektorKoordinaten other);
+        private List<int> m_lstIntPosition;
+        public List<int> Position
+        {
+            get
+            {
+                return m_lstIntPosition;
+            }
 
-        public abstract string uniqueIDstr();
+            set
+            {
+                m_lstIntPosition = value;
+            }
+        }
+
+        public virtual bool Equals(clsSektorKoordinaten other)
+        {
+            if (this.Position == other.Position)
+                return true;
+            else
+                return false;
+        }
+
+        public virtual string uniqueIDstr()
+        {
+            return Position.ToString();
+        }
+
 
     }
 }
