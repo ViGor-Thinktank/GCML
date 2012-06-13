@@ -16,12 +16,14 @@ namespace GenericCampaignMasterLib
             {
                 this.X = newX;
                 this.Y = newY;
+                this.Position = new List<int>() { newX, newY };
             }
 
             public clsSektorKoordinaten_Schachbrett(clsSektorKoordinaten_Schachbrett objSektorKoordSchach)
             {
                 this.X = objSektorKoordSchach.X;
                 this.Y = objSektorKoordSchach.Y;
+                this.Position = new List<int>() { objSektorKoordSchach.X, objSektorKoordSchach.Y };
             }
 
             public override bool Equals(clsSektorKoordinaten other)

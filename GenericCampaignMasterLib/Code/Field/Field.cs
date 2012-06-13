@@ -65,6 +65,16 @@ namespace GenericCampaignMasterLib
             return ListSektors.Values.ToList<Sektor>();
         }
 
+
+        public void setSektorList(List<Sektor> sektorList)
+        {
+            foreach (Sektor s in sektorList)
+            {
+                string unid = s.objSektorKoord.uniqueIDstr();
+                m_ListSektors.Add(unid, s);
+            }
+        }
+
         public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
         public abstract List<clsSektorKoordinaten> getDirectionVectors();
 

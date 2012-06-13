@@ -31,7 +31,11 @@ namespace GenericCampaignMasterLib
 
         public virtual string uniqueIDstr()
         {
-            return Position.ToString();
+            string result = "|";
+            foreach (int i in m_lstIntPosition)
+                result += i.ToString() + "|";
+            
+            return result;
         }
 
 

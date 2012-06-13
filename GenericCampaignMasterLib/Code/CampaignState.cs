@@ -72,24 +72,31 @@ namespace GenericCampaignMasterLib
         {
             List<Player> lstPlayers = getListPlayers();
             List<Sektor> lstSektors = getListSektors();
-		
-            List<int> lstDim = getListDimensions();
 
+            Sektor bla = lstSektors[0];
+
+            // Feld erstellen;
             Type fieldType = Type.GetType(getFieldtype());
-            Field f = (Field) Activator.CreateInstance(fieldType, new object[]{ lstDim });	
-			
-            CampaignEngine engine = new CampaignEngine((Field)f);
+            List<int> lstDim = getListDimensions();
+            Field field = (Field) Activator.CreateInstance(fieldType, new object[]{ lstDim });
+            field.setSektorList(lstSektors);
+
+			// Engine erstellen
+            CampaignEngine engine = new CampaignEngine((Field)field);
             engine.setPlayerList(lstPlayers);
 
+            // Units platzieren
 			foreach(UnitInfo uInfo in getListUnitInfo())
 			{
 				Type unitType = Type.GetType(uInfo.unitType);
 				UnitTypeBase newUnitType = (UnitTypeBase) Activator.CreateInstance(unitType);
 				
 				BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId), newUnitType);
-	
+                string sektorId = uInfo.sektorId;
+                clsSektorKoordinaten sektorKoord = field.ListSektors[sektorId].objSektorKoord;
+
 				// TODO Koordinaten
-				engine.addUnit(Int32.Parse(uInfo.playerId), unit, f.nullSektorKoord);
+				engine.addUnit(Int32.Parse(uInfo.playerId), unit, sektorKoord);
 			}
 			
             return engine;

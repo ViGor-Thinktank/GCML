@@ -54,14 +54,14 @@ namespace GenericCampaignMasterLib
             public clsSektorKoordinaten_Schlauch(string newX)
             {
                 this.X = Convert.ToInt32(newX);
+                this.Position = new List<int>() { this.X };
             }
 
             public clsSektorKoordinaten_Schlauch(int newX)
             {
                 this.X = newX;
+                this.Position = new List<int>() { this.X };
             }
-
-
 
             public override bool Equals(clsSektorKoordinaten other)
             {
