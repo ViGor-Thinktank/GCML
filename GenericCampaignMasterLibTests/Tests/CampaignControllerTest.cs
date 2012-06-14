@@ -24,11 +24,11 @@ namespace GenericCampaignMasterLibTests.Tests
         [Test]
         public void testLoadAndSaveState()
         {
-            string state = testController.getGameState();
+            //string state = testController.getGameState();
 
-            // Controller aus String wiederherstellen
-            CampaignController testControllerNew = new CampaignController();
-            testControllerNew.loadGameState(state);
+            //// Controller aus String wiederherstellen
+            //CampaignController testControllerNew = new CampaignController();
+            //testControllerNew.loadGameState(state);
 
 
 

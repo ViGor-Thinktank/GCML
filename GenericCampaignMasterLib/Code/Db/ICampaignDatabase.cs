@@ -5,13 +5,13 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
-    interface ICampaignDatabase
+    public interface ICampaignDatabase
     {
-        public void initDatabase();
-        public void saveGameState(CampaignState state);
-        public CampaignState getLastGameState();
-        public CampaignState getCampaignStateByKey(string key);
-        public CampaignState getCampaignStateByDate(DateTime time);
-        public List<CampaignState> getAllCampaignStates();
+        void initDatabase();
+        string saveGameState(CampaignState state);          // Rückgabewert ist der Schlüssel des States in der DB
+        CampaignState getLastGameState();
+        CampaignState getCampaignStateByKey(string key);
+        CampaignState getCampaignStateByDate(DateTime time);
+        List<CampaignState> getAllCampaignStates();
     }
 }

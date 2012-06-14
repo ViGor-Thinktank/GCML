@@ -9,7 +9,22 @@ namespace GenericCampaignMasterLib
 {
     public class CampaignController
     {
-        private CampaignEngine m_campaignEngine;        
+        private CampaignEngine m_campaignEngine;
+        public CampaignEngine campaignEngine
+        {
+            get { return m_campaignEngine; }
+            set { m_campaignEngine = value; }
+
+        }
+
+        private ICampaignDatabase m_campaignDataBase;
+        public ICampaignDatabase CampaignDataBase
+        {
+            get { return m_campaignDataBase; }
+            set { m_campaignDataBase = value; }
+
+        }
+
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         
         public event Field.delStatus onStatus;
@@ -41,23 +56,20 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public void loadGameState(string strState)
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-			CampaignState loadedState = (CampaignState) serializer.DeserializeObject(strState);
-            CampaignEngine loadedEngine = loadedState.Restore();
-
-            init(loadedEngine);
-        }
-
-        public string getGameState()
+        public void saveCurrentGameState()
         {
             CampaignState state = m_campaignEngine.getState();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-            return serializer.Serialize(state);
+            m_campaignDataBase.saveGameState(state);
         }
 
+        //public void loadGameState(string strState)
+        //{
+        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
+        //    CampaignState loadedState = (CampaignState) serializer.DeserializeObject(strState);
+        //    CampaignEngine loadedEngine = loadedState.Restore();
+
+        //    init(loadedEngine);
+        //}
 
         public List<Sektor> getUnitCollisions()
         {
@@ -107,8 +119,6 @@ namespace GenericCampaignMasterLib
             return resultCollision;
         }
 
-
-
         public Player addPlayer(string p)
         {
             return this.m_campaignEngine.addPlayer(p);
@@ -123,8 +133,6 @@ namespace GenericCampaignMasterLib
         {
             return this.m_campaignEngine.getCommandsForUnit(unit);
         }
-
-        
 
         public CampaignState getCampaignStateForPlayer(int pID)
         {
