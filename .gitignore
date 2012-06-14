@@ -1,54 +1,18 @@
-
+*.dll
+*.mdb
+*.suo
+*.exe
+*.pdb
+*.cache
+GenericCampaignMasterLib/bin/*
+GenericCampaignMasterLib/obj/*
+GenericCampaignMasterLibTests/bin/*
+GenericCampaignMasterLibTests/obj/*
+Playground/bin/*
+Playground/obj/*
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
-<<<<<<< HEAD
-test-results
-=======
-test-results/
->>>>>>> ignore
-
-GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-05-28.xml
-
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLibTests.dll.mdb
-
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLibTests.dll
-
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll.mdb
-
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll
-
-GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll
-
-<<<<<<< HEAD
-Playground/Program.cs
 *.userprefs
-=======
-Playground/Program.cs
-GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-06-08.xml
->>>>>>> ignore
-
-Playground/frmGameMainForm.resources
-
-Playground/frmPlayerMainForm.resources
-
-Playground/frmStatus.resources
-
-Playground/bin/Debug/RaptorDB.dll
-
-Playground/bin/Debug/Playground.exe.mdb
-
-Playground/bin/Debug/Playground.exe.config
-
-Playground/bin/Debug/Playground.exe
-
-Playground/bin/Debug/GenericCampaignMasterLib.dll.mdb
-
-Playground/bin/Debug/GenericCampaignMasterLib.dll
-
-Playground/Properties/Resources.resources
-
-GenericCampaignMasterLibTests/bin/Debug/RaptorDB.dll
-
-GenericCampaignMasterLib/bin/Debug/RaptorDB.dll
+GenericCampaignMasterLibTests/test-results/*
 
 .DS_Store
