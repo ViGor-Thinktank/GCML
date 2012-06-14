@@ -51,6 +51,8 @@
     <Compile Include="Code\Commands\MoveFactory.cs" />
     <Compile Include="Code\Commands\SektorFactoryBase.cs" />
     <Compile Include="Code\Commands\ViewableSectorFactory.cs" />
+    <Compile Include="Code\Db\CampaignDatabaseRaptorDb.cs" />
+    <Compile Include="Code\Db\ICampaignDatabase.cs" />
     <Compile Include="Code\Sektor\SektorKoordinaten.cs" />
     <Compile Include="Code\Sektor\SektorType_heavyTerrain.cs" />
     <Compile Include="Code\Sektor\SektorType_base.cs" />
@@ -72,6 +74,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="Dok\ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
