@@ -171,9 +171,7 @@ namespace GenericCampaignMasterLib
 
         public IUnit addUnit(int intPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
-            Players[intPlayerID].ListUnits.Add(newUnit);
-            newUnit = Players[intPlayerID].ListUnits[newUnit.Id];
-
+            this.Players[intPlayerID].ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
             return newUnit;
