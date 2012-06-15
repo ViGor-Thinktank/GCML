@@ -104,7 +104,7 @@ namespace GenericCampaignMasterLib
 
         public override string ToString()
         {
-            return base.ToString();
+            return m_serializer.Serialize(this);
         }
 
     }

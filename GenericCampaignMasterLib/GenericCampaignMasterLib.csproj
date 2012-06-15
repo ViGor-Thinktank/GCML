@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\CampaignController.cs" />
+    <Compile Include="Code\CampaignBuilder.cs" />
     <Compile Include="Code\Commands\Attack.cs" />
     <Compile Include="Code\CampaignEngine.cs" />
     <Compile Include="Code\CampaignState.cs" />

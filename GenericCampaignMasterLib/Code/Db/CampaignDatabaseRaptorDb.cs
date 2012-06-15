@@ -2,21 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using RaptorDB;
 
 namespace GenericCampaignMasterLib
 {
     class CampaignDatabaseRaptorDb : ICampaignDatabase
     {
-        #region ICampaignDatabase Member
+        private string m_strDbStorePath;
+        private RaptorDB<string> m_db;
 
-        public void initDatabase()
+        public CampaignDatabaseRaptorDb(string storePath)
         {
-            throw new NotImplementedException();
+            m_strDbStorePath = storePath;
         }
 
-        public void saveGameState(CampaignState state)
+        #region ICampaignDatabase Member
+
+        public string initDataBase()
         {
-            throw new NotImplementedException();
+            string campaignKey = new Guid().ToString();
+            m_db = new RaptorDB<string>(Path.Combine(m_strDbStorePath, campaignKey), false);
+            return campaignKey;
+        }
+
+        public void initDatabase(string campaignIdentifier)
+        {
+            string campaignKey = new Guid().ToString();
+            m_db = new RaptorDB<string>(Path.Combine(m_strDbStorePath, campaignKey), false);
+        }
+
+        public string saveGameState(CampaignState state)
+        {
+            string strState = state.ToString();
+            string timeKey = DateTime.Now.ToString();
+            m_db.Set(timeKey, strState);
+            return strState;
         }
 
         public CampaignState getLastGameState()
