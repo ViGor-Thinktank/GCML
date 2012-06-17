@@ -6,16 +6,14 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
     public abstract class CampaignBuilder
-    {
-        public CampaignController restoreFromDb(string campaignKey)
+    {		
+		public virtual CampaignController restoreFromDb(string campaignKey)
         {
             return new CampaignController();
         }
 
-
-        public CampaignController buildNew()
+        public virtual CampaignController buildNew()
         {
-
             return new CampaignController();
         }
 

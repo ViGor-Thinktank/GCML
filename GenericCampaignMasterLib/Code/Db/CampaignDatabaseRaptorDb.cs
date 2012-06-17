@@ -19,10 +19,12 @@ namespace GenericCampaignMasterLib
 
         #region ICampaignDatabase Member
 
-        public string initDataBase()
+        public string initDatabase()
         {
-            string campaignKey = new Guid().ToString();
-            m_db = new RaptorDB<string>(Path.Combine(m_strDbStorePath, campaignKey), false);
+			
+            string campaignKey = Guid.NewGuid().ToString();
+			string dbFilePath = string.IsNullOrEmpty(m_strDbStorePath) ? Path.Combine (Environment.CurrentDirectory, campaignKey) : Path.Combine(m_strDbStorePath, campaignKey);
+            m_db = new RaptorDB<string>(dbFilePath, false);
             return campaignKey;
         }
 

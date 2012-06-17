@@ -25,10 +25,13 @@ namespace GenericCampaignMasterLib
 
         }
 
+		public string CampaignKey { get; set;}
+		
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         
-        public event Field.delStatus onStatus;
+		public event Field.delStatus onStatus;
         
+		
         public void Global_onStatus(string strText)
         {
             if (onStatus != null)
