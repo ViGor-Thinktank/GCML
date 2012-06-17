@@ -10,9 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GenericCampaignMasterLib</RootNamespace>
     <AssemblyName>GenericCampaignMasterLib</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\CampaignController.cs" />
-    <Compile Include="Code\CampaignBuilder.cs" />
     <Compile Include="Code\Commands\Attack.cs" />
     <Compile Include="Code\CampaignEngine.cs" />
     <Compile Include="Code\CampaignState.cs" />
@@ -70,6 +67,8 @@
     <Compile Include="Code\Unit\Unit.cs" />
     <Compile Include="Code\Ressourcen.cs" />
     <Compile Include="Code\Unit\DummyUnit.cs" />
+    <Compile Include="Code\Builder\CampaignBuilder.cs" />
+    <Compile Include="Code\Builder\CampaignBuilderTicTacTod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -84,4 +83,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Code\Builder\" />
+  </ItemGroup>
 </Project>
