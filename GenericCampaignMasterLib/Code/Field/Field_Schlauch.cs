@@ -34,8 +34,8 @@ namespace GenericCampaignMasterLib
             {
                 Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
                 newSek.objSektorKoord = new clsSektorKoordinaten_Schlauch(i);
-                newSek.onUnitEnteredSektor += new EventHandler(newSek_onUnitEnteredSektor);
-                newSek.onUnitLeftSektor += new EventHandler(newSek_onUnitLeftSektor);
+                newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
+                newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
 
                 this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
             }

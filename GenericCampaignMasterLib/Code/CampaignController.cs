@@ -28,6 +28,7 @@ namespace GenericCampaignMasterLib
 		public string CampaignKey { get; set;}
 		
         private List<Sektor> unitCollisionStack = new List<Sektor>();
+        private List<IUnit> unitActedStack = new List<IUnit>();
         
 		public event Field.delStatus onStatus;
         
@@ -79,7 +80,7 @@ namespace GenericCampaignMasterLib
             return unitCollisionStack;
         }
        
-        private void onUnitMove(object sender, EventArgs args)
+        private void onUnitMove(object sender, SektorEventArgs args)
         {
             Sektor sektor = sender as Sektor;
             if (checkSektorForUnitCollision(sektor))

@@ -90,14 +90,14 @@ namespace GenericCampaignMasterLib
         public event delStatus onFieldStatus;
 
 
-        protected  void newSek_onUnitEnteredSektor(object sender, EventArgs e)
+        protected void newSek_onUnitEnteredSektor(object sender, SektorEventArgs e)
         {
             Sektor SekSender = (Sektor)sender;
             if (onFieldStatus != null)
                 onFieldStatus("UnitEnter " + SekSender.strUniqueID);
         }
 
-        protected void newSek_onUnitLeftSektor(object sender, EventArgs e)
+        protected void newSek_onUnitLeftSektor(object sender, SektorEventArgs e)
         {
             Sektor SekSender = (Sektor)sender;
             if (onFieldStatus != null)

@@ -46,7 +46,7 @@ namespace GenericCampaignMasterLibTests.Tests
         public void UnitEnteredSektorEventTest()
         {
             bool eventFired = false;
-            sektorTest.onUnitEnteredSektor += delegate(object sender, EventArgs args){
+            sektorTest.onUnitEnteredSektor += delegate(object sender, SektorEventArgs args){
                 eventFired = true;
             };
 
@@ -59,7 +59,7 @@ namespace GenericCampaignMasterLibTests.Tests
         public void UnitLeftSektorEventTest()
         {
             bool eventFired = false;
-            sektorTest.onUnitLeftSektor += delegate(object sender, EventArgs args)
+            sektorTest.onUnitLeftSektor += delegate(object sender, SektorEventArgs args)
             {
                 eventFired = true;
             };

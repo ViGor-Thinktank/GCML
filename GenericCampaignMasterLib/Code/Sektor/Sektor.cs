@@ -51,8 +51,12 @@ namespace GenericCampaignMasterLib
                 return m_ListUnits; 
             }
         }
-        public event EventHandler onUnitEnteredSektor;
-        public event EventHandler onUnitLeftSektor;
+
+        public delegate void UnitEnteringHandler(object sender, SektorEventArgs args);
+        public delegate void UnitLeavingHandler(object sender, SektorEventArgs args);
+
+        public event UnitEnteringHandler onUnitEnteredSektor;
+        public event UnitLeavingHandler onUnitLeftSektor;
 
         public string strUniqueID { get { return (this.objSektorKoord != null) ? this.objSektorKoord.uniqueIDstr():"" ; } }
 
@@ -65,7 +69,7 @@ namespace GenericCampaignMasterLib
 			m_ListUnits.Add (unit);
 
             if(onUnitEnteredSektor != null)
-                onUnitEnteredSektor(this, new EventArgs());
+                onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
 		
 		public void removeUnit (IUnit unit)
@@ -73,7 +77,7 @@ namespace GenericCampaignMasterLib
 			m_ListUnits.Remove(unit);
 
             if(onUnitLeftSektor != null)
-                onUnitLeftSektor(this, new EventArgs());
+                onUnitLeftSektor(this, new SektorEventArgs(unit, this));
 		}
 
         #region IEquatable<Sektor> Member
