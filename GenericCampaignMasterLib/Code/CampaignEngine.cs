@@ -49,13 +49,6 @@ namespace GenericCampaignMasterLib
 
         #endregion
 
-        // Todo: Methode soll nur die Units zurückliefern die aktivierbar sind
-		// Auf die Liste aller Units des Players kann über die List-Property zugegriffen werden.
-        public List<IUnit> getActiveUnitsForPlayer(Player p)
-        {
-            return p.ListUnits;
-        }
-
         private clsMoveFactory m_objMovFactory;
         private List<ICommand>m_lisReadyCommands;
 

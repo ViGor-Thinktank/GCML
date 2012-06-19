@@ -115,7 +115,7 @@ namespace GenericCampaignMasterLib
 
         public List<IUnit> getActiveUnitsForPlayer(Player player)
         {
-            List<IUnit> unitsForPlayer = m_campaignEngine.getActiveUnitsForPlayer(player);
+            List<IUnit> unitsForPlayer = player.ListUnits;
             var lstUnitsCanAct = from u in player.ListUnits
                                  where !unitActedStack.Contains(u)
                                  select u;
