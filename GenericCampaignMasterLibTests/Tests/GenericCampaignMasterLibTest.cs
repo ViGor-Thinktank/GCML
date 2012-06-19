@@ -15,8 +15,12 @@ namespace GenericCampaignMasterLibTests
 			CampaignController controller = builder.buildNew();
 			controller.addPlayer("Player 1");
 			controller.addPlayer("Player 2");
-			
-			
+
+            controller.saveCurrentGameState();
+
+
+
+
 		}
 	}
 }

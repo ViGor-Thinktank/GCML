@@ -9,6 +9,7 @@ namespace GenericCampaignMasterLib
 {
     public class CampaignController
     {
+        # region Properties
         private CampaignEngine m_campaignEngine;
         public CampaignEngine campaignEngine
         {
@@ -29,8 +30,10 @@ namespace GenericCampaignMasterLib
 		
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         private List<IUnit> unitActedStack = new List<IUnit>();
-        
-		public event Field.delStatus onStatus;
+        #endregion
+
+
+        public event Field.delStatus onStatus;
         
 		
         public void Global_onStatus(string strText)
@@ -66,15 +69,6 @@ namespace GenericCampaignMasterLib
             m_campaignDataBase.saveGameState(state);
         }
 
-        //public void loadGameState(string strState)
-        //{
-        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //    CampaignState loadedState = (CampaignState) serializer.DeserializeObject(strState);
-        //    CampaignEngine loadedEngine = loadedState.Restore();
-
-        //    init(loadedEngine);
-        //}
-
         public List<Sektor> getUnitCollisions()
         {
             return unitCollisionStack;
@@ -91,6 +85,9 @@ namespace GenericCampaignMasterLib
             {
                 unitCollisionStack.Remove(sektor);
             }
+
+            if (!unitActedStack.Contains(args.actingUnit))       // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
+                unitActedStack.Add(args.actingUnit);
         }
 
         private void unitCollisionStack_Add(Sektor sektor)
@@ -98,6 +95,37 @@ namespace GenericCampaignMasterLib
             Global_onStatus("Collision: " + sektor.strUniqueID);
             unitCollisionStack.Add(sektor);
         }
+
+        public Player addPlayer(string p)
+        {
+            return this.m_campaignEngine.addPlayer(p);
+        }
+
+        public void createNewUnit(int intPlayerID, Type type)
+        {
+            this.m_campaignEngine.addUnit(intPlayerID, type);
+        }
+
+        # region Public Clientfunktionen
+
+        public List<ICommand> getCommandsForUnit(IUnit unit)
+        {
+            return this.m_campaignEngine.getCommandsForUnit(unit);
+        }
+
+        public List<IUnit> getActiveUnitsForPlayer(Player player)
+        {
+            List<IUnit> unitsForPlayer = m_campaignEngine.getActiveUnitsForPlayer(player);
+            var lstUnitsCanAct = from u in player.ListUnits
+                                 where !unitActedStack.Contains(u)
+                                 select u;
+
+            return new List<IUnit>(lstUnitsCanAct);
+        }
+
+        # endregion
+
+        # region Prüffunktionen
 
         private bool checkSektorForUnitCollision(Sektor sektor)
         {
@@ -123,20 +151,21 @@ namespace GenericCampaignMasterLib
             return resultCollision;
         }
 
-        public Player addPlayer(string p)
+
+
+        private void checkForRoundEnd()
         {
-            return this.m_campaignEngine.addPlayer(p);
+
+
         }
 
-        public void createNewUnit(int intPlayerID, Type type)
+        private void newRound()
         {
-            this.m_campaignEngine.addUnit(intPlayerID, type);
+
         }
 
-        public List<ICommand> getCommandsForUnit(IUnit unit)
-        {
-            return this.m_campaignEngine.getCommandsForUnit(unit);
-        }
+        #endregion
+
 
         public CampaignState getCampaignStateForPlayer(int pID)
         {

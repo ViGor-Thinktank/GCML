@@ -37,9 +37,9 @@ namespace GenericCampaignMasterLib
         public string saveGameState(CampaignState state)
         {
             string strState = state.ToString();
-            string timeKey = DateTime.Now.ToString();
+            string timeKey = DateTime.Now.ToString("s");
             m_db.Set(timeKey, strState);
-            return strState;
+            return timeKey;
         }
 
         public CampaignState getLastGameState()
@@ -58,6 +58,11 @@ namespace GenericCampaignMasterLib
         }
 
         public List<CampaignState> getAllCampaignStates()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DateTime> getStateList()
         {
             throw new NotImplementedException();
         }
