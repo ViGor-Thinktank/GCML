@@ -44,7 +44,6 @@
     <Compile Include="Tests\CampaignEngineTest.cs" />
     <Compile Include="Tests\SektorTest.cs" />
     <Compile Include="Tests\CampaignStateTest.cs" />
-    <Compile Include="Tests\TestSetup.cs" />
     <Compile Include="Tests\GenericCampaignMasterLibTest.cs" />
   </ItemGroup>
   <ItemGroup>

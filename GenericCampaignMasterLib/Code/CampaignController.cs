@@ -96,17 +96,24 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        public Player addPlayer(string p)
-        {
-            return this.m_campaignEngine.addPlayer(p);
-        }
-
         public void createNewUnit(int intPlayerID, Type type)
         {
             this.m_campaignEngine.addUnit(intPlayerID, type);
         }
 
+
         # region Public Clientfunktionen
+
+        public Player addPlayer(string p)
+        {
+            return this.m_campaignEngine.addPlayer(p);
+        }
+
+        public List<Player> getPlayerList()
+        {
+            return m_campaignEngine.ListPlayers.Values.ToList<Player>();
+        }
+
 
         public List<ICommand> getCommandsForUnit(IUnit unit)
         {
@@ -122,6 +129,13 @@ namespace GenericCampaignMasterLib
 
             return new List<IUnit>(lstUnitsCanAct);
         }
+
+        public Sektor getSektorForUnit(IUnit unit)
+        {
+             return campaignEngine.FieldField.getSektorForUnit(unit);
+        }
+
+
 
         # endregion
 

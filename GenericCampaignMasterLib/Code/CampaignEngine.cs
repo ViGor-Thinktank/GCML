@@ -170,6 +170,14 @@ namespace GenericCampaignMasterLib
             return newUnit;
         }
 
+
+        public IUnit addUnit(Player owner, IUnit newUnit, Sektor sektor)
+        {
+            owner.ListUnits.Add(newUnit);
+            sektor.addUnit(newUnit);
+            return newUnit;
+        }
+
  
         #endregion
 
