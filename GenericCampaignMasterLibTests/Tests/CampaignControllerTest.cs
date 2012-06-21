@@ -43,25 +43,24 @@ namespace GenericCampaignMasterLibTests.Tests
             // Unit von Player 1 solange bewegen bis Kollision
             IUnit player1unit1 = player1.ListUnits[0];
             Sektor targetSektor = controller.getSektorForUnit(player2.ListUnits[0]);
+            Sektor previousSektor = new Sektor();       // Vorherige Position merken
             do
             {
+                Sektor currentSektor = controller.getSektorForUnit(player1unit1);
                 List<ICommand> lstCmd = controller.getCommandsForUnit(player1unit1);
-                Move move = (from m in lstCmd where m.GetType() == typeof(Move) select m as Move).First();
-                move.Execute();
+                var moves = from m in lstCmd 
+                             where m.GetType() == typeof(Move) 
+                             select m as Move;
+
+                Move movExec = moves.First(t => t.TargetSektor != previousSektor);
+                movExec.Execute();
+                previousSektor = currentSektor;
             }
-            while(controller.getUnitCollisions().Count > 0);
+            while(controller.getUnitCollisions().Count == 0);
 
 
             List<Sektor> collisions = controller.getUnitCollisions();
             Assert.AreEqual(true, collisions.Contains(targetSektor));
-
-            //// Unit 1 verliert - Rückzug
-            //lstCmd = testEngine.getDefaultMoveCommandsForUnit(player1.ListUnits [0]);
-            //Move retreat = (from m in lstCmd where m.TargetSektor == sektor1 select m).First();
-            //retreat.Execute();
-
-            //collisions = testController.getUnitCollisions();
-            //Assert.AreEqual(false, collisions.Contains(sektor2));
-        }
+       }
     }
 }

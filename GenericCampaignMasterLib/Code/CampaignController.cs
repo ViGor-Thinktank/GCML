@@ -14,7 +14,7 @@ namespace GenericCampaignMasterLib
         public CampaignEngine campaignEngine
         {
             get { return m_campaignEngine; }
-            set { m_campaignEngine = value; }
+            set { initEngine(value); }
 
         }
 
@@ -50,10 +50,10 @@ namespace GenericCampaignMasterLib
 
         public CampaignController(CampaignEngine engine)
         {
-            init(engine);
+            initEngine(engine);
         }
 
-        private void init(CampaignEngine engine)
+        private void initEngine(CampaignEngine engine)
         {
             m_campaignEngine = engine;
             foreach (Sektor sektor in engine.FieldField.getSektorList())

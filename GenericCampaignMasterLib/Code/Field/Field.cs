@@ -14,6 +14,7 @@ namespace GenericCampaignMasterLib
 
         public Field(List<int> lstDimension)
         {
+            setNullSektor();
             m_lstDimensions = lstDimension;
         }
 
