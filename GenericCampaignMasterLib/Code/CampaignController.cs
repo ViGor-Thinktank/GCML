@@ -63,10 +63,18 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public void saveCurrentGameState()
+        public string saveCurrentGameState()
         {
             CampaignState state = m_campaignEngine.getState();
-            m_campaignDataBase.saveGameState(state);
+            string key = m_campaignDataBase.saveGameState(state);
+            return key;
+        }
+
+        public void restoreGameState(string key)
+        {
+            CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
+            CampaignEngine engine = state.Restore();
+            initEngine(engine);
         }
 
         public List<Sektor> getUnitCollisions()
