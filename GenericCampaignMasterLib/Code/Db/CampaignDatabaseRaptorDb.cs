@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Web.Script.Serialization;
 using RaptorDB;
+
+
 
 namespace GenericCampaignMasterLib
 {
@@ -44,7 +47,9 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getLastGameState()
         {
-            throw new NotImplementedException();
+            string strState = m_db.FetchRecordString((int)m_db.Count() -1);
+            CampaignState lastState = deserializeState(strState);
+            return lastState;
         }
 
         public CampaignState getCampaignStateByKey(string key)
@@ -66,6 +71,14 @@ namespace GenericCampaignMasterLib
         {
             throw new NotImplementedException();
         }
+
+        private CampaignState deserializeState(string strEngine)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            CampaignState result = serializer.Deserialize<CampaignState>(strEngine);
+            return result;
+        }
+
 
         #endregion
     }

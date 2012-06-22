@@ -15,6 +15,9 @@ namespace GenericCampaignMasterLib
 		
 		public override CampaignController restoreFromDb(string campaignKey)
         {
+            //CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb(campaignKey);
+            //CampaignState state = database.getLastGameState();
+            //state.Restore()
             return new CampaignController();
         }
 
