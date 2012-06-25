@@ -21,39 +21,42 @@ namespace CampaignMasterWeb
         public static CampaignController getCampaignController(HttpSessionState state)
         {
             CampaignController controller;  
+            CampaignBuilderTicTacTod cbttt = new CampaignBuilderTicTacTod();
             string statekey = (string) state[CampaignMasterClientKeys.CAMPAIGNSTATE];
-            if (String.IsNullOrEmpty(statekey))
-            {
-                // Keine State vorhanden - neu erzeugen
-                CampaignBuilderTicTacTod builder = new CampaignBuilderTicTacTod();
-                controller = builder.buildNew();
+            string campaignkey = (string)state[CampaignMasterClientKeys.CAMPAIGNID];
 
-                // Ersten State speichern
-                string newkey = controller.saveCurrentGameState();
-                state[CampaignMasterClientKeys.CAMPAIGNSTATE] = newkey;
-            }
+            if (String.IsNullOrEmpty(statekey) || String.IsNullOrEmpty(campaignkey))
+                controller = cbttt.buildNew();      // Keine State vorhanden - neu erzeugen
             else
-            {
-                controller = new CampaignController();
-                controller.restoreGameState(statekey);
-            }
+                controller = cbttt.restoreFromDb(campaignkey, statekey);
+
+            // Ersten State speichern
+            string newkey = controller.saveCurrentGameState();
+            state[CampaignMasterClientKeys.CAMPAIGNSTATE] = newkey;
+            state[CampaignMasterClientKeys.CAMPAIGNID] = controller.CampaignKey;
+
 
             return controller;
         }
 
-        public static Player getContextPlayer(HttpSessionState state)
+        public static Field getField(HttpSessionState state)
         {
-            //string contextplayerid = (string) state[CampaignMasterClientKeys.CONTEXTPLAYERID];
-            //CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
-            //Player contextPlayer = controller.g
-            throw new NotImplementedException();
-           
+            CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
+            Field field = controller.campaignEngine.FieldField;
+            return field;
         }
 
+        public static Player getContextPlayer(HttpSessionState state)
+        {
+            string contextplayerid = (string) state[CampaignMasterClientKeys.CONTEXTPLAYERID];
+            CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
+            Player contextPlayer = controller.getPlayer(contextplayerid);
+            return contextPlayer;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
         }
     }
 }

@@ -25,21 +25,18 @@ namespace GenericCampaignMasterLib
 
         public List<Sektor> getListSektors()
         {
-            //return (List<Sektor>) m_serializer.Deserialize(this["sektors"], typeof(List<Sektor>));
 			return (List<Sektor>) m_serializer.Deserialize<List<Sektor>>(this["sektors"]);
         }
 
         public List<Player> getListPlayers()
         {
 
-            //return (List<Player>)m_serializer.Deserialize(this["players"], typeof(List<Player>));
 			return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
         }
 		
 		public List<UnitInfo> getListUnitInfo()
 		{	
 			string strUnitInfo = this["unitinfo"];
-			//List<UnitInfo> lstUnitInfo = (List<UnitInfo>)m_serializer.Deserialize(strUnitInfo, typeof(List<UnitInfo>));
 			List<UnitInfo> lstUnitInfo = (List<UnitInfo>)m_serializer.Deserialize<List<UnitInfo>>(strUnitInfo);
 			return lstUnitInfo;
 		}

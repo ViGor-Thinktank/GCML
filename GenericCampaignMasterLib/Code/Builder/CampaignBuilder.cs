@@ -7,7 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public abstract class CampaignBuilder
     {		
-		public virtual CampaignController restoreFromDb(string campaignKey)
+		public virtual CampaignController restoreFromDb(string campaignKey, string stateKey)
         {
             return new CampaignController();
         }

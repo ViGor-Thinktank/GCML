@@ -181,15 +181,6 @@ namespace GenericCampaignMasterLib
  
         #endregion
 
-        //private Dictionary<int, Player> Players 
-        //{ 
-        //    get 
-        //    {
-        //        if (m_ListPlayers == null) { m_ListPlayers = new Dictionary<int, Player>(); }
-        //        return m_ListPlayers;
-        //    }
-        //}
-
         public Player addPlayer(string strPlayerName)
         {
             Player newPlayer = new Player(ListPlayers.Count.ToString());

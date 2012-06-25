@@ -119,10 +119,8 @@ namespace GenericCampaignMasterLib
 
         public Player getPlayer(string playerId)
         {
-            //m_campaignEngine.ListPlayers[
-            throw new NotImplementedException();
-
-
+            Player result = m_campaignEngine.ListPlayers[playerId];
+            return result;
         }
 
         public List<Player> getPlayerList()

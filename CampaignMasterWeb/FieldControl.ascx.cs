@@ -12,33 +12,31 @@ namespace CampaignMasterWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(Session);
-
-            string contextPlayerId = (string) Session[CampaignMasterClientKeys.CONTEXTPLAYERID];
-            //Player 
-
-
-            //Table fldTab = drawField(controller.campaignEngine.FieldField, 
-            //this.Controls.Add(fldTab);
+            Field field = CampaignMasterClientTest.getField(this.Session);
+            Player contextPlayer = CampaignMasterClientTest.getContextPlayer(this.Session);
+            drawField(field, contextPlayer);
         }
 
 
         private Table drawField(GenericCampaignMasterLib.Field field, Player context)
         {
+            if (context == null)
+                context = new Player("King Power");
+
             Table tab = new Table();
             tab.BorderWidth = Unit.Pixel(1);
             tab.Width = Unit.Pixel(600);
             tab.Height = Unit.Pixel(400);
 
             TableRow row = new TableRow();
-            
-
             foreach (Sektor s in field.getSektorList())
             {
+                string bgcolor = "light-gray";
+
                 TableCell cell = new TableCell();
                 cell.Style.Add("vertical-align", "top");
                 cell.Style.Add("horizontal-align", "center");
+                cell.Style.Add("background", bgcolor);
 
                 cell.BorderWidth = Unit.Pixel(1);
                 cell.Text = s.Id;
