@@ -117,6 +117,14 @@ namespace GenericCampaignMasterLib
             return this.m_campaignEngine.addPlayer(p);
         }
 
+        public Player getPlayer(string playerId)
+        {
+            //m_campaignEngine.ListPlayers[
+            throw new NotImplementedException();
+
+
+        }
+
         public List<Player> getPlayerList()
         {
             return m_campaignEngine.ListPlayers.Values.ToList<Player>();
