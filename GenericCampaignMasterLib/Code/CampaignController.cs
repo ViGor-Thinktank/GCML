@@ -104,9 +104,9 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        public void createNewUnit(int intPlayerID, Type type)
+        public void createNewUnit(string strPlayerID, Type type)
         {
-            this.m_campaignEngine.addUnit(intPlayerID, type);
+            this.m_campaignEngine.addUnit(strPlayerID, type);
         }
 
 
@@ -197,7 +197,7 @@ namespace GenericCampaignMasterLib
         #endregion
 
 
-        public CampaignState getCampaignStateForPlayer(int pID)
+        public CampaignState getCampaignStateForPlayer(string pID)
         {
             //Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
             //CampaignState newState = new CampaignState();

@@ -8,8 +8,8 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class Player : IEquatable<Player>
     {
-        private int _id;
-        public int Id 
+        private string _id;
+        public string Id 
         { 
             get { return _id; }
             set { this._id = value;  }
@@ -18,7 +18,7 @@ namespace GenericCampaignMasterLib
         public string Playername { get; set; }
 
         public Player() { }
-        public Player(int playerId)
+        public Player(string playerId)
         {
             this._id = playerId;
             

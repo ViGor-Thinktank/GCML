@@ -31,8 +31,8 @@ namespace GenericCampaignMasterLib
         }
 
         #region " Properties && Felder "
-        private Dictionary<int, Player> m_ListPlayers = null;
-        public Dictionary<int, Player> ListPlayers
+        private Dictionary<string, Player> m_ListPlayers = null;
+        public Dictionary<string, Player> ListPlayers
         {
             get
             {
@@ -119,7 +119,7 @@ namespace GenericCampaignMasterLib
         public List<UnitInfo> getUnitInfo()
         {
             List<UnitInfo> result = new List<UnitInfo>();
-            foreach(Player p in Players.Values)
+            foreach(Player p in ListPlayers.Values)
             {
                 foreach(IUnit u in p.ListUnits)
                 {
@@ -150,21 +150,21 @@ namespace GenericCampaignMasterLib
 
         #region " Unitfactory "
 
-        internal IUnit addUnit(int intPlayerID, Type UnitType)
+        internal IUnit addUnit(string strPlayerID, Type UnitType)
         {
             IUnit newUnit = null;
 
             if (UnitType == typeof(DummyUnit))
             {
-                newUnit = new DummyUnit(m_ListPlayers[intPlayerID].ListUnits.Count);
+                newUnit = new DummyUnit(m_ListPlayers[strPlayerID].ListUnits.Count);
             }
 
-            return addUnit(intPlayerID, newUnit, this.FieldField.nullSektorKoord);
+            return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);
         }
 
-        public IUnit addUnit(int intPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
+        public IUnit addUnit(string strPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
-            this.Players[intPlayerID].ListUnits.Add(newUnit);
+            this.ListPlayers[strPlayerID].ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
             return newUnit;
@@ -181,18 +181,18 @@ namespace GenericCampaignMasterLib
  
         #endregion
 
-        private Dictionary<int, Player> Players 
-        { 
-            get 
-            {
-                if (m_ListPlayers == null) { m_ListPlayers = new Dictionary<int, Player>(); }
-                return m_ListPlayers;
-            }
-        }
+        //private Dictionary<int, Player> Players 
+        //{ 
+        //    get 
+        //    {
+        //        if (m_ListPlayers == null) { m_ListPlayers = new Dictionary<int, Player>(); }
+        //        return m_ListPlayers;
+        //    }
+        //}
 
         public Player addPlayer(string strPlayerName)
         {
-            Player newPlayer = new Player(Players.Count);
+            Player newPlayer = new Player(ListPlayers.Count.ToString());
             newPlayer.Playername = strPlayerName;
 
             return this.addPlayer(newPlayer);
@@ -200,12 +200,15 @@ namespace GenericCampaignMasterLib
 
         public Player addPlayer(Player objNewPlayer)
         {
-            if (Players.ContainsKey(objNewPlayer.Id))
+            if (m_ListPlayers == null)
+                m_ListPlayers = new Dictionary<string, Player>();
+
+            if (m_ListPlayers.ContainsKey(objNewPlayer.Id))
             {
                 throw new Exception_Engine_Player("PlayerID ist bereits vergeben!");
             }
             
-            Players.Add(objNewPlayer.Id, objNewPlayer);
+            m_ListPlayers.Add(objNewPlayer.Id, objNewPlayer);
             
             return objNewPlayer;
         }

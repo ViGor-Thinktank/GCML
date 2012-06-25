@@ -96,7 +96,7 @@ namespace GenericCampaignMasterLib
                 clsSektorKoordinaten sektorKoord = field.ListSektors[sektorId].objSektorKoord;
 
 				// TODO Koordinaten
-				engine.addUnit(Int32.Parse(uInfo.playerId), unit, sektorKoord);
+				engine.addUnit(uInfo.playerId, unit, sektorKoord);
 			}
 			
             return engine;

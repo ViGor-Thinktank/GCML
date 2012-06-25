@@ -31,8 +31,8 @@ namespace GenericCampaignMasterLib
 			CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
 
-            Player player1 = new Player(1);
-            Player player2 = new Player(2);
+            Player player1 = new Player("1");
+            Player player2 = new Player("2");
 
             DummyUnit unit1 = new DummyUnit(666);
             DummyUnit unit2 = new DummyUnit(667);
