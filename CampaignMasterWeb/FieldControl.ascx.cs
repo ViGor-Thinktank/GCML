@@ -14,7 +14,8 @@ namespace CampaignMasterWeb
         {
             Field field = CampaignMasterClientTest.getField(this.Session);
             Player contextPlayer = CampaignMasterClientTest.getContextPlayer(this.Session);
-            drawField(field, contextPlayer);
+            Table tabField = drawField(field, contextPlayer);
+            this.Controls.Add(tabField);
         }
 
 

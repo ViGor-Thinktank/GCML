@@ -62,6 +62,9 @@ namespace CampaignMasterWeb
         public static Player getContextPlayer(HttpSessionState state)
         {
             string contextplayerid = (string) state[CampaignMasterClientKeys.CONTEXTPLAYERID];
+            if (String.IsNullOrEmpty(contextplayerid))
+                return null;
+
             CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
             Player contextPlayer = controller.getPlayer(contextplayerid);
             return contextPlayer;
