@@ -8,14 +8,15 @@ namespace GenericCampaignMasterLib
 {
 	public class CampaignBuilderTicTacTod : CampaignBuilder
 	{
-		public CampaignBuilderTicTacTod ()
-		{
-			
-		}
+		public CampaignBuilderTicTacTod () {}
 		
 		public override CampaignController restoreFromDb(string campaignKey, string stateKey)
         {
-            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb(campaignKey);
+            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
+            database.CampaignKey = campaignKey;
+            database.StorePath = Environment.CurrentDirectory;
+            database.init();
+
             CampaignState state = database.getCampaignStateByKey(stateKey);
             CampaignEngine engine = state.Restore();
             CampaignController controller = new CampaignController(engine);
@@ -25,8 +26,13 @@ namespace GenericCampaignMasterLib
 
         public override CampaignController buildNew()
         {
-			CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb("");
-			string campaignkey = database.initDatabase();
+            string campaignkey = Guid.NewGuid().ToString();
+            string storepath = Environment.CurrentDirectory;
+			
+            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
+            database.CampaignKey = campaignkey;
+            database.StorePath = storepath;
+            database.init();
 
 			//Field_Schachbrett field = new Field_Schachbrett(new List<int>(){ 3, 3});
             Field_Schlauch field = new Field_Schlauch(new List<int> { 3 });

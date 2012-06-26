@@ -12,30 +12,29 @@ namespace GenericCampaignMasterLib
 {
     class CampaignDatabaseRaptorDb : ICampaignDatabase
     {
-        private string m_strDbStorePath;
         private RaptorDB<string> m_db;
-
-        public CampaignDatabaseRaptorDb(string storePath)
+        
+        private string m_strDbStorePath;
+        public string StorePath
         {
-            m_strDbStorePath = storePath;
+            get { return m_strDbStorePath; }
+            set { m_strDbStorePath = value; }
+        }
+
+        private string m_strCampaignKey;
+        public string CampaignKey
+        {
+            get { return m_strCampaignKey; }
+            set { m_strCampaignKey = value; }
+        }
+
+        public void init()
+        {
+            string dbFilePath = Path.Combine(m_strDbStorePath, m_strCampaignKey);
+            m_db = new RaptorDB<string>(dbFilePath, false);
         }
 
         #region ICampaignDatabase Member
-
-        public string initDatabase()
-        {
-			
-            string campaignKey = Guid.NewGuid().ToString();
-			string dbFilePath = string.IsNullOrEmpty(m_strDbStorePath) ? Path.Combine (Environment.CurrentDirectory, campaignKey) : Path.Combine(m_strDbStorePath, campaignKey);
-            m_db = new RaptorDB<string>(dbFilePath, false);
-            return campaignKey;
-        }
-
-        public void initDatabase(string campaignIdentifier)
-        {
-            string campaignKey = new Guid().ToString();
-            m_db = new RaptorDB<string>(Path.Combine(m_strDbStorePath, campaignKey), false);
-        }
 
         public string saveGameState(CampaignState state)
         {
@@ -54,7 +53,10 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getCampaignStateByKey(string key)
         {
-            throw new NotImplementedException();
+            string strState = "";
+            m_db.Get(key, out strState);
+            CampaignState lastState = deserializeState(strState);
+            return lastState;
         }
 
         public CampaignState getCampaignStateByDate(DateTime time)
