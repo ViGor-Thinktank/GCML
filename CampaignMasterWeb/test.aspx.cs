@@ -58,16 +58,16 @@ namespace CampaignMasterWeb
             Field field = controller.campaignEngine.FieldField;
             return field;
         }
-
-        public static Player getContextPlayer(HttpSessionState state)
+        
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            string contextplayerid = (string) state[CampaignMasterClientKeys.CONTEXTPLAYERID];
-            if (String.IsNullOrEmpty(contextplayerid))
-                return null;
+            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
+            string id = controller.getPlayerList()[0].Id;
+            
+            // Player ID im Client ViewState speichern
+            ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID] = id;
 
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
-            Player contextPlayer = controller.getPlayer(contextplayerid);
-            return contextPlayer;
+
         }
     }
 }

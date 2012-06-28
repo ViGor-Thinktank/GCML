@@ -12,18 +12,45 @@ namespace CampaignMasterWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string aktplayerid = (string) ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID];
+            if(String.IsNullOrEmpty(aktplayerid))
+            {
+                Label hinweis = new Label();
+                hinweis.Text = "Bitte einloggen";
+                panelPlayer.Controls.Add(hinweis);
+                return;
+
+            }
+
+            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
             Field field = CampaignMasterClientTest.getField(this.Session);
-            Player contextPlayer = CampaignMasterClientTest.getContextPlayer(this.Session);
-            Table tabField = drawField(field, contextPlayer);
-            this.Controls.Add(tabField);
+            Player currentPlayer = controller.getPlayer(aktplayerid);
+            
+
+            drawField(panelField, field);
+            drawPlayerPanel(panelPlayer, currentPlayer);
+        }
+
+        private void drawPlayerPanel(Panel panel, Player player)
+        {
+            Label labelInfo = new Label();
+            labelInfo.Text = player.Id + " : " + player.Playername;
+            panel.Controls.Add(labelInfo);
+
+            ListBox lb = new ListBox();
+            foreach (IUnit unit in player.ListUnits)
+            {
+                ListItem it = new ListItem();
+                it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
+                it.Value = unit.Id.ToString();
+                lb.Items.Add(it);
+            }
+            panel.Controls.Add(lb);
         }
 
 
-        private Table drawField(GenericCampaignMasterLib.Field field, Player context)
+        private void drawField(Panel panel, GenericCampaignMasterLib.Field field)
         {
-            if (context == null)
-                context = new Player("King Power");
-
             Table tab = new Table();
             tab.BorderWidth = Unit.Pixel(1);
             tab.Width = Unit.Pixel(600);
@@ -45,8 +72,17 @@ namespace CampaignMasterWeb
             }
 
             tab.Rows.Add(row);
-            return tab;
+            panel.Controls.Add(tab);
         }
+
+        protected void btnSelectPlayer_Click(object sender, EventArgs e)
+        {
+            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
+            string id = dropDownPlayer.SelectedValue;
+            Player player = controller.getPlayer(id);
+            ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID] = player.Id;
+        }
+
 
     }
 }

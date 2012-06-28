@@ -1,1 +1,30 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FieldControl.ascx.cs" Inherits="CampaignMasterWeb.FieldControl" %>
+<table style="width: 100%;">
+<tr>
+<td>
+Spieler Auswählen:
+</td>
+<td>
+    <asp:DropDownList ID="dropDownPlayer" runat="server">
+        <asp:ListItem Value="1">Player 1</asp:ListItem>
+        <asp:ListItem Value="2">Player 2</asp:ListItem>
+    </asp:DropDownList>
+    <asp:Button ID="btnSelectPlayer" runat="server" Text="Spieler wählen" 
+        onclick="btnSelectPlayer_Click" />
+</td>
+</tr>
+    <tr>
+        <td>
+            <asp:Panel ID="panelPlayer" runat="server">
+            </asp:Panel>
+            sp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            <asp:Panel ID="panelField" runat="server">
+            </asp:Panel>
+        </td>
+    </tr>
+</table>

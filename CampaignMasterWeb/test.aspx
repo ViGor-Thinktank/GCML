@@ -13,7 +13,10 @@
     <table>
     <tr>
     <td>
-            
+        <b>Player 1</b>
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Show Field" 
+            onclick="Button1_Click" />
     </td>
     <td>
     
@@ -23,7 +26,9 @@
 
     </td>
     <td>
-    
+        <b>Player 2</b>
+        <br />
+        <asp:Button ID="Button2" runat="server" Text="Show Field" />
     </td>
     </tr>
     </table>
