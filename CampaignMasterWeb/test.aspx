@@ -7,23 +7,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
     <style type="text/css">
-        .style2
+        body
         {
-            width: 46px;
+            font-family: Arial, Helvetica, Sans-Serif;
         }
+        
+        .playerpanel
+        {
+            border-width: 1px;
+            background-color: #CCCCCC;
+        }
+        
     </style>
+
 </head>
+
 <body>
     <form id="form1" runat="server">
-    <table>
-    <tr>
-        <td><uc1:FieldControl ID="FieldControl1" runat="server" /></td>
-    </tr>
-    <tr>
-        <td><uc1:FieldControl ID="FieldControl2" runat="server" /></td>
-    </tr>
-    </table>
+    <uc1:FieldControl ID="FieldControl1" runat="server" />
+    <hr />
+    <uc1:FieldControl ID="FieldControl2" runat="server" />
+    
     </form>
 
 </body>

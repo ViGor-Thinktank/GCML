@@ -6,3 +6,4 @@ C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaign
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\bin\cmstyle.css

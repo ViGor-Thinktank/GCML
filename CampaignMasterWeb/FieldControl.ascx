@@ -5,30 +5,26 @@
         height: 42px;
     }
 </style>
-<table style="width: 100%;">
+<table style="width: 100%;"  class="playerpanel">
 <tr>
-<td>
+<td colspan="2">
 Spieler Auswählen:
-</td>
-<td>
+&nbsp;
     <asp:DropDownList ID="dropDownPlayer" runat="server">
         <asp:ListItem Value="1">Player 1</asp:ListItem>
         <asp:ListItem Value="2">Player 2</asp:ListItem>
-    </asp:DropDownList>
+    </asp:DropDownList>&nbsp;
     <asp:Button ID="btnSelectPlayer" runat="server" Text="Spieler wählen" 
         onclick="btnSelectPlayer_Click" />
 </td>
 </tr>
     <tr>
         <td class="style1">
-            <asp:Panel ID="panelPlayer" runat="server">
+            <asp:Panel ID="panelPlayer" runat="server" Wrap="true">
             </asp:Panel>
         </td>
         <td class="style1">
-            &nbsp;
-        </td>
-        <td class="style1">
-            <asp:Panel ID="panelField" runat="server">
+            <asp:Panel ID="panelField" runat="server" Wrap="true">
             </asp:Panel>
         </td>
     </tr>
