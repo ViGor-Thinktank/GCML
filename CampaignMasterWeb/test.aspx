@@ -7,33 +7,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .style2
+        {
+            width: 46px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <table>
     <tr>
-    <td>
-        <b>Player 1</b>
-        <br />
-        <asp:Button ID="Button1" runat="server" Text="Show Field" 
-            onclick="Button1_Click" />
-    </td>
-    <td>
-    
-    <div>
-        <uc1:FieldControl ID="FieldControl1" runat="server" />
-    </div>
-
-    </td>
-    <td>
-        <b>Player 2</b>
-        <br />
-        <asp:Button ID="Button2" runat="server" Text="Show Field" />
-    </td>
+        <td><uc1:FieldControl ID="FieldControl1" runat="server" /></td>
+    </tr>
+    <tr>
+        <td><uc1:FieldControl ID="FieldControl2" runat="server" /></td>
     </tr>
     </table>
     </form>
-    <p>
-        &nbsp;</p>
+
 </body>
 </html>

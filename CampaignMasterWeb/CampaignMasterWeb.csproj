@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FieldControl.ascx" />
-    <Content Include="PlayerActionsControl.ascx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -69,13 +68,6 @@
     </Compile>
     <Compile Include="FieldControl.ascx.designer.cs">
       <DependentUpon>FieldControl.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="PlayerActionsControl.ascx.cs">
-      <DependentUpon>PlayerActionsControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PlayerActionsControl.ascx.designer.cs">
-      <DependentUpon>PlayerActionsControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test.aspx.cs">

@@ -1,4 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FieldControl.ascx.cs" Inherits="CampaignMasterWeb.FieldControl" %>
+<style type="text/css">
+    .style1
+    {
+        height: 42px;
+    }
+</style>
 <table style="width: 100%;">
 <tr>
 <td>
@@ -14,15 +20,14 @@ Spieler Auswählen:
 </td>
 </tr>
     <tr>
-        <td>
+        <td class="style1">
             <asp:Panel ID="panelPlayer" runat="server">
             </asp:Panel>
-            sp;
         </td>
-        <td>
+        <td class="style1">
             &nbsp;
         </td>
-        <td>
+        <td class="style1">
             <asp:Panel ID="panelField" runat="server">
             </asp:Panel>
         </td>
