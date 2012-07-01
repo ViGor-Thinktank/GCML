@@ -10,7 +10,7 @@
 namespace CampaignMasterWeb {
     
     
-    public partial class CampaignMasterClientTest {
+    public partial class GcmlClient {
         
         /// <summary>
         /// form1-Steuerelement

@@ -127,7 +127,11 @@ namespace GenericCampaignMasterLib
         {
             return m_campaignEngine.ListPlayers.Values.ToList<Player>();
         }
-
+			
+		public IUnit getUnit (string unitId)
+		{
+			return m_campaignEngine.getUnit (unitId);
+		}
 
         public List<ICommand> getCommandsForUnit(IUnit unit)
         {

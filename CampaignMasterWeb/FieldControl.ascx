@@ -10,7 +10,7 @@
 <td colspan="2">
 Spieler Auswählen:
 &nbsp;
-    <asp:DropDownList ID="dropDownPlayer" runat="server">
+    <asp:DropDownList ID="dropDownPlayer" runat="server" OnSelectedIndexChanged="unitSelected">
         <asp:ListItem Value="1">Player 1</asp:ListItem>
         <asp:ListItem Value="2">Player 2</asp:ListItem>
     </asp:DropDownList>&nbsp;

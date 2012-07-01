@@ -21,39 +21,32 @@ namespace CampaignMasterWeb
                 return;
 
             }
-
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
-            Field field = CampaignMasterClientTest.getField(this.Session);
+			
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+            Field field = GcmlClient.getField(this.Session);
             Player currentPlayer = controller.getPlayer(aktplayerid);
 
             drawField(panelField, controller);
             drawPlayerPanel(panelPlayer, currentPlayer);
         }
-
+		
+		/// <summary>
+		/// Zeichnet das Menü und den Statusbereich für einen Spieler
+		/// </summary>
         private void drawPlayerPanel(Panel panel, Player player)
         {
             Label labelInfo = new Label();
             labelInfo.Text = "Spieler: " + player.Id + " - " + player.Playername + "<br />";
             panel.Controls.Add(labelInfo);
 
-            ListBox lb = getUnitList(player.ListUnits);
+            ListBox lb = getUnitListBox(player.ListUnits);
             panel.Controls.Add(lb);
         }
-
-        private static ListBox getUnitList(List<IUnit> lstUnits)
-        {
-            ListBox lb = new ListBox();
-            foreach (IUnit unit in lstUnits)
-            {
-                ListItem it = new ListItem();
-                it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
-                it.Value = unit.Id.ToString();
-                lb.Items.Add(it);
-            }
-            return lb;
-        }
-
-        private void drawField(Panel panel, CampaignController controller)
+		
+		/// <summary>
+		/// Zeichnet die Spielfeldansicht für einen Spieler
+		/// </summary>
+		private void drawField(Panel panel, CampaignController controller)
         {
             Table tab = new Table();
             tab.BorderWidth = Unit.Pixel(1);
@@ -68,7 +61,20 @@ namespace CampaignMasterWeb
             panel.Controls.Add(tab);
         }
 
-        private static void drawSektor(TableRow row, Sektor s, CampaignController controller)
+        private static ListBox getUnitListBox(List<IUnit> lstUnits)
+        {
+            ListBox lb = new ListBox();
+            foreach (IUnit unit in lstUnits)
+            {
+                ListItem it = new ListItem();
+                it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
+                it.Value = unit.Id.ToString();
+                lb.Items.Add(it);
+            }
+            return lb;
+        }
+
+		private static void drawSektor(TableRow row, Sektor s, CampaignController controller)
         {
             string bgcolor = "light-gray";
             if (controller.getUnitCollisions().Contains(s))
@@ -87,18 +93,28 @@ namespace CampaignMasterWeb
 
             if (s.ListUnits.Count() > 0)
             {
-                ListBox lb = getUnitList(s.ListUnits);
+                ListBox lb = getUnitListBox(s.ListUnits);
                 cell.Controls.Add(lb);
             }
         }
 
         protected void btnSelectPlayer_Click(object sender, EventArgs e)
         {
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
             string id = dropDownPlayer.SelectedValue;
             Player player = controller.getPlayer(id);
             ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID] = player.Id;
         }
+		
+		protected void unitSelected (object sender, EventArgs e)
+		{
+			DropDownList lst = sender as DropDownList;
+			string unitId = lst.SelectedValue;
+			
+			IUnit unit = GcmlClient.getUnitById (unitId, this.Session);
+			
+			
+		}
 
 
     }

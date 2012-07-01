@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="CampaignMasterWeb.CampaignMasterClientTest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="CampaignMasterWeb.GcmlClient" %>
 
 <%@ Register src="FieldControl.ascx" tagname="FieldControl" tagprefix="uc1" %>
 

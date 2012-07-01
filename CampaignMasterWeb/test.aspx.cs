@@ -17,7 +17,7 @@ namespace CampaignMasterWeb
         public const string CAMPAIGNCONTROLLER = "campaigncontroller";
     }
 
-    public partial class CampaignMasterClientTest : System.Web.UI.Page
+    public partial class GcmlClient : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,14 +54,22 @@ namespace CampaignMasterWeb
 
         public static Field getField(HttpSessionState state)
         {
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(state);
+            CampaignController controller = GcmlClient.getCampaignController(state);
             Field field = controller.campaignEngine.FieldField;
             return field;
         }
         
+		public static IUnit getUnitById (string unitId, HttpSessionState state)
+		{
+			CampaignController controller = GcmlClient.getCampaignController (state);
+			IUnit unit = controller.getUnit (unitId);
+			return unit;
+		}
+			
+		
         protected void Button1_Click(object sender, EventArgs e)
         {
-            CampaignController controller = CampaignMasterClientTest.getCampaignController(this.Session);
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
             string id = controller.getPlayerList()[0].Id;
             
             // Player ID im Client ViewState speichern

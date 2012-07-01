@@ -147,6 +147,14 @@ namespace GenericCampaignMasterLib
             return owner as Player;
         }
 
+		public IUnit getUnit (string id)
+		{
+			var units = from p in m_ListPlayers.Values
+						from u in p.ListUnits
+						where u.Id.ToString() == id
+						select u;
+			return units.First ();
+		}
 
         #region " Unitfactory "
 
