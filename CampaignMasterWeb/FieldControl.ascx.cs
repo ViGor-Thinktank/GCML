@@ -39,8 +39,8 @@ namespace CampaignMasterWeb
             labelInfo.Text = "Spieler: " + player.Id + " - " + player.Playername + "<br />";
             panel.Controls.Add(labelInfo);
 
-            ListBox lb = getUnitListBox(player.ListUnits);
-            panel.Controls.Add(lb);
+            Panel unitPanel = getUnitPanel(player.ListUnits);
+            panel.Controls.Add(unitPanel);
         }
 		
 		/// <summary>
@@ -61,7 +61,7 @@ namespace CampaignMasterWeb
             panel.Controls.Add(tab);
         }
 
-        private static ListBox getUnitListBox(List<IUnit> lstUnits)
+        private Panel getUnitPanel(List<IUnit> lstUnits)
         {
             ListBox lb = new ListBox();
             foreach (IUnit unit in lstUnits)
@@ -71,10 +71,21 @@ namespace CampaignMasterWeb
                 it.Value = unit.Id.ToString();
                 lb.Items.Add(it);
             }
-            return lb;
+
+            Button btnUnitActions = new Button();
+            btnUnitActions.Text = "Unit aktivieren";
+            btnUnitActions.Click += new EventHandler(unitSelected);
+
+
+            Panel unitPanel = new Panel();
+            unitPanel.Controls.Add(lb);
+            unitPanel.Controls.Add(btnUnitActions);
+
+
+            return unitPanel;
         }
 
-		private static void drawSektor(TableRow row, Sektor s, CampaignController controller)
+		private void drawSektor(TableRow row, Sektor s, CampaignController controller)
         {
             string bgcolor = "light-gray";
             if (controller.getUnitCollisions().Contains(s))
@@ -93,8 +104,8 @@ namespace CampaignMasterWeb
 
             if (s.ListUnits.Count() > 0)
             {
-                ListBox lb = getUnitListBox(s.ListUnits);
-                cell.Controls.Add(lb);
+                Panel unitPanel = getUnitPanel(s.ListUnits);
+                cell.Controls.Add(unitPanel);
             }
         }
 
@@ -108,8 +119,12 @@ namespace CampaignMasterWeb
 		
 		protected void unitSelected (object sender, EventArgs e)
 		{
-			DropDownList lst = sender as DropDownList;
-			string unitId = lst.SelectedValue;
+			Button btn = sender as Button;
+            ControlCollection ctrls = btn.Parent.Controls;
+            ListBox lb = ctrls.OfType<ListBox>().First();
+
+
+			string unitId = lb.SelectedValue;
 			
 			IUnit unit = GcmlClient.getUnitById (unitId, this.Session);
 			

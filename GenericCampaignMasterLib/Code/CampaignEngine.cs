@@ -151,9 +151,14 @@ namespace GenericCampaignMasterLib
 		{
 			var units = from p in m_ListPlayers.Values
 						from u in p.ListUnits
-						where u.Id.ToString() == id
+						where u.Id.
+                        ToString() == id
 						select u;
-			return units.First ();
+
+            if (units.Count() == 0)
+                return null;
+            else
+			    return units.First ();
 		}
 
         #region " Unitfactory "
