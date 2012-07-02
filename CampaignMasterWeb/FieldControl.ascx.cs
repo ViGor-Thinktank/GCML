@@ -64,6 +64,7 @@ namespace CampaignMasterWeb
         private Panel getUnitPanel(List<IUnit> lstUnits)
         {
             ListBox listUnits = new ListBox();
+            listUnits.ID = "listUnits";
             foreach (IUnit unit in lstUnits)
             {
                 ListItem it = new ListItem();
@@ -78,10 +79,10 @@ namespace CampaignMasterWeb
 
 
             Label lbUnitActions = new Label();
-            lbUnitActions.Text = "AKtionen: ";
+            lbUnitActions.Text = "Aktionen: ";
 
             ListBox listUnitActions = new ListBox();
-            listUnitActions.ID = "lbUnitActions";
+            listUnitActions.ID = "listUnitActions";
 
             Panel unitPanel = new Panel();
             unitPanel.Controls.Add(listUnits);
@@ -126,15 +127,19 @@ namespace CampaignMasterWeb
 		
 		protected void unitSelected (object sender, EventArgs e)
 		{
-			Button btn = sender as Button;
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+            
+            Button btn = sender as Button;
             ControlCollection ctrls = btn.Parent.Controls;
-            ListBox lb = ctrls.OfType<ListBox>().First();
+            ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID == "listUnits");
+            ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID == "listUnitActions");
 
+			string unitId = listUnits.SelectedValue;
+            IUnit unit = controller.getUnit(unitId);
 
-			string unitId = lb.SelectedValue;
-			
-			IUnit unit = GcmlClient.getUnitById (unitId, this.Session);
-			
+            List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
+            
+            
 			
 		}
 
