@@ -63,13 +63,13 @@ namespace CampaignMasterWeb
 
         private Panel getUnitPanel(List<IUnit> lstUnits)
         {
-            ListBox lb = new ListBox();
+            ListBox listUnits = new ListBox();
             foreach (IUnit unit in lstUnits)
             {
                 ListItem it = new ListItem();
                 it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
                 it.Value = unit.Id.ToString();
-                lb.Items.Add(it);
+                listUnits.Items.Add(it);
             }
 
             Button btnUnitActions = new Button();
@@ -77,10 +77,17 @@ namespace CampaignMasterWeb
             btnUnitActions.Click += new EventHandler(unitSelected);
 
 
-            Panel unitPanel = new Panel();
-            unitPanel.Controls.Add(lb);
-            unitPanel.Controls.Add(btnUnitActions);
+            Label lbUnitActions = new Label();
+            lbUnitActions.Text = "AKtionen: ";
 
+            ListBox listUnitActions = new ListBox();
+            listUnitActions.ID = "lbUnitActions";
+
+            Panel unitPanel = new Panel();
+            unitPanel.Controls.Add(listUnits);
+            unitPanel.Controls.Add(btnUnitActions);
+            unitPanel.Controls.Add(lbUnitActions);
+            unitPanel.Controls.Add(listUnitActions);
 
             return unitPanel;
         }
