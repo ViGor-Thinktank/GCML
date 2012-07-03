@@ -119,8 +119,13 @@ namespace GenericCampaignMasterLib
 
         public Player getPlayer(string playerId)
         {
-            Player result = m_campaignEngine.ListPlayers[playerId];
-            return result;
+            if (String.IsNullOrEmpty(playerId))
+                return null;
+
+            if(m_campaignEngine.ListPlayers.ContainsKey(playerId))
+                return m_campaignEngine.ListPlayers[playerId];
+            else
+                return null;
         }
 
         public List<Player> getPlayerList()

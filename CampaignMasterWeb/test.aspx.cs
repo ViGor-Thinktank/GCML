@@ -9,12 +9,13 @@ using GenericCampaignMasterLib;
 
 namespace CampaignMasterWeb
 {
-    public struct CampaignMasterClientKeys
+    public struct GcmlClientKeys
     {
         public const string CAMPAIGNSTATE = "campaignstate";
         public const string CAMPAIGNID = "campaignid";
         public const string CONTEXTPLAYERID = "contextplayerid";
         public const string CAMPAIGNCONTROLLER = "campaigncontroller";
+        public const string CONTEXTUNITID = "contextunitid";
     }
 
     public partial class GcmlClient : System.Web.UI.Page
@@ -28,16 +29,16 @@ namespace CampaignMasterWeb
         {
             CampaignController controller;  
             CampaignBuilderTicTacTod cbttt = new CampaignBuilderTicTacTod();
-            string statekey = (string) state[CampaignMasterClientKeys.CAMPAIGNSTATE];
-            string campaignkey = (string)state[CampaignMasterClientKeys.CAMPAIGNID];
+            string statekey = (string) state[GcmlClientKeys.CAMPAIGNSTATE];
+            string campaignkey = (string)state[GcmlClientKeys.CAMPAIGNID];
 
             if (String.IsNullOrEmpty(statekey) || String.IsNullOrEmpty(campaignkey))
             {
                 controller = cbttt.buildNew();      // Keine State vorhanden - neu erzeugen
             }
-            else if ((CampaignController)state[CampaignMasterClientKeys.CAMPAIGNCONTROLLER] != null)
+            else if ((CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER] != null)
             {
-                controller = (CampaignController)state[CampaignMasterClientKeys.CAMPAIGNCONTROLLER];
+                controller = (CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER];
             }
             else
             {
@@ -46,9 +47,9 @@ namespace CampaignMasterWeb
 
             // Ersten State speichern
             string newkey = controller.saveCurrentGameState();
-            state[CampaignMasterClientKeys.CAMPAIGNSTATE] = newkey;
-            state[CampaignMasterClientKeys.CAMPAIGNID] = controller.CampaignKey;
-            state[CampaignMasterClientKeys.CAMPAIGNCONTROLLER] = controller;
+            state[GcmlClientKeys.CAMPAIGNSTATE] = newkey;
+            state[GcmlClientKeys.CAMPAIGNID] = controller.CampaignKey;
+            state[GcmlClientKeys.CAMPAIGNCONTROLLER] = controller;
             return controller;
         }
 
@@ -73,7 +74,7 @@ namespace CampaignMasterWeb
             string id = controller.getPlayerList()[0].Id;
             
             // Player ID im Client ViewState speichern
-            ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID] = id;
+            ViewState[GcmlClientKeys.CONTEXTPLAYERID] = id;
 
 
         }

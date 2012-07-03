@@ -28,8 +28,6 @@
     <form id="form1" runat="server">
     <uc1:FieldControl ID="FieldControl1" runat="server" />
     <hr />
-    <uc1:FieldControl ID="FieldControl2" runat="server" />
-    
     </form>
 
 </body>

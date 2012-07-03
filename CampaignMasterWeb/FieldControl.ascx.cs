@@ -10,25 +10,60 @@ namespace CampaignMasterWeb
 {
     public partial class FieldControl : System.Web.UI.UserControl
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            drawPlayerView();
+
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            string aktplayerid = (string) ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID];
-            if(String.IsNullOrEmpty(aktplayerid))
+            
+        }
+
+
+        private void drawPlayerView()
+        {
+            Player aktplayer = getCurrentPlayer();
+            if (aktplayer == null)
             {
                 Label hinweis = new Label();
                 hinweis.Text = "Bitte einloggen";
                 panelPlayer.Controls.Add(hinweis);
-                return;
-
             }
-			
-            CampaignController controller = GcmlClient.getCampaignController(this.Session);
-            Field field = GcmlClient.getField(this.Session);
-            Player currentPlayer = controller.getPlayer(aktplayerid);
+            else
+            {
+                //if (String.IsNullOrEmpty(panelControlSessionId.Value))
+                //    panelControlSessionId.Value = new Random().Next(1000, 9999).ToString();
 
-            drawField(panelField, controller);
-            drawPlayerPanel(panelPlayer, currentPlayer);
+                CampaignController controller = GcmlClient.getCampaignController(this.Session);
+                Field field = GcmlClient.getField(this.Session);
+                drawField(panelField, controller);
+                drawPlayerPanel(panelPlayer, aktplayer);
+            }
         }
+
+        protected void btnSelectPlayer_Click(object sender, EventArgs e)
+        {
+            setCurrentPlayer();
+        }
+
+        protected void setCurrentPlayer()
+        {
+            string id = dropDownPlayer.SelectedValue;
+            Player player = GcmlClient.getCampaignController(this.Session).getPlayer(id);
+            Session[GcmlClientKeys.CONTEXTPLAYERID] = id;
+        }
+
+
+        protected Player getCurrentPlayer()
+        {
+            string id = (string) Session[GcmlClientKeys.CONTEXTPLAYERID];
+            Player player = GcmlClient.getCampaignController(this.Session).getPlayer(id);
+            return player;
+        }
+        
 		
 		/// <summary>
 		/// Zeichnet das Menü und den Statusbereich für einen Spieler
@@ -39,8 +74,8 @@ namespace CampaignMasterWeb
             labelInfo.Text = "Spieler: " + player.Id + " - " + player.Playername + "<br />";
             panel.Controls.Add(labelInfo);
 
-            Panel unitPanel = getUnitPanel(player.ListUnits);
-            panel.Controls.Add(unitPanel);
+            //Panel unitPanel = getUnitPanel(player.ListUnits, panelControlSessionId.Value);
+            //panel.Controls.Add(unitPanel);
         }
 		
 		/// <summary>
@@ -48,10 +83,16 @@ namespace CampaignMasterWeb
 		/// </summary>
 		private void drawField(Panel panel, CampaignController controller)
         {
+            string fieldTabId = "FieldTab#" + panelControlSessionId.Value;
+
+            if (panel.Controls.OfType<Table>().Select(tb => tb.ID == fieldTabId).Count() > 0)
+                return;
+
             Table tab = new Table();
             tab.BorderWidth = Unit.Pixel(1);
             tab.Width = Unit.Pixel(500);
             tab.Height = Unit.Pixel(250);
+            tab.ID = "FieldTab#" + panelControlSessionId.Value;
 
             TableRow row = new TableRow();
             foreach (Sektor s in controller.campaignEngine.FieldField.getSektorList())
@@ -61,39 +102,8 @@ namespace CampaignMasterWeb
             panel.Controls.Add(tab);
         }
 
-        private Panel getUnitPanel(List<IUnit> lstUnits)
-        {
-            ListBox listUnits = new ListBox();
-            listUnits.ID = "listUnits";
-            foreach (IUnit unit in lstUnits)
-            {
-                ListItem it = new ListItem();
-                it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
-                it.Value = unit.Id.ToString();
-                listUnits.Items.Add(it);
-            }
 
-            Button btnUnitActions = new Button();
-            btnUnitActions.Text = "Unit aktivieren";
-            btnUnitActions.Click += new EventHandler(unitSelected);
-
-
-            Label lbUnitActions = new Label();
-            lbUnitActions.Text = "Aktionen: ";
-
-            ListBox listUnitActions = new ListBox();
-            listUnitActions.ID = "listUnitActions";
-
-            Panel unitPanel = new Panel();
-            unitPanel.Controls.Add(listUnits);
-            unitPanel.Controls.Add(btnUnitActions);
-            unitPanel.Controls.Add(lbUnitActions);
-            unitPanel.Controls.Add(listUnitActions);
-
-            return unitPanel;
-        }
-
-		private void drawSektor(TableRow row, Sektor s, CampaignController controller)
+        private void drawSektor(TableRow row, Sektor s, CampaignController controller)
         {
             string bgcolor = "light-gray";
             if (controller.getUnitCollisions().Contains(s))
@@ -113,36 +123,64 @@ namespace CampaignMasterWeb
             if (s.ListUnits.Count() > 0)
             {
                 Panel unitPanel = getUnitPanel(s.ListUnits);
+                //unitPanel.ID = "unitPanel#" + panelControlSessionId + "#Sektor#" + s.Id;
                 cell.Controls.Add(unitPanel);
             }
         }
 
-        protected void btnSelectPlayer_Click(object sender, EventArgs e)
+        private Panel getUnitPanel(List<IUnit> lstUnits)
         {
-            CampaignController controller = GcmlClient.getCampaignController(this.Session);
-            string id = dropDownPlayer.SelectedValue;
-            Player player = controller.getPlayer(id);
-            ViewState[CampaignMasterClientKeys.CONTEXTPLAYERID] = player.Id;
+            //string panelSessionId = panelControlSessionId.Value;
+            //string panelSessionId = new Random().Next(1000, 9999).ToString();
+
+            ListBox listUnits = new ListBox();
+            //listUnits.ID = "listUnits#" + panelSessionId;
+            foreach (IUnit unit in lstUnits)
+            {
+                ListItem it = new ListItem();
+                it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
+                it.Value = unit.Id.ToString();
+                listUnits.Items.Add(it);
+            }
+
+            Button btnUnitActions = new Button();
+            btnUnitActions.Text = "Unit aktivieren";
+            btnUnitActions.Click += new EventHandler(unitSelected);
+
+            Label lbUnitActions = new Label();
+            lbUnitActions.Text = "Aktionen: ";
+
+            ListBox listUnitActions = new ListBox();
+            //listUnitActions.ID = "listUnitActions#" + panelSessionId;
+
+            Panel unitPanel = new Panel();
+            //unitPanel.ID = "unitPanel#" + panelSessionId;
+            unitPanel.Controls.Add(listUnits);
+            unitPanel.Controls.Add(btnUnitActions);
+            unitPanel.Controls.Add(lbUnitActions);
+            unitPanel.Controls.Add(listUnitActions);
+            return unitPanel;
         }
+
 		
+
 		protected void unitSelected (object sender, EventArgs e)
 		{
-            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+            //CampaignController controller = GcmlClient.getCampaignController(this.Session);
             
-            Button btn = sender as Button;
-            ControlCollection ctrls = btn.Parent.Controls;
-            ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID == "listUnits");
-            ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID == "listUnitActions");
+            //Button btn = sender as Button;
+            //ControlCollection ctrls = btn.Parent.Controls;
+            //ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnits"));
+            //ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnitActions"));
 
-			string unitId = listUnits.SelectedValue;
-            IUnit unit = controller.getUnit(unitId);
+            //string unitId = listUnits.SelectedValue;
+            //IUnit unit = controller.getUnit(unitId);
 
-            List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
+            //List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
             
             
 			
 		}
-
 
     }
 }
