@@ -130,6 +130,9 @@ namespace CampaignMasterWeb
 
         private Panel getUnitPanel(List<IUnit> lstUnits)
         {
+			string selectedUnitId = (string) Session[GcmlClientKeys.CONTEXTUNITID];
+			IUnit selectedUnit = null;
+			
             //string panelSessionId = panelControlSessionId.Value;
             //string panelSessionId = new Random().Next(1000, 9999).ToString();
 
@@ -141,7 +144,14 @@ namespace CampaignMasterWeb
                 it.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
                 it.Value = unit.Id.ToString();
                 listUnits.Items.Add(it);
+				
+				if(unit.Id.ToString() == selectedUnitId)
+				{
+					it.Selected = true;
+					selectedUnit = unit;
+				}
             }
+			
             listUnits.AutoPostBack = true;
             listUnits.SelectedIndexChanged += new EventHandler(unitSelected);
 
@@ -153,7 +163,16 @@ namespace CampaignMasterWeb
             lbUnitActions.Text = "Aktionen: ";
 
             ListBox listUnitActions = new ListBox();
-            //listUnitActions.ID = "listUnitActions#" + panelSessionId;
+			if(selectedUnit != null)
+			{
+				CampaignController controller = GcmlClient.getCampaignController(this.Session);
+				List<ICommand> cmds = controller.getCommandsForUnit(selectedUnit);
+				foreach (ICommand cmd in cmds)	
+				{
+					listUnitActions.Items.Add (cmd.strInfo);
+				}
+			}
+			   
 
             Panel unitPanel = new Panel();
             //unitPanel.ID = "unitPanel#" + panelSessionId;
@@ -179,8 +198,14 @@ namespace CampaignMasterWeb
 
             string unitId = listUnits.SelectedValue;
             IUnit unit = controller.getUnit(unitId);
-
-            List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
+			
+			if(unit != null)
+			{
+				Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id;
+				drawPlayerView();
+			}
+			
+            
             
             
 			
