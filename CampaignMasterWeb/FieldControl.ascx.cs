@@ -142,6 +142,8 @@ namespace CampaignMasterWeb
                 it.Value = unit.Id.ToString();
                 listUnits.Items.Add(it);
             }
+            listUnits.AutoPostBack = true;
+            listUnits.SelectedIndexChanged += new EventHandler(unitSelected);
 
             Button btnUnitActions = new Button();
             btnUnitActions.Text = "Unit aktivieren";
@@ -166,17 +168,19 @@ namespace CampaignMasterWeb
 
 		protected void unitSelected (object sender, EventArgs e)
 		{
-            //CampaignController controller = GcmlClient.getCampaignController(this.Session);
-            
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+
             //Button btn = sender as Button;
             //ControlCollection ctrls = btn.Parent.Controls;
             //ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnits"));
+
+            ListBox listUnits = sender as ListBox;
             //ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnitActions"));
 
-            //string unitId = listUnits.SelectedValue;
-            //IUnit unit = controller.getUnit(unitId);
+            string unitId = listUnits.SelectedValue;
+            IUnit unit = controller.getUnit(unitId);
 
-            //List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
+            List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
             
             
 			
