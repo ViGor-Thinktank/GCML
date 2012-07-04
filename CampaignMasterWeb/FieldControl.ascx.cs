@@ -12,6 +12,7 @@ namespace CampaignMasterWeb
     {
         protected void Page_Init(object sender, EventArgs e)
         {
+            //if(!IsPostBack)
             drawPlayerView();
 
         }
@@ -44,11 +45,6 @@ namespace CampaignMasterWeb
             }
         }
 
-        protected void btnSelectPlayer_Click(object sender, EventArgs e)
-        {
-            setCurrentPlayer();
-        }
-
         protected void setCurrentPlayer()
         {
             string id = dropDownPlayer.SelectedValue;
@@ -63,7 +59,24 @@ namespace CampaignMasterWeb
             Player player = GcmlClient.getCampaignController(this.Session).getPlayer(id);
             return player;
         }
-        
+
+        /// <summary>
+        /// Erzeugt die Formularelemente für die Spielfeldansicht
+        /// </summary>
+        private void drawForm()
+        {
+
+
+
+        }
+
+
+
+        private void drawPlayerContext()
+        {
+
+
+        }
 		
 		/// <summary>
 		/// Zeichnet das Menü und den Statusbereich für einen Spieler
@@ -85,8 +98,8 @@ namespace CampaignMasterWeb
         {
             string fieldTabId = "FieldTab#" + panelControlSessionId.Value;
 
-            if (panel.Controls.OfType<Table>().Select(tb => tb.ID == fieldTabId).Count() > 0)
-                return;
+            //if (panel.Controls.OfType<Table>().Select(tb => tb.ID == fieldTabId).Count() > 0)
+            //    return;
 
             Table tab = new Table();
             tab.BorderWidth = Unit.Pixel(1);
@@ -96,36 +109,46 @@ namespace CampaignMasterWeb
 
             TableRow row = new TableRow();
             foreach (Sektor s in controller.campaignEngine.FieldField.getSektorList())
-                drawSektor(row, s, controller);
+            {
+
+             
+                TableCell cell = new TableCell();
+                cell.Style.Add("vertical-align", "top");
+                cell.Style.Add("horizontal-align", "center");
+                //cell.Style.Add("background", bgcolor);
+                cell.BorderWidth = Unit.Pixel(1);
+                row.Cells.Add(cell);
+
+
+                Panel sektorPanel = drawSektor(row, s, controller);
+                cell.Controls.Add(sektorPanel);
+            }
 
             tab.Rows.Add(row);
             panel.Controls.Add(tab);
         }
 
 
-        private void drawSektor(TableRow row, Sektor s, CampaignController controller)
+        private Panel drawSektor(TableRow row, Sektor s, CampaignController controller)
         {
+            Panel sektorPanel = new Panel();
+
             string bgcolor = "light-gray";
             if (controller.getUnitCollisions().Contains(s))
                 bgcolor = "light-orange";
 
-            TableCell cell = new TableCell();
-            cell.Style.Add("vertical-align", "top");
-            cell.Style.Add("horizontal-align", "center");
-            cell.Style.Add("background", bgcolor);
-            cell.BorderWidth = Unit.Pixel(1);
-            row.Cells.Add(cell);
-
             Label sektorinfo = new Label();
             sektorinfo.Text = "Sektor: " + s.Id + "<br />";
-            cell.Controls.Add(sektorinfo);
+            sektorPanel.Controls.Add(sektorinfo);
 
             if (s.ListUnits.Count() > 0)
             {
                 Panel unitPanel = getUnitPanel(s.ListUnits);
                 //unitPanel.ID = "unitPanel#" + panelControlSessionId + "#Sektor#" + s.Id;
-                cell.Controls.Add(unitPanel);
+                sektorPanel.Controls.Add(unitPanel);
             }
+
+            return sektorPanel;
         }
 
         private Panel getUnitPanel(List<IUnit> lstUnits)
@@ -193,23 +216,27 @@ namespace CampaignMasterWeb
             //ControlCollection ctrls = btn.Parent.Controls;
             //ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnits"));
 
-            ListBox listUnits = sender as ListBox;
+            ListBox listBoxUnits = sender as ListBox;
             //ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnitActions"));
 
-            string unitId = listUnits.SelectedValue;
+            if (listBoxUnits == null)
+                return;
+
+
+            string unitId = listBoxUnits.SelectedValue;
             IUnit unit = controller.getUnit(unitId);
-			
-			if(unit != null)
-			{
-				Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id;
-				drawPlayerView();
-			}
-			
-            
-            
-            
-			
+
+            if (unit != null)
+                Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id.ToString();
+
+            drawPlayerView();
 		}
+
+        protected void btnSelectPlayer_Click(object sender, EventArgs e)
+        {
+            setCurrentPlayer();
+            drawPlayerView();
+        }
 
     }
 }
