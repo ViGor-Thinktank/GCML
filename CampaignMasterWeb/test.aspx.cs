@@ -16,11 +16,14 @@ namespace CampaignMasterWeb
         public const string CONTEXTPLAYERID = "contextplayerid";
         public const string CAMPAIGNCONTROLLER = "campaigncontroller";
         public const string CONTEXTUNITID = "contextunitid";
+        public const string SEKTORSTACK = "sektorstack";
     }
 
     public partial class GcmlClient : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+
+
+        protected void Page_Init(object sender, EventArgs e)
         {
             getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
         }
