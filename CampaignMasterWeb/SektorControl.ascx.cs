@@ -40,34 +40,15 @@ namespace CampaignMasterWeb
               
             foreach (IUnit unit in this.Sektor.ListUnits)
             {
-                TableRow row = createSelectableRow("buttonSelectUnit#" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung);
+                TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
             }
         }
-
-        private TableRow createSelectableRow(string id, string bezeichnung)
-        {
-            TableRow row = new TableRow();
-            TableCell cell1 = new TableCell();
-            TableCell cell2 = new TableCell();
-            row.Cells.Add(cell1);
-            row.Cells.Add(cell2);
-
-            Button btnSelectObject = new Button();
-            btnSelectObject.ID = id;
-
-            cell1.Text = bezeichnung;
-            cell2.Controls.Add(btnSelectObject);
-
-            TableUnits.Rows.Add(row);
-
-            return row;
-        }
-
+  
         protected void unitSelected(object sender, EventArgs e)
         {
             Button btnSender = sender as Button;
-            string selUnitId = btnSender.ID.Substring(16);
+            string selUnitId = btnSender.ID.Substring(17);
             CampaignController controller = GcmlClient.getCampaignController(this.Session);
             IUnit unit = controller.getUnit(selUnitId);
 
@@ -83,16 +64,50 @@ namespace CampaignMasterWeb
                 foreach (ICommand cmd in lstCmds)
                 {
                     string cmdId = new Guid().ToString();       // Temporäre ID für die Zuordnung des ListItems
-                    ListItem li = new ListItem();
-                    li.Text = cmd.strInfo;
-                    li.Value = cmdId;
 
+                    TableRow row = createSelectableRow(cmdId, cmd.strInfo, new EventHandler(executeUnitAction));
+                    TableUnitActions.Rows.Add(row);
 
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
-
             //drawSektor(); 
         }
+
+
+        protected void executeUnitAction(object sender, EventArgs e)
+        {
+            Button btnSender = sender as Button;
+            string cmdId = btnSender.ID;
+            Dictionary <string, ICommand> cmdList = (Dictionary<string, ICommand>) Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
+            if((cmdList != null) && cmdList.Keys.Contains(cmdId))
+            {
+                ICommand cmd = cmdList[cmdId];
+                cmd.Execute();
+            }
+        }
+
+
+        private TableRow createSelectableRow(string id, string bezeichnung, EventHandler handler)
+        {
+            TableRow row = new TableRow();
+            TableCell cell1 = new TableCell();
+            TableCell cell2 = new TableCell();
+            row.Cells.Add(cell1);
+            row.Cells.Add(cell2);
+
+            Button btnSelectObject = new Button();
+            btnSelectObject.ID = id;
+            btnSelectObject.Click += handler;
+
+            cell1.Text = bezeichnung;
+            cell2.Controls.Add(btnSelectObject);
+
+            TableUnits.Rows.Add(row);
+
+            return row;
+        }
+
+
     }
 }
