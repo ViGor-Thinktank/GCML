@@ -40,51 +40,59 @@ namespace CampaignMasterWeb
               
             foreach (IUnit unit in this.Sektor.ListUnits)
             {
-                TableRow row = new TableRow();
-                TableCell cell1 = new TableCell();
-                TableCell cell2 = new TableCell();
-                row.Cells.Add(cell1);
-                row.Cells.Add(cell2);
-
-                Button btnSelectUnit = new Button();
-                btnSelectUnit.ID = "buttonSelectUnit#" + unit.Id;
-
-                cell1.Text = unit.Id.ToString() + " : " + unit.Bezeichnung;
-                cell2.Controls.Add(btnSelectUnit);
-
+                TableRow row = createSelectableRow("buttonSelectUnit#" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung);
                 TableUnits.Rows.Add(row);
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        private TableRow createSelectableRow(string id, string bezeichnung)
         {
-            LabelSektorname.Text = "djdjdjdj";
+            TableRow row = new TableRow();
+            TableCell cell1 = new TableCell();
+            TableCell cell2 = new TableCell();
+            row.Cells.Add(cell1);
+            row.Cells.Add(cell2);
+
+            Button btnSelectObject = new Button();
+            btnSelectObject.ID = id;
+
+            cell1.Text = bezeichnung;
+            cell2.Controls.Add(btnSelectObject);
+
+            TableUnits.Rows.Add(row);
+
+            return row;
         }
 
+        protected void unitSelected(object sender, EventArgs e)
+        {
+            Button btnSender = sender as Button;
+            string selUnitId = btnSender.ID.Substring(16);
+            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+            IUnit unit = controller.getUnit(selUnitId);
+
+            if ((unit != null) &&
+                (this.Sektor.ListUnits.Contains(unit)))
+            {
+                // Die aktuell auswählbaren Commands werden mit einer ID im State gespeichert um Sie mit einem Listitem auswählen zu können
+                Dictionary<string, ICommand> contextCmdList = new Dictionary<string, ICommand>();
+                Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = contextCmdList;
+                Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id.ToString();
+                
+                List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
+                foreach (ICommand cmd in lstCmds)
+                {
+                    string cmdId = new Guid().ToString();       // Temporäre ID für die Zuordnung des ListItems
+                    ListItem li = new ListItem();
+                    li.Text = cmd.strInfo;
+                    li.Value = cmdId;
 
 
-        //protected void unitSelected(object sender, EventArgs e)
-        //{
-        //    CampaignController controller = GcmlClient.getCampaignController(this.Session);
+                    contextCmdList.Add(cmdId, cmd);
+                }
+            }
 
-        //    //Button btn = sender as Button;
-        //    //ControlCollection ctrls = btn.Parent.Controls;
-        //    //ListBox listUnits = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnits"));
-
-        //    ListBox listBoxUnits = sender as ListBox;
-        //    //ListBox listUnitActions = ctrls.OfType<ListBox>().First(l => l.ID.Contains("listUnitActions"));
-
-        //    if (listBoxUnits == null)
-        //        return;
-
-
-        //    string unitId = listBoxUnits.SelectedValue;
-        //    IUnit unit = controller.getUnit(unitId);
-
-        //    if (unit != null)
-        //        Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id.ToString();
-
-        //    //drawPlayerView();
-        //}
+            //drawSektor(); 
+        }
     }
 }

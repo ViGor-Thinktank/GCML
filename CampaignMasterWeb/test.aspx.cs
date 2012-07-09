@@ -16,6 +16,7 @@ namespace CampaignMasterWeb
         public const string CONTEXTPLAYERID = "contextplayerid";
         public const string CAMPAIGNCONTROLLER = "campaigncontroller";
         public const string CONTEXTUNITID = "contextunitid";
+        public const string CONTEXTCOMMANDLIST = "contextcommandlist";
         public const string SEKTORSTACK = "sektorstack";
     }
 
