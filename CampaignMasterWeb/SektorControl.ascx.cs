@@ -38,11 +38,29 @@ namespace CampaignMasterWeb
 
             LabelSektorname.Text = this.Sektor.Id;
               
+            string selectedUnitId = (string) Session[GcmlClientKeys.CONTEXTUNITID];
             foreach (IUnit unit in this.Sektor.ListUnits)
             {
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
+
+                if (unit.Id.ToString() == selectedUnitId)
+                {
+                    row.BackColor = System.Drawing.Color.LightSalmon;
+
+                    Dictionary<string, ICommand> contextCmdList = (Dictionary<string, ICommand>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
+                    foreach (string cmdkey in contextCmdList.Keys)
+                    {
+                        ICommand cmd = contextCmdList[cmdkey];
+
+                        TableRow rowcmd = createSelectableRow(cmdkey, cmd.strInfo, new EventHandler(executeUnitAction));
+                        TableUnitActions.Rows.Add(rowcmd);
+                    }
+
+                }
+
             }
+
         }
   
         protected void unitSelected(object sender, EventArgs e)
@@ -64,10 +82,6 @@ namespace CampaignMasterWeb
                 foreach (ICommand cmd in lstCmds)
                 {
                     string cmdId = new Guid().ToString();       // Temporäre ID für die Zuordnung des ListItems
-
-                    TableRow row = createSelectableRow(cmdId, cmd.strInfo, new EventHandler(executeUnitAction));
-                    TableUnitActions.Rows.Add(row);
-
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
