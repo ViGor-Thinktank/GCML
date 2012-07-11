@@ -20,20 +20,39 @@ namespace CampaignMasterWeb
         public const string SEKTORSTACK = "sektorstack";
     }
 
-    public partial class GcmlClient : System.Web.UI.Page
+    public partial class GcmlClientPage : System.Web.UI.Page
     {
 
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
+            GcmlClientWeb.getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
+            string id = controller.getPlayerList()[0].Id;
+            
+            // Player ID im Client ViewState speichern
+            ViewState[GcmlClientKeys.CONTEXTPLAYERID] = id;
+
+
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class GcmlClientWeb
+    {
         public static CampaignController getCampaignController(HttpSessionState state)
         {
-            CampaignController controller;  
+            CampaignController controller;
             CampaignBuilderTicTacTod cbttt = new CampaignBuilderTicTacTod();
-            string statekey = (string) state[GcmlClientKeys.CAMPAIGNSTATE];
+            string statekey = (string)state[GcmlClientKeys.CAMPAIGNSTATE];
             string campaignkey = (string)state[GcmlClientKeys.CAMPAIGNID];
 
             if (String.IsNullOrEmpty(statekey) || String.IsNullOrEmpty(campaignkey))
@@ -59,33 +78,19 @@ namespace CampaignMasterWeb
 
         public static Field getField(HttpSessionState state)
         {
-            CampaignController controller = GcmlClient.getCampaignController(state);
+            CampaignController controller = GcmlClientWeb.getCampaignController(state);
             Field field = controller.campaignEngine.FieldField;
             return field;
         }
-        
-		public static IUnit getUnitById (string unitId, HttpSessionState state)
-		{
-			CampaignController controller = GcmlClient.getCampaignController (state);
-			IUnit unit = controller.getUnit (unitId);
-			return unit;
-		}
+
+        public static IUnit getUnitById(string unitId, HttpSessionState state)
+        {
+            CampaignController controller = GcmlClientWeb.getCampaignController(state);
+            IUnit unit = controller.getUnit(unitId);
+            return unit;
+        }
 			
-		
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            CampaignController controller = GcmlClient.getCampaignController(this.Session);
-            string id = controller.getPlayerList()[0].Id;
-            
-            // Player ID im Client ViewState speichern
-            ViewState[GcmlClientKeys.CONTEXTPLAYERID] = id;
 
 
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

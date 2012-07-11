@@ -30,7 +30,7 @@ namespace CampaignMasterWeb
                 LabelSektorname.Text = "bla";
             }
 
-            CampaignController controller = GcmlClient.getCampaignController(Session);
+            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
             if (controller.getUnitCollisions().Contains(this.Sektor))
                 bgcolor = System.Drawing.Color.Orange;
@@ -67,7 +67,7 @@ namespace CampaignMasterWeb
         {
             Button btnSender = sender as Button;
             string selUnitId = btnSender.ID.Substring(17);
-            CampaignController controller = GcmlClient.getCampaignController(this.Session);
+            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
             IUnit unit = controller.getUnit(selUnitId);
 
             if ((unit != null) &&

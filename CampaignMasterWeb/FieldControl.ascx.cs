@@ -25,7 +25,7 @@ namespace CampaignMasterWeb
         protected void setCurrentPlayer()
         {
             string id = dropDownPlayer.SelectedValue;
-            Player player = GcmlClient.getCampaignController(this.Session).getPlayer(id);
+            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
             Session[GcmlClientKeys.CONTEXTPLAYERID] = id;
         }
 
@@ -33,7 +33,7 @@ namespace CampaignMasterWeb
         protected Player getCurrentPlayer()
         {
             string id = (string) Session[GcmlClientKeys.CONTEXTPLAYERID];
-            Player player = GcmlClient.getCampaignController(this.Session).getPlayer(id);
+            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
             return player;
         }
 
@@ -52,7 +52,7 @@ namespace CampaignMasterWeb
                 return;
             }
 
-            CampaignController controller = GcmlClient.getCampaignController(Session);
+            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             Label labelInfo = new Label();
             labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
             panelPlayer.Controls.Add(labelInfo);
@@ -86,8 +86,8 @@ namespace CampaignMasterWeb
             }
 
 
-            CampaignController controller = GcmlClient.getCampaignController(Session);
-            Field field = GcmlClient.getField(Session);
+            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
+            Field field = GcmlClientWeb.getField(Session);
             Player player = getCurrentPlayer();
             foreach (IUnit unit in player.ListUnits)
             {
