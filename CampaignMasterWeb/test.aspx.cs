@@ -29,6 +29,27 @@ namespace CampaignMasterWeb
             GcmlClientWeb.getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        protected void setCurrentPlayer()
+        {
+            string id = dropDownPlayer.SelectedValue;
+            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
+            Session[GcmlClientKeys.CONTEXTPLAYERID] = id;
+        }
+
+        protected Player getCurrentPlayer()
+        {
+            string id = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
+            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
+            return player;
+        }
+
+
         protected void Button1_Click(object sender, EventArgs e)
         {
             CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
@@ -43,6 +64,12 @@ namespace CampaignMasterWeb
         protected void Button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnSelectPlayer_Click(object sender, EventArgs e)
+        {
+            setCurrentPlayer();
+            FieldControl1.drawPlayerContext();
         }
     }
 

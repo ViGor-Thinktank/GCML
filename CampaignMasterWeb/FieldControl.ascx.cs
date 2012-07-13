@@ -13,24 +13,11 @@ namespace CampaignMasterWeb
         protected void Page_Init(object sender, EventArgs e)
         {
             drawForm();
+            drawPlayerContext();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
-
-        protected void setCurrentPlayer()
-        {
-            string id = dropDownPlayer.SelectedValue;
-            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
-            Session[GcmlClientKeys.CONTEXTPLAYERID] = id;
-        }
-
-        protected Player getCurrentPlayer()
-        {
-            string id = (string) Session[GcmlClientKeys.CONTEXTPLAYERID];
-            Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
-            return player;
         }
 
         /// <summary>
@@ -38,6 +25,10 @@ namespace CampaignMasterWeb
         /// </summary>
         private void drawForm()
         {
+            if (panelField.Controls.Count > 1)
+                return;
+
+            List<SektorControl> sektorStack = new List<SektorControl>();
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             Table tab = new Table();
             tab.Rows.Add(new TableRow());
@@ -49,53 +40,23 @@ namespace CampaignMasterWeb
                 SektorControl sc = (SektorControl)Page.LoadControl("SektorControl.ascx");
                 sc.Sektor = sektor;
                 c.Controls.Add(sc);
+
+                sektorStack.Add(sc);
             }
 
             panelField.Controls.Add(tab);
+
+            Session[GcmlClientKeys.SEKTORSTACK] = sektorStack;
         }
 
-        private void drawPlayerContext()
+        public void drawPlayerContext()
         {
-            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
-            Player aktplayer = getCurrentPlayer();
-            if (aktplayer == null)
-            {
-                Label hinweis = new Label();
-                hinweis.Text = "Bitte einloggen";
-                panelPlayer.Controls.Add(hinweis);
-                panelField.Visible = false;
-            }
-            else
-            {
-                Label labelInfo = new Label();
-                labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
-                panelPlayer.Controls.Add(labelInfo);
-                panelField.Visible = true;
-            }
-            
-            //foreach (SektorControl sektorCtrl in panelField.Controls)
-            //{
-            //    Sektor sektor = sektorCtrl.Sektor;
-            //    var containingUnits = from u in sektor.ListUnits
-            //                          where aktplayer.ListUnits.Contains(u)
-            //                          select u;
+            List<SektorControl> sektorStack = (List<SektorControl>) Session[GcmlClientKeys.SEKTORSTACK] ;
+            if (sektorStack == null)
+                return;
 
-
-
-
-            //}
-
-
-            //Field field = GcmlClientWeb.getField(Session);
-            //Player player = getCurrentPlayer();
-            //foreach (IUnit unit in player.ListUnits)
-            //{
-            //    Sektor containingSek = controller.getSektorForUnit(unit);
-            //    Panel panelSek = sektorStack.First(p => p.ID == "sektor#" + containingSek.Id);
-
-
-
-            //}
+            foreach (SektorControl sektorCtrl in sektorStack)
+                sektorCtrl.drawContext();
         }
 
         //private Panel drawSektor(TableRow row, Sektor s, CampaignController controller)
@@ -157,14 +118,6 @@ namespace CampaignMasterWeb
         //    unitPanel.Controls.Add(listUnitActions);
         //    return unitPanel;
         //}
-
-				
-
-        protected void btnSelectPlayer_Click(object sender, EventArgs e)
-        {
-            setCurrentPlayer();
-            //drawForm();
-        }
 
     }
 }

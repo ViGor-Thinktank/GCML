@@ -26,6 +26,15 @@
 
 <body>
     <form id="form1" runat="server">
+
+    <asp:DropDownList ID="dropDownPlayer" runat="server">
+        <asp:ListItem Value="-">-</asp:ListItem>
+        <asp:ListItem Value="1">Player 1</asp:ListItem>
+        <asp:ListItem Value="2">Player 2</asp:ListItem>
+    </asp:DropDownList>&nbsp;
+    <asp:Button ID="btnSelectPlayer" runat="server" Text="Spieler wählen" 
+        onclick="btnSelectPlayer_Click" />
+        <br />
     <uc1:FieldControl ID="FieldControl1" runat="server" />
     <hr />
     </form>

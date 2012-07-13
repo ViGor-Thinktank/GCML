@@ -15,6 +15,7 @@ namespace CampaignMasterWeb
         protected void Page_Init(object sender, EventArgs e)
         {
             drawForm();
+            drawContext();
         }
 
         private void drawForm()
@@ -35,7 +36,7 @@ namespace CampaignMasterWeb
 
         }
 
-        private void drawContext()
+        public void drawContext()
         {
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
@@ -50,6 +51,7 @@ namespace CampaignMasterWeb
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
 
+                // Für Selektierte Unit Kommandos ausgeben
                 if (unit.Id.ToString() == selectedUnitId)
                 {
                     row.BackColor = System.Drawing.Color.LightBlue;
@@ -67,6 +69,8 @@ namespace CampaignMasterWeb
 
             }
 
+            
+
         }
 
         protected void unitSelected(object sender, EventArgs e)
@@ -83,7 +87,7 @@ namespace CampaignMasterWeb
                 Dictionary<string, ICommand> contextCmdList = new Dictionary<string, ICommand>();
                 Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = contextCmdList;
                 Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id.ToString();
-                
+
                 List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
                 foreach (ICommand cmd in lstCmds)
                 {
@@ -91,6 +95,8 @@ namespace CampaignMasterWeb
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
+
+            drawContext();
         }
 
 

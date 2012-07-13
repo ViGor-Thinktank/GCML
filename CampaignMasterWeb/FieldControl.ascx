@@ -6,20 +6,15 @@
     {
         height: 42px;
     }
+    .style2
+    {
+        height: 34px;
+    }
 </style>
 <input type="hidden" runat="server" ID="panelControlSessionId" />
 <table style="width: 100%;"  class="playerpanel">
 <tr>
-<td colspan="2">
-Spieler Auswählen:
-&nbsp;
-    <asp:DropDownList ID="dropDownPlayer" runat="server">
-        <asp:ListItem Value="-">-</asp:ListItem>
-        <asp:ListItem Value="1">Player 1</asp:ListItem>
-        <asp:ListItem Value="2">Player 2</asp:ListItem>
-    </asp:DropDownList>&nbsp;
-    <asp:Button ID="btnSelectPlayer" runat="server" Text="Spieler wählen" 
-        onclick="btnSelectPlayer_Click" />
+<td colspan="2" class="style2">
 </td>
 </tr>
     <tr>
