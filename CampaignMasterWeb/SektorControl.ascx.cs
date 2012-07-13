@@ -14,10 +14,10 @@ namespace CampaignMasterWeb
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            drawSektor();
+            drawForm();
         }
 
-        private void drawSektor()
+        private void drawForm()
         {
             if (this.Sektor == null)
             {
@@ -29,15 +29,22 @@ namespace CampaignMasterWeb
                 LabelSektorname.Text = "bla";
             }
 
+            LabelSektorname.Text = this.Sektor.Id;
+            
+           
+
+        }
+
+        private void drawContext()
+        {
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
             if (controller.getUnitCollisions().Contains(this.Sektor))
                 bgcolor = System.Drawing.Color.Orange;
             this.TableUnits.BackColor = bgcolor;
 
-            LabelSektorname.Text = this.Sektor.Id;
-              
-            string selectedUnitId = (string) Session[GcmlClientKeys.CONTEXTUNITID];
+            string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
+
             foreach (IUnit unit in this.Sektor.ListUnits)
             {
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
@@ -61,7 +68,7 @@ namespace CampaignMasterWeb
             }
 
         }
-  
+
         protected void unitSelected(object sender, EventArgs e)
         {
             Button btnSender = sender as Button;
@@ -84,7 +91,6 @@ namespace CampaignMasterWeb
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
-            drawSektor(); 
         }
 
 

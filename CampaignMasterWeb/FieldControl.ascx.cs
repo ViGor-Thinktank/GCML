@@ -39,22 +39,6 @@ namespace CampaignMasterWeb
         private void drawForm()
         {
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
-            Player aktplayer = getCurrentPlayer();
-            if (aktplayer == null)
-            {
-                Label hinweis = new Label();
-                hinweis.Text = "Bitte einloggen";
-                panelPlayer.Controls.Add(hinweis);
-                panelField.Visible = false;
-            }
-            else
-            {
-                Label labelInfo = new Label();
-                labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
-                panelPlayer.Controls.Add(labelInfo);
-                panelField.Visible = true;
-            }
-            
             Table tab = new Table();
             tab.Rows.Add(new TableRow());
             foreach (Sektor sektor in controller.campaignEngine.FieldField.getSektorList())
@@ -72,26 +56,46 @@ namespace CampaignMasterWeb
 
         private void drawPlayerContext()
         {
-            List<Panel> sektorStack = (List<Panel>) Session[GcmlClientKeys.SEKTORSTACK];
-            foreach (Panel sektor in sektorStack)
-            {
-
-
-
-            }
-
-
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
-            Field field = GcmlClientWeb.getField(Session);
-            Player player = getCurrentPlayer();
-            foreach (IUnit unit in player.ListUnits)
+            Player aktplayer = getCurrentPlayer();
+            if (aktplayer == null)
             {
-                Sektor containingSek = controller.getSektorForUnit(unit);
-                Panel panelSek = sektorStack.First(p => p.ID == "sektor#" + containingSek.Id);
-
-
-
+                Label hinweis = new Label();
+                hinweis.Text = "Bitte einloggen";
+                panelPlayer.Controls.Add(hinweis);
+                panelField.Visible = false;
             }
+            else
+            {
+                Label labelInfo = new Label();
+                labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
+                panelPlayer.Controls.Add(labelInfo);
+                panelField.Visible = true;
+            }
+            
+            //foreach (SektorControl sektorCtrl in panelField.Controls)
+            //{
+            //    Sektor sektor = sektorCtrl.Sektor;
+            //    var containingUnits = from u in sektor.ListUnits
+            //                          where aktplayer.ListUnits.Contains(u)
+            //                          select u;
+
+
+
+
+            //}
+
+
+            //Field field = GcmlClientWeb.getField(Session);
+            //Player player = getCurrentPlayer();
+            //foreach (IUnit unit in player.ListUnits)
+            //{
+            //    Sektor containingSek = controller.getSektorForUnit(unit);
+            //    Panel panelSek = sektorStack.First(p => p.ID == "sektor#" + containingSek.Id);
+
+
+
+            //}
         }
 
         //private Panel drawSektor(TableRow row, Sektor s, CampaignController controller)
@@ -159,7 +163,7 @@ namespace CampaignMasterWeb
         protected void btnSelectPlayer_Click(object sender, EventArgs e)
         {
             setCurrentPlayer();
-            drawForm();
+            //drawForm();
         }
 
     }
