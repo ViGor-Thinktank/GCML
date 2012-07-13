@@ -10,16 +10,13 @@ namespace CampaignMasterWeb
 {
     public partial class FieldControl : System.Web.UI.UserControl
     {
-
         protected void Page_Init(object sender, EventArgs e)
         {
-                drawForm();   
+            drawForm();
         }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
 
         protected void setCurrentPlayer()
@@ -28,7 +25,6 @@ namespace CampaignMasterWeb
             Player player = GcmlClientWeb.getCampaignController(this.Session).getPlayer(id);
             Session[GcmlClientKeys.CONTEXTPLAYERID] = id;
         }
-
 
         protected Player getCurrentPlayer()
         {
@@ -42,21 +38,23 @@ namespace CampaignMasterWeb
         /// </summary>
         private void drawForm()
         {
-
+            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             Player aktplayer = getCurrentPlayer();
             if (aktplayer == null)
             {
                 Label hinweis = new Label();
                 hinweis.Text = "Bitte einloggen";
                 panelPlayer.Controls.Add(hinweis);
-                return;
+                panelField.Visible = false;
             }
-
-            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
-            Label labelInfo = new Label();
-            labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
-            panelPlayer.Controls.Add(labelInfo);
-
+            else
+            {
+                Label labelInfo = new Label();
+                labelInfo.Text = "Spieler: " + aktplayer.Id + " - " + aktplayer.Playername + "<br />";
+                panelPlayer.Controls.Add(labelInfo);
+                panelField.Visible = true;
+            }
+            
             Table tab = new Table();
             tab.Rows.Add(new TableRow());
             foreach (Sektor sektor in controller.campaignEngine.FieldField.getSektorList())
@@ -67,13 +65,10 @@ namespace CampaignMasterWeb
                 SektorControl sc = (SektorControl)Page.LoadControl("SektorControl.ascx");
                 sc.Sektor = sektor;
                 c.Controls.Add(sc);
-
             }
 
             panelField.Controls.Add(tab);
         }
-
-
 
         private void drawPlayerContext()
         {
@@ -98,16 +93,6 @@ namespace CampaignMasterWeb
 
             }
         }
-		
-		
-		/// <summary>
-		/// Zeichnet die Spielfeldansicht für einen Spieler
-		/// </summary>
-		private void drawField(Panel panel, CampaignController controller)
-        {
-            
-        }
-
 
         //private Panel drawSektor(TableRow row, Sektor s, CampaignController controller)
         //{
@@ -169,9 +154,7 @@ namespace CampaignMasterWeb
         //    return unitPanel;
         //}
 
-		
-
-		
+				
 
         protected void btnSelectPlayer_Click(object sender, EventArgs e)
         {

@@ -24,7 +24,7 @@ namespace CampaignMasterWeb
     {
 
 
-        protected void Page_Init(object sender, EventArgs e)
+        protected void Page_PreInit(object sender, EventArgs e)
         {
             GcmlClientWeb.getCampaignController(this.Session);            // Aufrufen stellt sicher dass CampaignController vorhanden ist
         }
@@ -73,6 +73,12 @@ namespace CampaignMasterWeb
             state[GcmlClientKeys.CAMPAIGNSTATE] = newkey;
             state[GcmlClientKeys.CAMPAIGNID] = controller.CampaignKey;
             state[GcmlClientKeys.CAMPAIGNCONTROLLER] = controller;
+
+            #if DEBUG
+            //controller.restoreGameState(newkey);
+
+            # endif
+
             return controller;
         }
 

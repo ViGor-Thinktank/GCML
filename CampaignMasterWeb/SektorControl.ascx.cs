@@ -14,8 +14,7 @@ namespace CampaignMasterWeb
 
         protected void Page_Init(object sender, EventArgs e)
         {
-
-          drawSektor();
+            drawSektor();
         }
 
         private void drawSektor()
@@ -46,7 +45,7 @@ namespace CampaignMasterWeb
 
                 if (unit.Id.ToString() == selectedUnitId)
                 {
-                    row.BackColor = System.Drawing.Color.LightSalmon;
+                    row.BackColor = System.Drawing.Color.LightBlue;
 
                     Dictionary<string, ICommand> contextCmdList = (Dictionary<string, ICommand>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
                     foreach (string cmdkey in contextCmdList.Keys)
@@ -85,7 +84,7 @@ namespace CampaignMasterWeb
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
-            //drawSektor(); 
+            drawSektor(); 
         }
 
 

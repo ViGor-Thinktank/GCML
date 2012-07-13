@@ -90,7 +90,7 @@ namespace GenericCampaignMasterLib
 				
 				BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId), newUnitType);
                 string sektorId = uInfo.sektorId;
-                clsSektorKoordinaten sektorKoord = field.ListSektors[sektorId].objSektorKoord;
+                clsSektorKoordinaten sektorKoord = field.ListSektors["|" + sektorId + "|"].objSektorKoord;
 
 				// TODO Koordinaten
 				engine.addUnit(uInfo.playerId, unit, sektorKoord);

@@ -69,6 +69,7 @@ namespace GenericCampaignMasterLib
 
         public void setSektorList(List<Sektor> sektorList)
         {
+            m_ListSektors.Clear();
             foreach (Sektor s in sektorList)
             {
                 string unid = s.objSektorKoord.uniqueIDstr();
