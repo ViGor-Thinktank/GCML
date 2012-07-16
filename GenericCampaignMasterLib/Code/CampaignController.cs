@@ -158,7 +158,17 @@ namespace GenericCampaignMasterLib
              return campaignEngine.FieldField.getSektorForUnit(unit);
         }
 
+        public Sektor getSektor(string sektorId)
+        {
+            Sektor result = new Sektor();
+            var query = from s in m_campaignEngine.FieldField.ListSektors.Values
+                        where s.Id == sektorId
+                        select s;
+            if (query.Count() > 0)
+                result = query.First<Sektor>();
 
+            return result;
+        }
 
         # endregion
 

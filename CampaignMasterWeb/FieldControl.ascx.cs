@@ -13,11 +13,15 @@ namespace CampaignMasterWeb
         protected void Page_Init(object sender, EventArgs e)
         {
             drawForm();
-            drawPlayerContext();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            drawPlayerContext();
         }
 
         /// <summary>

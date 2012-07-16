@@ -41,6 +41,13 @@ namespace CampaignMasterWeb
                 bgcolor = System.Drawing.Color.Orange;
             this.TableUnits.BackColor = bgcolor;
 
+            // Sektorinformationen aktualisieren
+            if (this.Sektor != null)
+            {
+                string sektorid = this.Sektor.Id;
+                this.Sektor = controller.getSektor(sektorid);
+            }
+
             TableUnits.Rows.Clear();
             TableUnitActions.Rows.Clear();
             string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
@@ -62,13 +69,8 @@ namespace CampaignMasterWeb
                         TableRow rowcmd = createSelectableRow(cmdkey, cmd.strInfo, new EventHandler(executeUnitAction));
                         TableUnitActions.Rows.Add(rowcmd);
                     }
-
                 }
-
             }
-
-            
-
         }
 
         protected void unitSelected(object sender, EventArgs e)
@@ -94,9 +96,8 @@ namespace CampaignMasterWeb
                 }
             }
 
-            drawContext();
+            //drawContext();
         }
-
 
         protected void executeUnitAction(object sender, EventArgs e)
         {
@@ -108,6 +109,8 @@ namespace CampaignMasterWeb
                 ICommand cmd = cmdList[cmdId];
                 cmd.Execute();
             }
+
+            //drawContext();
         }
 
 
