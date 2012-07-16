@@ -31,9 +31,6 @@ namespace CampaignMasterWeb
             }
 
             LabelSektorname.Text = this.Sektor.Id;
-            
-           
-
         }
 
         public void drawContext()
@@ -44,8 +41,9 @@ namespace CampaignMasterWeb
                 bgcolor = System.Drawing.Color.Orange;
             this.TableUnits.BackColor = bgcolor;
 
+            TableUnits.Rows.Clear();
+            TableUnitActions.Rows.Clear();
             string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
-
             foreach (IUnit unit in this.Sektor.ListUnits)
             {
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
@@ -91,7 +89,7 @@ namespace CampaignMasterWeb
                 List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
                 foreach (ICommand cmd in lstCmds)
                 {
-                    string cmdId = new Guid().ToString();       // Temporäre ID für die Zuordnung des ListItems
+                    string cmdId = Guid.NewGuid().ToString();
                     contextCmdList.Add(cmdId, cmd);
                 }
             }
