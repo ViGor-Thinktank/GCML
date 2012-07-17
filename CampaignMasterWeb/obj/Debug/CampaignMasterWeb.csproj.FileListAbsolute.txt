@@ -14,3 +14,11 @@ C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\Gen
 C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
 C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\bin\CampaignMasterWeb.dll
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\bin\CampaignMasterWeb.pdb
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaignMasterLib.dll
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\bin\RaptorDB.dll
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaignMasterLib.pdb
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
+C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb

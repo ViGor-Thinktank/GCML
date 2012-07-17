@@ -207,6 +207,11 @@ namespace GenericCampaignMasterLib
  
         #endregion
 
+        public void flushPlayers()
+        {
+            this.m_ListPlayers.Clear();
+        }
+
         public Player addPlayer(string strPlayerName)
         {
             Player newPlayer = new Player(ListPlayers.Count.ToString());

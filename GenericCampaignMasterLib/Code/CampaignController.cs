@@ -210,13 +210,33 @@ namespace GenericCampaignMasterLib
         #endregion
 
 
+        public void Plenk()
+        {
+            this.m_campaignEngine.flushPlayers();
+
+            Player Pkb = this.m_campaignEngine.addPlayer("Baboomplayer");
+            this.m_campaignEngine.addUnit(Pkb.Id, typeof(DummyUnit));
+
+            CampaignState state = this.m_campaignEngine.getState();
+            string strSerielleDaten = state["players"];
+
+            Player PKb_nachher = state.getListPlayers()[0];
+            if (PKb_nachher.ListUnits.Count == 0)
+            { 
+                //Hier fehlt die Einheit
+                int i = 0;
+            }
+        }
+
         public CampaignState_Player getCampaignStateForPlayer(string pID)
         {
 
             //Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
+
+            
             CampaignState_Player objPlayerInfo = new CampaignState_Player();
-            objPlayerInfo.p = this.m_campaignEngine.getPlayer(pID);
-            this.m_campaignEngine.fillVisibleSektors(ref objPlayerInfo.p);
+            /*objPlayerInfo.p = this.m_campaignEngine.getPlayer(pID);
+            this.m_campaignEngine.fillVisibleSektors(ref objPlayerInfo.p);*/
 
             return objPlayerInfo;
 
