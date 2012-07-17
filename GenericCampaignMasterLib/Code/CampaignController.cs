@@ -220,7 +220,8 @@ namespace GenericCampaignMasterLib
             CampaignState state = this.m_campaignEngine.getState();
             string strSerielleDaten = state["players"];
 
-            Player PKb_nachher = state.getListPlayers()[0];
+            CampaignEngine restored = state.Restore();
+            Player PKb_nachher = restored.getPlayer(Pkb.Id);
             if (PKb_nachher.ListUnits.Count == 0)
             { 
                 //Hier fehlt die Einheit
