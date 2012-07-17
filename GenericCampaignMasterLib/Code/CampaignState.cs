@@ -18,6 +18,11 @@ namespace GenericCampaignMasterLib
 		public string unitType;
     }
 
+    public class CampaignState_Player 
+    {
+        public Player p;
+    }
+
     public class CampaignState : Dictionary<string, string>
     {
 
@@ -28,10 +33,23 @@ namespace GenericCampaignMasterLib
 			return (List<Sektor>) m_serializer.Deserialize<List<Sektor>>(this["sektors"]);
         }
 
+        public Player getPlayer(string strPlayerID)
+        {
+
+            List<Player> lisP = getListPlayers();
+            
+            Player owner = (from p in lisP
+                         where p.Id == strPlayerID
+                         select p).First();
+
+            return owner;
+        }
+
         public List<Player> getListPlayers()
         {
 
-			return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
+            
+           return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
         }
 		
 		public List<UnitInfo> getListUnitInfo()
@@ -54,7 +72,7 @@ namespace GenericCampaignMasterLib
 
         public CampaignState Save(CampaignEngine engine)
         {
-            this["players"] = m_serializer.Serialize (engine.ListPlayers.Values);
+            this["players"] = m_serializer.Serialize (engine.ListPlayers);
             this["sektors"] = m_serializer.Serialize (engine.FieldField.ListSektors.Values);
             this["fielddimension"] = m_serializer.Serialize(engine.FieldField.ListDimensions);
             this["fieldtype"] = engine.FieldField.GetType().ToString();

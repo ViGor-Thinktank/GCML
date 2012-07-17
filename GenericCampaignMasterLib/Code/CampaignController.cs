@@ -104,6 +104,11 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
+        public Player getPlayer(string pID)
+        {
+            return this.m_campaignEngine.getPlayer(pID);
+        }
+
         public void createNewUnit(string strPlayerID, Type type)
         {
             this.m_campaignEngine.addUnit(strPlayerID, type);
@@ -117,20 +122,11 @@ namespace GenericCampaignMasterLib
             return this.m_campaignEngine.addPlayer(p);
         }
 
-        public Player getPlayer(string playerId)
-        {
-            if (String.IsNullOrEmpty(playerId))
-                return null;
-
-            if(m_campaignEngine.ListPlayers.ContainsKey(playerId))
-                return m_campaignEngine.ListPlayers[playerId];
-            else
-                return null;
-        }
+        
 
         public List<Player> getPlayerList()
         {
-            return m_campaignEngine.ListPlayers.Values.ToList<Player>();
+            return m_campaignEngine.ListPlayers;
         }
 			
 		public IUnit getUnit (string unitId)
@@ -214,14 +210,15 @@ namespace GenericCampaignMasterLib
         #endregion
 
 
-        public CampaignState getCampaignStateForPlayer(string pID)
+        public CampaignState_Player getCampaignStateForPlayer(string pID)
         {
+
             //Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
-            //CampaignState newState = new CampaignState();
+            CampaignState_Player objPlayerInfo = new CampaignState_Player();
+            objPlayerInfo.p = this.m_campaignEngine.getPlayer(pID);
+            this.m_campaignEngine.fillVisibleSektors(ref objPlayerInfo.p);
 
-            //newState.ListSektors = this.m_campaignEngine.getVisibleSektorsForPlayer(askingPlayer);
-
-            return this.m_campaignEngine.getState();
+            return objPlayerInfo;
 
 
             //return newState;

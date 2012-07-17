@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Builder\CampaignBuilderSchachbrett.cs" />
     <Compile Include="Code\CampaignController.cs" />
     <Compile Include="Code\Commands\Attack.cs" />
     <Compile Include="Code\CampaignEngine.cs" />

@@ -36,17 +36,8 @@ namespace GenericCampaignMasterLib
 
         }
 
-        private Dictionary<string, Sektor> m_dicVisibleSectors;
+        public Dictionary<string, Sektor> dicVisibleSectors;
 
-        public Dictionary<string, Sektor> dicVisibleSectors
-        {
-            get
-            {
-                if (m_dicVisibleSectors == null) { m_dicVisibleSectors = new Dictionary<string, Sektor>(); }
-                return m_dicVisibleSectors;
-            }
-
-        }
 
         public Ressourcen Ressourcen
         {

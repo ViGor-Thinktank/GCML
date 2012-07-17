@@ -6,3 +6,11 @@ C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaign
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
 C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\CampaignMasterWeb.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\CampaignMasterWeb.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\GenericCampaignMasterLib.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\RaptorDB.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\bin\GenericCampaignMasterLib.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb

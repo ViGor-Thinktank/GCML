@@ -31,8 +31,8 @@ namespace GenericCampaignMasterLib
         }
 
         #region " Properties && Felder "
-        private Dictionary<string, Player> m_ListPlayers = null;
-        public Dictionary<string, Player> ListPlayers
+        private List<Player> m_ListPlayers = new List<Player>();
+        public List<Player> ListPlayers
         {
             get
             {
@@ -119,7 +119,7 @@ namespace GenericCampaignMasterLib
         public List<UnitInfo> getUnitInfo()
         {
             List<UnitInfo> result = new List<UnitInfo>();
-            foreach(Player p in ListPlayers.Values)
+            foreach(Player p in ListPlayers)
             {
                 foreach(IUnit u in p.ListUnits)
                 {
@@ -140,7 +140,7 @@ namespace GenericCampaignMasterLib
 
         public Player getUnitOwner(IUnit unit)
         {
-            var owner = (from p in m_ListPlayers.Values
+            var owner = (from p in m_ListPlayers
                          where p.ListUnits.Contains(unit)
                          select p).First();
 
@@ -149,7 +149,7 @@ namespace GenericCampaignMasterLib
 
 		public IUnit getUnit (string id)
 		{
-			var units = from p in m_ListPlayers.Values
+			var units = from p in m_ListPlayers
 						from u in p.ListUnits
 						where u.Id.
                         ToString() == id
@@ -169,15 +169,28 @@ namespace GenericCampaignMasterLib
 
             if (UnitType == typeof(DummyUnit))
             {
-                newUnit = new DummyUnit(m_ListPlayers[strPlayerID].ListUnits.Count);
+                newUnit = new DummyUnit(getPlayer(strPlayerID).ListUnits.Count);
             }
 
             return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);
         }
 
+        public Player getPlayer(string playerId)
+        {
+            if (String.IsNullOrEmpty(playerId))
+                return null;
+
+            Player theP = (from p in m_ListPlayers
+                           where p.Id == playerId
+                           select p).First();
+
+            return theP;
+        }
+
         public IUnit addUnit(string strPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
-            this.ListPlayers[strPlayerID].ListUnits.Add(newUnit);
+            
+            getPlayer(strPlayerID).ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
             return newUnit;
@@ -205,14 +218,9 @@ namespace GenericCampaignMasterLib
         public Player addPlayer(Player objNewPlayer)
         {
             if (m_ListPlayers == null)
-                m_ListPlayers = new Dictionary<string, Player>();
+                m_ListPlayers = new List<Player>();
 
-            if (m_ListPlayers.ContainsKey(objNewPlayer.Id))
-            {
-                throw new Exception_Engine_Player("PlayerID ist bereits vergeben!");
-            }
-            
-            m_ListPlayers.Add(objNewPlayer.Id, objNewPlayer);
+            m_ListPlayers.Add(objNewPlayer);
             
             return objNewPlayer;
         }
@@ -225,9 +233,7 @@ namespace GenericCampaignMasterLib
             }
         }
 
-
-
-        public Dictionary<string, Sektor> getVisibleSektorsForPlayer(Player p)
+        public void fillVisibleSektors(ref Player p)
         {
             clsViewableSectorFactory facViewSek = new clsViewableSectorFactory(this.FieldField);
 
@@ -237,8 +243,7 @@ namespace GenericCampaignMasterLib
     
             }
 
-            
-            return facViewSek.ListVisibleSektors;
+            p.dicVisibleSectors = facViewSek.ListVisibleSektors;
         }
     }
 }

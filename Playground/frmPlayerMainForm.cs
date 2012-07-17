@@ -20,14 +20,24 @@ namespace Playground
             InitializeComponent();            
         }
 
-        private CampaignState m_aktState = null;
+        private CampaignState_Player m_aktState = null;
 
         public void Tick()
         {
+            this.clearCommandButtons();
+
             this.m_aktState = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
 
-            //this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[0]);
+            comboBox1.DisplayMember = "Bezeichnung";
+            comboBox1.ValueMember  = "Id";
+
+            comboBox1.DataSource = m_aktState.p.ListUnits;
+            this.textBox1.Text = "";
+            foreach (Sektor x in myPlayer.dicVisibleSectors.Values)
+            {
+                this.textBox1.Text += x.strUniqueID + Environment.NewLine;
             }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -36,7 +46,9 @@ namespace Playground
             this.Text = myPlayer.Playername;
 
             Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
-            
+            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
+
+            button1.Visible = false;
         }
 
         void Global_onStatus(string strText)
@@ -56,7 +68,7 @@ namespace Playground
                 offset = 1;
                 hoffset += 1;
             }
-            btnNew.Location = new System.Drawing.Point((12 + offset * btnNew.Size.Width), 50 + hoffset * btnNew.Size.Height);
+            btnNew.Location = new System.Drawing.Point((5 + offset * btnNew.Size.Width), 5 + hoffset * btnNew.Size.Height);
             
             btnNew.Name = "movecmd" + offset.ToString();
             btnNew.Tag = aktCommand;
@@ -65,7 +77,7 @@ namespace Playground
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += new System.EventHandler(CommandButton_Click);
 
-            this.Controls.Add(btnNew);
+            this.panel1.Controls.Add(btnNew);
             
         }
 
@@ -77,11 +89,14 @@ namespace Playground
 
         private void erzeugeCommandButtonsForUnit(IUnit unit)
         {
-            this.Controls.Clear();
+
+            this.clearCommandButtons();
 
             hoffset = 1;
 
             int offset = 1;
+
+            
             
             foreach (ICommand aktCommand in Program.m_objCampaign.getCommandsForUnit(unit))
             {
@@ -90,6 +105,16 @@ namespace Playground
             }
 
             hoffset += 1;
+        }
+
+        private void clearCommandButtons()
+        {
+            panel1.Controls.Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[(int)comboBox1.SelectedValue]);
         }
 
     }

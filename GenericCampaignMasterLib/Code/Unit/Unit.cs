@@ -31,7 +31,7 @@ namespace GenericCampaignMasterLib
         {
             m_intId = unitId;
             m_objUnitType = UnitType;
-            m_strBezeichnung = UnitType.strDefaultBez;
+            m_strBezeichnung = UnitType.strDefaultBez + " " + unitId.ToString();
         }
 
         public int intMovement { get { return m_objUnitType.intMovement; } }
