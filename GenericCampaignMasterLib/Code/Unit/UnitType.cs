@@ -35,6 +35,8 @@ namespace GenericCampaignMasterLib
         public int intSichtweite { get { return m_intSichtweite; } }
         public int intMovement { get { return m_intMovement; } }
 
+        public UnitTypeBase() { ; }
+
         public UnitTypeBase(string strDefaultBez )
         {
             m_strDefaultBez = strDefaultBez;

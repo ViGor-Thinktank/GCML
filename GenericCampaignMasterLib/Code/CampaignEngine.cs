@@ -128,8 +128,7 @@ namespace GenericCampaignMasterLib
                     UnitInfo uInfo = new UnitInfo();
                     uInfo.sektorId = s.strUniqueID;
                     uInfo.unitId = u.Id.ToString();
-                    uInfo.unitType = u.UnitType.ToString ();
-					uInfo.playerId = p.Id.ToString();
+                    uInfo.playerId = p.Id.ToString();
                     result.Add(uInfo);
                 }
                 
@@ -163,9 +162,9 @@ namespace GenericCampaignMasterLib
 
         #region " Unitfactory "
 
-        internal IUnit addUnit(string strPlayerID, Type UnitType)
+        internal BaseUnit addUnit(string strPlayerID, Type UnitType)
         {
-            IUnit newUnit = null;
+            BaseUnit newUnit = null;
 
             if (UnitType == typeof(DummyUnit))
             {
@@ -187,7 +186,7 @@ namespace GenericCampaignMasterLib
             return theP;
         }
 
-        public IUnit addUnit(string strPlayerID, IUnit newUnit, clsSektorKoordinaten objSektorKoord)
+        public BaseUnit addUnit(string strPlayerID, BaseUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
             
             getPlayer(strPlayerID).ListUnits.Add(newUnit);
@@ -197,7 +196,7 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public IUnit addUnit(Player owner, IUnit newUnit, Sektor sektor)
+        public IUnit addUnit(Player owner, BaseUnit newUnit, Sektor sektor)
         {
             owner.ListUnits.Add(newUnit);
             sektor.addUnit(newUnit);
@@ -244,7 +243,7 @@ namespace GenericCampaignMasterLib
 
             foreach (IUnit aktUnit in p.ListUnits)
             {
-                facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.intSichtweite);
+                facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.Sichtweite);
     
             }
 

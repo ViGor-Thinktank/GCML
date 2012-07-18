@@ -139,14 +139,14 @@ namespace GenericCampaignMasterLib
             return this.m_campaignEngine.getCommandsForUnit(unit);
         }
 
-        public List<IUnit> getActiveUnitsForPlayer(Player player)
+        public List<BaseUnit> getActiveUnitsForPlayer(Player player)
         {
-            List<IUnit> unitsForPlayer = player.ListUnits;
+            List<BaseUnit> unitsForPlayer = player.ListUnits;
             var lstUnitsCanAct = from u in player.ListUnits
                                  where !unitActedStack.Contains(u)
                                  select u;
 
-            return new List<IUnit>(lstUnitsCanAct);
+            return new List<BaseUnit>(lstUnitsCanAct);
         }
 
         public Sektor getSektorForUnit(IUnit unit)
@@ -217,16 +217,19 @@ namespace GenericCampaignMasterLib
             Player Pkb = this.m_campaignEngine.addPlayer("Baboomplayer");
             this.m_campaignEngine.addUnit(Pkb.Id, typeof(DummyUnit));
 
+            
+
             CampaignState state = this.m_campaignEngine.getState();
             string strSerielleDaten = state["players"];
 
-            CampaignEngine restored = state.Restore();
-            Player PKb_nachher = restored.getPlayer(Pkb.Id);
-            if (PKb_nachher.ListUnits.Count == 0)
-            { 
-                //Hier fehlt die Einheit
-                int i = 0;
-            }
+              Player PKb_nachher = state.getListPlayers()[0];
+
+             if (PKb_nachher.ListUnits.Count == 0)
+             { 
+                 //Hier fehlt die Einheit
+                 int i = 0;
+             }
+
         }
 
         public CampaignState_Player getCampaignStateForPlayer(string pID)

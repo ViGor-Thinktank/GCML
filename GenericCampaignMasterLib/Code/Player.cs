@@ -24,17 +24,8 @@ namespace GenericCampaignMasterLib
             
         }
 
-        private List<IUnit> m_lisEinheiten;
-
-        public List<IUnit> ListUnits
-        {
-            get
-            {
-                if (m_lisEinheiten == null) { m_lisEinheiten = new List<IUnit>(); }
-                return m_lisEinheiten;
-            }
-
-        }
+        
+        public List<BaseUnit> ListUnits = new List<BaseUnit>();
 
         public Dictionary<string, Sektor> dicVisibleSectors;
 

@@ -59,7 +59,7 @@ namespace GenericCampaignMasterLib
 
                     int intNewFieldsMoved = intFieldsMoved + newSek.intMoveCost;
                     
-                    if (intNewFieldsMoved < m_Unit.intMovement)
+                    if (intNewFieldsMoved < m_Unit.Movement)
                     {
                         createMoveCommandsForSektor(newSek, intNewFieldsMoved);
                     }
