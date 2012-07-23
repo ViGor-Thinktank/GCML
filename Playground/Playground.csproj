@@ -47,35 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmGameMainForm.cs">
+    <Compile Include="Playerinteraktion\frmGameMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGameMainForm.Designer.cs">
+    <Compile Include="Playerinteraktion\frmGameMainForm.Designer.cs">
       <DependentUpon>frmGameMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPlayerMainForm.cs">
+    <Compile Include="Playerinteraktion\frmPlayerMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPlayerMainForm.Designer.cs">
+    <Compile Include="Playerinteraktion\frmPlayerMainForm.Designer.cs">
       <DependentUpon>frmPlayerMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmStatus.cs">
+    <Compile Include="Playerinteraktion\frmStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStatus.Designer.cs">
+    <Compile Include="Playerinteraktion\frmStatus.Designer.cs">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmGameMainForm.resx">
+    <EmbeddedResource Include="Playerinteraktion\frmGameMainForm.resx">
       <DependentUpon>frmGameMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPlayerMainForm.resx">
+    <EmbeddedResource Include="Playerinteraktion\frmPlayerMainForm.resx">
       <DependentUpon>frmPlayerMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStatus.resx">
+    <EmbeddedResource Include="Playerinteraktion\frmStatus.resx">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -52,7 +52,7 @@ namespace GenericCampaignMasterLib
         private clsMoveFactory m_objMovFactory;
         private List<ICommand>m_lisReadyCommands;
 
-        public List<ICommand> getCommandsForUnit(IUnit u)
+        public List<ICommand> getCommandsForUnit(BaseUnit u)
 		{
             List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
             m_lisReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.
@@ -89,7 +89,7 @@ namespace GenericCampaignMasterLib
         /// Erstmal zum Testen: Einheit liefert i.d.R. nur ein Command für Move.
         /// Liefert nur eine Collection aus möglichen Moves.
         /// </summary>
-        public List<Move> getDefaultMoveCommandsForUnit(IUnit u)
+        public List<Move> getDefaultMoveCommandsForUnit(BaseUnit u)
         {
             List<Move> listMoves = new List<Move>();
             List<ICommand> cmds = getCommandsForUnit(u);
@@ -110,7 +110,7 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
-        public Sektor getSektorContainingUnit(IUnit u)
+        public Sektor getSektorContainingUnit(BaseUnit u)
         {
             return FieldField.getSektorForUnit(u);
             
@@ -121,7 +121,7 @@ namespace GenericCampaignMasterLib
             List<UnitInfo> result = new List<UnitInfo>();
             foreach(Player p in ListPlayers)
             {
-                foreach(IUnit u in p.ListUnits)
+                foreach (BaseUnit u in p.ListUnits)
                 {
                     Sektor s = getSektorContainingUnit(u);
                     
@@ -241,7 +241,7 @@ namespace GenericCampaignMasterLib
         {
             clsViewableSectorFactory facViewSek = new clsViewableSectorFactory(this.FieldField);
 
-            foreach (IUnit aktUnit in p.ListUnits)
+            foreach (BaseUnit aktUnit in p.ListUnits)
             {
                 facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.Sichtweite);
     

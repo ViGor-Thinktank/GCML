@@ -18,11 +18,7 @@ namespace GenericCampaignMasterLib
 		public string unitType;
     }
 
-    public class CampaignState_Player 
-    {
-        public Player p;
-    }
-
+    
     public class CampaignState : Dictionary<string, string>
     {
 
@@ -73,7 +69,7 @@ namespace GenericCampaignMasterLib
         public CampaignState Save(CampaignEngine engine)
         {
             this["players"] = m_serializer.Serialize (engine.ListPlayers);
-            this["sektors"] = m_serializer.Serialize (engine.FieldField.ListSektors.Values);
+            this["sektors"] = m_serializer.Serialize (engine.FieldField.dicSektors.Values);
             this["fielddimension"] = m_serializer.Serialize(engine.FieldField.ListDimensions);
             this["fieldtype"] = engine.FieldField.GetType().ToString();
 			
@@ -108,7 +104,7 @@ namespace GenericCampaignMasterLib
 				
 				BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId));
                 string sektorId = uInfo.sektorId;
-                clsSektorKoordinaten sektorKoord = field.ListSektors["|" + sektorId + "|"].objSektorKoord;
+                clsSektorKoordinaten sektorKoord = field.dicSektors["|" + sektorId + "|"].objSektorKoord;
 
 				// TODO Koordinaten
 				engine.addUnit(uInfo.playerId, unit, sektorKoord);

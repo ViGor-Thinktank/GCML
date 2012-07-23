@@ -70,25 +70,27 @@ namespace GenericCampaignMasterLib
                 for (int j = 0; j < height; j++)
                 {
                     
-                    Sektor newSek;
-                    if (i != j) { newSek = new Sektor(this.ListSektors.Count.ToString()); }
-                    else { newSek = new Sektor(this.ListSektors.Count.ToString(), new clsSektorType_heavyTerrain() ); }
-                    
+                    /*Sektor newSek;
+                    if (i != j) { newSek = new Sektor(this.dicSektors.Count.ToString()); }
+                    else { newSek = new Sektor(this.dicSektors.Count.ToString(), new clsSektorType_heavyTerrain() ); }
+                    */
+
+                    Sektor newSek = new Sektor(this.dicSektors.Count.ToString()); 
                     newSek.objSektorKoord = new clsSektorKoordinaten_Schachbrett(i, j);
                     newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
                     newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
 
-                    this.ListSektors.Add(newSek.strUniqueID, newSek);
+                    this.dicSektors.Add(newSek.strUniqueID, newSek);
                 }
             }
         }
         public override Sektor get(string strSektorID)
         {
-            return this.ListSektors[strSektorID];
+            return this.dicSektors[strSektorID];
         }
         public override Sektor get(clsSektorKoordinaten objSektorKoord)
         {
-            return ListSektors[objSektorKoord.uniqueIDstr()];
+            return dicSektors[objSektorKoord.uniqueIDstr()];
         }
       
         public override List<clsSektorKoordinaten> getDirectionVectors()
@@ -110,8 +112,8 @@ namespace GenericCampaignMasterLib
         {
             clsSektorKoordinaten_Schachbrett objZielSektorKoordSchach = (clsSektorKoordinaten_Schachbrett)aktSek.objSektorKoord + (clsSektorKoordinaten_Schachbrett)Vektor;
 
-            if (ListSektors.ContainsKey(objZielSektorKoordSchach.uniqueIDstr()))
-                return ListSektors[objZielSektorKoordSchach.uniqueIDstr()];
+            if (dicSektors.ContainsKey(objZielSektorKoordSchach.uniqueIDstr()))
+                return dicSektors[objZielSektorKoordSchach.uniqueIDstr()];
             else
                 return null;
         }

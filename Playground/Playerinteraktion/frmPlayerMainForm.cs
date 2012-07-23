@@ -20,18 +20,19 @@ namespace Playground
             InitializeComponent();            
         }
 
-        private CampaignState_Player m_aktState = null;
-
+        
         public void Tick()
         {
             this.clearCommandButtons();
 
-            this.m_aktState = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+            string strPlayerData = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+
+            myPlayer = Player.FromString(strPlayerData);
 
             comboBox1.DisplayMember = "Bezeichnung";
             comboBox1.ValueMember  = "Id";
 
-            comboBox1.DataSource = m_aktState.p.ListUnits;
+            comboBox1.DataSource = myPlayer.ListUnits;
             this.textBox1.Text = "";
             foreach (Sektor x in myPlayer.dicVisibleSectors.Values)
             {
@@ -46,7 +47,7 @@ namespace Playground
             this.Text = myPlayer.Playername;
 
             Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
-            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
+            //Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
 
             button1.Visible = false;
         }
@@ -63,11 +64,13 @@ namespace Playground
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
             btnNew.Size = new System.Drawing.Size(65, 25);
+            
             if (offset > 5)
             {
                 offset = 1;
                 hoffset += 1;
             }
+
             btnNew.Location = new System.Drawing.Point((5 + offset * btnNew.Size.Width), 5 + hoffset * btnNew.Size.Height);
             
             btnNew.Name = "movecmd" + offset.ToString();
@@ -87,24 +90,27 @@ namespace Playground
             ((ICommand)((Button)sender).Tag).Execute();         
         }
 
-        private void erzeugeCommandButtonsForUnit(IUnit unit)
+        private void erzeugeCommandButtonsForUnit(BaseUnit unit)
         {
-
-            this.clearCommandButtons();
-
-            hoffset = 1;
-
-            int offset = 1;
-
-            
-            
-            foreach (ICommand aktCommand in Program.m_objCampaign.getCommandsForUnit(unit))
+            try
             {
-                this.addButton(aktCommand, ref offset);
-                offset += 1;
-            }
+                this.clearCommandButtons();
 
-            hoffset += 1;
+                hoffset = 1;
+                int offset = 1;
+                foreach (ICommand aktCommand in Program.m_objCampaign.getCommandsForUnit(unit))
+                {
+                    this.addButton(aktCommand, ref offset);
+                    offset += 1;
+                }
+
+                hoffset += 1;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void clearCommandButtons()
@@ -114,7 +120,12 @@ namespace Playground
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.erzeugeCommandButtonsForUnit(myPlayer.ListUnits[(int)comboBox1.SelectedValue]);
+            if ((int)comboBox1.SelectedValue >= 0)
+            {
+                int intUnitID = (int)comboBox1.SelectedValue;
+                BaseUnit unit = myPlayer.ListUnits[intUnitID];
+                this.erzeugeCommandButtonsForUnit(unit);
+            }
         }
 
     }

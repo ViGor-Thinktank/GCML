@@ -27,7 +27,7 @@ namespace GenericCampaignMasterLib
         
 
         private string m_strID;
-		private List<IUnit> m_ListUnits = new List<IUnit>();
+        private List<BaseUnit> m_ListUnits = new List<BaseUnit>();
 
         private clsSektorType_base m_objSektorType;
 
@@ -43,12 +43,15 @@ namespace GenericCampaignMasterLib
             }
         }
 
-		public List<IUnit> ListUnits 
+        public List<BaseUnit> ListUnits 
         { 
             get 
             {
-                if (m_ListUnits == null) { m_ListUnits = new List<IUnit>(); }
                 return m_ListUnits; 
+            }
+            set
+            {
+                m_ListUnits = ListUnits;
             }
         }
 
@@ -60,22 +63,27 @@ namespace GenericCampaignMasterLib
 
         public string strUniqueID { get { return (this.objSektorKoord != null) ? this.objSektorKoord.uniqueIDstr():"" ; } }
 
-        public clsSektorKoordinaten objSektorKoord { get; set; } 
+        public clsSektorKoordinaten objSektorKoord { get; set; }
 
-        
 
-		public void addUnit (IUnit unit)
+
+        public void addUnit(BaseUnit unit)
 		{
 			m_ListUnits.Add (unit);
 
             if(onUnitEnteredSektor != null)
                 onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
-		
-		public void removeUnit (IUnit unit)
-		{
-			m_ListUnits.Remove(unit);
 
+        public void removeUnit(BaseUnit unit)
+		{
+
+            BaseUnit objUnitList = (from u in this.m_ListUnits
+                         where u.Id == unit.Id 
+                         select u).First();
+
+            m_ListUnits.Remove(objUnitList);
+            
             if(onUnitLeftSektor != null)
                 onUnitLeftSektor(this, new SektorEventArgs(unit, this));
 		}

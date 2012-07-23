@@ -27,9 +27,6 @@ namespace Playground
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Program.m_objCampaign.Plenk();
-
-            return;
             foreach (frmPlayerMainForm aktForm in lisForms)
             {
                 aktForm.Tick();

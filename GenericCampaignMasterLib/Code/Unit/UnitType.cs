@@ -10,7 +10,7 @@ namespace GenericCampaignMasterLib
         public UnitTypeDummy() : base("UnitTypeDummy")
         {
             this.m_intMovement = 1;
-            this.m_intSichtweite = 2;
+            this.m_intSichtweite = 1;
         }
 
         public override List<ICommand> getCommands(BaseUnit CallingUnit)

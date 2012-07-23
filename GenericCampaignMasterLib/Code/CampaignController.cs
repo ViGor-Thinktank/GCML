@@ -35,7 +35,6 @@ namespace GenericCampaignMasterLib
 
         public event Field.delStatus onStatus;
         
-		
         public void Global_onStatus(string strText)
         {
             if (onStatus != null)
@@ -77,6 +76,9 @@ namespace GenericCampaignMasterLib
             initEngine(engine);
         }
 
+
+        #region Unit
+
         public List<Sektor> getUnitCollisions()
         {
             return unitCollisionStack;
@@ -104,14 +106,16 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        public Player getPlayer(string pID)
-        {
-            return this.m_campaignEngine.getPlayer(pID);
-        }
-
+        
         public void createNewUnit(string strPlayerID, Type type)
         {
             this.m_campaignEngine.addUnit(strPlayerID, type);
+        }
+        #endregion
+
+        public Player getPlayer(string pID)
+        {
+            return this.m_campaignEngine.getPlayer(pID);
         }
 
 
@@ -134,7 +138,7 @@ namespace GenericCampaignMasterLib
 			return m_campaignEngine.getUnit (unitId);
 		}
 
-        public List<ICommand> getCommandsForUnit(IUnit unit)
+        public List<ICommand> getCommandsForUnit(BaseUnit unit)
         {
             return this.m_campaignEngine.getCommandsForUnit(unit);
         }
@@ -149,7 +153,7 @@ namespace GenericCampaignMasterLib
             return new List<BaseUnit>(lstUnitsCanAct);
         }
 
-        public Sektor getSektorForUnit(IUnit unit)
+        public Sektor getSektorForUnit(BaseUnit unit)
         {
              return campaignEngine.FieldField.getSektorForUnit(unit);
         }
@@ -157,7 +161,7 @@ namespace GenericCampaignMasterLib
         public Sektor getSektor(string sektorId)
         {
             Sektor result = new Sektor();
-            var query = from s in m_campaignEngine.FieldField.ListSektors.Values
+            var query = from s in m_campaignEngine.FieldField.dicSektors.Values
                         where s.Id == sektorId
                         select s;
             if (query.Count() > 0)
@@ -176,7 +180,7 @@ namespace GenericCampaignMasterLib
             if (sektor.ListUnits.Count > 1)
             {
                 List<Player> unitOwnersInSektor = new List<Player>();
-                foreach (IUnit unit in sektor.ListUnits)
+                foreach (BaseUnit unit in sektor.ListUnits)
                 {
                     Player owner = m_campaignEngine.getUnitOwner(unit);
                     if (!unitOwnersInSektor.Contains(owner))
@@ -232,17 +236,14 @@ namespace GenericCampaignMasterLib
 
         }
 
-        public CampaignState_Player getCampaignStateForPlayer(string pID)
+        public string getCampaignStateForPlayer(string pID)
         {
 
-            //Player askingPlayer = this.m_campaignEngine.ListPlayers[pID];
+            Player askingPlayer = this.m_campaignEngine.getPlayer(pID);
 
-            
-            CampaignState_Player objPlayerInfo = new CampaignState_Player();
-            /*objPlayerInfo.p = this.m_campaignEngine.getPlayer(pID);
-            this.m_campaignEngine.fillVisibleSektors(ref objPlayerInfo.p);*/
+            this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
 
-            return objPlayerInfo;
+            return askingPlayer.ToString();
 
 
             //return newState;

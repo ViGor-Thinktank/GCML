@@ -23,7 +23,7 @@ namespace GenericCampaignMasterLib
 
         public clsSektorKoordinaten nullSektorKoord = null;
         protected abstract void setNullSektor();
-        public Sektor nullSektor { get { return this.ListSektors[this.nullSektorKoord.uniqueIDstr()]; } }
+        public Sektor nullSektor { get { return this.dicSektors[this.nullSektorKoord.uniqueIDstr()]; } }
         
 
         public abstract Sektor get(string strSektorID);
@@ -31,49 +31,67 @@ namespace GenericCampaignMasterLib
 
         public bool checkKoordsValid(clsSektorKoordinaten objSektorKoord)
         {
-            return this.ListSektors.ContainsKey(objSektorKoord.uniqueIDstr());
+            return this.dicSektors.ContainsKey(objSektorKoord.uniqueIDstr());
 
         }
 
-        private Dictionary<string, Sektor> m_ListSektors = new Dictionary<string, Sektor>();
+        private Dictionary<string, Sektor> m_dicSektors = new Dictionary<string, Sektor>();
 
-        public Dictionary<string, Sektor> ListSektors
+        public Dictionary<string, Sektor> dicSektors
         {
             get 
             { 
-                return m_ListSektors; 
+                return m_dicSektors; 
             }
             set
             {
-                m_ListSektors = value;
+                m_dicSektors = value;
             }
         }
         
         
-        public Sektor getSektorForUnit(IUnit u)
+        public Sektor getSektorForUnit(BaseUnit u)
         {
-            var aktSek = (from s in ListSektors.Values
+            foreach (Sektor aktSek in dicSektors.Values)
+            {
+
+
+                foreach (BaseUnit aktUnit in aktSek.ListUnits)
+                {
+                    if (aktUnit.Id == u.Id)
+                        return aktSek;
+
+                    /*var lokUnit = (from aktUnitinList in aktSek.ListUnits
+                                   where aktUnitinList.Id == u.Id
+                                   select aktUnitinList);
+                    if (lokUnit != null) { return aktSek; }
+                */
+                }   
+            }
+            return null;
+            /*
+            var aktSek = (from s in dicSektors.Values
                          where s.ListUnits.Contains(u)
                          select s).First();
 
-            return aktSek as Sektor;
+            return aktSek as Sektor;*/
             
         }
 
         
         public List<Sektor> getSektorList()
         {
-            return ListSektors.Values.ToList<Sektor>();
+            return dicSektors.Values.ToList<Sektor>();
         }
 
 
         public void setSektorList(List<Sektor> sektorList)
         {
-            m_ListSektors.Clear();
+            m_dicSektors.Clear();
             foreach (Sektor s in sektorList)
             {
                 string unid = s.objSektorKoord.uniqueIDstr();
-                m_ListSektors.Add(unid, s);
+                m_dicSektors.Add(unid, s);
             }
         }
 

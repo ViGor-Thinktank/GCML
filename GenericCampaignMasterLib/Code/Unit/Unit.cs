@@ -51,7 +51,11 @@ namespace GenericCampaignMasterLib
 
 
         private int m_intId = -1;
-        public int Id { get { return m_intId; } }
+        public int Id 
+        { 
+            get { return m_intId; }
+            set { m_intId = value; }
+        }
 
         private string m_strBezeichnung = "";
         public string Bezeichnung

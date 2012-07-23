@@ -13,7 +13,7 @@ namespace GenericCampaignMasterLib
             foreach (Sektor sekNew in lisNewSektors)
             {
                 sekNew.objSektorKoord = new clsSektorKoordinaten_Schlauch(sekNew.Id);
-                this.ListSektors.Add(sekNew.objSektorKoord.uniqueIDstr(), sekNew);
+                this.dicSektors.Add(sekNew.objSektorKoord.uniqueIDstr(), sekNew);
             }
         }
 
@@ -32,12 +32,12 @@ namespace GenericCampaignMasterLib
         {
             for (int i = 0; i < p; i++)
             {
-                Sektor newSek = new Sektor(this.ListSektors.Count.ToString());
+                Sektor newSek = new Sektor(this.dicSektors.Count.ToString());
                 newSek.objSektorKoord = new clsSektorKoordinaten_Schlauch(i);
                 newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
                 newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
 
-                this.ListSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+                this.dicSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
             }
         }
 
@@ -77,7 +77,7 @@ namespace GenericCampaignMasterLib
 
         public override Sektor get(string strSektorID)
         {
-            foreach (Sektor aktSektor in ListSektors.Values)
+            foreach (Sektor aktSektor in dicSektors.Values)
             {
                 if (aktSektor.Id == strSektorID)
                     return aktSektor;
@@ -88,7 +88,7 @@ namespace GenericCampaignMasterLib
 
         public override Sektor get(clsSektorKoordinaten objSektorKoord)
         {
-            return ListSektors[objSektorKoord.uniqueIDstr()];
+            return dicSektors[objSektorKoord.uniqueIDstr()];
         }
 
         
@@ -105,7 +105,7 @@ namespace GenericCampaignMasterLib
         public override Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor)
         {
             int newID = ((clsSektorKoordinaten_Schlauch)aktSek.objSektorKoord).X + ((clsSektorKoordinaten_Schlauch)Vektor).X;
-            foreach (Sektor aktSektor in ListSektors.Values)
+            foreach (Sektor aktSektor in dicSektors.Values)
             {
                 if (aktSektor.Id == newID.ToString())
                     return aktSektor;

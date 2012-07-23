@@ -46,9 +46,7 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getLastGameState()
         {
-            string strState = m_db.FetchRecordString((int)m_db.Count() -1);
-            CampaignState lastState = deserializeState(strState);
-            return lastState;
+            return deserializeState(m_db.FetchRecordString((int)m_db.Count() -1));
         }
 
         public CampaignState getCampaignStateByKey(string key)
