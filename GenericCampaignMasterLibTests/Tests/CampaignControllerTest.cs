@@ -41,7 +41,7 @@ namespace GenericCampaignMasterLibTests.Tests
             Player player2 = controller.getPlayerList()[1];
 
             // Unit von Player 1 solange bewegen bis Kollision
-            IUnit player1unit1 = player1.ListUnits[0];
+            BaseUnit player1unit1 = player1.ListUnits[0];
             Sektor targetSektor = controller.getSektorForUnit(player2.ListUnits[0]);
             Sektor previousSektor = new Sektor();       // Vorherige Position merken
             do

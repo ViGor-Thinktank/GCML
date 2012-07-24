@@ -133,7 +133,7 @@ namespace GenericCampaignMasterLib
             return m_campaignEngine.ListPlayers;
         }
 			
-		public IUnit getUnit (string unitId)
+		public BaseUnit getUnit (string unitId)
 		{
 			return m_campaignEngine.getUnit (unitId);
 		}

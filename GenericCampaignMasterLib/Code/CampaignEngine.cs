@@ -146,7 +146,7 @@ namespace GenericCampaignMasterLib
             return owner as Player;
         }
 
-		public IUnit getUnit (string id)
+		public BaseUnit getUnit (string id)
 		{
 			var units = from p in m_ListPlayers
 						from u in p.ListUnits

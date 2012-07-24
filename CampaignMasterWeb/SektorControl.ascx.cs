@@ -78,7 +78,7 @@ namespace CampaignMasterWeb
             Button btnSender = sender as Button;
             string selUnitId = btnSender.ID.Substring(17);
             CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
-            IUnit unit = controller.getUnit(selUnitId);
+            BaseUnit unit = controller.getUnit(selUnitId);
 
             if ((unit != null) &&
                 (this.Sektor.ListUnits.Contains(unit)))
