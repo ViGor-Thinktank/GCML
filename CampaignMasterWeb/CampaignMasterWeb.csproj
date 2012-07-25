@@ -69,6 +69,7 @@
     <Compile Include="FieldControl.ascx.designer.cs">
       <DependentUpon>FieldControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="GCMLClientWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SektorControl.ascx.cs">
       <DependentUpon>SektorControl.ascx</DependentUpon>
