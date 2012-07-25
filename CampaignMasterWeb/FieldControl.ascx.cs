@@ -25,7 +25,7 @@ namespace CampaignMasterWeb
         }
 
         /// <summary>
-        /// Erzeugt die statischen Formularelemente für die Spielfeldansicht
+        /// Erzeugt die statischen Formularelemente für die Spielfeldansicht (alles von der Spielersicht abhängt)
         /// </summary>
         private void drawForm()
         {

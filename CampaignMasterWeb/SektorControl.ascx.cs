@@ -25,16 +25,15 @@ namespace CampaignMasterWeb
                 LabelSektorname.Text = "Kein Sektor zugewiesen";
                 return;
             }
-            else
-            {
-                LabelSektorname.Text = "bla";
-            }
 
             LabelSektorname.Text = this.Sektor.Id;
         }
 
         public void drawContext()
         {
+            if (GcmlClientWeb.getCurrentPlayer(this.Session) == null)
+                return;
+
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
             if (controller.getUnitCollisions().Contains(this.Sektor))
