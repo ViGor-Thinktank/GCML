@@ -32,5 +32,10 @@ namespace Playground
                 aktForm.Tick();
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            txtKey.Text = Program.m_objCampaign.saveCurrentGameState();
+        }
     }
 }

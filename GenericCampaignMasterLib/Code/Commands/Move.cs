@@ -7,18 +7,16 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public string strCreate;
         public BaseUnit Unit { get; set; }
         public Sektor TargetSektor { get; set; }
 		public Sektor OriginSektor { get; set; }
-        
+
         #region ICommand Member
 
         public void Execute ()
 		{
 			OriginSektor.removeUnit(this.Unit);
 			TargetSektor.addUnit(this.Unit);
-
         }
 
         #endregion
@@ -28,16 +26,8 @@ namespace GenericCampaignMasterLib
         {
             get
             {
-                try
-                {
-                    return this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
-            
-                }
-                catch 
-                {
-                    return "";
-                }
-                }
+                return this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
+            }
         }
 
         

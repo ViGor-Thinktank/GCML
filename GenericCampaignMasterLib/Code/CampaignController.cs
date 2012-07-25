@@ -46,11 +46,17 @@ namespace GenericCampaignMasterLib
 
 
         }
+        public CampaignController(string strKey)
+        {
+            this.restoreGameState(strKey);
+        }
 
         public CampaignController(CampaignEngine engine)
         {
             initEngine(engine);
         }
+
+#region " Init, Save, Load "
 
         private void initEngine(CampaignEngine engine)
         {
@@ -76,6 +82,7 @@ namespace GenericCampaignMasterLib
             initEngine(engine);
         }
 
+#endregion
 
         #region Unit
 
@@ -238,7 +245,13 @@ namespace GenericCampaignMasterLib
 
         public string getCampaignStateForPlayer(string pID)
         {
+            return getCampaignStateForPlayer(pID, "");
+        }
 
+        public string getCampaignStateForPlayer(string pID, string strState)
+        {
+
+            
             Player askingPlayer = this.m_campaignEngine.getPlayer(pID);
 
             this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
@@ -246,7 +259,6 @@ namespace GenericCampaignMasterLib
             return askingPlayer.ToString();
 
 
-            //return newState;
         }
     }
 

@@ -26,7 +26,10 @@ namespace Playground
 
             Program.m_objCampaign = new CampaignBuilderSchach().buildNew();                
             Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);
-            Application.Run(new frmGameMainForm());            
+
+            frmGameMainForm frm = new frmGameMainForm();
+            frm.Text = Program.m_objCampaign.CampaignKey;
+            Application.Run(frm);            
         }
     }
 }

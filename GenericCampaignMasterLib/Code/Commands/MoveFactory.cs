@@ -42,7 +42,6 @@ namespace GenericCampaignMasterLib
 
                 if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
-                    string strStatus = aktSek.strUniqueID + "->" + newSek.strUniqueID;
                     
                     if (!m_listKnownMovements.Contains(newSek.strUniqueID))
                     {
@@ -50,10 +49,13 @@ namespace GenericCampaignMasterLib
 
                         Move readyCmd = new Move();
                         readyCmd.Unit = m_Unit;
-                        readyCmd.strCreate = strStatus;
+                        
                         readyCmd.OriginSektor = m_originSektor;
+                        
                         Sektor targetSek = this.FieldField.get(newSek.objSektorKoord);
+                        
                         readyCmd.TargetSektor = targetSek;
+                        
                         raiseOnNewMoveCommand(readyCmd);
                     }
 

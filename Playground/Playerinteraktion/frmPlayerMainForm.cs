@@ -47,8 +47,7 @@ namespace Playground
             this.Text = myPlayer.Playername;
 
             Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
-            //Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
-
+            
             button1.Visible = false;
         }
 

@@ -47,10 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Playerinteraktion\frmGameMainForm.cs">
+    <Compile Include="Spielinteraktion\clsCampaignInfo.cs" />
+    <Compile Include="Spielinteraktion\frmGameMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Playerinteraktion\frmGameMainForm.Designer.cs">
+    <Compile Include="Spielinteraktion\frmGameMainForm.Designer.cs">
       <DependentUpon>frmGameMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Playerinteraktion\frmPlayerMainForm.cs">
@@ -69,7 +70,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Playerinteraktion\frmGameMainForm.resx">
+    <EmbeddedResource Include="Spielinteraktion\frmGameMainForm.resx">
       <DependentUpon>frmGameMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Playerinteraktion\frmPlayerMainForm.resx">
