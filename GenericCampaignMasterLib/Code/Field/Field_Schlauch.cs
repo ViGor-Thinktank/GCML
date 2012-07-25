@@ -7,45 +7,20 @@ namespace GenericCampaignMasterLib
 {
     public class Field_Schlauch : Field
     {
-
-        public Field_Schlauch(List<Sektor> lisNewSektors)
-        {
-            foreach (Sektor sekNew in lisNewSektors)
-            {
-                sekNew.objSektorKoord = new clsSektorKoordinaten_Schlauch(sekNew.Id);
-                this.dicSektors.Add(sekNew.objSektorKoord.uniqueIDstr(), sekNew);
-            }
-        }
-
         public Field_Schlauch(List<int> lstDimension) : base(lstDimension)
         {
             int p = lstDimension [0];
-            init(p);
         }
 
         public Field_Schlauch(int p) : base(new List<int> (){ p })
         {
-            init(p);
-        }
 
-        private void init(int p)
-        {
-            for (int i = 0; i < p; i++)
-            {
-                Sektor newSek = new Sektor(this.dicSektors.Count.ToString());
-                newSek.objSektorKoord = new clsSektorKoordinaten_Schlauch(i);
-                newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
-                newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
-
-                this.dicSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
-            }
         }
 
         protected override void setNullSektor()
         {
             this.nullSektorKoord = new clsSektorKoordinaten_Schlauch(0);
         }
-
 
         public class clsSektorKoordinaten_Schlauch : clsSektorKoordinaten
         {

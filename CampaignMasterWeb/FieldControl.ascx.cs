@@ -34,8 +34,20 @@ namespace CampaignMasterWeb
 
             List<SektorControl> sektorStack = new List<SektorControl>();
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
+            
             Table tab = new Table();
-            tab.Rows.Add(new TableRow());
+
+            List<int> lstDimensions = controller.campaignEngine.FieldField.ListDimensions;
+            if (lstDimensions.Count == 1)
+            {
+                tab.Rows.Add(new TableRow());
+            }
+            else if (lstDimensions.Count == 2)
+            {
+                for (int i = 0; i < lstDimensions[1]; i++)
+                    tab.Rows.Add(new TableRow());
+            }
+
             foreach (Sektor sektor in controller.campaignEngine.FieldField.getSektorList())
             {
                 TableCell c = new TableCell();
@@ -47,7 +59,6 @@ namespace CampaignMasterWeb
 
                 sektorStack.Add(sc);
             }
-
             panelField.Controls.Add(tab);
 
             Session[GcmlClientKeys.SEKTORSTACK] = sektorStack;

@@ -21,6 +21,20 @@ namespace GenericCampaignMasterLib
             }
         }
 
+        private List<int> m_lstDimension;
+        public List<int> Dimension
+        {
+            get
+            {
+                return m_lstDimension;
+            }
+
+            set
+            {
+                m_lstDimension = value;
+            }
+        }
+
         public virtual bool Equals(clsSektorKoordinaten other)
         {
             if (this.Position == other.Position)

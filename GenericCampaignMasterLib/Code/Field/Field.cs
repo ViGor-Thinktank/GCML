@@ -9,13 +9,34 @@ namespace GenericCampaignMasterLib
     {
         public Field()
         {
-            setNullSektor();
         }
 
         public Field(List<int> lstDimension)
         {
-            setNullSektor();
             m_lstDimensions = lstDimension;
+        }
+
+        public void init()
+        {
+            setNullSektor();
+
+            for (int i = 0; i < ListDimensions.Count; i++)
+            {
+                for (int j = 0; j < ListDimensions[i]; j++)
+                {
+                    Sektor newSek = new Sektor(this.dicSektors.Count.ToString());
+                    clsSektorKoordinaten coord = new clsSektorKoordinaten();
+                    coord.Dimension = ListDimensions;
+                    coord.Position = new List<int> { j };
+                    newSek.objSektorKoord = coord;
+                    newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
+                    newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
+
+                    this.dicSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+                }
+            }
+
+
         }
 
         private List<int> m_lstDimensions;
