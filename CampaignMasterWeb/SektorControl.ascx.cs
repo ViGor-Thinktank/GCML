@@ -130,6 +130,8 @@ namespace CampaignMasterWeb
             Button btnSelectObject = new Button();
             btnSelectObject.ID = id;
             btnSelectObject.Click += handler;
+            btnSelectObject.Height = Unit.Pixel(20);
+            btnSelectObject.Width = Unit.Pixel(20);
 
             cell1.Text = bezeichnung;
             cell2.Controls.Add(btnSelectObject);
