@@ -59,8 +59,6 @@ namespace CampaignMasterWeb
                 // Für Selektierte Unit Kommandos ausgeben
                 if (unit.Id.ToString() == selectedUnitId)
                 {
-                    updateContextCommands(unit);
-
                     row.BackColor = System.Drawing.Color.LightBlue;
 
                     Dictionary<string, ICommand> contextCmdList = (Dictionary<string, ICommand>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
@@ -82,30 +80,7 @@ namespace CampaignMasterWeb
             CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
             BaseUnit unit = controller.getUnit(selUnitId);
 
-            if ((unit != null) &&
-                (this.Sektor.ListUnits.Contains(unit)))
-            {
-                updateContextCommands(unit);
-            }
-
-            drawContext();
-        }
-
-        private void updateContextCommands(BaseUnit unit)
-        {
-            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
-
-            // Die aktuell auswählbaren Commands werden mit einer ID im State gespeichert um Sie mit einem Listitem auswählen zu können
-            Dictionary<string, ICommand> contextCmdList = new Dictionary<string, ICommand>();
-            Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = contextCmdList;
-            Session[GcmlClientKeys.CONTEXTUNITID] = unit.Id.ToString();
-
-            List<ICommand> lstCmds = controller.getCommandsForUnit(unit);
-            foreach (ICommand cmd in lstCmds)
-            {
-                string cmdId = Guid.NewGuid().ToString();
-                contextCmdList.Add(cmdId, cmd);
-            }
+            setSelectedUnitContext(unit);
         }
 
         protected void executeUnitAction(object sender, EventArgs e)
@@ -119,9 +94,31 @@ namespace CampaignMasterWeb
                 cmd.Execute();
             }
 
-            //drawContext();
+            setSelectedUnitContext(null);       // Wenn die AKtion ausgeführt wurde keine Unit mehr selektiert
         }
 
+        private void setSelectedUnitContext(BaseUnit selectedUnit)
+        {
+            string contextUnitId = null;      // Id der aktuell selektierten Einheit
+            Dictionary<string, ICommand> contextCommandList = new Dictionary<string, ICommand>();
+            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
+
+            if (selectedUnit != null)
+            {
+                // Die aktuell auswählbaren Commands werden mit einer ID im State gespeichert um Sie mit einem Listitem auswählen zu können
+                List<ICommand> listCommands = controller.getCommandsForUnit(selectedUnit);
+                foreach (ICommand cmd in listCommands)
+                {
+                    string cmdId = Guid.NewGuid().ToString();
+                    contextCommandList.Add(cmdId, cmd);
+                }
+
+                contextUnitId = selectedUnit.Id.ToString();
+            }
+
+            Session[GcmlClientKeys.CONTEXTUNITID] = contextUnitId;
+            Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = contextCommandList;
+        }
 
         private TableRow createSelectableRow(string id, string bezeichnung, EventHandler handler)
         {
