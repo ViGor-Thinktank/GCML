@@ -129,6 +129,7 @@ namespace GenericCampaignMasterLib
                     uInfo.sektorId = s.strUniqueID;
                     uInfo.unitId = u.Id.ToString();
                     uInfo.playerId = p.Id.ToString();
+                    uInfo.unitType = u.UnitType.GetType().ToString();
                     result.Add(uInfo);
                 }
                 

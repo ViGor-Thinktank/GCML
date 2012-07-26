@@ -100,9 +100,11 @@ namespace GenericCampaignMasterLib
 			foreach(UnitInfo uInfo in getListUnitInfo())
 			{
 				Type unitType = Type.GetType(uInfo.unitType);
-				UnitTypeBase newUnitType = (UnitTypeBase) Activator.CreateInstance(unitType);
+				//UnitTypeBase newUnitType = (UnitTypeBase) Activator.CreateInstance(unitType);
+
+                UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
 				
-				BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId));
+                BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId));
                 string sektorId = uInfo.sektorId;
                 clsSektorKoordinaten sektorKoord = field.dicSektors["|" + sektorId + "|"].objSektorKoord;
 

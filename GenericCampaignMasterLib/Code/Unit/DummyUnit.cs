@@ -9,6 +9,12 @@ namespace GenericCampaignMasterLib
 	/// </summary>
 	public class DummyUnit : BaseUnit
 	{
+        public DummyUnit()
+            : base(-1)
+        {
+
+        }
+
         public DummyUnit(int unitId) : base(unitId)
 		{
             

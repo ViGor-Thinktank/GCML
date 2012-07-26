@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace Playground.Spielinteraktion
+namespace Playground
 {
     public class clsCampaignInfo
     {
@@ -13,7 +13,7 @@ namespace Playground.Spielinteraktion
         public string strCCKey = "";
         public string strSaveKey = "";
 
-        private void save()
+        public void save()
         {
             System.IO.StreamWriter m_stwSave = new System.IO.StreamWriter(".\\CCDate.dat", false);
             m_stwSave.WriteLine(strCCKey);
@@ -21,7 +21,7 @@ namespace Playground.Spielinteraktion
             m_stwSave.Close();
         }
 
-        private void load()
+        public void load()
         {
 
             System.IO.StreamReader m_strLoad = new System.IO.StreamReader(".\\CCDate.dat", false);

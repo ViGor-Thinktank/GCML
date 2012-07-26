@@ -36,6 +36,10 @@ namespace Playground
         private void button3_Click(object sender, EventArgs e)
         {
             txtKey.Text = Program.m_objCampaign.saveCurrentGameState();
+
+            Program.objinf.strCCKey = this.Text;
+            Program.objinf.strSaveKey = txtKey.Text;
+            Program.objinf.save();
         }
     }
 }
