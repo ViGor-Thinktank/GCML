@@ -20,11 +20,11 @@ namespace GenericCampaignMasterLib
         {
             setNullSektor();
              
-            for (int x = 0; x < m_FieldDimension.X; x++)
+            for (int x = 0; x <= m_FieldDimension.X; x++)
             {
-                for (int y = 0; y < m_FieldDimension.Y; y++)
+                for (int y = 0; y <= m_FieldDimension.Y; y++)
                 {
-                    for (int z = 0; z < m_FieldDimension.Z; z++)
+                    for (int z = 0; z <= m_FieldDimension.Z; z++)
                     {
                         clsSektorKoordinaten coord = new clsSektorKoordinaten(x, y, z);
                         coord.Position = new List<int> { x, y, z };

@@ -37,28 +37,28 @@ namespace CampaignMasterWeb
             
             Table tab = new Table();
 
-            List<int> lstDimensions = controller.campaignEngine.FieldField.ListDimensions;
-            if (lstDimensions.Count == 1)
+            // Feld zeilenweise erstellen
+            for (int y = 0; y <= controller.campaignEngine.FieldField.FieldDimension.Y; y++)
             {
                 tab.Rows.Add(new TableRow());
-            }
-            else if (lstDimensions.Count == 2)
-            {
-                for (int i = 0; i < lstDimensions[1]; i++)
-                    tab.Rows.Add(new TableRow());
-            }
 
-            foreach (Sektor sektor in controller.campaignEngine.FieldField.getSektorList())
-            {
-                TableCell c = new TableCell();
-                tab.Rows[0].Cells.Add(c);
+                for (int x = 0; x <= controller.campaignEngine.FieldField.FieldDimension.X; x++)
+                {
+                    clsSektorKoordinaten getkoord = new clsSektorKoordinaten(x, y, 0);
+                    Sektor sektor = controller.campaignEngine.FieldField.get(getkoord);
 
-                SektorControl sc = (SektorControl)Page.LoadControl("SektorControl.ascx");
-                sc.Sektor = sektor;
-                c.Controls.Add(sc);
+                    TableCell c = new TableCell();
+                    tab.Rows[y].Cells.Add(c);
 
-                sektorStack.Add(sc);
+
+                    SektorControl sc = (SektorControl)Page.LoadControl("SektorControl.ascx");
+                    sc.Sektor = sektor;
+                    c.Controls.Add(sc);
+
+                    sektorStack.Add(sc);
+                }
             }
+            
             panelField.Controls.Add(tab);
 
             Session[GcmlClientKeys.SEKTORSTACK] = sektorStack;
