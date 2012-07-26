@@ -25,6 +25,11 @@ namespace GenericCampaignMasterLib
             }
         }
 
+        public clsSektorKoordinaten()
+        {
+
+        }
+
         public clsSektorKoordinaten(int x = 0, int y = 0, int z = 0)
         {
             this.X = x;
