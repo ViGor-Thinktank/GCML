@@ -35,7 +35,7 @@ namespace GenericCampaignMasterLib
             database.init();
 
 			//Field_Schachbrett field = new Field_Schachbrett(new List<int>(){ 3, 3});
-            Field_Schlauch field = new Field_Schlauch(new List<int> { 3 });
+            Field_Schlauch field = new Field_Schlauch(new clsSektorKoordinaten(3));
 			CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
 

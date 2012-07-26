@@ -11,36 +11,52 @@ namespace GenericCampaignMasterLib
         {
         }
 
-        public Field(List<int> lstDimension)
+        public Field(clsSektorKoordinaten fieldDimension)
         {
-            m_lstDimensions = lstDimension;
+            this.m_FieldDimension = fieldDimension;
         }
 
-        public void init()
+        public void initFieldDimension()
         {
             setNullSektor();
-
-            for (int i = 0; i < ListDimensions.Count; i++)
+             
+            for (int x = 0; x < m_FieldDimension.X; x++)
             {
-                for (int j = 0; j < ListDimensions[i]; j++)
+                for (int y = 0; y < m_FieldDimension.Y; y++)
                 {
-                    Sektor newSek = new Sektor(this.dicSektors.Count.ToString());
-                    clsSektorKoordinaten coord = new clsSektorKoordinaten();
-                    coord.Dimension = ListDimensions;
-                    coord.Position = new List<int> { j };
-                    newSek.objSektorKoord = coord;
-                    newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
-                    newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
-
-                    this.dicSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+                    for (int z = 0; z < m_FieldDimension.Z; z++)
+                    {
+                        clsSektorKoordinaten coord = new clsSektorKoordinaten(x, y, z);
+                        coord.Position = new List<int> { x, y, z };
+                        
+                        Sektor newSek = new Sektor(this.dicSektors.Count.ToString());
+                        newSek.objSektorKoord = coord;
+                        newSek.onUnitEnteredSektor += new Sektor.UnitEnteringHandler(newSek_onUnitEnteredSektor);
+                        newSek.onUnitLeftSektor += new Sektor.UnitLeavingHandler(newSek_onUnitLeftSektor);
+                        this.dicSektors.Add(newSek.objSektorKoord.uniqueIDstr(), newSek);
+                    }
                 }
             }
-
-
         }
 
         private List<int> m_lstDimensions;
         public List<int> ListDimensions { get { return m_lstDimensions;} }
+
+        // Ausdehnung des Feldes in 3 Dimensionen. 
+        private clsSektorKoordinaten m_FieldDimension;
+        public clsSektorKoordinaten FieldDimension 
+        {
+            get
+            {
+                return m_FieldDimension;
+            }
+
+            set
+            {
+                m_FieldDimension = value;
+            }
+        }
+
 
         public clsSektorKoordinaten nullSektorKoord = null;
         protected abstract void setNullSektor();

@@ -7,6 +7,10 @@ namespace GenericCampaignMasterLib
 {
     public class clsSektorKoordinaten
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+
         private List<int> m_lstIntPosition;
         public List<int> Position
         {
@@ -21,18 +25,12 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        private List<int> m_lstDimension;
-        public List<int> Dimension
+        public clsSektorKoordinaten(int x = 0, int y = 0, int z = 0)
         {
-            get
-            {
-                return m_lstDimension;
-            }
-
-            set
-            {
-                m_lstDimension = value;
-            }
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
+            this.m_lstIntPosition = new List<int> { x, y, z };
         }
 
         public virtual bool Equals(clsSektorKoordinaten other)

@@ -48,15 +48,14 @@ namespace GenericCampaignMasterLib
         
         }
 
-        public Field_Schachbrett(List<int> lstDimension) : base(lstDimension)
+       public Field_Schachbrett(List<int> lstDimension) : base(new clsSektorKoordinaten(lstDimension[0], lstDimension [1]))
         {
             int width = lstDimension [0];
             int height = lstDimension [1];
             init(width, height);
-            
         }
 
-        public Field_Schachbrett(int width, int height): base(new List<int> (){ width, height})
+        public Field_Schachbrett(int width, int height): base(new clsSektorKoordinaten(width, height))
         {
             init(width, height);
         }
