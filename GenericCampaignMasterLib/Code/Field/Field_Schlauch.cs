@@ -33,7 +33,7 @@ namespace GenericCampaignMasterLib
             return null;
         }
 
-        public override Sektor get(clsSektorKoordinaten objSektorKoord)
+        public Sektor get(clsSektorKoordinaten objSektorKoord)
         {
             return dicSektors[objSektorKoord.uniqueIDstr()];
         }

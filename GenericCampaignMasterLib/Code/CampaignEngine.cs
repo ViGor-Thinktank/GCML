@@ -177,14 +177,14 @@ namespace GenericCampaignMasterLib
 
         public Player getPlayer(string playerId)
         {
-            if (String.IsNullOrEmpty(playerId))
-                return null;
-
-            Player theP = (from p in m_ListPlayers
+            var qplayers = from p in m_ListPlayers
                            where p.Id == playerId
-                           select p).First();
+                           select p;
 
-            return theP;
+            if (qplayers.Count() > 0)
+                return qplayers.First();
+            else
+                return null;
         }
 
         public BaseUnit addUnit(string strPlayerID, BaseUnit newUnit, clsSektorKoordinaten objSektorKoord)

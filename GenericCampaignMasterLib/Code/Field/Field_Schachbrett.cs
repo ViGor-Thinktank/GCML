@@ -9,10 +9,10 @@ namespace GenericCampaignMasterLib
     {
        public class clsSektorKoordinaten_Schachbrett : clsSektorKoordinaten
         {
-            public int X = -1;
-            public int Y = -1;
+            //public int X = -1;
+            //public int Y = -1;
             
-            public clsSektorKoordinaten_Schachbrett(int newX, int newY)
+            public clsSektorKoordinaten_Schachbrett(int newX, int newY) : base(newX, newY)
             {
                 this.X = newX;
                 this.Y = newY;
@@ -87,9 +87,12 @@ namespace GenericCampaignMasterLib
         {
             return this.dicSektors[strSektorID];
         }
-        public override Sektor get(clsSektorKoordinaten objSektorKoord)
+        public Sektor get(clsSektorKoordinaten objSektorKoord)
         {
-            return dicSektors[objSektorKoord.uniqueIDstr()];
+            if(dicSektors.ContainsKey(objSektorKoord.uniqueIDstr()))
+                return dicSektors[objSektorKoord.uniqueIDstr()];
+            else
+                return base.get(objSektorKoord);
         }
       
         public override List<clsSektorKoordinaten> getDirectionVectors()

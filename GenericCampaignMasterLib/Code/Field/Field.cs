@@ -64,7 +64,20 @@ namespace GenericCampaignMasterLib
         
 
         public abstract Sektor get(string strSektorID);
-        public abstract Sektor get(clsSektorKoordinaten objSektorKoord);
+        public Sektor get(clsSektorKoordinaten objSektorKoord)
+        {
+            Sektor result = null;
+            var sektorquery = from s in m_dicSektors.Values
+                              where s.objSektorKoord.X == objSektorKoord.X
+                              && s.objSektorKoord.Y == objSektorKoord.Y
+                              && s.objSektorKoord.Z == objSektorKoord.Z
+                              select s;
+
+            if (sektorquery.Count() > 0)
+                result = sektorquery.First();
+
+            return result;
+        }
 
         public bool checkKoordsValid(clsSektorKoordinaten objSektorKoord)
         {
