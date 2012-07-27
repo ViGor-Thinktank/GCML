@@ -8,16 +8,34 @@ namespace GenericCampaignMasterLib
 {
 	public class CampaignBuilderTicTacTod : CampaignBuilder
 	{
-		public CampaignBuilderTicTacTod () {}
+        private CampaignDatabaseRaptorDb m_database;
+
+		public CampaignBuilderTicTacTod () 
+        {
+            m_database = new CampaignDatabaseRaptorDb();
+            m_database.StorePath = Environment.CurrentDirectory;
+        }
+
+        private void initDb(string campaignKey)
+        {
+            m_database.CampaignKey = campaignKey;
+            m_database.init();
+        }
+
+        public override CampaignController getCurrentGame(string campaignKey)
+        {
+            initDb(campaignKey);
+            CampaignState state = m_database.getLastGameState();
+            CampaignEngine engine = state.Restore();
+            CampaignController controller = new CampaignController(engine);
+            controller.CampaignKey = campaignKey;
+            return controller;
+        }
 		
 		public override CampaignController restoreFromDb(string campaignKey, string stateKey)
         {
-            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
-            database.CampaignKey = campaignKey;
-            database.StorePath = Environment.CurrentDirectory;
-            database.init();
-
-            CampaignState state = database.getCampaignStateByKey(stateKey);
+            initDb(campaignKey);
+            CampaignState state = m_database.getCampaignStateByKey(stateKey);
             CampaignEngine engine = state.Restore();
             CampaignController controller = new CampaignController(engine);
             controller.CampaignKey = campaignKey;
