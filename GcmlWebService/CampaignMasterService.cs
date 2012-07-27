@@ -4,12 +4,17 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using GenericCampaignMasterLib;
 
 namespace GcmlWebService
 {
     // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Klassennamen "CampaignMasterService" sowohl im Code als auch in der Konfigurationsdatei ändern.
     public class CampaignMasterService : ICampaignMasterService
     {
+        private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
+        private string strStorepath = Environment.CurrentDirectory;
+
+
         #region ICampaignMasterService Member
 
         public string getPlayer(string playername)

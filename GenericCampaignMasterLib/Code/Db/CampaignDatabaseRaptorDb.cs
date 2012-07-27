@@ -10,7 +10,7 @@ using RaptorDB;
 
 namespace GenericCampaignMasterLib
 {
-    class CampaignDatabaseRaptorDb : ICampaignDatabase
+    public class CampaignDatabaseRaptorDb : ICampaignDatabase
     {
         private RaptorDB<string> m_db;
         
