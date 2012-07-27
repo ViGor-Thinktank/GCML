@@ -52,6 +52,7 @@
   <ItemGroup>
     <Content Include="FieldControl.ascx" />
     <Content Include="SektorControl.ascx" />
+    <Content Include="StartMenu.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -77,6 +78,13 @@
     </Compile>
     <Compile Include="SektorControl.ascx.designer.cs">
       <DependentUpon>SektorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="StartMenu.aspx.cs">
+      <DependentUpon>StartMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StartMenu.aspx.designer.cs">
+      <DependentUpon>StartMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
