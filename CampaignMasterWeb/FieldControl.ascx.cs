@@ -38,11 +38,11 @@ namespace CampaignMasterWeb
             Table tab = new Table();
 
             // Feld zeilenweise erstellen
-            for (int y = 0; y <= controller.campaignEngine.FieldField.FieldDimension.Y; y++)
+            for (int y = 0; y <= controller.campaignEngine.FieldField.FieldDimension.Y -1; y++)
             {
                 tab.Rows.Add(new TableRow());
 
-                for (int x = 0; x <= controller.campaignEngine.FieldField.FieldDimension.X; x++)
+                for (int x = 0; x <= controller.campaignEngine.FieldField.FieldDimension.X -1; x++)
                 {
                     clsSektorKoordinaten getkoord = new clsSektorKoordinaten(x, y, 0);
                     Sektor sektor = controller.campaignEngine.FieldField.get(getkoord);

@@ -26,7 +26,7 @@ namespace CampaignMasterWeb
                 return;
             }
 
-            LabelSektorname.Text = this.Sektor.Id;
+            LabelSektorname.Text = this.Sektor.strUniqueID;
         }
 
         public void drawContext()
