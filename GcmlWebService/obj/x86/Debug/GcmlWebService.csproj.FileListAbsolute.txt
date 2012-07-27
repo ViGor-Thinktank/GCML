@@ -1,0 +1,9 @@
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\GcmlWebService.dll.config
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\GcmlWebService.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\GcmlWebService.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\GenericCampaignMasterLib.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\RaptorDB.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\Debug\GenericCampaignMasterLib.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\x86\Debug\GcmlWebService.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\x86\Debug\GcmlWebService.pdb
