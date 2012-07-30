@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using System.Text;
 using GenericCampaignMasterLib;
 
 namespace GcmlWebService
 {
-    // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Klassennamen "CampaignMasterService" sowohl im Code als auch in der Konfigurationsdatei ändern.
+    // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Klassennamen "Service1" sowohl im Code als auch in der SVC- und der Konfigurationsdatei ändern.
     public class CampaignMasterService : ICampaignMasterService
     {
+        private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
         private string strStorepath = Environment.CurrentDirectory;
 
@@ -59,7 +61,42 @@ namespace GcmlWebService
 
         public string createNewCampaign(string playerid, string fielddimension)
         {
-            throw new NotImplementedException();
+            Player player;
+            if (!m_playerDic.Keys.Contains(playerid))
+            {
+                player = new Player(playerid);
+                m_playerDic.Add(playerid, player);
+            }
+            else
+            {
+                player = m_playerDic[playerid];
+            }
+
+            // Datenbank
+            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
+            database.CampaignKey = Guid.NewGuid().ToString();
+            database.StorePath = strStorepath;
+            database.init();
+
+            // Spielfeld
+            Field_Schachbrett field = new Field_Schachbrett(new List<int>() { 5, 5 });
+            //Field_Schlauch field = new Field_Schlauch(new clsSektorKoordinaten(3));
+            
+            // Engine
+            CampaignEngine engine = new CampaignEngine(field);
+            engine.FieldField.Id = 123;
+            engine.addPlayer(player);
+            engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999)), field.getSektorList()[0]);
+
+            // Controller
+            CampaignController controller = new CampaignController();
+            controller.CampaignDataBase = database;
+            controller.campaignEngine = engine;
+            controller.CampaignKey = database.CampaignKey;
+
+            m_dictRunningCampaigns.Add(database.CampaignKey, database);
+
+            return database.CampaignKey;
         }
 
         public void addPlayerToCampaign(string playerid, string campaignid)
