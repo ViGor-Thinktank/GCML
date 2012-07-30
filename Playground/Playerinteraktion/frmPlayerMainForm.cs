@@ -13,7 +13,7 @@ namespace Playground
 {
     public partial class frmPlayerMainForm : Form
     {
-        Player myPlayer; 
+        public Player myPlayer; 
 
         public frmPlayerMainForm()
         {

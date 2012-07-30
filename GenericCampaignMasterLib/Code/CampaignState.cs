@@ -55,9 +55,9 @@ namespace GenericCampaignMasterLib
 			return lstUnitInfo;
 		}
 
-        public List<int> getListDimensions()
+        public clsSektorKoordinaten getListDimensions()
         {
-            return (List<int>)m_serializer.Deserialize<List<int>>(this["fielddimension"]);
+            return (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(this["fielddimension"]);
         }
 
         public string getFieldtype()
@@ -70,7 +70,7 @@ namespace GenericCampaignMasterLib
         {
             this["players"] = m_serializer.Serialize (engine.ListPlayers);
             this["sektors"] = m_serializer.Serialize (engine.FieldField.dicSektors.Values);
-            this["fielddimension"] = m_serializer.Serialize(engine.FieldField.ListDimensions);
+            this["fielddimension"] = m_serializer.Serialize(engine.FieldField.FieldDimension);
             this["fieldtype"] = engine.FieldField.GetType().ToString();
 			
 			List<UnitInfo> lstUnitInfo = engine.getUnitInfo();
@@ -88,8 +88,8 @@ namespace GenericCampaignMasterLib
 
             // Feld erstellen;
             Type fieldType = Type.GetType(getFieldtype());
-            List<int> lstDim = getListDimensions();
-            Field field = (Field) Activator.CreateInstance(fieldType, new object[]{ lstDim });
+            clsSektorKoordinaten objSekKoord = getListDimensions();
+            Field field = (Field)Activator.CreateInstance(fieldType, new object[] { objSekKoord });
             field.setSektorList(lstSektors);
 
 			// Engine erstellen
@@ -106,7 +106,7 @@ namespace GenericCampaignMasterLib
 				
                 BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId));
                 string sektorId = uInfo.sektorId;
-                clsSektorKoordinaten sektorKoord = field.dicSektors["|" + sektorId + "|"].objSektorKoord;
+                clsSektorKoordinaten sektorKoord = field.dicSektors[sektorId].objSektorKoord;
 
 				// TODO Koordinaten
 				engine.addUnit(uInfo.playerId, unit, sektorKoord);

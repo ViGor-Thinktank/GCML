@@ -23,7 +23,7 @@ namespace Playground
 
         public void load()
         {
-
+            
             System.IO.StreamReader m_strLoad = new System.IO.StreamReader(".\\CCDate.dat", false);
             strCCKey = m_strLoad.ReadLine();
             strSaveKey = m_strLoad.ReadLine();

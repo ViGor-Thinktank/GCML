@@ -55,6 +55,10 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
+        public static clsSektorKoordinaten operator +(clsSektorKoordinaten c1, clsSektorKoordinaten c2)
+        {
+            return new clsSektorKoordinaten(c1.X + c2.X, c1.Y + c2.Y, c1.Z + c2.Z);
+        }
 
     }
 }

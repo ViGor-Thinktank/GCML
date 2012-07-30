@@ -16,18 +16,18 @@ namespace Playground
             InitializeComponent();
         }
 
-        private List<frmPlayerMainForm> lisForms = new List<frmPlayerMainForm>();
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
             frmPlayerMainForm frm = new frmPlayerMainForm();
-            lisForms.Add(frm);
+            Program.lisForms.Add(frm);
             frm.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            foreach (frmPlayerMainForm aktForm in lisForms)
+            foreach (frmPlayerMainForm aktForm in Program.lisForms)
             {
                 aktForm.Tick();
             }

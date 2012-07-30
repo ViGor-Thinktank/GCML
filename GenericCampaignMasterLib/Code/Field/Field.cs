@@ -39,9 +39,7 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        private List<int> m_lstDimensions;
-        public List<int> ListDimensions { get { return m_lstDimensions;} }
-
+        
         // Ausdehnung des Feldes in 3 Dimensionen. 
         private clsSektorKoordinaten m_FieldDimension;
         public clsSektorKoordinaten FieldDimension 

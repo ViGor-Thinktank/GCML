@@ -10,6 +10,8 @@ namespace Playground
     {
         public static CampaignController m_objCampaign;
 
+        public static List<frmPlayerMainForm> lisForms = new List<frmPlayerMainForm>();
+
         public static void Global_onStatus(string strText)
         {
             frmStatus.Status(strText);
@@ -24,17 +26,33 @@ namespace Playground
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);                        
+            Application.SetCompatibleTextRenderingDefault(false);
 
             Program.objinf = new clsCampaignInfo();
-            Program.objinf.load();
+                
+
             if (MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 Program.m_objCampaign = new CampaignBuilderSchach().buildNew();
             }
             else
             {
+
+                Program.objinf.load();
                 Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(objinf.strCCKey, objinf.strSaveKey);
+                List<Player> listPlayers = Program.m_objCampaign.getPlayerList();
+                foreach (Player newP in listPlayers)
+                {
+                    frmPlayerMainForm frmP = new frmPlayerMainForm();
+                    frmP.myPlayer = newP;
+                    frmP.button1.Visible = false;
+                    frmP.Text = newP.Playername;
+                    frmP.Show();
+                    lisForms.Add(frmP);
+                }
+
+
+
             }
             Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);
 
