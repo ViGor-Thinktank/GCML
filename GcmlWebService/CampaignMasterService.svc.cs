@@ -79,8 +79,7 @@ namespace GcmlWebService
             database.init();
 
             // Spielfeld
-            Field_Schachbrett field = new Field_Schachbrett(new List<int>() { 5, 5 });
-            //Field_Schlauch field = new Field_Schlauch(new clsSektorKoordinaten(3));
+            Field field = new Field( 5, 5 );
             
             // Engine
             CampaignEngine engine = new CampaignEngine(field);

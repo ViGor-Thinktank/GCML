@@ -21,7 +21,8 @@ namespace GenericCampaignMasterLib
             CampaignEngine engine = state.Restore();
             CampaignController controller = new CampaignController(engine);
             controller.CampaignKey = campaignKey;
-            return controller;
+            controller.CampaignDataBase = database;
+			return controller;
         }
 
         public override CampaignController buildNew()
@@ -34,7 +35,7 @@ namespace GenericCampaignMasterLib
             database.StorePath = storepath;
             database.init();
             
-            CampaignEngine engine = new CampaignEngine(new Field_Schachbrett(new List<int>() { 5, 5 }));
+            CampaignEngine engine = new CampaignEngine(new Field(5, 5));
             engine.FieldField.Id = 123;
 
 			CampaignController controller = new CampaignController();

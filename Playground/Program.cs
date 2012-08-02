@@ -29,15 +29,10 @@ namespace Playground
             Application.SetCompatibleTextRenderingDefault(false);
 
             Program.objinf = new clsCampaignInfo();
-                
 
-            if (MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) != DialogResult.Yes)
-            {
-                Program.m_objCampaign = new CampaignBuilderSchach().buildNew();
-            }
-            else
-            {
 
+            if (System.IO.File.Exists(".\\CCDate.dat") && MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
                 Program.objinf.load();
                 Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(objinf.strCCKey, objinf.strSaveKey);
                 List<Player> listPlayers = Program.m_objCampaign.getPlayerList();
@@ -51,6 +46,12 @@ namespace Playground
                     lisForms.Add(frmP);
                 }
 
+                }
+            else
+            {
+                Program.m_objCampaign = new CampaignBuilderSchach().buildNew();
+            
+            
 
 
             }

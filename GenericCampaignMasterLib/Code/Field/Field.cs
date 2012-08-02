@@ -5,21 +5,28 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
-    public abstract class Field : IEquatable<Field>
+    public class Field : IEquatable<Field>
     {
         public Field()
         {
+
+        }
+
+
+        public Field(int intX, int intY = 1, int intZ = 1)
+        {
+            this.m_FieldDimension = new clsSektorKoordinaten(intX, intY, intZ);
+            this.initFieldDimension();
         }
 
         public Field(clsSektorKoordinaten fieldDimension)
         {
             this.m_FieldDimension = fieldDimension;
+            this.initFieldDimension();
         }
 
-        public void initFieldDimension()
+        private void initFieldDimension()
         {
-            setNullSektor();
-             
             for (int x = 0; x <= m_FieldDimension.X; x++)
             {
                 for (int y = 0; y <= m_FieldDimension.Y; y++)
@@ -56,12 +63,11 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public clsSektorKoordinaten nullSektorKoord = null;
-        protected abstract void setNullSektor();
-        public Sektor nullSektor { get { return this.dicSektors[this.nullSektorKoord.uniqueIDstr()]; } }
+        public clsSektorKoordinaten nullSektorKoord = new clsSektorKoordinaten(0,0,0);
         
+        public Sektor nullSektor { get { return this.dicSektors[this.nullSektorKoord.uniqueIDstr()]; } }
 
-        public abstract Sektor get(string strSektorID);
+
         public Sektor get(clsSektorKoordinaten objSektorKoord)
         {
             Sektor result = null;
@@ -143,9 +149,6 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public abstract Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor);
-        public abstract List<clsSektorKoordinaten> getDirectionVectors();
-
         public int Id { get; set; }
         
         public bool Equals(Field other)
@@ -172,8 +175,32 @@ namespace GenericCampaignMasterLib
                 onFieldStatus("UnitLeft " + SekSender.strUniqueID);
         }
 
+        public List<clsSektorKoordinaten> getDirectionVectors()
+        {
+            List<clsSektorKoordinaten> lisVektors = new List<clsSektorKoordinaten>();
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    for (int k = -1; k <= 1; k++)
+                    {
+                        lisVektors.Add(new clsSektorKoordinaten(i, j, k));
+                    }
+                }
+            }
+            return lisVektors;
+        }
 
-        
+        public Sektor move(Sektor aktSek, clsSektorKoordinaten Vektor)
+        {
+            clsSektorKoordinaten objZielSektorKoord = aktSek.objSektorKoord + Vektor;
+
+            if (dicSektors.ContainsKey(objZielSektorKoord.uniqueIDstr()))
+                return dicSektors[objZielSektorKoord.uniqueIDstr()];
+            else
+                return null;
+        }
+
     }
     
  

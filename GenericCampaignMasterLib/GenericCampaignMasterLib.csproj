@@ -57,8 +57,6 @@
     <Compile Include="Code\Sektor\SektorType_heavyTerrain.cs" />
     <Compile Include="Code\Sektor\SektorType_base.cs" />
     <Compile Include="Code\Field\Field.cs" />
-    <Compile Include="Code\Field\Field_Schachbrett.cs" />
-    <Compile Include="Code\Field\Field_Schlauch.cs" />
     <Compile Include="Code\Commands\ICommand.cs" />
     <Compile Include="Code\Commands\Move.cs" />
     <Compile Include="Code\Player.cs" />

@@ -52,7 +52,7 @@ namespace GenericCampaignMasterLib
             database.StorePath = storepath;
             database.init();
 
-            Field_Schachbrett field = new Field_Schachbrett(new List<int>(){5,5});
+            Field field = new Field(5, 5);
             //Field_Schlauch field = new Field_Schlauch(new clsSektorKoordinaten(3));
 			CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;

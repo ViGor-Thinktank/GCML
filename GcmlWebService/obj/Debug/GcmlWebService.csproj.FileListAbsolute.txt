@@ -6,3 +6,11 @@ C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebServi
 C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
 C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\RaptorDB.dll
 C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GcmlWebService.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GcmlWebService.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\RaptorDB.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
