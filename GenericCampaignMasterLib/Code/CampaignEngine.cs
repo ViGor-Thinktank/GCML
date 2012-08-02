@@ -177,6 +177,14 @@ namespace GenericCampaignMasterLib
 
         public Player getPlayer(string playerId)
         {
+
+            foreach (Player aktP in m_ListPlayers)
+            {
+                if (aktP.Id == playerId)
+                    return aktP;
+            }
+            return null;
+            //gibt falsches Ergebnis zurück
             var qplayers = from p in m_ListPlayers
                            where p.Id == playerId
                            select p;

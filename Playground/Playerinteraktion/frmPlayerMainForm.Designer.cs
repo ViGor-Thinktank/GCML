@@ -33,6 +33,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtUnitInfo = new System.Windows.Forms.TextBox();
+            this.btnAddUNit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -41,7 +43,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Log In";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -78,11 +80,31 @@
             this.panel1.Size = new System.Drawing.Size(633, 188);
             this.panel1.TabIndex = 4;
             // 
+            // txtUnitInfo
+            // 
+            this.txtUnitInfo.Location = new System.Drawing.Point(326, 41);
+            this.txtUnitInfo.Multiline = true;
+            this.txtUnitInfo.Name = "txtUnitInfo";
+            this.txtUnitInfo.Size = new System.Drawing.Size(308, 115);
+            this.txtUnitInfo.TabIndex = 5;
+            // 
+            // btnAddUNit
+            // 
+            this.btnAddUNit.Location = new System.Drawing.Point(323, 14);
+            this.btnAddUNit.Name = "btnAddUNit";
+            this.btnAddUNit.Size = new System.Drawing.Size(75, 23);
+            this.btnAddUNit.TabIndex = 6;
+            this.btnAddUNit.Text = "add Unit";
+            this.btnAddUNit.UseVisualStyleBackColor = true;
+            this.btnAddUNit.Click += new System.EventHandler(this.btnAddUNit_Click);
+            // 
             // frmPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 349);
+            this.Controls.Add(this.btnAddUNit);
+            this.Controls.Add(this.txtUnitInfo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBox1);
@@ -103,5 +125,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtUnitInfo;
+        private System.Windows.Forms.Button btnAddUNit;
     }
 }

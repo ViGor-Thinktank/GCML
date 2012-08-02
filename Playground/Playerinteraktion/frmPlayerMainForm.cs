@@ -27,12 +27,21 @@ namespace Playground
 
             string strPlayerData = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
 
+            
+
             myPlayer = Player.FromString(strPlayerData);
 
             comboBox1.DisplayMember = "Bezeichnung";
             comboBox1.ValueMember  = "Id";
 
             comboBox1.DataSource = myPlayer.ListUnits;
+
+            this.txtUnitInfo.Text = "";
+            foreach (BaseUnit objUnit in myPlayer.ListUnits)
+            {
+                this.txtUnitInfo.Text += objUnit.Bezeichnung + " " + Program.m_objCampaign.getSektorForUnit(objUnit).strUniqueID + Environment.NewLine;  
+            }
+            
             this.textBox1.Text = "";
             foreach (Sektor x in myPlayer.dicVisibleSectors.Values)
             {
@@ -46,7 +55,6 @@ namespace Playground
             myPlayer = Program.m_objCampaign.addPlayer(txtPlayerName.Text);
             this.Text = myPlayer.Playername;
 
-            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
             
             button1.Visible = false;
         }
@@ -125,6 +133,11 @@ namespace Playground
                 BaseUnit unit = myPlayer.ListUnits[intUnitID];
                 this.erzeugeCommandButtonsForUnit(unit);
             }
+        }
+
+        private void btnAddUNit_Click(object sender, EventArgs e)
+        {
+            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
         }
 
     }
