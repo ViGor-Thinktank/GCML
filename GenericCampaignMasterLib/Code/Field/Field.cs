@@ -70,23 +70,25 @@ namespace GenericCampaignMasterLib
 
         public Sektor get(clsSektorKoordinaten objSektorKoord)
         {
-            Sektor result = null;
             var sektorquery = from s in m_dicSektors.Values
                               where s.objSektorKoord.X == objSektorKoord.X
                               && s.objSektorKoord.Y == objSektorKoord.Y
                               && s.objSektorKoord.Z == objSektorKoord.Z
                               select s;
 
-            if (sektorquery.Count() > 0)
-                result = sektorquery.First();
+            if (sektorquery.Count() > 1)
+                throw new Exception("mehr als ein Sektor für SektorKoord " + objSektorKoord.ToString());
+            else if (sektorquery.Count() == 0)
+                throw new Exception("kein Sektor für SektorKoord " + objSektorKoord.ToString());
+            else
+                return sektorquery.First();
 
-            return result;
+            
         }
 
         public bool checkKoordsValid(clsSektorKoordinaten objSektorKoord)
         {
             return this.dicSektors.ContainsKey(objSektorKoord.uniqueIDstr());
-
         }
 
         private Dictionary<string, Sektor> m_dicSektors = new Dictionary<string, Sektor>();

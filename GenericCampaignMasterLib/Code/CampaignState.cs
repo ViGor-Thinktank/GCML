@@ -34,11 +34,20 @@ namespace GenericCampaignMasterLib
 
             List<Player> lisP = getListPlayers();
             
-            Player owner = (from p in lisP
+            var varPlayerList = from p in lisP
                          where p.Id == strPlayerID
-                         select p).First();
+                         select p;
 
-            return owner;
+
+            
+            if (varPlayerList.Count() == 1)
+                return varPlayerList.First();
+            else if (varPlayerList.Count() > 1)
+                throw new Exception("mehr als ein Treffer für PlayerID " + strPlayerID);
+            else
+                throw new Exception("kein Treffer für PlayerID " + strPlayerID);
+
+            return null;
         }
 
         public List<Player> getListPlayers()

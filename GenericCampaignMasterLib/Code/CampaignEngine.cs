@@ -154,11 +154,15 @@ namespace GenericCampaignMasterLib
 						where u.Id.
                         ToString() == id
 						select u;
-
+            
+            //korrekter Ansatz: Wenn es mehr als einen Traffer bei einer eineindeutigen Suche gibt, ist das ein Fehler! 
             if (units.Count() == 0)
-                return null;
+                throw new Exception("kein Treffer für id " + id);
+            else if (units.Count() == 1)
+                return units.First ();
             else
-			    return units.First ();
+                throw new Exception("mehr als ein Treffer für id " + id);
+                
 		}
 
         #region " Unitfactory "
@@ -184,7 +188,8 @@ namespace GenericCampaignMasterLib
                     return aktP;
             }
             return null;
-            //gibt falsches Ergebnis zurück
+
+            /*/gibt falsches (immer den ersten von allen) Ergebnis zurück
             var qplayers = from p in m_ListPlayers
                            where p.Id == playerId
                            select p;
@@ -192,7 +197,7 @@ namespace GenericCampaignMasterLib
             if (qplayers.Count() > 0)
                 return qplayers.First();
             else
-                return null;
+                return null;*/
         }
 
         public BaseUnit addUnit(string strPlayerID, BaseUnit newUnit, clsSektorKoordinaten objSektorKoord)

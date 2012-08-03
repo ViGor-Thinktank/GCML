@@ -78,11 +78,21 @@ namespace GenericCampaignMasterLib
         public void removeUnit(BaseUnit unit)
 		{
 
-            BaseUnit objUnitList = (from u in this.m_ListUnits
-                         where u.Id == unit.Id 
-                         select u).First();
+            BaseUnit aktUnit = null;
 
-            m_ListUnits.Remove(objUnitList);
+            var objUnitList = from u in this.m_ListUnits
+                                where u.Id == unit.Id 
+                                select u;
+
+            
+            if (objUnitList.Count() == 1)
+                aktUnit = objUnitList.First();
+            else if (objUnitList.Count() > 1)
+                throw new Exception("mehr als ein Treffer für UnitID " + unit.Id);
+            else
+                throw new Exception("kein Treffer für UnitID " + unit.Id);
+
+            m_ListUnits.Remove(aktUnit);
             
             if(onUnitLeftSektor != null)
                 onUnitLeftSektor(this, new SektorEventArgs(unit, this));
