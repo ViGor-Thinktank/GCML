@@ -139,10 +139,10 @@ namespace GenericCampaignMasterLib
         {
             return m_campaignEngine.ListPlayers;
         }
-			
-		public BaseUnit getUnit (string unitId)
+
+        public BaseUnit getUnit(string strPlayerID, string strUnitId)
 		{
-			return m_campaignEngine.getUnit (unitId);
+            return m_campaignEngine.getUnit(strPlayerID, strUnitId);
 		}
 
         public List<ICommand> getCommandsForUnit(BaseUnit unit)

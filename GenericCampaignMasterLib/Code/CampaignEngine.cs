@@ -147,12 +147,18 @@ namespace GenericCampaignMasterLib
             return owner as Player;
         }
 
-		public BaseUnit getUnit (string id)
+        //getGlobalUNitCount --> UnitID
+        //int intCount = from p in m_ListPlayers
+        //            from u in p.ListUnits
+        //            where u.Id.ToString() == id && p.Id == strPlayerID
+        //            count(u);
+
+        public BaseUnit getUnit(string strPlayerID, string id)
 		{
+            //shite Lösung, eineindeutige UnitIDs (s.o.)
 			var units = from p in m_ListPlayers
 						from u in p.ListUnits
-						where u.Id.
-                        ToString() == id
+						where u.Id.ToString() == id && p.Id == strPlayerID
 						select u;
             
             //korrekter Ansatz: Wenn es mehr als einen Traffer bei einer eineindeutigen Suche gibt, ist das ein Fehler! 
@@ -173,7 +179,9 @@ namespace GenericCampaignMasterLib
 
             if (UnitType == typeof(DummyUnit))
             {
+                //Ergibt nicht eineindeutige UnitIDs
                 newUnit = new DummyUnit(getPlayer(strPlayerID).ListUnits.Count);
+                
             }
 
             return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);

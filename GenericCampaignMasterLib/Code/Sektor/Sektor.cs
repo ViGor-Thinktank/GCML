@@ -75,13 +75,13 @@ namespace GenericCampaignMasterLib
                 onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
 
-        public void removeUnit(BaseUnit unit)
+        public void removeUnit(string strPlayerID, BaseUnit unit)
 		{
 
             BaseUnit aktUnit = null;
 
             var objUnitList = from u in this.m_ListUnits
-                                where u.Id == unit.Id 
+                                where u.Id == unit.Id
                                 select u;
 
             
