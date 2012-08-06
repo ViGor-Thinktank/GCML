@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     public interface IUnit
     {
         int Sichtweite { get; }             
-         int Id { get; }             // Dummy
+        string Id { get; }             // Dummy
         string Bezeichnung { get; } // Dummy
 		
 		 List<ICommand> getCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
@@ -20,9 +20,9 @@ namespace GenericCampaignMasterLib
     public class BaseUnit : IUnit
     {
 
-        public BaseUnit(int unitId, UnitTypeBase UnitType, string strBezeichnung)
+        public BaseUnit(string unitId, UnitTypeBase UnitType, string strBezeichnung)
         {
-            m_intId = unitId;
+            m_strId = unitId;
             m_objUnitType = UnitType;
         }
 
@@ -32,16 +32,16 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public BaseUnit(int unitId)
+        public BaseUnit(string unitId)
         {
-            m_intId = unitId;
+            m_strId = unitId;
             m_objUnitType = new UnitTypeDummy();
             m_strBezeichnung = UnitType.strDefaultBez + " " + unitId.ToString();
         }
 
-        public BaseUnit(int unitId, UnitTypeBase UnitType)
+        public BaseUnit(string unitId, UnitTypeBase UnitType)
         {
-            m_intId = unitId;
+            m_strId = unitId;
             m_objUnitType = UnitType;
             m_strBezeichnung = UnitType.strDefaultBez + " " + unitId.ToString();
         }
@@ -50,11 +50,11 @@ namespace GenericCampaignMasterLib
         public int Sichtweite { get { return m_objUnitType.intSichtweite; } }
 
 
-        private int m_intId = -1;
-        public int Id 
+        private string m_strId = "-1";
+        public string Id 
         { 
-            get { return m_intId; }
-            set { m_intId = value; }
+            get { return m_strId; }
+            set { m_strId = value; }
         }
 
         private string m_strBezeichnung = "";

@@ -85,7 +85,7 @@ namespace GcmlWebService
             CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
-            engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999)), field.getSektorList()[0]);
+            engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
 
             // Controller
             CampaignController controller = new CampaignController();

@@ -75,7 +75,7 @@ namespace GenericCampaignMasterLib
                 onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
 
-        public void removeUnit(string strPlayerID, BaseUnit unit)
+        public void removeUnit(BaseUnit unit)
 		{
 
             BaseUnit aktUnit = null;

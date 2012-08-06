@@ -10,12 +10,12 @@ namespace GenericCampaignMasterLib
 	public class DummyUnit : BaseUnit
 	{
         public DummyUnit()
-            : base(-1)
+            : base("-1")
         {
 
         }
 
-        public DummyUnit(int unitId) : base(unitId)
+        public DummyUnit(string unitId) : base(unitId)
 		{
             
 		}

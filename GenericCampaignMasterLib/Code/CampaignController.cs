@@ -142,7 +142,7 @@ namespace GenericCampaignMasterLib
 
         public BaseUnit getUnit(string strPlayerID, string strUnitId)
 		{
-            return m_campaignEngine.getUnit(strPlayerID, strUnitId);
+            return m_campaignEngine.getUnit(strUnitId);
 		}
 
         public List<ICommand> getCommandsForUnit(BaseUnit unit)
@@ -220,28 +220,6 @@ namespace GenericCampaignMasterLib
 
         #endregion
 
-
-        public void Plenk()
-        {
-            this.m_campaignEngine.flushPlayers();
-
-            Player Pkb = this.m_campaignEngine.addPlayer("Baboomplayer");
-            this.m_campaignEngine.addUnit(Pkb.Id, typeof(DummyUnit));
-
-            
-
-            CampaignState state = this.m_campaignEngine.getState();
-            string strSerielleDaten = state["players"];
-
-              Player PKb_nachher = state.getListPlayers()[0];
-
-             if (PKb_nachher.ListUnits.Count == 0)
-             { 
-                 //Hier fehlt die Einheit
-                 int i = 0;
-             }
-
-        }
 
         public string getCampaignStateForPlayer(string pID)
         {

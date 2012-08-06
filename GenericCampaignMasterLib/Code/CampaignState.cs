@@ -47,7 +47,6 @@ namespace GenericCampaignMasterLib
             else
                 throw new Exception("kein Treffer für PlayerID " + strPlayerID);
 
-            return null;
         }
 
         public List<Player> getListPlayers()
@@ -113,7 +112,7 @@ namespace GenericCampaignMasterLib
 
                 UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
 				
-                BaseUnit unit = new BaseUnit(Int32.Parse(uInfo.unitId));
+                BaseUnit unit = new BaseUnit(uInfo.unitId);
                 string sektorId = uInfo.sektorId;
                 clsSektorKoordinaten sektorKoord = field.dicSektors[sektorId].objSektorKoord;
 

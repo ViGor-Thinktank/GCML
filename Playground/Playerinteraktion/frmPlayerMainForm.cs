@@ -122,16 +122,26 @@ namespace Playground
 
         private void clearCommandButtons()
         {
+            comboBox1.Items.Clear();
             panel1.Controls.Clear();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((int)comboBox1.SelectedValue >= 0)
+            
+
+            if (comboBox1.SelectedValue.ToString() != "-1")
             {
-                int intUnitID = (int)comboBox1.SelectedValue;
-                BaseUnit unit = myPlayer.ListUnits[intUnitID];
-                this.erzeugeCommandButtonsForUnit(unit);
+                string strUnitID = comboBox1.SelectedValue.ToString();
+
+                foreach (BaseUnit unit in myPlayer.ListUnits)
+                {
+                    if (unit.Id == strUnitID)
+                    {
+                        this.erzeugeCommandButtonsForUnit(unit);
+                        break;
+                    }
+                }
             }
         }
 
