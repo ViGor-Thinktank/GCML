@@ -26,7 +26,8 @@
         <asp:Label ID="Label1" runat="server" Text="Label">Spielername: </asp:Label>
     
         <asp:TextBox ID="TextBox1" runat="server" Width="190px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Anmelden" />
+        <asp:Button ID="Button1" runat="server" Text="Anmelden" /><br />
+		<asp:Button ID="BtnNewCampaign" runat="server" Text="Neue Kampagne" OnClick="BtnNewCampaign_Click" />
     
     </div>
     </form>

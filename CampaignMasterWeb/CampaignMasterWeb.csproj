@@ -48,6 +48,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FieldControl.ascx" />
@@ -93,11 +94,18 @@
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Web References\GcmlWs\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
       <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
       <Name>GenericCampaignMasterLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GcmlWebService\GcmlWebService.csproj">
+      <Project>{336BCC77-BEFE-4099-BBD6-05A59441E1D0}</Project>
+      <Name>GcmlWebService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -123,7 +131,7 @@
     </VisualStudio>
     <MonoDevelop>
       <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
-        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+        <XspParameters Port="8081" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
@@ -134,4 +142,24 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <WebReferences Include="Web References" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://127.0.0.1:8080/CampaignMasterService.svc?wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\GcmlWs</RelPath>
+      <UpdateFromURL>http://127.0.0.1:8080/CampaignMasterService.svc?wsdl</UpdateFromURL>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\GcmlWs\CampaignMasterService.xsd" />
+    <None Include="Web References\GcmlWs\CampaignMasterService0.xsd" />
+    <None Include="Web References\GcmlWs\CampaignMasterService1.xsd" />
+    <None Include="Web References\GcmlWs\CampaignMasterService.wsdl" />
+    <None Include="Web References\GcmlWs\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 </Project>
