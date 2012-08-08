@@ -84,7 +84,7 @@ namespace GenericCampaignMasterLib
 
 #endregion
 
-        #region Unit
+       
 
         public List<Sektor> getUnitCollisions()
         {
@@ -106,7 +106,30 @@ namespace GenericCampaignMasterLib
             if (!unitActedStack.Contains(args.actingUnit))       // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
                 unitActedStack.Add(args.actingUnit);
         }
+        private bool checkSektorForUnitCollision(Sektor sektor)
+        {
+            bool resultCollision = false;
+            if (sektor.ListUnits.Count > 1)
+            {
+                List<Player> unitOwnersInSektor = new List<Player>();
 
+                foreach (BaseUnit unit in sektor.ListUnits)
+                {
+                    Player owner = m_campaignEngine.getUnitOwner(unit);
+                    if (!unitOwnersInSektor.Contains(owner))
+                        unitOwnersInSektor.Add(owner);
+                }
+
+                if (unitOwnersInSektor.Count() > 1)
+                    resultCollision = true;
+            }
+            else
+            {
+                ;
+            }
+
+            return resultCollision;
+        }
         private void unitCollisionStack_Add(Sektor sektor)
         {
             Global_onStatus("Collision: " + sektor.strUniqueID);
@@ -118,29 +141,24 @@ namespace GenericCampaignMasterLib
         {
             this.m_campaignEngine.addUnit(strPlayerID, type);
         }
-        #endregion
+       
 
         public Player getPlayer(string pID)
         {
             return this.m_campaignEngine.getPlayer(pID);
         }
 
-
-        # region Public Clientfunktionen
-
         public Player addPlayer(string p)
         {
             return this.m_campaignEngine.addPlayer(p);
         }
-
-        
 
         public List<Player> getPlayerList()
         {
             return m_campaignEngine.ListPlayers;
         }
 
-        public BaseUnit getUnit(string strPlayerID, string strUnitId)
+        public BaseUnit getUnit(string strUnitId)
 		{
             return m_campaignEngine.getUnit(strUnitId);
 		}
@@ -177,57 +195,7 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
-        # endregion
-
-        # region Prüffunktionen
-
-        private bool checkSektorForUnitCollision(Sektor sektor)
-        {
-            bool resultCollision = false;
-            if (sektor.ListUnits.Count > 1)
-            {
-                List<Player> unitOwnersInSektor = new List<Player>();
-                
-                foreach (BaseUnit unit in sektor.ListUnits)
-                {
-                    Player owner = m_campaignEngine.getUnitOwner(unit);
-                    if (!unitOwnersInSektor.Contains(owner))
-                        unitOwnersInSektor.Add(owner);
-                }
-
-                if (unitOwnersInSektor.Count() > 1)
-                    resultCollision = true;
-            }
-            else
-            {
-                ;
-            }
-
-            return resultCollision;
-        }
-
-
-
-        private void checkForRoundEnd()
-        {
-
-
-        }
-
-        private void newRound()
-        {
-
-        }
-
-        #endregion
-
-
-        public string getCampaignStateForPlayer(string pID)
-        {
-            return getCampaignStateForPlayer(pID, "");
-        }
-
-        public string getCampaignStateForPlayer(string pID, string strState)
+        public Player getCampaignStateForPlayer(string pID, string strState = "")
         {
 
             
@@ -235,7 +203,7 @@ namespace GenericCampaignMasterLib
 
             this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
 
-            return askingPlayer.ToString();
+            return askingPlayer;
 
 
         }

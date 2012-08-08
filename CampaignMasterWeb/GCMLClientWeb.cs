@@ -99,7 +99,7 @@ namespace CampaignMasterWeb
         public static IUnit getUnitById(string strPlayerID, string unitId, HttpSessionState state)
         {
             CampaignController controller = GcmlClientWeb.getCampaignController(state);
-            IUnit unit = controller.getUnit(strPlayerID, unitId);
+            IUnit unit = controller.getUnit(unitId);
             return unit;
         }
 

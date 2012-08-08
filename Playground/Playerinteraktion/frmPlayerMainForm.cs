@@ -27,9 +27,8 @@ namespace Playground
             {
                 this.clearCommandButtons();
 
-                string strPlayerData = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
 
-                myPlayer = Player.FromString(strPlayerData);
+                myPlayer = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
 
                 
                     comboBox1.DisplayMember = "Bezeichnung";
