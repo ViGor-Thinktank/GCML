@@ -25,10 +25,28 @@
     
         <asp:Label ID="Label1" runat="server" Text="Label">Spielername: </asp:Label>
     
-        <asp:TextBox ID="TextBox1" runat="server" Width="190px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Anmelden" /><br />
-		<asp:Button ID="BtnNewCampaign" runat="server" Text="Neue Kampagne" OnClick="BtnNewCampaign_Click" />
+        <asp:TextBox ID="tbPlayername" runat="server" Width="190px"></asp:TextBox>
+        <asp:Button ID="btnLogin" runat="server" Text="Anmelden" onclick="btnLogin_Click" 
+             />
+        <br />
+        <br />
+        <asp:Panel ID="pnPlayerCampaigns" runat="server">
+		<asp:Button ID="btnNewCampaign" runat="server" Text="Neue Kampagne" OnClick="BtnNewCampaign_Click" />
     
+    &nbsp;<br />
+        <br />
+        Kampagnen
+        <br />
+        <asp:ListBox ID="lbCampaigns" runat="server" Height="154px" Width="213px">
+        </asp:ListBox>
+        <br />
+        <br />
+        <asp:Button ID="btnLoadCampaign" runat="server" Text="Gewählte Kampagne laden" 
+                onclick="btnLoadCampaign_Click" />
+        <br />
+        <br />
+        
+        </asp:Panel>
     </div>
     </form>
 </body>

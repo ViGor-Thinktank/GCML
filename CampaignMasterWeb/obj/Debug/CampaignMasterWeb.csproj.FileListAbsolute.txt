@@ -22,3 +22,5 @@ C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMaster
 C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
 C:\Dokumente und Einstellungen\i600fas\Eigene Dateien\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\bin\GcmlWebService.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\CampaignMasterWeb\bin\GcmlWebService.pdb

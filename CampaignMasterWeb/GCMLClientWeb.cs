@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GenericCampaignMasterLib;
 using CampaignMasterWeb;            // Nur zum Testen des Ws. Todo: Aufruf über Webverweis
+using GcmlWebService;
 
 namespace CampaignMasterWeb
 {
@@ -39,57 +40,53 @@ namespace CampaignMasterWeb
             return player;
         }
 
+       
         public static CampaignController getCampaignController(HttpSessionState state)
         {
-            // TEST --> auf Webverweis umstellen
-            GcmlWebService.CampaignMasterService gcmlservice = (GcmlWebService.CampaignMasterService)state ["testservice"];
-            if (gcmlservice == null)
-            {
-                gcmlservice = new GcmlWebService.CampaignMasterService();
-                state ["testservice"] = gcmlservice;
-            }
+            return null;
+//            CampaignMasterService gcmlservice = GcmlClientWeb.getService(state);
 
-            CampaignController controller;
-            //CampaignBuilderTicTacTod cbttt = new CampaignBuilderTicTacTod();
-            string statekey = (string)state [GcmlClientKeys.CAMPAIGNSTATE];
-            string campaignkey = (string)state [GcmlClientKeys.CAMPAIGNID];
-            string currentPlayerId = (string)state [GcmlClientKeys.CONTEXTPLAYERID];
+//            CampaignController controller;
+//            //CampaignBuilderTicTacTod cbttt = new CampaignBuilderTicTacTod();
+//            string statekey = (string)state [GcmlClientKeys.CAMPAIGNSTATE];
+//            string campaignkey = (string)state [GcmlClientKeys.CAMPAIGNID];
+//            string currentPlayerId = (string)state [GcmlClientKeys.CONTEXTPLAYERID];
 
-            if (string.IsNullOrEmpty(currentPlayerId))      // Spieler muss eingeloggt sein
-                return null;
+//            if (string.IsNullOrEmpty(currentPlayerId))      // Spieler muss eingeloggt sein
+//                return null;
 
-            if (String.IsNullOrEmpty(statekey) || String.IsNullOrEmpty(campaignkey))
-            {
-                //controller = cbttt.buildNew();      // Keine State vorhanden - neu erzeugen
-                string newCampaignId = gcmlservice.createNewCampaign(
-                    currentPlayerId,
-                    new clsSektorKoordinaten(5, 5).ToString()
-                );
-                state [GcmlClientKeys.CAMPAIGNID] = newCampaignId;
+//            if (String.IsNullOrEmpty(statekey) || String.IsNullOrEmpty(campaignkey))
+//            {
+//                //controller = cbttt.buildNew();      // Keine State vorhanden - neu erzeugen
+//                string newCampaignId = gcmlservice.createNewCampaign(
+//                    currentPlayerId,
+//                    new clsSektorKoordinaten(5, 5).ToString()
+//                );
+//                state [GcmlClientKeys.CAMPAIGNID] = newCampaignId;
 
 
-            }
-            else if ((CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER] != null)
-            {
-                controller = (CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER];
-            }
-            else
-            {
-                controller = cbttt.restoreFromDb(campaignkey, statekey);
-            }
+//            }
+//            else if ((CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER] != null)
+//            {
+//                controller = (CampaignController)state[GcmlClientKeys.CAMPAIGNCONTROLLER];
+//            }
+//            else
+//            {
+//                //controller = cbttt.restoreFromDb(campaignkey, statekey);
+//            }
 
-            // Ersten State speichern
-            string newkey = controller.saveCurrentGameState();
-            state[GcmlClientKeys.CAMPAIGNSTATE] = newkey;
-            state[GcmlClientKeys.CAMPAIGNID] = controller.CampaignKey;
-            state[GcmlClientKeys.CAMPAIGNCONTROLLER] = controller;
+//            // Ersten State speichern
+//            string newkey = controller.saveCurrentGameState();
+//            state[GcmlClientKeys.CAMPAIGNSTATE] = newkey;
+//            state[GcmlClientKeys.CAMPAIGNID] = controller.CampaignKey;
+//            state[GcmlClientKeys.CAMPAIGNCONTROLLER] = controller;
 
-#if DEBUG
-            //controller.restoreGameState(newkey);
+//#if DEBUG
+//            //controller.restoreGameState(newkey);
 
-# endif
+//# endif
 
-            return controller;
+//            return controller;
         }
 
         public static Field getField(HttpSessionState state)
@@ -105,5 +102,18 @@ namespace CampaignMasterWeb
             IUnit unit = controller.getUnit(strPlayerID, unitId);
             return unit;
         }
+
+        public static GcmlWebService.CampaignMasterService getService(HttpSessionState state)
+        {
+            GcmlWebService.CampaignMasterService gcmlservice = (GcmlWebService.CampaignMasterService)state["gcmlservice"];
+            if (gcmlservice == null)
+            {
+                gcmlservice = new GcmlWebService.CampaignMasterService();
+                state["gcmlservice"] = gcmlservice;
+            }
+
+            return gcmlservice;
+        }
+
     }
 }
