@@ -49,6 +49,7 @@ namespace GenericCampaignMasterLib
         public int Movement { get { return m_objUnitType.intMovement; } }
         public int Sichtweite { get { return m_objUnitType.intSichtweite; } }
 
+        public string ownerID = "";
 
         private string m_strId = "-1";
         public string Id 

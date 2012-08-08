@@ -187,6 +187,7 @@ namespace GenericCampaignMasterLib
             if (sektor.ListUnits.Count > 1)
             {
                 List<Player> unitOwnersInSektor = new List<Player>();
+                
                 foreach (BaseUnit unit in sektor.ListUnits)
                 {
                     Player owner = m_campaignEngine.getUnitOwner(unit);

@@ -110,8 +110,6 @@ namespace GenericCampaignMasterLib
         {
             foreach (Sektor aktSek in dicSektors.Values)
             {
-
-
                 foreach (BaseUnit aktUnit in aktSek.ListUnits)
                 {
                     if (aktUnit.Id == u.Id)

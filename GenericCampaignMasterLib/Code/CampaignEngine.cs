@@ -138,10 +138,11 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
-        public Player getUnitOwner(IUnit unit)
+        public Player getUnitOwner(BaseUnit  unit)
         {
+
             var owner = (from p in m_ListPlayers
-                         where p.ListUnits.Contains(unit)
+                         where p.Id == unit.ownerID 
                          select p).First();
 
             return owner as Player;
@@ -156,10 +157,10 @@ namespace GenericCampaignMasterLib
         public BaseUnit getUnit(string id)
 		{
             //shite Lösung, eineindeutige UnitIDs (s.o.)
-			var units = from p in m_ListPlayers
-						from u in p.ListUnits
-						where u.Id.ToString() == id
-						select u;
+			    var units = from p in m_ListPlayers
+						    from u in p.ListUnits
+						    where u.Id.ToString() == id
+						    select u;
             
             //korrekter Ansatz: Wenn es mehr als einen Traffer bei einer eineindeutigen Suche gibt, ist das ein Fehler! 
             if (units.Count() == 0)
@@ -173,6 +174,15 @@ namespace GenericCampaignMasterLib
 
         #region " Unitfactory "
 
+        public IUnit addUnit(Player owner, BaseUnit newUnit, Sektor sektor)
+        {
+            newUnit.ownerID = owner.Id;
+            owner.ListUnits.Add(newUnit);
+            sektor.addUnit(newUnit);
+            return newUnit;
+        }
+
+
         internal BaseUnit addUnit(string strPlayerID, Type UnitType)
         {
             BaseUnit newUnit = null;
@@ -181,7 +191,7 @@ namespace GenericCampaignMasterLib
             {
                 //Ergibt nicht eineindeutige UnitIDs
                 newUnit = new DummyUnit(strPlayerID + getPlayer(strPlayerID).ListUnits.Count.ToString());
-                
+                newUnit.ownerID = strPlayerID;
             }
 
             return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);
@@ -210,18 +220,11 @@ namespace GenericCampaignMasterLib
 
         public BaseUnit addUnit(string strPlayerID, BaseUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
-            
+
+            newUnit.ownerID = strPlayerID;
             getPlayer(strPlayerID).ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
-            return newUnit;
-        }
-
-
-        public IUnit addUnit(Player owner, BaseUnit newUnit, Sektor sektor)
-        {
-            owner.ListUnits.Add(newUnit);
-            sektor.addUnit(newUnit);
             return newUnit;
         }
 
@@ -271,5 +274,7 @@ namespace GenericCampaignMasterLib
 
             p.dicVisibleSectors = facViewSek.ListVisibleSektors;
         }
+
+        
     }
 }

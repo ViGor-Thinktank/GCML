@@ -23,30 +23,38 @@ namespace Playground
         
         public void Tick()
         {
-            this.clearCommandButtons();
+            try
+            {
+                this.clearCommandButtons();
 
-            string strPlayerData = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+                string strPlayerData = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+
+                myPlayer = Player.FromString(strPlayerData);
+
+                
+                    comboBox1.DisplayMember = "Bezeichnung";
+                    comboBox1.ValueMember = "Id";
+
+                    comboBox1.DataSource = myPlayer.ListUnits;
+                
+                this.txtUnitInfo.Text = "";
+                foreach (BaseUnit objUnit in myPlayer.ListUnits)
+                {
+                    this.txtUnitInfo.Text += objUnit.Bezeichnung + " " + Program.m_objCampaign.getSektorForUnit(objUnit).strUniqueID + Environment.NewLine;
+                }
+
+                this.textBox1.Text = "";
+                foreach (Sektor x in myPlayer.dicVisibleSectors.Values)
+                {
+                    this.textBox1.Text += x.strUniqueID + Environment.NewLine;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
             
-
-            myPlayer = Player.FromString(strPlayerData);
-
-            comboBox1.DisplayMember = "Bezeichnung";
-            comboBox1.ValueMember  = "Id";
-
-            comboBox1.DataSource = myPlayer.ListUnits;
-
-            this.txtUnitInfo.Text = "";
-            foreach (BaseUnit objUnit in myPlayer.ListUnits)
-            {
-                this.txtUnitInfo.Text += objUnit.Bezeichnung + " " + Program.m_objCampaign.getSektorForUnit(objUnit).strUniqueID + Environment.NewLine;  
-            }
-            
-            this.textBox1.Text = "";
-            foreach (Sektor x in myPlayer.dicVisibleSectors.Values)
-            {
-                this.textBox1.Text += x.strUniqueID + Environment.NewLine;
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,9 +78,9 @@ namespace Playground
         {
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
-            btnNew.Size = new System.Drawing.Size(65, 25);
+            btnNew.Size = new System.Drawing.Size(100, 25);
             
-            if (offset > 5)
+            if (offset > 4)
             {
                 offset = 1;
                 hoffset += 1;
@@ -83,7 +91,7 @@ namespace Playground
             btnNew.Name = "movecmd" + offset.ToString();
             btnNew.Tag = aktCommand;
             btnNew.TabIndex = 0;
-            btnNew.Text = aktCommand.strInfo.Replace("Move", "").Replace(":", "").Trim();
+            btnNew.Text = aktCommand.strInfo.Replace("Move", "").Replace(" ", "").Replace(":", "").Trim();
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += new System.EventHandler(CommandButton_Click);
 
@@ -122,7 +130,6 @@ namespace Playground
 
         private void clearCommandButtons()
         {
-            comboBox1.Items.Clear();
             panel1.Controls.Clear();
         }
 

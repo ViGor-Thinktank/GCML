@@ -65,6 +65,7 @@ namespace GenericCampaignMasterLib
 
             engine.addPlayer(player1);
             engine.addPlayer(player2);
+            
             engine.addUnit(player1, unit1, field.getSektorList()[0]);
             engine.addUnit(player2, unit2, field.getSektorList()[2]);
 

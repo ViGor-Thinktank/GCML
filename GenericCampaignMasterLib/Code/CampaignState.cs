@@ -104,21 +104,24 @@ namespace GenericCampaignMasterLib
             CampaignEngine engine = new CampaignEngine((Field)field);
             engine.setPlayerList(lstPlayers);
 
+            
             // Units platzieren
 			foreach(UnitInfo uInfo in getListUnitInfo())
 			{
 				Type unitType = Type.GetType(uInfo.unitType);
-				//UnitTypeBase newUnitType = (UnitTypeBase) Activator.CreateInstance(unitType);
-
-                UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
+				//UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
 				
-                BaseUnit unit = new BaseUnit(uInfo.unitId);
-                string sektorId = uInfo.sektorId;
-                clsSektorKoordinaten sektorKoord = field.dicSektors[sektorId].objSektorKoord;
+                Player aktP = (from p in lstPlayers
+						where p.Id == uInfo.playerId 
+						select p).First();
 
-				// TODO Koordinaten
-				engine.addUnit(uInfo.playerId, unit, sektorKoord);
-			}
+                BaseUnit unit = aktP.getUnitByID(uInfo.unitId);
+
+                //BaseUnit unit = new BaseUnit(uInfo.unitId);
+                field.dicSektors[uInfo.sektorId].addUnit(unit);
+
+				
+			}//*/
 			
             return engine;
         }

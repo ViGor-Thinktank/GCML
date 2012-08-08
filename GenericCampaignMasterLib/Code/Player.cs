@@ -71,6 +71,13 @@ namespace GenericCampaignMasterLib
 
         #endregion
 
-        
+
+
+        internal BaseUnit getUnitByID(string strUnitID)
+        {
+            return (from u in this.ListUnits
+                           where u.Id == strUnitID
+                           select u).First();
+        }
     }
 }
