@@ -7,6 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public interface ICampaignDatabase
     {
+        string CampaignKey { get; set; }
         string saveGameState(CampaignState state);          // Rückgabewert ist der Schlüssel des States in der DB
         CampaignState getLastGameState();
         CampaignState getCampaignStateByKey(string key);

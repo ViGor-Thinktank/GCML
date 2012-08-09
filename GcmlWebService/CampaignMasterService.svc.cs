@@ -33,9 +33,10 @@ namespace GcmlWebService
             }
             else
             {
+                playerId = Guid.NewGuid().ToString();
                 Player pnew = new Player();
                 pnew.Playername = playername;
-                pnew.Id = Guid.NewGuid().ToString();
+                pnew.Id = playerId;
                 m_playerDic.Add(pnew.Id, pnew);
             }
 
@@ -44,7 +45,11 @@ namespace GcmlWebService
 
         public List<string> getPlayerCampaigns(string playerid)
         {
-            throw new NotImplementedException();
+            var campaigns = from cmp in m_dictRunningCampaigns.Values
+                            from p in cmp.getPlayerList()
+                            where p.Id == playerid
+                            select cmp.CampaignKey;
+            return campaigns.ToList<string>();
         }
 
         public string getFieldKoord(string campaignid)

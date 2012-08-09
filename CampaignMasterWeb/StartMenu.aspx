@@ -28,6 +28,8 @@
         <asp:TextBox ID="tbPlayername" runat="server" Width="190px"></asp:TextBox>
         <asp:Button ID="btnLogin" runat="server" Text="Anmelden" onclick="btnLogin_Click" 
              />
+        <asp:Button ID="btnLogoff" runat="server" Text="Ausloggen" 
+            onclick="btnLogoff_Click" />
         <br />
         <br />
         <asp:Panel ID="pnPlayerCampaigns" runat="server">

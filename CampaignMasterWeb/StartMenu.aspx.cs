@@ -12,12 +12,20 @@ namespace CampaignMasterWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         // Wird nach dem (Login-) Clickevent ausgelöst
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            if (!String.IsNullOrEmpty((string)this.Session[GcmlClientKeys.CONTEXTPLAYERID]))
+            {
+                tbPlayername.Enabled = false;
+                btnLogin.Enabled = false;
+                btnLogoff.Enabled = true;
+                pnPlayerCampaigns.Enabled = true;
+            }
+
             drawPlayerCampaignData();
 
         }
@@ -28,9 +36,9 @@ namespace CampaignMasterWeb
 
             if(!String.IsNullOrEmpty(playername))
             {
-                string intPlayername = GcmlClientWeb.getService(this.Session).getPlayerId(playername);
-                if (!String.IsNullOrEmpty(intPlayername))
-                    this.Session[GcmlClientKeys.CONTEXTPLAYERID] = intPlayername;
+                string playerId = GcmlClientWeb.getService(this.Session).getPlayerId(playername);
+                if (!String.IsNullOrEmpty(playerId))
+                    this.Session[GcmlClientKeys.CONTEXTPLAYERID] = playerId;
             }
         }
 
@@ -48,12 +56,12 @@ namespace CampaignMasterWeb
         {
             lbCampaigns.Items.Clear();
 
-            string currentPlayer = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
-            if (String.IsNullOrEmpty(currentPlayer))
+            string currentPlayerId = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
+            if (String.IsNullOrEmpty(currentPlayerId))
                 return;
 
             CampaignMasterService gcmlservice = GcmlClientWeb.getService(this.Session);
-            List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayer);
+            List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId);
             foreach (string strCampaign in campaigns)
             {
                 lbCampaigns.Items.Add(strCampaign);
@@ -63,5 +71,15 @@ namespace CampaignMasterWeb
 
 
         }
+
+        protected void btnLogoff_Click(object sender, EventArgs e)
+        {
+            this.Session[GcmlClientKeys.CONTEXTPLAYERID] = "";
+            tbPlayername.Text = "";
+            tbPlayername.Enabled = true;
+            btnLogin.Enabled = true;
+            btnLogoff.Enabled = false;
+            pnPlayerCampaigns.Enabled = false;
+        } 
     }
 }
