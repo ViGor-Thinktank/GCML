@@ -44,6 +44,10 @@ namespace CampaignMasterWeb
 
         protected void BtnNewCampaign_Click(object sender, EventArgs e)
         {
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            string playerid = (string) this.Session[GcmlClientKeys.CONTEXTPLAYERID];
+            string campaignid = service.createNewCampaign(playerid, "");
+
 
         }
 

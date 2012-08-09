@@ -124,7 +124,10 @@ namespace GenericCampaignMasterLib
                 foreach (BaseUnit u in p.ListUnits)
                 {
                     Sektor s = getSektorContainingUnit(u);
-                    
+
+                    if (s == null)
+                        continue;
+
                     UnitInfo uInfo = new UnitInfo();
                     uInfo.sektorId = s.strUniqueID;
                     uInfo.unitId = u.Id.ToString();

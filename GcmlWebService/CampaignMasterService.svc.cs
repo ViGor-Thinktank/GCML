@@ -84,16 +84,9 @@ namespace GcmlWebService
 
         public string createNewCampaign(string playerid, string fielddimension)
         {
-            Player player;
-            if (!m_playerDic.Keys.Contains(playerid))
-            {
-                player = new Player(playerid);
-                m_playerDic.Add(playerid, player);
-            }
-            else
-            {
-                player = m_playerDic[playerid];
-            }
+            Player player = getPlayer(playerid);
+            if (player == null)
+                return "";
 
             // Datenbank
             CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
@@ -110,13 +103,14 @@ namespace GcmlWebService
             engine.addPlayer(player);
             engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
 
-            // Controller
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
             controller.campaignEngine = engine;
             controller.CampaignKey = database.CampaignKey;
 
+            database.saveGameState(engine.getState());
             m_dictRunningCampaigns.Add(database.CampaignKey, database);
+            
 
             return database.CampaignKey;
         }
@@ -147,7 +141,22 @@ namespace GcmlWebService
                           where p.Id == playerId
                           select p;
 
+            if (players.Count() > 0)
+                player = players.First();
+            else
+                player = m_playerDic[playerId];
+            
             return player;
+        }
+
+        private CampaignController getController(string campaignId)
+        {
+            ICampaignDatabase db = m_dictRunningCampaigns[campaignId];
+            CampaignState state = db.getLastGameState();
+            CampaignEngine engine = state.Restore();
+            CampaignController controller = new CampaignController(engine);
+            controller.CampaignKey = campaignId;
+            return controller;
         }
     }
 }
