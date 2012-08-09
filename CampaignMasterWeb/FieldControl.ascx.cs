@@ -33,6 +33,7 @@ namespace CampaignMasterWeb
                 return;
 
             List<SektorControl> sektorStack = new List<SektorControl>();
+            
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             
             Table tab = new Table();

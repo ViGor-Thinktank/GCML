@@ -22,22 +22,22 @@ namespace CampaignMasterWeb {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// dropDownPlayer-Steuerelement
+        /// lbPlayer-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropDownPlayer;
+        protected global::System.Web.UI.WebControls.Label lbPlayer;
         
         /// <summary>
-        /// btnSelectPlayer-Steuerelement
+        /// lbCampaign-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSelectPlayer;
+        protected global::System.Web.UI.WebControls.Label lbCampaign;
         
         /// <summary>
         /// FieldControl1-Steuerelement

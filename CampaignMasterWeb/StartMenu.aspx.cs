@@ -53,6 +53,11 @@ namespace CampaignMasterWeb
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            string campaignid = lbCampaigns.SelectedItem.Text;
+            this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
+
+            Response.Redirect("test.aspx");
 
         }
 
