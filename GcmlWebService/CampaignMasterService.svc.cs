@@ -16,12 +16,30 @@ namespace GcmlWebService
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
         private string strStorepath = Environment.CurrentDirectory;
 
-
         #region ICampaignMasterService Member
 
-        public string getPlayer(string playername)
+        public string getPlayerId(string playername)
         {
-            throw new NotImplementedException();
+            string playerId = "";
+
+            var players = from cmp in m_dictRunningCampaigns.Values
+                          from p in cmp.getPlayerList()
+                          where p.Playername == playername
+                          select p;
+
+            if (players.Count() > 0)
+            {
+                playerId = players.First().Id;
+            }
+            else
+            {
+                Player pnew = new Player();
+                pnew.Playername = playername;
+                pnew.Id = Guid.NewGuid().ToString();
+                m_playerDic.Add(pnew.Id, pnew);
+            }
+
+            return playerId;
         }
 
         public List<string> getPlayerCampaigns(string playerid)
@@ -114,5 +132,17 @@ namespace GcmlWebService
         }
 
         #endregion
+
+
+        private Player getPlayer(string playerId)
+        {
+            Player player = null;
+            var players = from cmp in m_dictRunningCampaigns.Values
+                          from p in cmp.getPlayerList()
+                          where p.Id == playerId
+                          select p;
+
+            return player;
+        }
     }
 }

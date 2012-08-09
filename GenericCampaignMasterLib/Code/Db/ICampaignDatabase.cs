@@ -13,5 +13,6 @@ namespace GenericCampaignMasterLib
         CampaignState getCampaignStateByDate(DateTime time);
         List<CampaignState> getAllCampaignStates();
         List<DateTime> getStateList();
+        List<Player> getPlayerList();           // Liste der beteiligten Spieler IDs liefern
     }
 }

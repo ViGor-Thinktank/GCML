@@ -13,7 +13,7 @@ namespace GcmlWebService
     public interface ICampaignMasterService
     {
         [OperationContract]
-        string getPlayer(string playername);
+        string getPlayerId(string playername);
 
         [OperationContract]
         List<string> getPlayerCampaigns(string playerid);

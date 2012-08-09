@@ -28,7 +28,7 @@ namespace CampaignMasterWeb
 
             if(!String.IsNullOrEmpty(playername))
             {
-                string intPlayername = GcmlClientWeb.getService(this.Session).getPlayer(playername);
+                string intPlayername = GcmlClientWeb.getService(this.Session).getPlayerId(playername);
                 if (!String.IsNullOrEmpty(intPlayername))
                     this.Session[GcmlClientKeys.CONTEXTPLAYERID] = intPlayername;
             }

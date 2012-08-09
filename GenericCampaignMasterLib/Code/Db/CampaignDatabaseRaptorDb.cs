@@ -78,6 +78,14 @@ namespace GenericCampaignMasterLib
             throw new NotImplementedException();
         }
 
+        public List<Player> getPlayerList()
+        {
+            CampaignState currState = getLastGameState();
+            return currState.getListPlayers();
+        }
+
+        #endregion
+
         private CampaignState deserializeState(string strEngine)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -85,7 +93,5 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
-
-        #endregion
     }
 }
