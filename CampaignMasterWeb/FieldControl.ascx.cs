@@ -4,12 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GenericCampaignMasterLib;
+using GenericCampaignMasterLib;             // Todo: Entfernen
+using GcmlWebService;
+using System.Web.Script.Serialization;
 
 namespace CampaignMasterWeb
 {
     public partial class FieldControl : System.Web.UI.UserControl
     {
+        private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
+
         protected void Page_Init(object sender, EventArgs e)
         {
             drawForm();
@@ -36,6 +40,14 @@ namespace CampaignMasterWeb
             
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             
+            string campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
+            string playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
+
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            string strFieldKoord = service.getFieldKoord(campaignId);
+            clsSektorKoordinaten fieldKoord = (clsSektorKoordinaten) m_serializer.Deserialize(strFieldKoord, typeof(clsSektorKoordinaten));
+
+
             Table tab = new Table();
 
             // Feld zeilenweise erstellen

@@ -6,12 +6,14 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using GenericCampaignMasterLib;
+using System.Web.Script.Serialization;
 
 namespace GcmlWebService
 {
     // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Klassennamen "Service1" sowohl im Code als auch in der SVC- und der Konfigurationsdatei ändern.
     public class CampaignMasterService : ICampaignMasterService
     {
+        private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
         private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
         private string strStorepath = Environment.CurrentDirectory;
@@ -54,7 +56,11 @@ namespace GcmlWebService
 
         public string getFieldKoord(string campaignid)
         {
-            throw new NotImplementedException();
+            CampaignController controller = getController(campaignid);
+            clsSektorKoordinaten fieldKoord = controller.campaignEngine.FieldField.FieldDimension;
+            
+            string strKoord = m_serializer.Serialize(fieldKoord);
+            return strKoord;
         }
 
         public string getSektor(string campaignid, string sektorkoord)
