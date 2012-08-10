@@ -18,13 +18,10 @@ namespace CampaignMasterWeb
         // Wird nach dem (Login-) Clickevent ausgelöst
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty((string)this.Session[GcmlClientKeys.CONTEXTPLAYERID]))
-            {
-                tbPlayername.Enabled = false;
-                btnLogin.Enabled = false;
-                btnLogoff.Enabled = true;
-                pnPlayerCampaigns.Enabled = true;
-            }
+            if (String.IsNullOrEmpty((string)this.Session[GcmlClientKeys.CONTEXTPLAYERID]))
+                setLoggedOff();
+            else
+                setLoggedIn();
 
             drawPlayerCampaignData();
 
@@ -47,7 +44,6 @@ namespace CampaignMasterWeb
             CampaignMasterService service = GcmlClientWeb.getService(Session);
             string playerid = (string) this.Session[GcmlClientKeys.CONTEXTPLAYERID];
             string campaignid = service.createNewCampaign(playerid, "");
-
 
         }
 
@@ -78,12 +74,24 @@ namespace CampaignMasterWeb
 
             }
 
-
         }
 
         protected void btnLogoff_Click(object sender, EventArgs e)
         {
             this.Session[GcmlClientKeys.CONTEXTPLAYERID] = "";
+            setLoggedOff();
+        }
+
+        private void setLoggedIn()
+        {
+            tbPlayername.Enabled = false;
+            btnLogin.Enabled = false;
+            btnLogoff.Enabled = true;
+            pnPlayerCampaigns.Enabled = true;
+        }
+
+        private void setLoggedOff()
+        {
             tbPlayername.Text = "";
             tbPlayername.Enabled = true;
             btnLogin.Enabled = true;

@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GenericCampaignMasterLib;
+using GcmlWebService;
+using System.Web.Script.Serialization;
 
 namespace CampaignMasterWeb
 {
     public partial class SektorControl : System.Web.UI.UserControl
     {
+        private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
+
         public Sektor Sektor { get; set; }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -31,20 +35,24 @@ namespace CampaignMasterWeb
 
         public void drawContext()
         {
-            if (GcmlClientWeb.getCurrentPlayer(this.Session) == null)
-                return;
+            string campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
+            string playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
 
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
             CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
-            if (controller.getUnitCollisions().Contains(this.Sektor))
+            
+            if (service.getUnitCollisions(campaignId).Contains(this.Sektor.strUniqueID))
                 bgcolor = System.Drawing.Color.Orange;
+            
             this.TableUnits.BackColor = bgcolor;
 
             // Sektorinformationen aktualisieren
             if (this.Sektor != null)
             {
                 string sektorid = this.Sektor.Id;
-                this.Sektor = controller.getSektor(sektorid);
+                string sektorStr = service.getSektor(campaignId, Sektor.objSektorKoord.ToJson());
+                this.Sektor = m_serializer.Deserialize<Sektor>(sektorStr);
             }
 
             TableUnits.Rows.Clear();

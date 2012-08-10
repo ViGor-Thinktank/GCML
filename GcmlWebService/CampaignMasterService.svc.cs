@@ -64,8 +64,15 @@ namespace GcmlWebService
         }
 
         public string getSektor(string campaignid, string sektorkoord)
-        {
-            throw new NotImplementedException();
+        { 
+            string resultSektor = "";
+            clsSektorKoordinaten koord = (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(sektorkoord);
+            CampaignController controller = getController(campaignid);
+            Sektor sektor = controller.campaignEngine.FieldField.get(koord);
+            if (sektor != null)
+                resultSektor = m_serializer.Serialize(sektor);
+
+            return resultSektor;
         }
 
         public List<string> getSektorList(string campaignid)
@@ -80,7 +87,13 @@ namespace GcmlWebService
 
         public List<string> getUnitCollisions(string campaignid)
         {
-            throw new NotImplementedException();
+            List<string> lstStrSektorClollisions = new List<string>();
+            CampaignController controller = getController(campaignid);
+            List<Sektor> lstCollisions = controller.getUnitCollisions();
+            foreach (Sektor s in lstCollisions)
+                lstStrSektorClollisions.Add(s.strUniqueID);
+            
+            return lstStrSektorClollisions;
         }
 
         public List<string> getCommandsForUnit(string campaignid, string unitid)
