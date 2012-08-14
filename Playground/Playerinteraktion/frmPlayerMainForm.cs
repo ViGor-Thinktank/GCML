@@ -13,7 +13,7 @@ namespace Playground
 {
     public partial class frmPlayerMainForm : Form
     {
-        public Player myPlayer; 
+        public string strMyPlayerID; 
 
         public frmPlayerMainForm()
         {
@@ -28,13 +28,12 @@ namespace Playground
                 this.clearCommandButtons();
 
 
-                myPlayer = Program.m_objCampaign.getCampaignStateForPlayer(myPlayer.Id);
+                Player myPlayer = Program.m_objCampaign.getCampaignStateForPlayer(this.strMyPlayerID);
 
                 
-                    comboBox1.DisplayMember = "Bezeichnung";
-                    comboBox1.ValueMember = "Id";
-
-                    comboBox1.DataSource = myPlayer.ListUnits;
+                comboBox1.DisplayMember = "Bezeichnung";
+                comboBox1.ValueMember = "Id";
+                comboBox1.DataSource = myPlayer.ListUnits;
                 
                 this.txtUnitInfo.Text = "";
                 foreach (BaseUnit objUnit in myPlayer.ListUnits)
@@ -47,6 +46,7 @@ namespace Playground
                 {
                     this.textBox1.Text += x.strUniqueID + Environment.NewLine;
                 }
+
             }
             catch (Exception ex)
             {
@@ -59,10 +59,9 @@ namespace Playground
         private void button1_Click(object sender, EventArgs e)
         {
             
-            myPlayer = Program.m_objCampaign.addPlayer(txtPlayerName.Text);
-            this.Text = myPlayer.Playername;
+            this.strMyPlayerID  = Program.m_objCampaign.addPlayer(txtPlayerName.Text).Id;
+            this.Text = this.strMyPlayerID;
 
-            
             button1.Visible = false;
         }
 
@@ -73,7 +72,7 @@ namespace Playground
 
         private int hoffset = 0;
 
-        private void addButton(ICommand aktCommand, ref int offset)
+        private void addButton(ICommand aktCommand, ref int offset, string strCommandInfo)
         {
             System.Windows.Forms.Button btnNew = new System.Windows.Forms.Button();
             
@@ -94,6 +93,9 @@ namespace Playground
             btnNew.UseVisualStyleBackColor = true;
             btnNew.Click += new System.EventHandler(CommandButton_Click);
 
+            if (aktCommand.strInfo == strCommandInfo)
+                btnNew.BackColor = Color.LightGreen; 
+
             this.panel1.Controls.Add(btnNew);
             
         }
@@ -101,7 +103,7 @@ namespace Playground
         private void CommandButton_Click(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = Color.LightGreen;
-            ((ICommand)((Button)sender).Tag).Execute();         
+            ((ICommand)((Button)sender).Tag).Register();         
         }
 
         private void erzeugeCommandButtonsForUnit(BaseUnit unit)
@@ -114,7 +116,7 @@ namespace Playground
                 int offset = 1;
                 foreach (ICommand aktCommand in Program.m_objCampaign.getCommandsForUnit(unit))
                 {
-                    this.addButton(aktCommand, ref offset);
+                    this.addButton(aktCommand, ref offset, unit.strAktCommandInfo);
                     offset += 1;
                 }
 
@@ -140,20 +142,28 @@ namespace Playground
             {
                 string strUnitID = comboBox1.SelectedValue.ToString();
 
-                foreach (BaseUnit unit in myPlayer.ListUnits)
-                {
-                    if (unit.Id == strUnitID)
-                    {
-                        this.erzeugeCommandButtonsForUnit(unit);
-                        break;
-                    }
-                }
+                BaseUnit Unit = Program.m_objCampaign.getUnit(strUnitID);
+
+                this.erzeugeCommandButtonsForUnit(Unit);
+
             }
         }
 
         private void btnAddUNit_Click(object sender, EventArgs e)
         {
-            Program.m_objCampaign.createNewUnit(myPlayer.Id, typeof(DummyUnit));
+            Program.m_objCampaign.createNewUnit(strMyPlayerID, typeof(DummyUnit));
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.m_objCampaign.getPlayer(
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
     }

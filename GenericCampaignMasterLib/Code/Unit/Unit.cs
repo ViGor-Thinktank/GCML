@@ -11,7 +11,7 @@ namespace GenericCampaignMasterLib
         string Id { get; }             // Dummy
         string Bezeichnung { get; } // Dummy
 		
-		 List<ICommand> getCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
+		 List<ICommand> getTypeCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
 
          int Movement { get; }
     }
@@ -73,15 +73,23 @@ namespace GenericCampaignMasterLib
 
         }
 
-
-
-        public List<ICommand> getCommands()
+        public List<ICommand> getTypeCommands()
         {
-            return m_objUnitType.getCommands(this);
+            return m_objUnitType.getTypeCommands(this);
         }
 
+        private Move m_aktCommand = null;
+        public Move aktCommand { get; set; }
 
-
-
+        public string strAktCommandInfo
+        {
+            get
+            {
+                if (m_aktCommand != null)
+                    return m_aktCommand.strInfo;
+                else
+                    return "";
+            }
+        }
     }
 }

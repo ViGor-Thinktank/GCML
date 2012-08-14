@@ -13,7 +13,7 @@ namespace GenericCampaignMasterLib
             this.m_intSichtweite = 1;
         }
 
-        public override List<ICommand> getCommands(BaseUnit CallingUnit)
+        public override List<ICommand> getTypeCommands(BaseUnit CallingUnit)
         {
             Move cmd = new Move();
             cmd.Unit = CallingUnit;
@@ -42,6 +42,6 @@ namespace GenericCampaignMasterLib
             m_strDefaultBez = strDefaultBez;
         }
 
-        public abstract List<ICommand> getCommands(BaseUnit CallingUnit);
+        public abstract List<ICommand> getTypeCommands(BaseUnit CallingUnit);
     }
 }

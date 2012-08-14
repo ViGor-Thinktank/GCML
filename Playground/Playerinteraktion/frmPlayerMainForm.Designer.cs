@@ -35,6 +35,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtUnitInfo = new System.Windows.Forms.TextBox();
             this.btnAddUNit = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -98,11 +99,22 @@
             this.btnAddUNit.UseVisualStyleBackColor = true;
             this.btnAddUNit.Click += new System.EventHandler(this.btnAddUNit_Click);
             // 
+            // btnDone
+            // 
+            this.btnDone.Location = new System.Drawing.Point(559, 11);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(75, 23);
+            this.btnDone.TabIndex = 7;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
             // frmPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 349);
+            this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnAddUNit);
             this.Controls.Add(this.txtUnitInfo);
             this.Controls.Add(this.panel1);
@@ -127,5 +139,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtUnitInfo;
         private System.Windows.Forms.Button btnAddUNit;
+        private System.Windows.Forms.Button btnDone;
     }
 }

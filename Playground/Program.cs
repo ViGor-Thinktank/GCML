@@ -39,7 +39,7 @@ namespace Playground
                 foreach (Player newP in listPlayers)
                 {
                     frmPlayerMainForm frmP = new frmPlayerMainForm();
-                    frmP.myPlayer = newP;
+                    frmP.strMyPlayerID = newP.Id;
                     frmP.button1.Visible = false;
                     frmP.Text = newP.Playername;
                     frmP.Show();

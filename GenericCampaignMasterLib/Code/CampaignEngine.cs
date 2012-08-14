@@ -54,7 +54,7 @@ namespace GenericCampaignMasterLib
 
         public List<ICommand> getCommandsForUnit(BaseUnit u)
 		{
-            List<ICommand> listRawCommands = u.getCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
+            List<ICommand> listRawCommands = u.getTypeCommands();           // Unfertige Commands von der Unit - Enthalten keine Position-/Zielsektoren
             m_lisReadyCommands = new List<ICommand>();                   // Liste mit vollständigen Commands - wird zurückgeliefert.
         	
 			foreach (ICommand cmdRaw in listRawCommands)

@@ -197,8 +197,6 @@ namespace GenericCampaignMasterLib
 
         public Player getCampaignStateForPlayer(string pID, string strState = "")
         {
-
-            
             Player askingPlayer = this.m_campaignEngine.getPlayer(pID);
 
             this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);

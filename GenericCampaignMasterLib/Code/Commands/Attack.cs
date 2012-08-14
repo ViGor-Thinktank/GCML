@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenericCampaignMasterLib
 {
-    public class Attack : ICommand
+    public class Attack 
     {
         public int Attacker
         {

@@ -23,7 +23,7 @@ namespace GenericCampaignMasterLib
         
 		public new List<ICommand> getCommands()
 		{
-            List<ICommand> lisPossibleCommands = base.getCommands();
+            List<ICommand> lisPossibleCommands = base.getTypeCommands();
             //ggf. Unit- oder Situationspezifisches hinzufügen
             return lisPossibleCommands;
 
