@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     public struct CommandInfo
     {
         public string commandId;
-        public string commanType;
+        public string commandType;
         public string actingUnitId;
     }
 }

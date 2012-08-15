@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GenericCampaignMasterLib;
 using CampaignMasterWeb;            // Nur zum Testen des Ws. Todo: Aufruf über Webverweis
-using GcmlWebService;
+using CampaignMasterWeb.GcmlWsReference;
 
 namespace CampaignMasterWeb
 {
@@ -103,12 +103,12 @@ namespace CampaignMasterWeb
             return unit;
         }
 
-        public static GcmlWebService.CampaignMasterService getService(HttpSessionState state)
+        public static GcmlWsReference.CampaignMasterService getService(HttpSessionState state)
         {
-            GcmlWebService.CampaignMasterService gcmlservice = (GcmlWebService.CampaignMasterService)state["gcmlservice"];
+            GcmlWsReference.CampaignMasterService gcmlservice = (GcmlWsReference.CampaignMasterService)state["gcmlservice"];
             if (gcmlservice == null)
             {
-                gcmlservice = new GcmlWebService.CampaignMasterService();
+                gcmlservice = new GcmlWsReference.CampaignMasterService();
                 state["gcmlservice"] = gcmlservice;
             }
 

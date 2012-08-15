@@ -73,6 +73,11 @@
     </Compile>
     <Compile Include="GCMLClientWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SektorControl.ascx.cs">
       <DependentUpon>SektorControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -94,8 +99,10 @@
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\GcmlWs\Reference.cs">
+    <Compile Include="Web References\GcmlWsReference\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -146,20 +153,48 @@
     <WebReferences Include="Web References" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://127.0.0.1:8080/CampaignMasterService.svc?wsdl">
+    <WebReferenceUrl Include="http://localhost:666/GcmlWs/CampaignMasterService.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\GcmlWs</RelPath>
-      <UpdateFromURL>http://127.0.0.1:8080/CampaignMasterService.svc?wsdl</UpdateFromURL>
+      <RelPath>Web References\GcmlWsReference\</RelPath>
+      <UpdateFromURL>http://localhost:666/GcmlWs/CampaignMasterService.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CampaignMasterWeb_GcmlWs_CampaignMasterService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\GcmlWs\CampaignMasterService.xsd" />
-    <None Include="Web References\GcmlWs\CampaignMasterService0.xsd" />
-    <None Include="Web References\GcmlWs\CampaignMasterService1.xsd" />
-    <None Include="Web References\GcmlWs\CampaignMasterService.wsdl" />
-    <None Include="Web References\GcmlWs\Reference.map">
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\GcmlWsReference\BaseUnit.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GcmlWsReference\CampaignMasterService.xsd" />
+    <None Include="Web References\GcmlWsReference\CampaignMasterService0.xsd" />
+    <None Include="Web References\GcmlWsReference\CampaignMasterService1.xsd" />
+    <None Include="Web References\GcmlWsReference\CampaignMasterService.wsdl" />
+    <None Include="Web References\GcmlWsReference\CampaignMasterService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\GcmlWsReference\CampaignMasterService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\GcmlWsReference\clsSektorKoordinaten.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GcmlWsReference\CommandInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GcmlWsReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\GcmlWsReference\Sektor1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
 </Project>

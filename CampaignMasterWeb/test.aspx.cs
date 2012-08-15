@@ -6,7 +6,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GenericCampaignMasterLib;         // Todo: Keine Referenz auf die Lib im Client - nur noch WebService
-using GcmlWebService;
+using CampaignMasterWeb.GcmlWsReference;
 
 namespace CampaignMasterWeb
 {

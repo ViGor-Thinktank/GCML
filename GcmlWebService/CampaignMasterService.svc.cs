@@ -54,25 +54,22 @@ namespace GcmlWebService
             return campaigns.ToList<string>();
         }
 
-        public string getFieldKoord(string campaignid)
+        public clsSektorKoordinaten getFieldKoord(string campaignid)
         {
             CampaignController controller = getController(campaignid);
             clsSektorKoordinaten fieldKoord = controller.campaignEngine.FieldField.FieldDimension;
-            
-            string strKoord = m_serializer.Serialize(fieldKoord);
-            return strKoord;
+
+            return fieldKoord;
         }
 
-        public string getSektor(string campaignid, string sektorkoord)
+        public Sektor getSektor(string campaignid, string sektorkoord)
         { 
-            string resultSektor = "";
+            //string resultSektor = "";
             clsSektorKoordinaten koord = (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(sektorkoord);
             CampaignController controller = getController(campaignid);
             Sektor sektor = controller.campaignEngine.FieldField.get(koord);
-            if (sektor != null)
-                resultSektor = m_serializer.Serialize(sektor);
 
-            return resultSektor;
+            return sektor;
         }
 
         public List<string> getSektorList(string campaignid)
@@ -80,23 +77,19 @@ namespace GcmlWebService
             throw new NotImplementedException();
         }
 
-        public string getUnit(string campaignid, string unitid)
+        public BaseUnit getUnit(string campaignid, string unitid)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> getUnitCollisions(string campaignid)
+        public List<Sektor> getUnitCollisions(string campaignid)
         {
             List<string> lstStrSektorClollisions = new List<string>();
             CampaignController controller = getController(campaignid);
-            List<Sektor> lstCollisions = controller.getUnitCollisions();
-            foreach (Sektor s in lstCollisions)
-                lstStrSektorClollisions.Add(s.strUniqueID);
-            
-            return lstStrSektorClollisions;
+            return controller.getUnitCollisions();
         }
 
-        public List<string> getCommandsForUnit(string campaignid, string unitid)
+        public List<CommandInfo> getCommandsForUnit(string campaignid, string unitid)
         {
             throw new NotImplementedException();
         }
@@ -139,7 +132,7 @@ namespace GcmlWebService
             throw new NotImplementedException();
         }
 
-        public void executeCommand(string campaignid, string command)
+        public void executeCommand(string campaignid, CommandInfo command)
         {
             throw new NotImplementedException();
         }

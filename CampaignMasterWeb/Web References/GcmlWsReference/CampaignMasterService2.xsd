@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:666/GcmlWs/CampaignMasterService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:666/GcmlWs/CampaignMasterService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:666/GcmlWs/CampaignMasterService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="clsSektorKoordinaten">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Position" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+      <xs:element minOccurs="0" name="Z" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="clsSektorKoordinaten" nillable="true" type="tns:clsSektorKoordinaten" />
+  <xs:complexType name="Sektor">
+    <xs:sequence>
+      <xs:element name="_x003C_objSektorKoord_x003E_k__BackingField" nillable="true" type="tns:clsSektorKoordinaten" />
+      <xs:element name="m_ListUnits" nillable="true" type="tns:ArrayOfBaseUnit" />
+      <xs:element name="m_objSektorType" nillable="true" type="tns:clsSektorType_base" />
+      <xs:element name="m_strID" nillable="true" type="xs:string" />
+      <xs:element name="onUnitEnteredSektor" nillable="true" type="tns:Sektor.UnitEnteringHandler" />
+      <xs:element name="onUnitLeftSektor" nillable="true" type="tns:Sektor.UnitLeavingHandler" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Sektor" nillable="true" type="tns:Sektor" />
+  <xs:complexType name="ArrayOfBaseUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaseUnit" nillable="true" type="tns:BaseUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBaseUnit" nillable="true" type="tns:ArrayOfBaseUnit" />
+  <xs:complexType name="BaseUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bezeichnung" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aktCommand" nillable="true" type="tns:Move" />
+      <xs:element minOccurs="0" name="ownerID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseUnit" nillable="true" type="tns:BaseUnit" />
+  <xs:complexType name="Move">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OriginSektor" nillable="true" type="tns:Sektor" />
+      <xs:element minOccurs="0" name="TargetSektor" nillable="true" type="tns:Sektor" />
+      <xs:element minOccurs="0" name="Unit" nillable="true" type="tns:BaseUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Move" nillable="true" type="tns:Move" />
+  <xs:complexType name="clsSektorType_base">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="clsSektorType_base" nillable="true" type="tns:clsSektorType_base" />
+  <xs:complexType name="Sektor.UnitEnteringHandler">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System" base="q2:MulticastDelegate" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Sektor.UnitEnteringHandler" nillable="true" type="tns:Sektor.UnitEnteringHandler" />
+  <xs:complexType name="Sektor.UnitLeavingHandler">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System" base="q3:MulticastDelegate" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Sektor.UnitLeavingHandler" nillable="true" type="tns:Sektor.UnitLeavingHandler" />
+  <xs:complexType name="ArrayOfSektor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sektor" nillable="true" type="tns:Sektor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSektor" nillable="true" type="tns:ArrayOfSektor" />
+  <xs:complexType name="ArrayOfCommandInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommandInfo" type="tns:CommandInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommandInfo" nillable="true" type="tns:ArrayOfCommandInfo" />
+  <xs:complexType name="CommandInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actingUnitId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="commandType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommandInfo" nillable="true" type="tns:CommandInfo" />
+</xs:schema>

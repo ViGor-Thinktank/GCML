@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GenericCampaignMasterLib;
-using GcmlWebService;
+//using GenericCampaignMasterLib;
 using System.Web.Script.Serialization;
+using CampaignMasterWeb.GcmlWsReference;
 
 namespace CampaignMasterWeb
 {
@@ -15,9 +15,14 @@ namespace CampaignMasterWeb
         private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
 
         public Sektor Sektor { get; set; }
+        private string campaignId;
+        private string playerId;
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
+            playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
+
             drawForm();
             drawContext();
         }
@@ -30,19 +35,15 @@ namespace CampaignMasterWeb
                 return;
             }
 
-            LabelSektorname.Text = this.Sektor.strUniqueID;
+            LabelSektorname.Text = this.Sektor.m_strID;
         }
 
         public void drawContext()
         {
-            string campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
-            string playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
-
             CampaignMasterService service = GcmlClientWeb.getService(Session);
-            CampaignController controller = GcmlClientWeb.getCampaignController(Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
             
-            if (service.getUnitCollisions(campaignId).Contains(this.Sektor.strUniqueID))
+            if (service.getUnitCollisions(campaignId).Contains(this.Sektor))
                 bgcolor = System.Drawing.Color.Orange;
             
             this.TableUnits.BackColor = bgcolor;
@@ -50,15 +51,15 @@ namespace CampaignMasterWeb
             // Sektorinformationen aktualisieren
             if (this.Sektor != null)
             {
-                string sektorid = this.Sektor.Id;
-                string sektorStr = service.getSektor(campaignId, Sektor.objSektorKoord.ToJson());
-                this.Sektor = m_serializer.Deserialize<Sektor>(sektorStr);
+                string sektorid = this.Sektor.m_strID;
+                Sektor s = service.getSektor(campaignId, Sektor.m_strID);
+                this.Sektor = s;
             }
 
             TableUnits.Rows.Clear();
             TableUnitActions.Rows.Clear();
             string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
-            foreach (BaseUnit unit in this.Sektor.ListUnits)
+            foreach (BaseUnit unit in this.Sektor.m_ListUnits)
             {
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
@@ -68,12 +69,12 @@ namespace CampaignMasterWeb
                 {
                     row.BackColor = System.Drawing.Color.LightBlue;
 
-                    Dictionary<string, ICommand> contextCmdList = (Dictionary<string, ICommand>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
+                    Dictionary<string, CommandInfo> contextCmdList = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
                     foreach (string cmdkey in contextCmdList.Keys)
                     {
-                        ICommand cmd = contextCmdList[cmdkey];
+                        CommandInfo cmd = contextCmdList[cmdkey];
 
-                        TableRow rowcmd = createSelectableRow(cmdkey, cmd.strInfo, new EventHandler(executeUnitAction));
+                        TableRow rowcmd = createSelectableRow(cmdkey, cmd.commandType, new EventHandler(executeUnitAction));
                         TableUnitActions.Rows.Add(rowcmd);
                     }
                 }
@@ -82,23 +83,23 @@ namespace CampaignMasterWeb
 
         protected void unitSelected(object sender, EventArgs e)
         {
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
             Button btnSender = sender as Button;
             string selUnitId = btnSender.ID.Substring(17);
-            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
-            BaseUnit unit = controller.getUnit(selUnitId);
-
+            BaseUnit unit = service.getUnit(campaignId, selUnitId);
             setSelectedUnitContext(unit);
         }
 
         protected void executeUnitAction(object sender, EventArgs e)
         {
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
             Button btnSender = sender as Button;
             string cmdId = btnSender.ID;
-            Dictionary <string, ICommand> cmdList = (Dictionary<string, ICommand>) Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
+            Dictionary<string, CommandInfo> cmdList = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
             if((cmdList != null) && cmdList.Keys.Contains(cmdId))
             {
-                ICommand cmd = cmdList[cmdId];
-                cmd.Execute();
+                CommandInfo cmd = cmdList[cmdId];
+                service.executeCommand(campaignId, cmd);
             }
 
             setSelectedUnitContext(null);       // Wenn die AKtion ausgeführt wurde keine Unit mehr selektiert
@@ -106,17 +107,17 @@ namespace CampaignMasterWeb
 
         private void setSelectedUnitContext(BaseUnit selectedUnit)
         {
+            CampaignMasterService service = GcmlClientWeb.getService(Session);
             string contextUnitId = null;      // Id der aktuell selektierten Einheit
-            Dictionary<string, ICommand> contextCommandList = new Dictionary<string, ICommand>();
-            CampaignController controller = GcmlClientWeb.getCampaignController(this.Session);
+            Dictionary<string, CommandInfo> contextCommandList = new Dictionary<string, CommandInfo>();
 
             if (selectedUnit != null)
             {
                 // Die aktuell auswählbaren Commands werden mit einer ID im State gespeichert um Sie mit einem Listitem auswählen zu können
-                List<ICommand> listCommands = controller.getCommandsForUnit(selectedUnit);
-                foreach (ICommand cmd in listCommands)
+                List<CommandInfo> listCommands = service.getCommandsForUnit(campaignId, selectedUnit.Id).ToList<CommandInfo>();
+                foreach (CommandInfo cmd in listCommands)
                 {
-                    string cmdId = Guid.NewGuid().ToString();
+                    string cmdId = cmd.commandId;
                     contextCommandList.Add(cmdId, cmd);
                 }
 

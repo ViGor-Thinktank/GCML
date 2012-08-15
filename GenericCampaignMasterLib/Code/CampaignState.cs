@@ -10,15 +10,6 @@ using System.Web.Script.Serialization;
 
 namespace GenericCampaignMasterLib
 {
-    public struct UnitInfo
-    {
-        public string playerId;
-        public string sektorId;
-        public string unitId;
-		public string unitType;
-    }
-
-    
     public class CampaignState : Dictionary<string, string>
     {
 

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using GenericCampaignMasterLib;
 
 namespace GcmlWebService
 {
@@ -19,22 +20,22 @@ namespace GcmlWebService
         List<string> getPlayerCampaigns(string playerid);
 
         [OperationContract]
-        string getFieldKoord(string campaignid);
+        clsSektorKoordinaten getFieldKoord(string campaignid);
 
         [OperationContract]
-        string getSektor(string campaignid, string sektorkoord);
+        Sektor getSektor(string campaignid, string sektorkoord);
 
         [OperationContract]
         List<string> getSektorList(string campaignid);
 
         [OperationContract]
-        string getUnit(string campaignid, string unitid);
+        BaseUnit getUnit(string campaignid, string unitid);
 
         [OperationContract]
-        List<string> getUnitCollisions(string campaignid);
+        List<Sektor> getUnitCollisions(string campaignid);
 
         [OperationContract]
-        List<string> getCommandsForUnit(string campaignid, string unitid);
+        List<CommandInfo> getCommandsForUnit(string campaignid, string unitid);
 
         [OperationContract]
         string createNewCampaign(string playerid, string fielddimension);
@@ -43,7 +44,7 @@ namespace GcmlWebService
         void addPlayerToCampaign(string playerid, string campaignid);
 
         [OperationContract]
-        void executeCommand(string campaignid, string command);
+        void executeCommand(string campaignid, CommandInfo command);
 
         [OperationContract]
         void addUnitToField(string campaignid, string unit, string targetsektor);

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GenericCampaignMasterLib;          
-using GcmlWebService;
+//using GenericCampaignMasterLib;          
+//using GcmlWebService;
+using CampaignMasterWeb.GcmlWsReference;
 using System.Web.Script.Serialization;
 
 namespace CampaignMasterWeb
@@ -42,8 +43,7 @@ namespace CampaignMasterWeb
             List<SektorControl> sektorStack = new List<SektorControl>();
             CampaignMasterService service = GcmlClientWeb.getService(Session);
 
-            string strFieldKoord = service.getFieldKoord(campaignId);
-            clsSektorKoordinaten fieldKoord = (clsSektorKoordinaten) m_serializer.Deserialize(strFieldKoord, typeof(clsSektorKoordinaten));
+            clsSektorKoordinaten fieldKoord = service.getFieldKoord(campaignId);
 
             // Feld zeilenweise erstellen
             Table tab = new Table();
@@ -53,11 +53,14 @@ namespace CampaignMasterWeb
 
                 for (int x = 0; x <= fieldKoord.X - 1; x++)
                 {
-                    clsSektorKoordinaten getkoord = new clsSektorKoordinaten(x, y, 0);
+                    clsSektorKoordinaten getkoord = new clsSektorKoordinaten();
+                    getkoord.X = x;
+                    getkoord.Y = y;
+                    getkoord.Z = 0;
+
                     string getkoordStr = m_serializer.Serialize(getkoord);
                     
-                    string sektorStr = service.getSektor(campaignId, getkoordStr);
-                    Sektor sektor = (Sektor)m_serializer.Deserialize(sektorStr, typeof(Sektor));
+                    Sektor sektor = service.getSektor(campaignId, getkoordStr);
 
 
                     TableCell c = new TableCell();

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GcmlWebService;
+using CampaignMasterWeb.GcmlWsReference;
+
 
 namespace CampaignMasterWeb
 {
@@ -66,7 +67,7 @@ namespace CampaignMasterWeb
                 return;
 
             CampaignMasterService gcmlservice = GcmlClientWeb.getService(this.Session);
-            List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId);
+            List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId).ToList<string>();
             foreach (string strCampaign in campaigns)
             {
                 lbCampaigns.Items.Add(strCampaign);
