@@ -145,6 +145,18 @@ namespace GcmlWebService
         #endregion
 
 
+        
+
+        private CampaignController getController(string campaignId)
+        {
+            ICampaignDatabase db = getCampaign(campaignId);
+            CampaignState state = db.getLastGameState();
+            CampaignEngine engine = state.Restore();
+            CampaignController controller = new CampaignController(engine);
+            controller.CampaignKey = campaignId;
+            return controller;
+        }
+
         private Player getPlayer(string playerId)
         {
             Player player = null;
@@ -157,18 +169,29 @@ namespace GcmlWebService
                 player = players.First();
             else
                 player = m_playerDic[playerId];
-            
+
             return player;
         }
 
-        private CampaignController getController(string campaignId)
+
+        private Dictionary<string, Player> getPlayerList()
         {
-            ICampaignDatabase db = m_dictRunningCampaigns[campaignId];
-            CampaignState state = db.getLastGameState();
-            CampaignEngine engine = state.Restore();
-            CampaignController controller = new CampaignController(engine);
-            controller.CampaignKey = campaignId;
-            return controller;
+            return new Dictionary<string, Player>();
         }
+
+        private ICampaignDatabase getCampaign(string id)
+        {
+            return null; 
+
+        }
+        private Dictionary<string, ICampaignDatabase> getRunningCampaigns()
+        {
+            return new Dictionary<string, ICampaignDatabase>();
+
+        }
+
+
+
     }
+
 }
