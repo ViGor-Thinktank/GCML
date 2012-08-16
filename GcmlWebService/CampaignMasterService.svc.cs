@@ -70,12 +70,12 @@ namespace GcmlWebService
 
         public Dictionary<string, Player> getPlayerList()
         {
-            return new Dictionary<string, Player>();
+            return m_playerDic;
         }
 
         public ICampaignDatabase getCampaign(string id)
         {
-            return null;
+            return m_dictRunningCampaigns[id];
         }
         
         public Dictionary<string, ICampaignDatabase> getRunningCampaigns()
@@ -151,6 +151,7 @@ namespace GcmlWebService
             clsSektorKoordinaten koord = (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(sektorkoord);
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
             Sektor sektor = controller.campaignEngine.FieldField.get(koord);
+            sektor.ListUnits.Clear();
             return sektor;
         }
 
