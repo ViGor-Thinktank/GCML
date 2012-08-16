@@ -57,15 +57,11 @@ namespace CampaignMasterWeb
                     getkoord.X = x;
                     getkoord.Y = y;
                     getkoord.Z = 0;
-
-                    string getkoordStr = m_serializer.Serialize(getkoord);
                     
-                    Sektor sektor = service.getSektor(campaignId, getkoordStr);
-
+                    SektorInfo sektor = service.getSektor(campaignId, getkoord);
 
                     TableCell c = new TableCell();
                     tab.Rows[y].Cells.Add(c);
-
 
                     SektorControl sc = (SektorControl)Page.LoadControl("SektorControl.ascx");
                     sc.Sektor = sektor;

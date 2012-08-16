@@ -23,7 +23,7 @@ namespace GcmlWebService
         clsSektorKoordinaten getFieldKoord(string campaignid);
 
         [OperationContract]
-        Sektor getSektor(string campaignid, string sektorkoord);
+        SektorInfo getSektor(string campaignid, clsSektorKoordinaten sektorkoord);
 
         [OperationContract]
         List<string> getSektorList(string campaignid);
@@ -32,7 +32,7 @@ namespace GcmlWebService
         BaseUnit getUnit(string campaignid, string unitid);
 
         [OperationContract]
-        List<Sektor> getUnitCollisions(string campaignid);
+        List<SektorInfo> getUnitCollisions(string campaignid);
 
         [OperationContract]
         List<CommandInfo> getCommandsForUnit(string campaignid, string unitid);

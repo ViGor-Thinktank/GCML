@@ -14,7 +14,7 @@ namespace CampaignMasterWeb
     {
         private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
 
-        public Sektor Sektor { get; set; }
+        public SektorInfo Sektor { get; set; }
         private string campaignId;
         private string playerId;
 
@@ -35,7 +35,7 @@ namespace CampaignMasterWeb
                 return;
             }
 
-            LabelSektorname.Text = this.Sektor.m_strID;
+            LabelSektorname.Text = this.Sektor.sektorId;
         }
 
         public void drawContext()
@@ -51,16 +51,17 @@ namespace CampaignMasterWeb
             // Sektorinformationen aktualisieren
             if (this.Sektor != null)
             {
-                string sektorid = this.Sektor.m_strID;
-                Sektor s = service.getSektor(campaignId, Sektor.m_strID);
+                string sektorid = this.Sektor.sektorId;
+                SektorInfo s = service.getSektor(campaignId, Sektor.sektorKoordinaten);
                 this.Sektor = s;
             }
 
             TableUnits.Rows.Clear();
             TableUnitActions.Rows.Clear();
             string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
-            foreach (BaseUnit unit in this.Sektor.m_ListUnits)
+            foreach (string unitId in this.Sektor.containedUnitIds)
             {
+                BaseUnit unit = service.getUnit(campaignId, unitId);
                 TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
 

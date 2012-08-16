@@ -111,5 +111,16 @@ namespace GenericCampaignMasterLib
         #endregion
         
         public int intMoveCost { get { return m_objSektorType.intMoveCost; } }
+
+
+        public SektorInfo getInfo()
+        {
+            SektorInfo sektornfo = new SektorInfo();
+            sektornfo.sektorId = this.strUniqueID;
+            sektornfo.sektorKoordinaten = this.objSektorKoord;
+            sektornfo.containedUnitIds = (from u in this.ListUnits
+                                          select u.Id).ToList<string>();
+            return sektornfo;
+        }
     }
 }

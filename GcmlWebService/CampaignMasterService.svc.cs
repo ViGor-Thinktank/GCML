@@ -146,13 +146,11 @@ namespace GcmlWebService
             return fieldKoord;
         }
 
-        public Sektor getSektor(string campaignid, string sektorkoord)
-        { 
-            clsSektorKoordinaten koord = (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(sektorkoord);
+        public SektorInfo getSektor(string campaignid, clsSektorKoordinaten sektorkoord)
+        {
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
-            Sektor sektor = controller.campaignEngine.FieldField.get(koord);
-            sektor.ListUnits.Clear();
-            return sektor;
+            Sektor sektor = controller.campaignEngine.FieldField.get(sektorkoord);
+            return sektor.getInfo();
         }
 
         public List<string> getSektorList(string campaignid)
@@ -165,11 +163,15 @@ namespace GcmlWebService
             throw new NotImplementedException();
         }
 
-        public List<Sektor> getUnitCollisions(string campaignid)
+        public List<SektorInfo> getUnitCollisions(string campaignid)
         {
             List<string> lstStrSektorClollisions = new List<string>();
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
-            return controller.getUnitCollisions();
+            List<Sektor> lstsek = controller.getUnitCollisions();
+
+            List <SektorInfo> collInfo = (from s in lstsek
+                                         select s.getInfo()).ToList<SektorInfo>();
+            return collInfo;
         }
 
         public List<CommandInfo> getCommandsForUnit(string campaignid, string unitid)

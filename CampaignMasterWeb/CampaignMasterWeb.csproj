@@ -193,7 +193,7 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\GcmlWsReference\Sektor1.datasource">
+    <None Include="Web References\GcmlWsReference\SektorInfo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>

@@ -222,20 +222,20 @@ namespace CampaignMasterWeb.GcmlWsReference {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ICampaignMasterService/getSektor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Sektor getSektor([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sektorkoord) {
+        public SektorInfo getSektor([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] clsSektorKoordinaten sektorkoord) {
             object[] results = this.Invoke("getSektor", new object[] {
                         campaignid,
                         sektorkoord});
-            return ((Sektor)(results[0]));
+            return ((SektorInfo)(results[0]));
         }
         
         /// <remarks/>
-        public void getSektorAsync(string campaignid, string sektorkoord) {
+        public void getSektorAsync(string campaignid, clsSektorKoordinaten sektorkoord) {
             this.getSektorAsync(campaignid, sektorkoord, null);
         }
         
         /// <remarks/>
-        public void getSektorAsync(string campaignid, string sektorkoord, object userState) {
+        public void getSektorAsync(string campaignid, clsSektorKoordinaten sektorkoord, object userState) {
             if ((this.getSektorOperationCompleted == null)) {
                 this.getSektorOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSektorOperationCompleted);
             }
@@ -318,10 +318,10 @@ namespace CampaignMasterWeb.GcmlWsReference {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ICampaignMasterService/getUnitCollisions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-        public Sektor[] getUnitCollisions([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid) {
+        public SektorInfo[] getUnitCollisions([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid) {
             object[] results = this.Invoke("getUnitCollisions", new object[] {
                         campaignid});
-            return ((Sektor[])(results[0]));
+            return ((SektorInfo[])(results[0]));
         }
         
         /// <remarks/>
@@ -749,54 +749,6 @@ namespace CampaignMasterWeb.GcmlWsReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class Move {
-        
-        private Sektor originSektorField;
-        
-        private Sektor targetSektorField;
-        
-        private BaseUnit unitField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Sektor OriginSektor {
-            get {
-                return this.originSektorField;
-            }
-            set {
-                this.originSektorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Sektor TargetSektor {
-            get {
-                return this.targetSektorField;
-            }
-            set {
-                this.targetSektorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BaseUnit Unit {
-            get {
-                return this.unitField;
-            }
-            set {
-                this.unitField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
     public partial class Sektor {
         
         private clsSektorKoordinaten objSektorKoordk__BackingFieldField;
@@ -940,6 +892,103 @@ namespace CampaignMasterWeb.GcmlWsReference {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
+    public partial class Move {
+        
+        private Sektor originSektorField;
+        
+        private Sektor targetSektorField;
+        
+        private BaseUnit unitField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Sektor OriginSektor {
+            get {
+                return this.originSektorField;
+            }
+            set {
+                this.originSektorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Sektor TargetSektor {
+            get {
+                return this.targetSektorField;
+            }
+            set {
+                this.targetSektorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public BaseUnit Unit {
+            get {
+                return this.unitField;
+            }
+            set {
+                this.unitField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
+    public partial class SektorInfo {
+        
+        private string[] containedUnitIdsField;
+        
+        private string sektorIdField;
+        
+        private clsSektorKoordinaten sektorKoordinatenField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
+        public string[] containedUnitIds {
+            get {
+                return this.containedUnitIdsField;
+            }
+            set {
+                this.containedUnitIdsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string sektorId {
+            get {
+                return this.sektorIdField;
+            }
+            set {
+                this.sektorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public clsSektorKoordinaten sektorKoordinaten {
+            get {
+                return this.sektorKoordinatenField;
+            }
+            set {
+                this.sektorKoordinatenField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     public delegate void getPlayerIdCompletedEventHandler(object sender, getPlayerIdCompletedEventArgs e);
     
@@ -1035,10 +1084,10 @@ namespace CampaignMasterWeb.GcmlWsReference {
         }
         
         /// <remarks/>
-        public Sektor Result {
+        public SektorInfo Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Sektor)(this.results[0]));
+                return ((SektorInfo)(this.results[0]));
             }
         }
     }
@@ -1113,10 +1162,10 @@ namespace CampaignMasterWeb.GcmlWsReference {
         }
         
         /// <remarks/>
-        public Sektor[] Result {
+        public SektorInfo[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Sektor[])(this.results[0]));
+                return ((SektorInfo[])(this.results[0]));
             }
         }
     }
