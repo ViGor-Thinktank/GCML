@@ -102,7 +102,7 @@ namespace GcmlWebService
             CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
-            engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
+            //engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
@@ -160,7 +160,7 @@ namespace GcmlWebService
 
         public BaseUnit getUnit(string campaignid, string unitid)
         {
-            throw new NotImplementedException();
+            return new BaseUnit();
         }
 
         public List<SektorInfo> getUnitCollisions(string campaignid)

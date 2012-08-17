@@ -57,7 +57,10 @@ namespace CampaignMasterWeb
                     getkoord.X = x;
                     getkoord.Y = y;
                     getkoord.Z = 0;
-                    
+                    getkoord.XSpecified = true;
+                    getkoord.YSpecified = true;
+                    getkoord.ZSpecified = true;
+
                     SektorInfo sektor = service.getSektor(campaignId, getkoord);
 
                     TableCell c = new TableCell();
