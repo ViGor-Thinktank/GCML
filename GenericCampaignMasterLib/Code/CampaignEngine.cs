@@ -89,17 +89,11 @@ namespace GenericCampaignMasterLib
         /// Erstmal zum Testen: Einheit liefert i.d.R. nur ein Command für Move.
         /// Liefert nur eine Collection aus möglichen Moves.
         /// </summary>
-        public List<Move> getDefaultMoveCommandsForUnit(BaseUnit u)
+        public List<ICommand> getDefaultMoveCommandsForUnit(BaseUnit u)
         {
-            List<Move> listMoves = new List<Move>();
-            List<ICommand> cmds = getCommandsForUnit(u);
-			foreach (ICommand c in cmds)
-			{
-                if (c.GetType() == typeof(Move))
-                    listMoves.Add((Move)c);
-			}
-
-            return listMoves;
+            if (u.cmdCache == null)
+                u.cmdCache = getCommandsForUnit(u);
+            return u.cmdCache;
         }
 
         public List<Sektor> getViewableSectorsForUnit(IUnit u)
@@ -109,7 +103,7 @@ namespace GenericCampaignMasterLib
 */
             return null;
         }
-
+        
         public Sektor getSektorContainingUnit(BaseUnit u)
         {
             return FieldField.getSektorForUnit(u);

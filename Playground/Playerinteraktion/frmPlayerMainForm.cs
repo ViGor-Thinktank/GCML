@@ -158,7 +158,7 @@ namespace Playground
         {
             try
             {
-                Program.m_objCampaign.getPlayer(
+                Program.m_objCampaign.getPlayer(this.strMyPlayerID).Done();
             }
             catch (Exception ex)
             {

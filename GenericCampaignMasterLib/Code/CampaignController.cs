@@ -34,11 +34,21 @@ namespace GenericCampaignMasterLib
 
 
         public event Field.delStatus onStatus;
+        public event delTick onTick;
         
+        public delegate void delTick();
+        
+
         public void Global_onStatus(string strText)
         {
             if (onStatus != null)
                 onStatus(strText);
+        }
+
+        public void Tick()
+        {
+            if (this.onTick != null)
+                this.onTick();
         }
 
         public CampaignController()
@@ -139,8 +149,12 @@ namespace GenericCampaignMasterLib
         
         public void createNewUnit(string strPlayerID, Type type)
         {
-            this.m_campaignEngine.addUnit(strPlayerID, type);
+            BaseUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, type);
+
+            this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
+
+        
        
 
         public Player getPlayer(string pID)
@@ -205,6 +219,8 @@ namespace GenericCampaignMasterLib
 
 
         }
+
+        
     }
 
 }

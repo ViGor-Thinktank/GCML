@@ -79,8 +79,13 @@ namespace GenericCampaignMasterLib
         }
 
         private Move m_aktCommand = null;
-        public Move aktCommand { get; set; }
 
+        public Move aktCommand
+        {
+            get { return m_aktCommand; }
+            set { m_aktCommand = value; }
+        }
+        
         public string strAktCommandInfo
         {
             get
@@ -89,6 +94,22 @@ namespace GenericCampaignMasterLib
                     return m_aktCommand.strInfo;
                 else
                     return "";
+            }
+        }
+
+        private List<ICommand> m_cmdCache;
+
+        public List<ICommand> cmdCache
+        {
+            get { return m_cmdCache; }
+            set { m_cmdCache = value; }
+        }
+
+        public void CampaignController_onTick()
+        {
+            if (this.aktCommand != null && !this.aktCommand.blnExecuted)
+            {
+                this.aktCommand.Execute();
             }
         }
     }

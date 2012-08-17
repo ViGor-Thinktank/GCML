@@ -79,5 +79,12 @@ namespace GenericCampaignMasterLib
                            where u.Id == strUnitID
                            select u).First();
         }
+
+        public void Done()
+        {
+            this.m_blnDone = true;
+        }
+
+        public bool m_blnDone { get; set; }
     }
 }
