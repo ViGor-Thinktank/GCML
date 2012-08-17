@@ -11,5 +11,7 @@ namespace GenericCampaignMasterLib
         void Register();
         string strInfo { get; }
         bool blnExecuted { get; }
+        string CommandId { get; set; }
+        CommandInfo getInfo();
     }
 }

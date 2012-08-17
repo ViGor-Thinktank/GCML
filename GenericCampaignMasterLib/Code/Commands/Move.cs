@@ -14,10 +14,9 @@ namespace GenericCampaignMasterLib
         private bool m_blnExecuted = false;
 
         public bool blnExecuted { get { return m_blnExecuted; } }
-        
-        
 
         #region ICommand Member
+        public string CommandId { get; set; }
 
         public void Execute ()
 		{
@@ -30,6 +29,16 @@ namespace GenericCampaignMasterLib
         public void Register()
         {
             this.Unit.aktCommand = this;
+        }
+
+        public CommandInfo getInfo()
+        {
+            CommandInfo nfo = new CommandInfo();
+            nfo.commandId = this.CommandId;
+            nfo.actingUnitId = this.Unit.Id;
+            nfo.commandType = this.GetType().ToString();
+            nfo.strInfo = this.strInfo;
+            return nfo;
         }
 
         #endregion

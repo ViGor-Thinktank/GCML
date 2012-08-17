@@ -49,6 +49,7 @@ namespace GenericCampaignMasterLib
 
                         Move readyCmd = new Move();
                         readyCmd.Unit = m_Unit;
+                        readyCmd.CommandId = Guid.NewGuid().ToString();
                         
                         readyCmd.OriginSektor = m_originSektor;
                         

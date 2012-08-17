@@ -25,12 +25,14 @@
       <xs:element minOccurs="0" name="Bezeichnung" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="aktCommand" nillable="true" type="tns:Move" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="cmdCache" nillable="true" type="q3:ArrayOfanyType" />
       <xs:element minOccurs="0" name="ownerID" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BaseUnit" nillable="true" type="tns:BaseUnit" />
   <xs:complexType name="Move">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CommandId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OriginSektor" nillable="true" type="tns:Sektor" />
       <xs:element minOccurs="0" name="TargetSektor" nillable="true" type="tns:Sektor" />
       <xs:element minOccurs="0" name="Unit" nillable="true" type="tns:BaseUnit" />
@@ -60,13 +62,13 @@
   <xs:element name="clsSektorType_base" nillable="true" type="tns:clsSektorType_base" />
   <xs:complexType name="Sektor.UnitEnteringHandler">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System" base="q3:MulticastDelegate" />
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System" base="q4:MulticastDelegate" />
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Sektor.UnitEnteringHandler" nillable="true" type="tns:Sektor.UnitEnteringHandler" />
   <xs:complexType name="Sektor.UnitLeavingHandler">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System" base="q4:MulticastDelegate" />
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/System" base="q5:MulticastDelegate" />
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Sektor.UnitLeavingHandler" nillable="true" type="tns:Sektor.UnitLeavingHandler" />
@@ -92,6 +94,7 @@
       <xs:element minOccurs="0" name="actingUnitId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="commandType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="strInfo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CommandInfo" nillable="true" type="tns:CommandInfo" />

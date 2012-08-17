@@ -14,6 +14,7 @@ namespace GcmlWebService
     {
         private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
+        private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
         private string strStorepath = "d:\\temp\\";     // jaja ich weiss
 
         private static readonly GcmlDataManager instance = new GcmlDataManager();
@@ -96,13 +97,13 @@ namespace GcmlWebService
             database.init();
 
             // Spielfeld
-            Field field = new Field(5, 5);
+            Field field = new Field(3, 3);
 
             // Engine
             CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
-            //engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
+            engine.addUnit(player, new DummyUnit(new Random().Next(1000, 9999).ToString()), field.getSektorList()[0]);
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
@@ -160,7 +161,9 @@ namespace GcmlWebService
 
         public BaseUnit getUnit(string campaignid, string unitid)
         {
-            return new BaseUnit();
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            BaseUnit result = controller.getUnit(unitid);
+            return result;
         }
 
         public List<SektorInfo> getUnitCollisions(string campaignid)
@@ -176,7 +179,14 @@ namespace GcmlWebService
 
         public List<CommandInfo> getCommandsForUnit(string campaignid, string unitid)
         {
-            throw new NotImplementedException();
+            List<CommandInfo> result = new List<CommandInfo>();
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            BaseUnit unit = controller.getUnit(unitid);
+            List<ICommand> cmdlist = controller.getCommandsForUnit(unit);
+            foreach (ICommand icmd in cmdlist)
+                result.Add(icmd.getInfo());
+
+            return result;
         }
 
         public string createNewCampaign(string playerid, string fielddimension)
@@ -191,7 +201,7 @@ namespace GcmlWebService
 
         public void executeCommand(string campaignid, CommandInfo command)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void addUnitToField(string campaignid, string unit, string targetsektor)

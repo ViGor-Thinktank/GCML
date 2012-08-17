@@ -10,5 +10,6 @@ namespace GenericCampaignMasterLib
         public string commandId;
         public string commandType;
         public string actingUnitId;
+        public string strInfo;
     }
 }

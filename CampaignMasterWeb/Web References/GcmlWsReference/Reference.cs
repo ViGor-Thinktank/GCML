@@ -28,6 +28,7 @@ namespace CampaignMasterWeb.GcmlWsReference {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_ICampaignMasterService", Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Delegate))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(object[]))]
     public partial class CampaignMasterService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback getPlayerIdOperationCompleted;
@@ -633,6 +634,8 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         private string commandTypeField;
         
+        private string strInfoField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string actingUnitId {
@@ -663,6 +666,17 @@ namespace CampaignMasterWeb.GcmlWsReference {
             }
             set {
                 this.commandTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string strInfo {
+            get {
+                return this.strInfoField;
+            }
+            set {
+                this.strInfoField = value;
             }
         }
     }
@@ -844,6 +858,8 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         private Move aktCommandField;
         
+        private object[] cmdCacheField;
+        
         private string ownerIDField;
         
         /// <remarks/>
@@ -880,6 +896,18 @@ namespace CampaignMasterWeb.GcmlWsReference {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
+        public object[] cmdCache {
+            get {
+                return this.cmdCacheField;
+            }
+            set {
+                this.cmdCacheField = value;
+            }
+        }
+        
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ownerID {
             get {
@@ -899,11 +927,24 @@ namespace CampaignMasterWeb.GcmlWsReference {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
     public partial class Move {
         
+        private string commandIdField;
+        
         private Sektor originSektorField;
         
         private Sektor targetSektorField;
         
         private BaseUnit unitField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string CommandId {
+            get {
+                return this.commandIdField;
+            }
+            set {
+                this.commandIdField = value;
+            }
+        }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]

@@ -75,7 +75,7 @@ namespace CampaignMasterWeb
                     {
                         CommandInfo cmd = contextCmdList[cmdkey];
 
-                        TableRow rowcmd = createSelectableRow(cmdkey, cmd.commandType, new EventHandler(executeUnitAction));
+                        TableRow rowcmd = createSelectableRow(cmdkey, cmd.strInfo, new EventHandler(executeUnitAction));
                         TableUnitActions.Rows.Add(rowcmd);
                     }
                 }
