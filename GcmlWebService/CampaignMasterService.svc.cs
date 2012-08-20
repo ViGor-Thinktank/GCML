@@ -12,8 +12,9 @@ namespace GcmlWebService
 {
     public sealed class GcmlDataManager
     {
-        private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();
-        private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();
+        private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();                                          // Spieler in eigener Db vorhalten (pro Spieler N Kampagnen´mögl)
+        private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
+        private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
         private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
         private string strStorepath = "d:\\temp\\";     // jaja ich weiss
 
@@ -116,6 +117,13 @@ namespace GcmlWebService
             return database.CampaignKey;
         }
 
+        public void executeCommand(string commandId)
+        {
+            if (m_dictCommandCache.Keys.Contains(commandId))
+                m_dictCommandCache[commandId].Execute();
+        }
+
+
     }
 
     public class CampaignMasterService : ICampaignMasterService
@@ -201,7 +209,7 @@ namespace GcmlWebService
 
         public void executeCommand(string campaignid, CommandInfo command)
         {
-            
+            GcmlDataManager.Instance.executeCommand(command.commandId);
         }
 
         public void addUnitToField(string campaignid, string unit, string targetsektor)
