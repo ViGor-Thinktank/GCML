@@ -13,7 +13,7 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public Field(int intX, int intY = 1, int intZ = 1)
+        public Field(int intX, int intY = 0, int intZ = 0)
         {
             this.m_FieldDimension = new clsSektorKoordinaten(intX, intY, intZ);
             this.initFieldDimension();
