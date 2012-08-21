@@ -170,17 +170,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\GcmlWsReference\BaseUnit.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\GcmlWsReference\CampaignMasterService.xsd" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService0.xsd" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService1.xsd" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService.wsdl" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\GcmlWsReference\CampaignMasterService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web References\GcmlWsReference\clsSektorKoordinaten.datasource">
@@ -194,6 +188,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\GcmlWsReference\SektorInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GcmlWsReference\UnitInfo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>

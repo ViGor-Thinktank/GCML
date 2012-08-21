@@ -15,7 +15,6 @@ namespace GcmlWebService
         private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();                                          // Spieler in eigener Db vorhalten (pro Spieler N Kampagnen´mögl)
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
         private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
-        private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
         private string strStorepath = "d:\\temp\\";     // jaja ich weiss
 
         private static readonly GcmlDataManager instance = new GcmlDataManager();
@@ -31,11 +30,21 @@ namespace GcmlWebService
 
         public CampaignController getController(string campaignId)
         {
-            ICampaignDatabase db = getCampaign(campaignId);
-            CampaignState state = db.getLastGameState();
-            CampaignEngine engine = state.Restore();
-            CampaignController controller = new CampaignController(engine);
-            controller.CampaignKey = campaignId;
+            CampaignController controller;
+            if (m_dictLoadedController.ContainsKey(campaignId))
+            {
+                controller = m_dictLoadedController[campaignId];
+            }
+            else
+            {
+                ICampaignDatabase db = getCampaign(campaignId);
+                CampaignState state = db.getLastGameState();
+                CampaignEngine engine = state.Restore();
+                controller = new CampaignController(engine);
+                controller.CampaignKey = campaignId;
+                m_dictLoadedController[campaignId] = controller;
+            }
+
             return controller;
         }
 
@@ -116,14 +125,6 @@ namespace GcmlWebService
 
             return database.CampaignKey;
         }
-
-        public void executeCommand(string commandId)
-        {
-            if (m_dictCommandCache.Keys.Contains(commandId))
-                m_dictCommandCache[commandId].Execute();
-        }
-
-
     }
 
     public class CampaignMasterService : ICampaignMasterService
@@ -167,10 +168,10 @@ namespace GcmlWebService
             throw new NotImplementedException();
         }
 
-        public BaseUnit getUnit(string campaignid, string unitid)
+        public UnitInfo getUnit(string campaignid, string unitid)
         {
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
-            BaseUnit result = controller.getUnit(unitid);
+            UnitInfo result = controller.getUnitInfo(unitid);
             return result;
         }
 
@@ -209,7 +210,9 @@ namespace GcmlWebService
 
         public void executeCommand(string campaignid, CommandInfo command)
         {
-            GcmlDataManager.Instance.executeCommand(command.commandId);
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            ICommand cmd = controller.getCommand(command.commandId);
+            cmd.Execute();
         }
 
         public void addUnitToField(string campaignid, string unit, string targetsektor)

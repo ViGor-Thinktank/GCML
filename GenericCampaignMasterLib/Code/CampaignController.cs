@@ -27,11 +27,11 @@ namespace GenericCampaignMasterLib
         }
 
 		public string CampaignKey { get; set;}
-		
-        private List<Sektor> unitCollisionStack = new List<Sektor>();
-        private List<IUnit> unitActedStack = new List<IUnit>();
         #endregion
 
+        private List<Sektor> unitCollisionStack = new List<Sektor>();
+        private List<IUnit> unitActedStack = new List<IUnit>();
+        private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
 
         public event Field.delStatus onStatus;
         public event delTick onTick;
@@ -177,10 +177,31 @@ namespace GenericCampaignMasterLib
             return m_campaignEngine.getUnit(strUnitId);
 		}
 
+        public UnitInfo getUnitInfo(string unitId)
+        {
+            BaseUnit unit = getUnit(unitId);
+            UnitInfo info = m_campaignEngine.getUnitInfo(unit);
+            return info;
+        }
+
         public List<ICommand> getCommandsForUnit(BaseUnit unit)
         {
-            return this.m_campaignEngine.getCommandsForUnit(unit);
+            List <ICommand> lstCmds = this.m_campaignEngine.getCommandsForUnit(unit);
+            foreach(ICommand cmd in lstCmds)
+                m_dictCommandCache.Add(cmd.CommandId, cmd);
+
+            return lstCmds;
         }
+
+        public ICommand getCommand(string commandId)
+        {
+            ICommand result = null;
+            if (m_dictCommandCache.ContainsKey(commandId))
+                result = m_dictCommandCache[commandId];
+
+            return result;
+        }
+
 
         public List<BaseUnit> getActiveUnitsForPlayer(Player player)
         {

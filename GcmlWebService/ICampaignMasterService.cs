@@ -29,7 +29,7 @@ namespace GcmlWebService
         List<string> getSektorList(string campaignid);
 
         [OperationContract]
-        BaseUnit getUnit(string campaignid, string unitid);
+        UnitInfo getUnit(string campaignid, string unitid);
 
         [OperationContract]
         List<SektorInfo> getUnitCollisions(string campaignid);

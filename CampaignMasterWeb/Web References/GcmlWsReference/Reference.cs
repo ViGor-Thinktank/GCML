@@ -27,8 +27,6 @@ namespace CampaignMasterWeb.GcmlWsReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BasicHttpBinding_ICampaignMasterService", Namespace="http://tempuri.org/")]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Delegate))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(object[]))]
     public partial class CampaignMasterService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback getPlayerIdOperationCompleted;
@@ -285,12 +283,11 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ICampaignMasterService/getUnit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BaseUnit getUnit([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string unitid) {
+        public UnitInfo getUnit([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string unitid) {
             object[] results = this.Invoke("getUnit", new object[] {
                         campaignid,
                         unitid});
-            return ((BaseUnit)(results[0]));
+            return ((UnitInfo)(results[0]));
         }
         
         /// <remarks/>
@@ -682,300 +679,62 @@ namespace CampaignMasterWeb.GcmlWsReference {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MulticastDelegate))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SektorUnitLeavingHandler))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SektorUnitEnteringHandler))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial class Delegate {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private System.Xml.XmlQualifiedName factoryTypeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlElement[] Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://schemas.microsoft.com/2003/10/Serialization/")]
-        public System.Xml.XmlQualifiedName FactoryType {
-            get {
-                return this.factoryTypeField;
-            }
-            set {
-                this.factoryTypeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SektorUnitLeavingHandler))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SektorUnitEnteringHandler))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/System")]
-    public partial class MulticastDelegate : Delegate {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="Sektor.UnitLeavingHandler", Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class SektorUnitLeavingHandler : MulticastDelegate {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="Sektor.UnitEnteringHandler", Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class SektorUnitEnteringHandler : MulticastDelegate {
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class clsSektorType_base {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class Sektor {
+    public partial class UnitInfo {
         
-        private clsSektorKoordinaten objSektorKoordk__BackingFieldField;
+        private string playerIdField;
         
-        private BaseUnit[] m_ListUnitsField;
+        private string sektorIdField;
         
-        private clsSektorType_base m_objSektorTypeField;
+        private string unitIdField;
         
-        private string m_strIDField;
-        
-        private SektorUnitEnteringHandler onUnitEnteredSektorField;
-        
-        private SektorUnitLeavingHandler onUnitLeftSektorField;
+        private string unitTypeField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("<objSektorKoord>k__BackingField", IsNullable=true)]
-        public clsSektorKoordinaten objSektorKoordk__BackingField {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string playerId {
             get {
-                return this.objSektorKoordk__BackingFieldField;
+                return this.playerIdField;
             }
             set {
-                this.objSektorKoordk__BackingFieldField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        public BaseUnit[] m_ListUnits {
-            get {
-                return this.m_ListUnitsField;
-            }
-            set {
-                this.m_ListUnitsField = value;
+                this.playerIdField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public clsSektorType_base m_objSektorType {
+        public string sektorId {
             get {
-                return this.m_objSektorTypeField;
+                return this.sektorIdField;
             }
             set {
-                this.m_objSektorTypeField = value;
+                this.sektorIdField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string m_strID {
+        public string unitId {
             get {
-                return this.m_strIDField;
+                return this.unitIdField;
             }
             set {
-                this.m_strIDField = value;
+                this.unitIdField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public SektorUnitEnteringHandler onUnitEnteredSektor {
+        public string unitType {
             get {
-                return this.onUnitEnteredSektorField;
+                return this.unitTypeField;
             }
             set {
-                this.onUnitEnteredSektorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public SektorUnitLeavingHandler onUnitLeftSektor {
-            get {
-                return this.onUnitLeftSektorField;
-            }
-            set {
-                this.onUnitLeftSektorField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class BaseUnit {
-        
-        private string bezeichnungField;
-        
-        private string idField;
-        
-        private Move aktCommandField;
-        
-        private object[] cmdCacheField;
-        
-        private string ownerIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Bezeichnung {
-            get {
-                return this.bezeichnungField;
-            }
-            set {
-                this.bezeichnungField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Move aktCommand {
-            get {
-                return this.aktCommandField;
-            }
-            set {
-                this.aktCommandField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
-        public object[] cmdCache {
-            get {
-                return this.cmdCacheField;
-            }
-            set {
-                this.cmdCacheField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string ownerID {
-            get {
-                return this.ownerIDField;
-            }
-            set {
-                this.ownerIDField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class Move {
-        
-        private string commandIdField;
-        
-        private Sektor originSektorField;
-        
-        private Sektor targetSektorField;
-        
-        private BaseUnit unitField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string CommandId {
-            get {
-                return this.commandIdField;
-            }
-            set {
-                this.commandIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Sektor OriginSektor {
-            get {
-                return this.originSektorField;
-            }
-            set {
-                this.originSektorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Sektor TargetSektor {
-            get {
-                return this.targetSektorField;
-            }
-            set {
-                this.targetSektorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public BaseUnit Unit {
-            get {
-                return this.unitField;
-            }
-            set {
-                this.unitField = value;
+                this.unitTypeField = value;
             }
         }
     }
@@ -1177,10 +936,10 @@ namespace CampaignMasterWeb.GcmlWsReference {
         }
         
         /// <remarks/>
-        public BaseUnit Result {
+        public UnitInfo Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((BaseUnit)(this.results[0]));
+                return ((UnitInfo)(this.results[0]));
             }
         }
     }

@@ -117,23 +117,32 @@ namespace GenericCampaignMasterLib
             {
                 foreach (BaseUnit u in p.ListUnits)
                 {
-                    Sektor s = getSektorContainingUnit(u);
-
-                    if (s == null)
-                        continue;
-
-                    UnitInfo uInfo = new UnitInfo();
-                    uInfo.sektorId = s.strUniqueID;
-                    uInfo.unitId = u.Id.ToString();
-                    uInfo.playerId = p.Id.ToString();
-                    uInfo.unitType = u.UnitType.GetType().ToString();
-                    result.Add(uInfo);
+                    UnitInfo info = getUnitInfo(u);
+                    result.Add(info);
                 }
-                
             }
 
             return result;
         }
+
+        public UnitInfo getUnitInfo(BaseUnit unit)
+        {
+            Sektor s = getSektorContainingUnit(unit);
+            Player owner = getUnitOwner(unit);
+
+            string sektorId = (s == null) ? "" : s.strUniqueID;
+            string ownerId = (owner == null) ? "" : owner.Id.ToString();
+
+            UnitInfo uInfo = new UnitInfo();
+            uInfo.sektorId = sektorId;
+            uInfo.unitId = unit.Id.ToString();
+            uInfo.playerId = ownerId;
+            uInfo.unitType = unit.UnitType.GetType().ToString();
+
+            return uInfo;
+
+        }
+
 
         public Player getUnitOwner(BaseUnit  unit)
         {

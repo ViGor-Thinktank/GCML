@@ -84,7 +84,7 @@
   <xs:element name="getUnitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitResult" nillable="true" type="q6:BaseUnit" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitResult" type="q6:UnitInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

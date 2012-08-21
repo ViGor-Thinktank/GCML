@@ -61,12 +61,12 @@ namespace CampaignMasterWeb
             string selectedUnitId = (string)Session[GcmlClientKeys.CONTEXTUNITID];
             foreach (string unitId in this.Sektor.containedUnitIds)
             {
-                BaseUnit unit = service.getUnit(campaignId, unitId);
-                TableRow row = createSelectableRow("buttonSelectUnit_" + unit.Id, unit.Id.ToString() + " : " + unit.Bezeichnung, new EventHandler(unitSelected));
+                UnitInfo unit = service.getUnit(campaignId, unitId);
+                TableRow row = createSelectableRow("buttonSelectUnit_" + unit.unitId, unit.unitId.ToString() + " : " + unit.unitType, new EventHandler(unitSelected));
                 TableUnits.Rows.Add(row);
 
                 // Für Selektierte Unit Kommandos ausgeben
-                if (unit.Id.ToString() == selectedUnitId)
+                if (unit.unitId.ToString() == selectedUnitId)
                 {
                     row.BackColor = System.Drawing.Color.LightBlue;
 
@@ -87,7 +87,7 @@ namespace CampaignMasterWeb
             CampaignMasterService service = GcmlClientWeb.getService(Session);
             Button btnSender = sender as Button;
             string selUnitId = btnSender.ID.Substring(17);
-            BaseUnit unit = service.getUnit(campaignId, selUnitId);
+            UnitInfo unit = service.getUnit(campaignId, selUnitId);
             setSelectedUnitContext(unit);
         }
 
@@ -106,7 +106,7 @@ namespace CampaignMasterWeb
             setSelectedUnitContext(null);       // Wenn die AKtion ausgeführt wurde keine Unit mehr selektiert
         }
 
-        private void setSelectedUnitContext(BaseUnit selectedUnit)
+        private void setSelectedUnitContext(UnitInfo selectedUnit)
         {
             CampaignMasterService service = GcmlClientWeb.getService(Session);
             string contextUnitId = null;      // Id der aktuell selektierten Einheit
@@ -115,14 +115,14 @@ namespace CampaignMasterWeb
             if (selectedUnit != null)
             {
                 // Die aktuell auswählbaren Commands werden mit einer ID im State gespeichert um Sie mit einem Listitem auswählen zu können
-                List<CommandInfo> listCommands = service.getCommandsForUnit(campaignId, selectedUnit.Id).ToList<CommandInfo>();
+                List<CommandInfo> listCommands = service.getCommandsForUnit(campaignId, selectedUnit.unitId).ToList<CommandInfo>();
                 foreach (CommandInfo cmd in listCommands)
                 {
                     string cmdId = cmd.commandId;
                     contextCommandList.Add(cmdId, cmd);
                 }
 
-                contextUnitId = selectedUnit.Id.ToString();
+                contextUnitId = selectedUnit.unitId.ToString();
             }
 
             Session[GcmlClientKeys.CONTEXTUNITID] = contextUnitId;
