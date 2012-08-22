@@ -41,6 +41,12 @@ namespace GenericCampaignMasterLib
             m_playerDb = RaptorDB<string>.Open(path, false);
         }
 
+        public List<string> getRunningCampaignIds()
+        {
+            return m_dictRunningCampaigns.Keys.ToList<string>();
+        }
+
+
         public CampaignController getController(string campaignId)
         {
             CampaignController controller;
@@ -50,11 +56,12 @@ namespace GenericCampaignMasterLib
             }
             else
             {
-                ICampaignDatabase db = getCampaign(campaignId);
+                ICampaignDatabase db = m_dictRunningCampaigns[campaignId];
                 CampaignState state = db.getLastGameState();
                 CampaignEngine engine = state.Restore();
                 controller = new CampaignController(engine);
                 controller.CampaignKey = campaignId;
+                controller.CampaignDataBase = db;
                 m_dictLoadedController[campaignId] = controller;
             }
 
@@ -105,16 +112,6 @@ namespace GenericCampaignMasterLib
             }
 
             return result;
-        }
-
-        public ICampaignDatabase getCampaign(string id)
-        {
-            return m_dictRunningCampaigns[id];
-        }
-
-        public Dictionary<string, ICampaignDatabase> getRunningCampaigns()
-        {
-            return m_dictRunningCampaigns;
         }
 
         public string createNewCampaign(string playerid, string fielddimension)

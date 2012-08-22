@@ -23,13 +23,13 @@ namespace GcmlWebService
 
         public List<string> getPlayerCampaigns(string playerid)
         {
-            Dictionary<string, ICampaignDatabase> campaigns = GcmlDataManager.Instance.getRunningCampaigns();
+            List<string> campaignIds = GcmlDataManager.Instance.getRunningCampaignIds();
+            var campaigns = from id in campaignIds
+                            from pl in GcmlDataManager.Instance.getController(id).getPlayerList()
+                            where pl.Id == playerid
+                            select id;
 
-            var plCampaigns =   from cmp in campaigns.Values
-                                from p in cmp.getPlayerList()
-                                where p.Id == playerid
-                                select cmp.CampaignKey;
-            return plCampaigns.ToList<string>();
+            return campaigns .ToList<string>();
         }
 
         public clsSektorKoordinaten getFieldKoord(string campaignid)
@@ -88,7 +88,10 @@ namespace GcmlWebService
 
         public void addPlayerToCampaign(string playerid, string campaignid)
         {
-            throw new NotImplementedException();
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            Player player = GcmlDataManager.Instance.getPlayer(playerid);
+            controller.campaignEngine.addPlayer(player);
+            controller.saveCurrentGameState();
         }
 
         public void executeCommand(string campaignid, CommandInfo command)

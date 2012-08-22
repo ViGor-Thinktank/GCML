@@ -44,8 +44,14 @@
         <br />
         <br />
         <asp:Button ID="btnLoadCampaign" runat="server" Text="Gewählte Kampagne laden" 
-                onclick="btnLoadCampaign_Click" />
-        <br />
+                onclick="btnLoadCampaign_Click" Width="258px" />
+            <br />
+            <br />
+            <asp:Button ID="btnAddPlayerToCampaign" runat="server" 
+                 Text="Gewählter Kampagne Spieler hinzufügen:" Width="258px" 
+                onclick="btnAddPlayerToCampaign_Click" />
+            &nbsp;<asp:TextBox ID="tbAddPlayername" runat="server" Width="249px"></asp:TextBox>
+            <br />
         <br />
         
         </asp:Panel>

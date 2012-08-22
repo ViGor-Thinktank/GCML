@@ -98,6 +98,22 @@ namespace CampaignMasterWeb
             btnLogin.Enabled = true;
             btnLogoff.Enabled = false;
             pnPlayerCampaigns.Enabled = false;
+        }
+
+        protected void btnAddPlayerToCampaign_Click(object sender, EventArgs e)
+        {
+            string addPlayername = tbAddPlayername.Text;
+            if (!String.IsNullOrEmpty(addPlayername))
+            {
+                CampaignMasterService gcmlservice = GcmlClientWeb.getService(this.Session);
+                string playerId = gcmlservice.getPlayerId(addPlayername);
+                string campaignid = lbCampaigns.SelectedItem.Text;
+                if (!String.IsNullOrEmpty(playerId) && !String.IsNullOrEmpty(campaignid))
+                {
+                    gcmlservice.addPlayerToCampaign(playerId, campaignid);
+
+                }
+            }
         } 
     }
 }
