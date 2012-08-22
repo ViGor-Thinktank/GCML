@@ -3,31 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.IO;
+using RaptorDB;
 
 namespace GenericCampaignMasterLib
 {
     public sealed class GcmlDataManager
     {
-        private Dictionary<string, Player> m_playerDic = new Dictionary<string, Player>();                                          // Spieler in eigener Db vorhalten (pro Spieler N Kampagnen´mögl)
+        private RaptorDB<string> m_playerDb;
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
         private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
         private string strStorepath = "d:\\temp\\";     // jaja ich weiss
+        private string PLAYER_DB = "gcml_players";
 
-        private static readonly GcmlDataManager instance = new GcmlDataManager();
+        private static GcmlDataManager instance = null;
 
         private GcmlDataManager() { }
+
         public static GcmlDataManager Instance
         {
             get
             {
+                if (instance == null)
+                {
+                    instance = new GcmlDataManager();
+                    instance.init();
+                }
+
                 return instance;
             }
         }
 
         private void init()
         {
-
-
+            // Playerdb
+            string path = Path.Combine(strStorepath, PLAYER_DB);
+            m_playerDb = RaptorDB<string>.Open(path, false);
         }
 
         public CampaignController getController(string campaignId)
@@ -53,7 +64,7 @@ namespace GenericCampaignMasterLib
         public string getPlayerId(string playername)
         {
             string playerId = "";
-            var players = from p in m_playerDic.Values
+            var players = from p in getPlayerList().Values
                           where p.Playername == playername
                           select p;
 
@@ -67,7 +78,8 @@ namespace GenericCampaignMasterLib
                 Player pnew = new Player();
                 pnew.Playername = playername;
                 pnew.Id = playerId;
-                m_playerDic.Add(pnew.Id, pnew);
+
+                m_playerDb.Set(playerId, pnew.ToString());
             }
 
             return playerId;
@@ -75,15 +87,24 @@ namespace GenericCampaignMasterLib
 
         public Player getPlayer(string playerId)
         {
-            if (m_playerDic.ContainsKey(playerId))
-                return m_playerDic[playerId];
-            else
-                return null;
+            string strPlayer;
+            m_playerDb.Get(playerId, out strPlayer);
+            Player player = Player.FromString(strPlayer);
+
+            return player;
         }
 
         public Dictionary<string, Player> getPlayerList()
         {
-            return m_playerDic;
+            Dictionary <string, Player> result = new Dictionary<string,Player>();
+            for (int i = 0; i < m_playerDb.Count(); i++)
+            {
+                string pstr = m_playerDb.FetchRecordString(i);
+                Player p = Player.FromString(pstr);
+                result.Add(p.Id, p);
+            }
+
+            return result;
         }
 
         public ICampaignDatabase getCampaign(string id)
