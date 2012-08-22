@@ -153,10 +153,10 @@
     <WebReferences Include="Web References" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:666/GcmlWs/CampaignMasterService.svc%3fwsdl">
+    <WebReferenceUrl Include="http://localhost:8081/GcmlWebService/CampaignMasterService.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\GcmlWsReference\</RelPath>
-      <UpdateFromURL>http://localhost:666/GcmlWs/CampaignMasterService.svc%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost:8081/GcmlWebService/CampaignMasterService.svc%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

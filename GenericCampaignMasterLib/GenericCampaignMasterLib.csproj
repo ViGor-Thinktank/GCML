@@ -53,6 +53,7 @@
     <Compile Include="Code\Commands\ViewableSectorFactory.cs" />
     <Compile Include="Code\Db\CampaignDatabaseRaptorDb.cs" />
     <Compile Include="Code\Db\ICampaignDatabase.cs" />
+    <Compile Include="Code\GcmlDataManager.cs" />
     <Compile Include="Code\Info\CommandInfo.cs" />
     <Compile Include="Code\Info\SektorInfo.cs" />
     <Compile Include="Code\Info\UnitInfo.cs" />
