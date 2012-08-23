@@ -10,11 +10,14 @@ namespace GenericCampaignMasterLib
 {
     public sealed class GcmlDataManager
     {
+        private string STOREPATH = "d:\\temp\\";     // jaja ich weiss
+        private string PLAYER_DB = "GCML_PLAYERS";
+        private string CAMPAIGN_DB = "GCML_CAMPAIGNS";
+
         private RaptorDB<string> m_playerDb;
+        private RaptorDB<string> m_campaignDb;
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
         private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
-        private string strStorepath = "d:\\temp\\";     // jaja ich weiss
-        private string PLAYER_DB = "gcml_players";
 
         private static GcmlDataManager instance = null;
 
@@ -36,9 +39,25 @@ namespace GenericCampaignMasterLib
 
         private void init()
         {
-            // Playerdb
-            string path = Path.Combine(strStorepath, PLAYER_DB);
-            m_playerDb = RaptorDB<string>.Open(path, false);
+            string playerdbfile = Path.Combine(STOREPATH, PLAYER_DB);
+            string campaigndbfile = Path.Combine(STOREPATH, CAMPAIGN_DB);
+            
+            m_playerDb = RaptorDB<string>.Open(playerdbfile, false);
+            m_campaignDb = RaptorDB<string>.Open(campaigndbfile, true);
+
+            foreach (KeyValuePair<string, int> kv in m_campaignDb.Enumerate(CAMPAIGN_DB))
+            {
+                string campaignStr = m_campaignDb.FetchRecordString(kv.Value);
+                string campaignKey = campaignStr.Split('#')[0];
+                string dbfilepath = campaignStr.Split('#')[1];
+                
+                CampaignDatabaseRaptorDb db = new CampaignDatabaseRaptorDb();
+                db.CampaignKey = campaignKey;
+                db.StorePath = dbfilepath;
+                db.init();
+
+                m_dictRunningCampaigns.Add(campaignKey, (ICampaignDatabase)db);
+            }
         }
 
         public List<string> getRunningCampaignIds()
@@ -121,11 +140,8 @@ namespace GenericCampaignMasterLib
                 return "";
 
             // Datenbank
-            CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
-            database.CampaignKey = Guid.NewGuid().ToString();
-            database.StorePath = strStorepath;
-            database.init();
-
+            CampaignDatabaseRaptorDb database = (CampaignDatabaseRaptorDb)getCampaignDbOrNew("");
+            
             // Spielfeld
             Field field = new Field(3, 3);
 
@@ -139,11 +155,31 @@ namespace GenericCampaignMasterLib
             controller.CampaignDataBase = database;
             controller.campaignEngine = engine;
             controller.CampaignKey = database.CampaignKey;
-
-            database.saveGameState(engine.getState());
-            m_dictRunningCampaigns.Add(database.CampaignKey, database);
+            controller.saveCurrentGameState();
 
             return database.CampaignKey;
         }
+
+        private CampaignDatabaseRaptorDb getCampaignDbOrNew(string campaignId)
+        {
+            CampaignDatabaseRaptorDb result = null;
+            if (!m_dictRunningCampaigns.ContainsKey(campaignId)  || String.IsNullOrEmpty(campaignId))
+            {
+                result = new CampaignDatabaseRaptorDb();
+                result.CampaignKey = Guid.NewGuid().ToString();
+                result.StorePath = STOREPATH;
+                result.init();
+
+                m_dictRunningCampaigns.Add(result.CampaignKey, result);
+                m_campaignDb.Set(CAMPAIGN_DB, result.CampaignKey + "#" + Path.Combine(STOREPATH, result.CampaignKey));
+            }
+            else
+            {
+                result = (CampaignDatabaseRaptorDb)m_dictRunningCampaigns[campaignId];
+            }
+            
+            return result;
+        }
+
     }
 }
