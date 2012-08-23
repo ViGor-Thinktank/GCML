@@ -27,13 +27,28 @@
 <body>
     <form id="form1" runat="server">
 
-    Spieler:
+    <table border="0" width="100%">
+    <tr>
+        <td>
+        Spieler:
     <asp:Label ID="lbPlayer" runat="server" Text="Label"></asp:Label>
     <br />
     Kampagne:
     <asp:Label ID="lbCampaign" runat="server" Text="Label"></asp:Label>
-&nbsp;<uc1:FieldControl ID="FieldControl1" runat="server" />
-    <hr />
+&nbsp;
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            <img alt="" class="style1" src="Bilder/gcml_logo_small.png" 
+                style="float: right" /></td>
+    </tr>
+    </table>
+      <hr />
+
+    <uc1:FieldControl ID="FieldControl1" runat="server" />
+    
+  
     </form>
 
 </body>

@@ -51,6 +51,8 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bilder\gcml_logo_big.png" />
+    <Content Include="Bilder\gcml_logo_small.png" />
     <Content Include="FieldControl.ascx" />
     <Content Include="SektorControl.ascx" />
     <Content Include="StartMenu.aspx" />
@@ -70,6 +72,13 @@
     </Compile>
     <Compile Include="FieldControl.ascx.designer.cs">
       <DependentUpon>FieldControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="gcml.Master.cs">
+      <DependentUpon>gcml.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gcml.Master.designer.cs">
+      <DependentUpon>gcml.Master</DependentUpon>
     </Compile>
     <Compile Include="GCMLClientWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +175,8 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Bilder\gcml_logo.pub" />
+    <Content Include="gcml.Master" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

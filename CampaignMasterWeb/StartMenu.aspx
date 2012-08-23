@@ -17,19 +17,35 @@
             background-color: #CCCCCC;
         }
         
+               
+        .style1
+        {
+            float: right;
+        }
+        
+               
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-        <asp:Label ID="Label1" runat="server" Text="Label">Spielername: </asp:Label>
+    <table border="0" width="100%">
+    <tr>
+        <td><asp:Label ID="Label1" runat="server" Text="Label">Spielername: </asp:Label>
     
         <asp:TextBox ID="tbPlayername" runat="server" Width="190px"></asp:TextBox>
         <asp:Button ID="btnLogin" runat="server" Text="Anmelden" onclick="btnLogin_Click" 
              />
         <asp:Button ID="btnLogoff" runat="server" Text="Ausloggen" 
-            onclick="btnLogoff_Click" />
+            onclick="btnLogoff_Click" /></td>
+        <td></td>
+        <td></td>
+        <td>
+            <img alt="" class="style1" src="Bilder/gcml_logo_small.png" /></td>
+    </tr>
+    </table>
+    <div>
+    
+        
         <br />
         <br />
         <asp:Panel ID="pnPlayerCampaigns" runat="server">

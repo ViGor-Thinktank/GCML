@@ -52,7 +52,9 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getLastGameState()
         {
-            return deserializeState(m_db.FetchRecordString((int)m_db.Count() -1));
+            int cnt = (int)m_db.Count();
+            string stateStr = m_db.FetchRecordString(cnt - 1);
+            return deserializeState(stateStr);
         }
 
         public CampaignState getCampaignStateByKey(string key)
