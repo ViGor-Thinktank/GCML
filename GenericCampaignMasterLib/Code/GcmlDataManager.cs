@@ -189,7 +189,7 @@ namespace GenericCampaignMasterLib
         {
             CampaignDatabaseRaptorDb result = null;
             if (!m_dictRunningCampaigns.ContainsKey(campaignId)  || String.IsNullOrEmpty(campaignId))
-            {
+           { 
                 result = new CampaignDatabaseRaptorDb();
                 result.CampaignKey = Guid.NewGuid().ToString();
                 result.StorePath = STOREPATH;
@@ -205,6 +205,15 @@ namespace GenericCampaignMasterLib
             
             return result;
         }
+
+        ~GcmlDataManager()
+        {
+            foreach (ICampaignDatabase cmp in m_dictRunningCampaigns.Values)
+                cmp.close();
+            m_campaignDb.Shutdown();
+            m_playerDb.Shutdown();
+        }
+
 
     }
 }

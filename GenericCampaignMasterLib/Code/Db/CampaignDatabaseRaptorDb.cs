@@ -80,6 +80,11 @@ namespace GenericCampaignMasterLib
             throw new NotImplementedException();
         }
 
+        public void close()
+        {
+            m_db.Shutdown();
+        }
+
         #endregion
 
         private CampaignState deserializeState(string strEngine)

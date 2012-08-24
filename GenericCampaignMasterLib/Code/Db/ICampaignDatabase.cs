@@ -14,5 +14,6 @@ namespace GenericCampaignMasterLib
         CampaignState getCampaignStateByDate(DateTime time);
         List<CampaignState> getAllCampaignStates();
         List<DateTime> getStateList();
+        void close();
     }
 }
