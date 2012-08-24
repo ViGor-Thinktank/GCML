@@ -45,18 +45,21 @@ namespace GenericCampaignMasterLib
             m_playerDb = RaptorDB<string>.Open(playerdbfile, false);
             m_campaignDb = RaptorDB<string>.Open(campaigndbfile, true);
 
-            foreach (KeyValuePair<string, int> kv in m_campaignDb.Enumerate(CAMPAIGN_DB))
+            if (m_campaignDb.Count() > 0)
             {
-                string campaignStr = m_campaignDb.FetchRecordString(kv.Value);
-                string campaignKey = campaignStr.Split('#')[0];
-                string dbfilepath = campaignStr.Split('#')[1];
-                
-                CampaignDatabaseRaptorDb db = new CampaignDatabaseRaptorDb();
-                db.CampaignKey = campaignKey;
-                db.StorePath = dbfilepath;
-                db.init();
+                foreach (KeyValuePair<string, int> kv in m_campaignDb.Enumerate(CAMPAIGN_DB))
+                {
+                    string campaignStr = m_campaignDb.FetchRecordString(kv.Value);
+                    string campaignKey = campaignStr.Split('#')[0];
+                    string dbfilepath = campaignStr.Split('#')[1];
 
-                m_dictRunningCampaigns.Add(campaignKey, (ICampaignDatabase)db);
+                    CampaignDatabaseRaptorDb db = new CampaignDatabaseRaptorDb();
+                    db.CampaignKey = campaignKey;
+                    db.StorePath = dbfilepath;
+                    db.init();
+
+                    m_dictRunningCampaigns.Add(campaignKey, (ICampaignDatabase)db);
+                }
             }
         }
 
@@ -157,6 +160,7 @@ namespace GenericCampaignMasterLib
             controller.CampaignKey = database.CampaignKey;
             controller.saveCurrentGameState();
 
+            m_dictLoadedController[controller.CampaignKey] = controller;
             return database.CampaignKey;
         }
 
