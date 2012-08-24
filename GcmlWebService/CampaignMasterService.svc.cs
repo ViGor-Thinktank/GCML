@@ -23,13 +23,7 @@ namespace GcmlWebService
 
         public List<string> getPlayerCampaigns(string playerid)
         {
-            List<string> campaignIds = GcmlDataManager.Instance.getRunningCampaignIds();
-            var campaigns = from id in campaignIds
-                            from pl in GcmlDataManager.Instance.getController(id).getPlayerList()
-                            where pl.Id == playerid
-                            select id;
-
-            return campaigns .ToList<string>();
+            return GcmlDataManager.Instance.getRunningPlayerCampaigns(playerid);
         }
 
         public clsSektorKoordinaten getFieldKoord(string campaignid)

@@ -136,6 +136,27 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
+
+        public List<string> getRunningPlayerCampaigns(string playerid)
+        {
+            //List<string> campaignIds = GcmlDataManager.Instance.getRunningCampaignIds();
+            //var campaigns = from id in campaignIds
+            //                from pl in GcmlDataManager.Instance.getController(id).getPlayerList()
+            //                where pl.Id == playerid
+            //                select id;
+            //return campaigns.ToList<string>();
+            
+            List<string> campaignIds = new List<string>();
+            foreach (string id in m_dictRunningCampaigns.Keys.ToList<string>())
+            {
+                CampaignController ctrl = getController(id);
+                if (ctrl.getPlayer(playerid) != null)
+                    campaignIds.Add(id);
+            }
+
+            return campaignIds;
+        }
+
         public string createNewCampaign(string playerid, string fielddimension)
         {
             Player player = getPlayer(playerid);
@@ -175,7 +196,7 @@ namespace GenericCampaignMasterLib
                 result.init();
 
                 m_dictRunningCampaigns.Add(result.CampaignKey, result);
-                m_campaignDb.Set(CAMPAIGN_DB, result.CampaignKey + "#" + Path.Combine(STOREPATH, result.CampaignKey));
+                m_campaignDb.Set(CAMPAIGN_DB, result.CampaignKey + "#" + STOREPATH);
             }
             else
             {
