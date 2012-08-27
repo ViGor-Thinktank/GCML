@@ -43,6 +43,17 @@ namespace CampaignMasterWeb
         // Wird nach dem (Login-) Clickevent ausgelöst
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            string selectedCampaign = (string)this.Session[GcmlClientKeys.CAMPAIGNID];
+            if (String.IsNullOrEmpty(selectedCampaign))
+            {
+                pnCampaignInfo.Enabled = false;
+                ListItem it = lbCampaigns.Items.FindByText(selectedCampaign);
+                if(it != null)
+                    it.Selected = true;
+            }
+            else
+                pnCampaignInfo.Enabled = true;
+
             if (String.IsNullOrEmpty((string)this.Session[GcmlClientKeys.CONTEXTPLAYERID]))
                 setLoggedOff();
             else
@@ -74,9 +85,7 @@ namespace CampaignMasterWeb
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
-            CampaignMasterService service = StartMenu.getService(this.Session);
-            string campaignid = lbCampaigns.SelectedItem.Text;
-            this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
+            
 
             Response.Redirect("test.aspx");
 
@@ -138,6 +147,13 @@ namespace CampaignMasterWeb
 
                 }
             }
+        }
+
+        protected void lbCampaigns_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CampaignMasterService service = StartMenu.getService(this.Session);
+            string campaignid = lbCampaigns.SelectedItem.Text;
+            this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
         } 
     }
 }

@@ -24,6 +24,20 @@
         }
         
                
+        .style2
+        {
+            width: 236px;
+        }
+        .style3
+        {
+            width: 277px;
+        }
+        .style4
+        {
+            width: 219px;
+        }
+        
+               
     </style>
 </head>
 <body>
@@ -49,24 +63,57 @@
         <br />
         <br />
         <asp:Panel ID="pnPlayerCampaigns" runat="server">
-		<asp:Button ID="btnNewCampaign" runat="server" Text="Neue Kampagne" OnClick="BtnNewCampaign_Click" />
     
-    &nbsp;<br />
-        <br />
-        Kampagnen
-        <br />
-        <asp:ListBox ID="lbCampaigns" runat="server" Height="154px" Width="213px">
-        </asp:ListBox>
-        <br />
-        <br />
-        <asp:Button ID="btnLoadCampaign" runat="server" Text="Gewählte Kampagne laden" 
-                onclick="btnLoadCampaign_Click" Width="258px" />
+  
+            <table style="width:100%;">
+                <tr>
+                    <td class="style4">
+                        Kampagnen</td>
+                    <td>
+                        &nbsp;</td>
+                   
+                </tr>
+                <tr>
+                    <td class="style4">
+                        <asp:ListBox ID="lbCampaigns" runat="server" Height="154px" Width="213px" 
+                            AutoPostBack="True" onselectedindexchanged="lbCampaigns_SelectedIndexChanged">
+                        </asp:ListBox>
+                    </td>
+                    <td>
+                        <asp:Panel ID="pnCampaignInfo" runat="server">
+                            <asp:Button ID="btnLoadCampaign" runat="server" 
+                                onclick="btnLoadCampaign_Click" Text="Kampagne starten" Width="190px" />
+                        </asp:Panel>
+                    </td>
+                    
+                </tr>
+               
+            </table>
             <br />
-            <br />
-            <asp:Button ID="btnAddPlayerToCampaign" runat="server" 
-                 Text="Gewählter Kampagne Spieler hinzufügen:" Width="258px" 
-                onclick="btnAddPlayerToCampaign_Click" />
-            &nbsp;<asp:TextBox ID="tbAddPlayername" runat="server" Width="249px"></asp:TextBox>
+            <table style="width:100%;">
+                <tr>
+                    <td class="style2">
+                        <asp:Button ID="btnNewCampaign" runat="server" OnClick="BtnNewCampaign_Click" 
+                            Text="Neue Kampagne" Width="190px" />
+                    </td>
+                    <td class="style3">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="style2">
+                        <asp:Button ID="btnAddPlayerToCampaign" runat="server" 
+                            onclick="btnAddPlayerToCampaign_Click" 
+                            Text="Spieler hinzufügen:" Width="190px" />
+                    </td>
+                    <td class="style3">
+                        <asp:TextBox ID="tbAddPlayername" runat="server" Width="249px"></asp:TextBox>
+                    </td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+            </table>
             <br />
         <br />
         
