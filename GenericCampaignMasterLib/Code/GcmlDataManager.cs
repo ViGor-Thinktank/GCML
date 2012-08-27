@@ -47,9 +47,9 @@ namespace GenericCampaignMasterLib
 
             if (m_campaignDb.Count() > 0)
             {
-                foreach (KeyValuePair<string, int> kv in m_campaignDb.Enumerate(CAMPAIGN_DB))
+                for (int i = 0; i < m_campaignDb.Count(); i++)
                 {
-                    string campaignStr = m_campaignDb.FetchRecordString(kv.Value);
+                    string campaignStr = m_campaignDb.FetchRecordString(i);
                     string campaignKey = campaignStr.Split('#')[0];
                     string dbfilepath = campaignStr.Split('#')[1];
 
@@ -196,7 +196,8 @@ namespace GenericCampaignMasterLib
                 result.init();
 
                 m_dictRunningCampaigns.Add(result.CampaignKey, result);
-                m_campaignDb.Set(CAMPAIGN_DB, result.CampaignKey + "#" + STOREPATH);
+                m_campaignDb.Set(result.CampaignKey, result.CampaignKey + "#" + STOREPATH);
+                m_campaignDb.SaveIndex();
             }
             else
             {
@@ -208,10 +209,10 @@ namespace GenericCampaignMasterLib
 
         ~GcmlDataManager()
         {
-            foreach (ICampaignDatabase cmp in m_dictRunningCampaigns.Values)
-                cmp.close();
-            m_campaignDb.Shutdown();
-            m_playerDb.Shutdown();
+            //foreach (ICampaignDatabase cmp in m_dictRunningCampaigns.Values)
+            //    cmp.close();
+            //m_campaignDb.Shutdown();
+            //m_playerDb.Shutdown();
         }
 
 

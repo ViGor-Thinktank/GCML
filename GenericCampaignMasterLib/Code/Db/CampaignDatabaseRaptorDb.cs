@@ -40,14 +40,13 @@ namespace GenericCampaignMasterLib
         {
             string strState = state.ToString();
             string timeKey = DateTime.Now.ToString("s");
-            if (m_db.Set(timeKey, strState))
-            {
+            bool ret = m_db.Set(timeKey, strState);
+            m_db.SaveIndex();
+
+            if (ret)
                 return timeKey;
-            }
             else
-            {
                 throw new Exception("did not save");
-            }
         }
 
         public CampaignState getLastGameState()
