@@ -139,22 +139,12 @@ namespace GenericCampaignMasterLib
 
         public List<string> getRunningPlayerCampaigns(string playerid)
         {
-            //List<string> campaignIds = GcmlDataManager.Instance.getRunningCampaignIds();
-            //var campaigns = from id in campaignIds
-            //                from pl in GcmlDataManager.Instance.getController(id).getPlayerList()
-            //                where pl.Id == playerid
-            //                select id;
-            //return campaigns.ToList<string>();
-            
-            List<string> campaignIds = new List<string>();
-            foreach (string id in m_dictRunningCampaigns.Keys.ToList<string>())
-            {
-                CampaignController ctrl = getController(id);
-                if (ctrl.getPlayer(playerid) != null)
-                    campaignIds.Add(id);
-            }
-
-            return campaignIds;
+            List<string> campaignIds = m_dictRunningCampaigns.Keys.ToList<string>();
+            var campaigns = from id in campaignIds
+                            from pl in getController(id).getPlayerList()
+                            where pl.Id == playerid
+                            select id;
+            return campaigns.ToList<string>();
         }
 
         public string createNewCampaign(string playerid, string fielddimension)

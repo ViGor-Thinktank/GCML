@@ -40,7 +40,7 @@
         <td></td>
         <td></td>
         <td>
-            <img alt="" class="style1" src="Bilder/gcml_logo_small.png" 
+            <img alt="" src="Bilder/gcml_logo_small.png" 
                 style="float: right" /></td>
     </tr>
     </table>
