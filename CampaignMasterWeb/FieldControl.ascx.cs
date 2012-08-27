@@ -41,7 +41,7 @@ namespace CampaignMasterWeb
             string playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
 
             List<SektorControl> sektorStack = new List<SektorControl>();
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
 
             clsSektorKoordinaten fieldKoord = service.getFieldKoord(campaignId);
 

@@ -40,7 +40,7 @@ namespace CampaignMasterWeb
 
         public void drawContext()
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
             
             if (service.getUnitCollisions(campaignId).Contains(this.Sektor))
@@ -84,7 +84,7 @@ namespace CampaignMasterWeb
 
         protected void unitSelected(object sender, EventArgs e)
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             Button btnSender = sender as Button;
             string selUnitId = btnSender.ID.Substring(17);
             UnitInfo unit = service.getUnit(campaignId, selUnitId);
@@ -93,7 +93,7 @@ namespace CampaignMasterWeb
 
         protected void executeUnitAction(object sender, EventArgs e)
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             Button btnSender = sender as Button;
             string cmdId = btnSender.ID;
             Dictionary<string, CommandInfo> cmdList = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
@@ -108,7 +108,7 @@ namespace CampaignMasterWeb
 
         private void setSelectedUnitContext(UnitInfo selectedUnit)
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             string contextUnitId = null;      // Id der aktuell selektierten Einheit
             Dictionary<string, CommandInfo> contextCommandList = new Dictionary<string, CommandInfo>();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CampaignMasterWeb.GcmlWsReference;
@@ -9,8 +10,31 @@ using CampaignMasterWeb.GcmlWsReference;
 
 namespace CampaignMasterWeb
 {
+    public struct GcmlClientKeys
+    {
+        public const string CAMPAIGNSTATE = "campaignstate";
+        public const string CAMPAIGNID = "campaignid";
+        public const string CONTEXTPLAYERID = "contextplayerid";
+        public const string CAMPAIGNCONTROLLER = "campaigncontroller";
+        public const string CONTEXTUNITID = "contextunitid";
+        public const string CONTEXTCOMMANDLIST = "contextcommandlist";
+        public const string SEKTORSTACK = "sektorstack";
+    }
+
     public partial class StartMenu : System.Web.UI.Page
     {
+        public static GcmlWsReference.CampaignMasterService getService(HttpSessionState state)
+        {
+            GcmlWsReference.CampaignMasterService gcmlservice = (GcmlWsReference.CampaignMasterService)state["gcmlservice"];
+            if (gcmlservice == null)
+            {
+                gcmlservice = new GcmlWsReference.CampaignMasterService();
+                state["gcmlservice"] = gcmlservice;
+            }
+
+            return gcmlservice;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -34,7 +58,7 @@ namespace CampaignMasterWeb
 
             if(!String.IsNullOrEmpty(playername))
             {
-                string playerId = GcmlClientWeb.getService(this.Session).getPlayerId(playername);
+                string playerId = StartMenu.getService(this.Session).getPlayerId(playername);
                 if (!String.IsNullOrEmpty(playerId))
                     this.Session[GcmlClientKeys.CONTEXTPLAYERID] = playerId;
             }
@@ -42,7 +66,7 @@ namespace CampaignMasterWeb
 
         protected void BtnNewCampaign_Click(object sender, EventArgs e)
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             string playerid = (string) this.Session[GcmlClientKeys.CONTEXTPLAYERID];
             string campaignid = service.createNewCampaign(playerid, "");
 
@@ -50,7 +74,7 @@ namespace CampaignMasterWeb
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
-            CampaignMasterService service = GcmlClientWeb.getService(Session);
+            CampaignMasterService service = StartMenu.getService(this.Session);
             string campaignid = lbCampaigns.SelectedItem.Text;
             this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
 
@@ -66,7 +90,7 @@ namespace CampaignMasterWeb
             if (String.IsNullOrEmpty(currentPlayerId))
                 return;
 
-            CampaignMasterService gcmlservice = GcmlClientWeb.getService(this.Session);
+            CampaignMasterService gcmlservice = StartMenu.getService(this.Session);
             List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId).ToList<string>();
             foreach (string strCampaign in campaigns)
             {
@@ -105,7 +129,7 @@ namespace CampaignMasterWeb
             string addPlayername = tbAddPlayername.Text;
             if (!String.IsNullOrEmpty(addPlayername))
             {
-                CampaignMasterService gcmlservice = GcmlClientWeb.getService(this.Session);
+                CampaignMasterService gcmlservice = StartMenu.getService(this.Session);
                 string playerId = gcmlservice.getPlayerId(addPlayername);
                 string campaignid = lbCampaigns.SelectedItem.Text;
                 if (!String.IsNullOrEmpty(playerId) && !String.IsNullOrEmpty(campaignid))
