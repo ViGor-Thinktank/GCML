@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GenericCampaignMasterLib;         // Todo: Keine Referenz auf die Lib im Client - nur noch WebService
 using CampaignMasterWeb.GcmlWsReference;
 
 namespace CampaignMasterWeb
@@ -22,8 +21,12 @@ namespace CampaignMasterWeb
             string playerid = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
             string campaignid = (string)Session[GcmlClientKeys.CAMPAIGNID];
 
-            lbPlayer.Text = playerid;
-            lbCampaign.Text = campaignid;
+            CampaignMasterService service = StartMenu.getService(this.Session);
+            PlayerInfo playernfo = service.getPlayerInfo(playerid);
+            CampaignInfo campaignnfo = service.getCampaignInfo(campaignid);
+
+            lbPlayer.Text = playernfo.playerName;
+            lbCampaign.Text = campaignnfo.campaignName;
         }
     }
 

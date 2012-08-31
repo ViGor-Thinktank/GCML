@@ -56,6 +56,7 @@
     <Compile Include="Code\GcmlDataManager.cs" />
     <Compile Include="Code\Info\CampaignInfo.cs" />
     <Compile Include="Code\Info\CommandInfo.cs" />
+    <Compile Include="Code\Info\PlayerInfo.cs" />
     <Compile Include="Code\Info\SektorInfo.cs" />
     <Compile Include="Code\Info\UnitInfo.cs" />
     <Compile Include="Code\Sektor\SektorEventArgs.cs" />

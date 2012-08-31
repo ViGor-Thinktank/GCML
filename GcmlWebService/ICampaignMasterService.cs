@@ -17,6 +17,9 @@ namespace GcmlWebService
         string getPlayerId(string playername);
 
         [OperationContract]
+        PlayerInfo getPlayerInfo(string playerid);
+
+        [OperationContract]
         List<string> getPlayerCampaigns(string playerid);
 
         [OperationContract]

@@ -4,8 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" />
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" />
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICampaignMasterService_getPlayerId_InputMessage">
@@ -13,6 +13,12 @@
   </wsdl:message>
   <wsdl:message name="ICampaignMasterService_getPlayerId_OutputMessage">
     <wsdl:part name="parameters" element="tns:getPlayerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfoResponse" />
   </wsdl:message>
   <wsdl:message name="ICampaignMasterService_getPlayerCampaigns_InputMessage">
     <wsdl:part name="parameters" element="tns:getPlayerCampaigns" />
@@ -91,6 +97,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerId" message="tns:ICampaignMasterService_getPlayerId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerIdResponse" message="tns:ICampaignMasterService_getPlayerId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerInfo" message="tns:ICampaignMasterService_getPlayerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerInfoResponse" message="tns:ICampaignMasterService_getPlayerInfo_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="getPlayerCampaigns">
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaigns" message="tns:ICampaignMasterService_getPlayerCampaigns_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaignsResponse" message="tns:ICampaignMasterService_getPlayerCampaigns_OutputMessage" />
@@ -144,6 +154,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getPlayerId">
       <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

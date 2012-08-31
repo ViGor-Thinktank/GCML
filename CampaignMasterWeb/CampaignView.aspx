@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="CampaignMasterWeb.GcmlClientPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CampaignView.aspx.cs" Inherits="CampaignMasterWeb.GcmlClientPage" %>
 
 <%@ Register src="FieldControl.ascx" tagname="FieldControl" tagprefix="uc1" %>
 
@@ -20,6 +20,11 @@
             background-color: #CCCCCC;
         }
         
+        .style3
+        {
+            font-size: x-small;
+        }
+        
     </style>
 
 </head>
@@ -30,12 +35,18 @@
     <table border="0" width="100%">
     <tr>
         <td>
-        Spieler:
-    <asp:Label ID="lbPlayer" runat="server" Text="Label"></asp:Label>
-    <br />
-    Kampagne:
-    <asp:Label ID="lbCampaign" runat="server" Text="Label"></asp:Label>
-&nbsp;
+            <span class="style3">Spieler:
+    </span>
+    <asp:Label ID="lbPlayer" runat="server" Text="Label" CssClass="style3"></asp:Label>
+    <br class="style3" />
+            <span class="style3">Kampagne:
+    </span>
+    <asp:Label ID="lbCampaign" runat="server" Text="Label" CssClass="style3"></asp:Label>
+            <span class="style3">&nbsp;
+            </span>
+            <br class="style3" />
+            <br class="style3" />
+            <a href="StartMenu.aspx"><span class="style3">Zurück zum Kampagnenmenü</span></a>
         </td>
         <td></td>
         <td></td>

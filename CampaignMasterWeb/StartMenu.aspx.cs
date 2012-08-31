@@ -88,7 +88,7 @@ namespace CampaignMasterWeb
         {
             
 
-            Response.Redirect("test.aspx");
+            Response.Redirect("CampaignView.aspx");
 
         }
 

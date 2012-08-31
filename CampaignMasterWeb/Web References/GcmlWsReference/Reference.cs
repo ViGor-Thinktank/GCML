@@ -31,6 +31,8 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         private System.Threading.SendOrPostCallback getPlayerIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getPlayerInfoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback getPlayerCampaignsOperationCompleted;
         
         private System.Threading.SendOrPostCallback getCampaignInfoOperationCompleted;
@@ -97,6 +99,9 @@ namespace CampaignMasterWeb.GcmlWsReference {
         public event getPlayerIdCompletedEventHandler getPlayerIdCompleted;
         
         /// <remarks/>
+        public event getPlayerInfoCompletedEventHandler getPlayerInfoCompleted;
+        
+        /// <remarks/>
         public event getPlayerCampaignsCompletedEventHandler getPlayerCampaignsCompleted;
         
         /// <remarks/>
@@ -159,6 +164,36 @@ namespace CampaignMasterWeb.GcmlWsReference {
             if ((this.getPlayerIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getPlayerIdCompleted(this, new getPlayerIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ICampaignMasterService/getPlayerInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public PlayerInfo getPlayerInfo([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string playerid) {
+            object[] results = this.Invoke("getPlayerInfo", new object[] {
+                        playerid});
+            return ((PlayerInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getPlayerInfoAsync(string playerid) {
+            this.getPlayerInfoAsync(playerid, null);
+        }
+        
+        /// <remarks/>
+        public void getPlayerInfoAsync(string playerid, object userState) {
+            if ((this.getPlayerInfoOperationCompleted == null)) {
+                this.getPlayerInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPlayerInfoOperationCompleted);
+            }
+            this.InvokeAsync("getPlayerInfo", new object[] {
+                        playerid}, this.getPlayerInfoOperationCompleted, userState);
+        }
+        
+        private void OngetPlayerInfoOperationCompleted(object arg) {
+            if ((this.getPlayerInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getPlayerInfoCompleted(this, new getPlayerInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -560,80 +595,31 @@ namespace CampaignMasterWeb.GcmlWsReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
-    public partial class CampaignInfo {
+    public partial class PlayerInfo {
         
-        private string campaignIdField;
+        private string playerIdField;
         
-        private string campaignNameField;
-        
-        private ArrayOfKeyValueOfstringstringKeyValueOfstringstring[] playersField;
+        private string playerNameField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string campaignId {
+        public string playerId {
             get {
-                return this.campaignIdField;
+                return this.playerIdField;
             }
             set {
-                this.campaignIdField = value;
+                this.playerIdField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string campaignName {
+        public string playerName {
             get {
-                return this.campaignNameField;
+                return this.playerNameField;
             }
             set {
-                this.campaignNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("KeyValueOfstringstring", Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays", IsNullable=false)]
-        public ArrayOfKeyValueOfstringstringKeyValueOfstringstring[] players {
-            get {
-                return this.playersField;
-            }
-            set {
-                this.playersField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
-    public partial class ArrayOfKeyValueOfstringstringKeyValueOfstringstring {
-        
-        private string keyField;
-        
-        private string valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Key {
-            get {
-                return this.keyField;
-            }
-            set {
-                this.keyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Value {
-            get {
-                return this.valueField;
-            }
-            set {
-                this.valueField = value;
+                this.playerNameField = value;
             }
         }
     }
@@ -908,6 +894,90 @@ namespace CampaignMasterWeb.GcmlWsReference {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib")]
+    public partial class CampaignInfo {
+        
+        private string campaignIdField;
+        
+        private string campaignNameField;
+        
+        private ArrayOfKeyValueOfstringstringKeyValueOfstringstring[] playersField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string campaignId {
+            get {
+                return this.campaignIdField;
+            }
+            set {
+                this.campaignIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string campaignName {
+            get {
+                return this.campaignNameField;
+            }
+            set {
+                this.campaignNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("KeyValueOfstringstring", Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays", IsNullable=false)]
+        public ArrayOfKeyValueOfstringstringKeyValueOfstringstring[] players {
+            get {
+                return this.playersField;
+            }
+            set {
+                this.playersField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
+    public partial class ArrayOfKeyValueOfstringstringKeyValueOfstringstring {
+        
+        private string keyField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     public delegate void getPlayerIdCompletedEventHandler(object sender, getPlayerIdCompletedEventArgs e);
     
@@ -929,6 +999,32 @@ namespace CampaignMasterWeb.GcmlWsReference {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getPlayerInfoCompletedEventHandler(object sender, getPlayerInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getPlayerInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getPlayerInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public PlayerInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((PlayerInfo)(this.results[0]));
             }
         }
     }

@@ -56,7 +56,7 @@
     <Content Include="FieldControl.ascx" />
     <Content Include="SektorControl.ascx" />
     <Content Include="StartMenu.aspx" />
-    <Content Include="test.aspx" />
+    <Content Include="CampaignView.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -100,12 +100,12 @@
     <Compile Include="StartMenu.aspx.designer.cs">
       <DependentUpon>StartMenu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
+    <Compile Include="CampaignView.aspx.cs">
+      <DependentUpon>CampaignView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
+    <Compile Include="CampaignView.aspx.designer.cs">
+      <DependentUpon>CampaignView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\GcmlWsReference\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
@@ -194,6 +194,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\GcmlWsReference\CommandInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\GcmlWsReference\PlayerInfo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\GcmlWsReference\Reference.map">

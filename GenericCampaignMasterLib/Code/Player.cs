@@ -86,5 +86,16 @@ namespace GenericCampaignMasterLib
         }
 
         public bool m_blnDone { get; set; }
+
+        public PlayerInfo getPlayerInfo()
+        {
+            PlayerInfo nfo = new PlayerInfo();
+            nfo.playerId = this.Id;
+            nfo.playerName = this.Playername;
+            return nfo;
+        }
+
+
+
     }
 }

@@ -113,7 +113,7 @@
             <br />
          <asp:Panel ID="pnCampaignInfo" runat="server" BorderColor="#CCCCCC" 
                             BorderStyle="Solid" BorderWidth="1px" Width="415px">
-                        <table border="0" style="font-size: x-small">
+                        <table border="0" style="font-size: small">
                         <tr>
                         <td>Id</td>
                         <td class="style9">
@@ -147,7 +147,7 @@
                                 <td align="center" colspan="2">
                                     <asp:Button ID="btnLoadCampaign" runat="server" Height="41px" 
                                         onclick="btnLoadCampaign_Click" 
-                                        style="color: #FFFF00; background-color: #333333" Text="Kampagne starten" 
+                                        style="color: #FFFF00; background-color: #333333; font-weight: 700;" Text="Kampagne starten" 
                                         Width="190px" />
                                 </td>
                                 <td colspan="2">

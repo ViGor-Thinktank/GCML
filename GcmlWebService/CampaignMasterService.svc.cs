@@ -21,6 +21,13 @@ namespace GcmlWebService
             return GcmlDataManager.Instance.getPlayerId(playername);   
         }
 
+        public PlayerInfo getPlayerInfo(string playerid)
+        {
+            Player player = GcmlDataManager.Instance.getPlayer(playerid);
+            PlayerInfo nfo = player.getPlayerInfo();
+            return nfo;
+        }
+
         public List<string> getPlayerCampaigns(string playerid)
         {
             return GcmlDataManager.Instance.getRunningPlayerCampaigns(playerid);
