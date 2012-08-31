@@ -76,6 +76,33 @@ namespace CampaignMasterWeb {
         protected global::System.Web.UI.WebControls.ListBox lbCampaigns;
         
         /// <summary>
+        /// btnSelectCampaign-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSelectCampaign;
+        
+        /// <summary>
+        /// btnNewCampaign0-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewCampaign0;
+        
+        /// <summary>
+        /// tbCampaignName-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCampaignName;
+        
+        /// <summary>
         /// pnCampaignInfo-Steuerelement
         /// </summary>
         /// <remarks>
@@ -85,22 +112,31 @@ namespace CampaignMasterWeb {
         protected global::System.Web.UI.WebControls.Panel pnCampaignInfo;
         
         /// <summary>
-        /// btnLoadCampaign-Steuerelement
+        /// lbId-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoadCampaign;
+        protected global::System.Web.UI.WebControls.Label lbId;
         
         /// <summary>
-        /// btnNewCampaign-Steuerelement
+        /// lbName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewCampaign;
+        protected global::System.Web.UI.WebControls.Label lbName;
+        
+        /// <summary>
+        /// lbPlayer-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPlayer;
         
         /// <summary>
         /// btnAddPlayerToCampaign-Steuerelement
@@ -119,5 +155,14 @@ namespace CampaignMasterWeb {
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbAddPlayername;
+        
+        /// <summary>
+        /// btnLoadCampaign-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLoadCampaign;
     }
 }

@@ -180,6 +180,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\GcmlWsReference\CampaignInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\GcmlWsReference\CampaignMasterService.xsd" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService0.xsd" />
     <None Include="Web References\GcmlWsReference\CampaignMasterService1.xsd" />

@@ -20,6 +20,12 @@
   <wsdl:message name="ICampaignMasterService_getPlayerCampaigns_OutputMessage">
     <wsdl:part name="parameters" element="tns:getPlayerCampaignsResponse" />
   </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCampaignInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCampaignInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCampaignInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCampaignInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICampaignMasterService_getFieldKoord_InputMessage">
     <wsdl:part name="parameters" element="tns:getFieldKoord" />
   </wsdl:message>
@@ -89,6 +95,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaigns" message="tns:ICampaignMasterService_getPlayerCampaigns_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaignsResponse" message="tns:ICampaignMasterService_getPlayerCampaigns_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getCampaignInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getCampaignInfo" message="tns:ICampaignMasterService_getCampaignInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getCampaignInfoResponse" message="tns:ICampaignMasterService_getCampaignInfo_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="getFieldKoord">
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getFieldKoord" message="tns:ICampaignMasterService_getFieldKoord_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getFieldKoordResponse" message="tns:ICampaignMasterService_getFieldKoord_OutputMessage" />
@@ -143,6 +153,15 @@
     </wsdl:operation>
     <wsdl:operation name="getPlayerCampaigns">
       <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerCampaigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getCampaignInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

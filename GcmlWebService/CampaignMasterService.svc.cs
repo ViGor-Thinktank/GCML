@@ -26,6 +26,13 @@ namespace GcmlWebService
             return GcmlDataManager.Instance.getRunningPlayerCampaigns(playerid);
         }
 
+        public CampaignInfo getCampaignInfo(string campaignId)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignId);
+            CampaignInfo nfo = controller.getCampaignInfo();
+            return nfo;
+        }
+
         public clsSektorKoordinaten getFieldKoord(string campaignid)
         {
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);

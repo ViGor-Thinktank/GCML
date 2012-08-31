@@ -20,6 +20,9 @@ namespace GcmlWebService
         List<string> getPlayerCampaigns(string playerid);
 
         [OperationContract]
+        CampaignInfo getCampaignInfo(string campaignId);
+
+        [OperationContract]
         clsSektorKoordinaten getFieldKoord(string campaignid);
 
         [OperationContract]

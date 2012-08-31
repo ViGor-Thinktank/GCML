@@ -60,6 +60,7 @@ namespace CampaignMasterWeb
                 setLoggedIn();
 
             drawPlayerCampaignData();
+            showCampaignInfoPanel();
 
         }
 
@@ -103,9 +104,10 @@ namespace CampaignMasterWeb
             List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId).ToList<string>();
             foreach (string strCampaign in campaigns)
             {
-                lbCampaigns.Items.Add(strCampaign);
-
-
+                ListItem cmpItem = new ListItem();
+                cmpItem.Text = strCampaign;
+                cmpItem.Value = strCampaign;
+                lbCampaigns.Items.Add(cmpItem);
             }
 
         }
@@ -131,6 +133,32 @@ namespace CampaignMasterWeb
             btnLogin.Enabled = true;
             btnLogoff.Enabled = false;
             pnPlayerCampaigns.Enabled = false;
+        }
+
+
+        private void showCampaignInfoPanel()
+        {
+            string campaignId = (string)this.Session[GcmlClientKeys.CAMPAIGNID];
+            if (String.IsNullOrEmpty(campaignId))
+            {
+                pnCampaignInfo.Visible = false;
+            }
+            else
+            {
+                CampaignMasterService service = StartMenu.getService(this.Session);
+                CampaignInfo nfo = service.getCampaignInfo(campaignId);
+                lbId.Text = nfo.campaignId;
+                lbName.Text = nfo.campaignName;
+                string players = "";
+                foreach(var kvp in nfo.players)
+                    players += (String.IsNullOrEmpty(players)) ? kvp.Value : ", " + kvp.Value;
+
+                lbPlayer.Text = players;
+                pnCampaignInfo.Visible = true;
+
+                lbCampaigns.SelectedValue = campaignId;
+            }
+
         }
 
         protected void btnAddPlayerToCampaign_Click(object sender, EventArgs e)

@@ -24,21 +24,32 @@
         }
         
                
-        .style2
-        {
-            width: 236px;
-        }
-        .style3
-        {
-            width: 277px;
-        }
         .style4
         {
             width: 219px;
         }
         
                
-    </style>
+        .style5
+        {
+            height: 17px;
+        }
+        .style7
+        {
+            height: 17px;
+            width: 64px;
+        }
+        .style8
+        {
+            width: 37px;
+        }
+        .style9
+        {
+            width: 64px;
+        }
+        
+               
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -46,77 +57,105 @@
     <tr>
         <td><asp:Label ID="Label1" runat="server" Text="Label">Spielername: </asp:Label>
     
-        <asp:TextBox ID="tbPlayername" runat="server" Width="190px"></asp:TextBox>
+        <asp:TextBox ID="tbPlayername" runat="server" Width="190px" BorderStyle="Solid" 
+                BorderWidth="1px"></asp:TextBox>
         <asp:Button ID="btnLogin" runat="server" Text="Anmelden" onclick="btnLogin_Click" 
+                BorderStyle="Solid" BorderWidth="1px" 
              />
         <asp:Button ID="btnLogoff" runat="server" Text="Ausloggen" 
-            onclick="btnLogoff_Click" /></td>
+            onclick="btnLogoff_Click" BorderStyle="Solid" BorderWidth="1px" /></td>
         <td></td>
         <td></td>
         <td>
             <img alt="" class="style1" src="Bilder/gcml_logo_small.png" /></td>
     </tr>
     </table>
+    <hr />
+
     <div>
     
         
-        <br />
-        <br />
         <asp:Panel ID="pnPlayerCampaigns" runat="server">
     
   
             <table style="width:100%;">
+           
                 <tr>
                     <td class="style4">
                         Kampagnen</td>
                     <td>
-                        &nbsp;</td>
+                        
+                    </td>
                    
                 </tr>
                 <tr>
                     <td class="style4">
-                        <asp:ListBox ID="lbCampaigns" runat="server" Height="154px" Width="213px" 
-                            AutoPostBack="True" onselectedindexchanged="lbCampaigns_SelectedIndexChanged">
+                        <asp:ListBox ID="lbCampaigns" runat="server" Height="115px" Width="301px" 
+                            BackColor="#CCCCCC">
                         </asp:ListBox>
                     </td>
-                    <td>
-                        <asp:Panel ID="pnCampaignInfo" runat="server">
-                            <asp:Button ID="btnLoadCampaign" runat="server" 
-                                onclick="btnLoadCampaign_Click" Text="Kampagne starten" Width="190px" />
-                        </asp:Panel>
+                    <td valign="top">
+                    <asp:Button ID="btnSelectCampaign" runat="server" Text="Kampagne auswählen" 
+                            Width="146px" BorderStyle="Solid" BorderWidth="1px" Height="36px" 
+                            onclick="lbCampaigns_SelectedIndexChanged" />
+                        <br />
+                        <br />
+                            <asp:Button ID="btnNewCampaign0" runat="server" BorderStyle="Solid" 
+                    BorderWidth="1px" OnClick="BtnNewCampaign_Click" Text="Neue Kampagne" 
+                    Width="146px" />
+                &nbsp;<asp:TextBox ID="tbCampaignName" runat="server" BorderStyle="Solid" 
+                    BorderWidth="1px" Width="217px"></asp:TextBox>
+                            
+                        </table>
                     </td>
-                    
                 </tr>
-               
             </table>
             <br />
-            <table style="width:100%;">
-                <tr>
-                    <td class="style2">
-                        <asp:Button ID="btnNewCampaign" runat="server" OnClick="BtnNewCampaign_Click" 
-                            Text="Neue Kampagne" Width="190px" />
-                    </td>
-                    <td class="style3">
-                        &nbsp;</td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="style2">
-                        <asp:Button ID="btnAddPlayerToCampaign" runat="server" 
+         <asp:Panel ID="pnCampaignInfo" runat="server" BorderColor="#CCCCCC" 
+                            BorderStyle="Solid" BorderWidth="1px" Width="415px">
+                        <table border="0" style="font-size: x-small">
+                        <tr>
+                        <td>Id</td>
+                        <td class="style9">
+                            <asp:Label ID="lbId" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                        <td>Name</td><td class="style9">
+                            <asp:Label ID="lbName" runat="server" Text="Label"></asp:Label>
+                            </td></tr>
+                        <tr><td class="style5">Spieler</td><td class="style7">
+                            <asp:Label ID="lbPlayer" runat="server" Text="Label"></asp:Label>
+                            </td></tr>
+                       
+                            <tr>
+                            <td>
+                            <asp:Button ID="btnAddPlayerToCampaign" runat="server" 
                             onclick="btnAddPlayerToCampaign_Click" 
-                            Text="Spieler hinzufügen:" Width="190px" />
-                    </td>
-                    <td class="style3">
-                        <asp:TextBox ID="tbAddPlayername" runat="server" Width="249px"></asp:TextBox>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-            </table>
-            <br />
-        <br />
-        
+                            Text="Spieler hinzufügen:" Width="160px" BorderStyle="Solid" BorderWidth="1px" />
+                            </td>
+                            <td class="style9">
+                            <asp:TextBox ID="tbAddPlayername" runat="server" Width="198px" BorderStyle="Solid" 
+                                    BorderWidth="1px"></asp:TextBox>
+                            </td>
+                            </tr>
+                             <tr>
+                        <td>&nbsp;</td>
+                        <td class="style9">&nbsp;</td>
+                        </tr>
+                            <tr>
+                                <td align="center" colspan="2">
+                                    <asp:Button ID="btnLoadCampaign" runat="server" Height="41px" 
+                                        onclick="btnLoadCampaign_Click" 
+                                        style="color: #FFFF00; background-color: #333333" Text="Kampagne starten" 
+                                        Width="190px" />
+                                </td>
+                                <td colspan="2">
+                                </td>
+                            </tr>
+                        </table>
+                        </asp:Panel>
+                        
         </asp:Panel>
     </div>
     </form>

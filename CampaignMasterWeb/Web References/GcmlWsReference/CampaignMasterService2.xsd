@@ -30,6 +30,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getCampaignInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getCampaignInfoResult" nillable="true" type="q2:CampaignInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getFieldKoord">
     <xs:complexType>
       <xs:sequence>
@@ -40,7 +54,7 @@
   <xs:element name="getFieldKoordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getFieldKoordResult" nillable="true" type="q2:clsSektorKoordinaten" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getFieldKoordResult" nillable="true" type="q3:clsSektorKoordinaten" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -48,14 +62,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="sektorkoord" nillable="true" type="q3:clsSektorKoordinaten" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="sektorkoord" nillable="true" type="q4:clsSektorKoordinaten" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="getSektorResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getSektorResult" nillable="true" type="q4:SektorInfo" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getSektorResult" nillable="true" type="q5:SektorInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -69,7 +83,7 @@
   <xs:element name="getSektorListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getSektorListResult" nillable="true" type="q5:ArrayOfstring" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getSektorListResult" nillable="true" type="q6:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,7 +98,7 @@
   <xs:element name="getUnitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitResult" type="q6:UnitInfo" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitResult" type="q7:UnitInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -98,7 +112,7 @@
   <xs:element name="getUnitCollisionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitCollisionsResult" nillable="true" type="q7:ArrayOfSektorInfo" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getUnitCollisionsResult" nillable="true" type="q8:ArrayOfSektorInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -113,7 +127,7 @@
   <xs:element name="getCommandsForUnitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getCommandsForUnitResult" nillable="true" type="q8:ArrayOfCommandInfo" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="getCommandsForUnitResult" nillable="true" type="q9:ArrayOfCommandInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -149,7 +163,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="command" type="q9:CommandInfo" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" minOccurs="0" name="command" type="q10:CommandInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
