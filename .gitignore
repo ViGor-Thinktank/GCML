@@ -9,6 +9,9 @@
 *.mgidx
 *.mgdat
 *.mgrec
+*.bak
+obj/*
+Debug/*
 GenericCampaignMasterLib/bin/*
 GenericCampaignMasterLib/obj/*
 GenericCampaignMasterLibTests/bin/*

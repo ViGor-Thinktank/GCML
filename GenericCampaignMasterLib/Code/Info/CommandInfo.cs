@@ -11,5 +11,6 @@ namespace GenericCampaignMasterLib
         public string commandType;
         public string actingUnitId;
         public string strInfo;
+        public bool isActive;
     }
 }

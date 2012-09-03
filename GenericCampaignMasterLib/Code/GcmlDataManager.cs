@@ -10,7 +10,7 @@ namespace GenericCampaignMasterLib
 {
     public sealed class GcmlDataManager
     {
-        private string STOREPATH = "d:\\temp\\";     // jaja ich weiss
+        private string STOREPATH = "c:\\temp\\";     // jaja ich weiss
         private string PLAYER_DB = "GCML_PLAYERS";
         private string CAMPAIGN_DB = "GCML_CAMPAIGNS";
 

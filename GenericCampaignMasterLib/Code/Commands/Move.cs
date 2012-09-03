@@ -38,6 +38,7 @@ namespace GenericCampaignMasterLib
             nfo.actingUnitId = this.Unit.Id;
             nfo.commandType = this.GetType().ToString();
             nfo.strInfo = this.strInfo;
+            nfo.isActive = (this.Unit.aktCommand == this) ? true : false;
             return nfo;
         }
 
