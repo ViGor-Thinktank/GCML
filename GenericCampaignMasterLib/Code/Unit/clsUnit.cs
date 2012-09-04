@@ -3,47 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GenericCampaignMasterLib
+namespace GenericCampaignMasterLib.Unit
 {
-    public interface IUnit
-    {
-        int Sichtweite { get; }             
-        string Id { get; }             // Dummy
-        string Bezeichnung { get; } // Dummy
-		
-		 List<ICommand> getTypeCommands();		// Liefert alle Aktionen, die von der Unit ausgeführt werden können. Unabhängig vom Kontext.
-
-         int Movement { get; }
-    }
-
   
-    public class BaseUnit : IUnit
+    public class clsUnit 
     {
+        private static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
 
-        public BaseUnit(string unitId, UnitTypeBase UnitType, string strBezeichnung)
+        public clsUnit(string unitId, int intUnitTypeID)
+        {
+            m_strId = unitId;
+
+            m_objUnitType = objUnitTypeFountain.getUnitType(intUnitTypeID);
+            
+            m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
+        }
+
+        public clsUnit(string unitId, clsUnitType UnitType)
         {
             m_strId = unitId;
             m_objUnitType = UnitType;
-        }
-
-        public BaseUnit()
-        {
-            m_objUnitType = new UnitTypeDummy();
-        }
-
-
-        public BaseUnit(string unitId)
-        {
-            m_strId = unitId;
-            m_objUnitType = new UnitTypeDummy();
-            m_strBezeichnung = UnitType.strDefaultBez + " " + unitId.ToString();
-        }
-
-        public BaseUnit(string unitId, UnitTypeBase UnitType)
-        {
-            m_strId = unitId;
-            m_objUnitType = UnitType;
-            m_strBezeichnung = UnitType.strDefaultBez + " " + unitId.ToString();
+            m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
         }
 
         public int Movement { get { return m_objUnitType.intMovement; } }
@@ -65,8 +45,8 @@ namespace GenericCampaignMasterLib
             set { m_strBezeichnung = value; }
         }
 
-        private UnitTypeBase m_objUnitType;
-        public UnitTypeBase UnitType
+        private clsUnitType m_objUnitType;
+        public clsUnitType UnitType
         {
 
             get { return m_objUnitType; }

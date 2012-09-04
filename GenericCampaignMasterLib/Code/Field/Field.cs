@@ -106,11 +106,11 @@ namespace GenericCampaignMasterLib
         }
         
         
-        public Sektor getSektorForUnit(BaseUnit u)
+        public Sektor getSektorForUnit(Unit.clsUnit u)
         {
             foreach (Sektor aktSek in dicSektors.Values)
             {
-                foreach (BaseUnit aktUnit in aktSek.ListUnits)
+                foreach (Unit.clsUnit aktUnit in aktSek.ListUnits)
                 {
                     if (aktUnit.Id == u.Id)
                         return aktSek;

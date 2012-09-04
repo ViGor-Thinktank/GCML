@@ -27,7 +27,7 @@ namespace GenericCampaignMasterLib
         
 
         private string m_strID;
-        private List<BaseUnit> m_ListUnits = new List<BaseUnit>();
+        private List<Unit.clsUnit> m_ListUnits = new List<Unit.clsUnit>();
 
         private clsSektorType_base m_objSektorType;
 
@@ -43,7 +43,7 @@ namespace GenericCampaignMasterLib
             }
         }
 
-        public List<BaseUnit> ListUnits 
+        public List<Unit.clsUnit> ListUnits 
         { 
             get 
             {
@@ -67,7 +67,7 @@ namespace GenericCampaignMasterLib
 
 
 
-        public void addUnit(BaseUnit unit)
+        public void addUnit(Unit.clsUnit unit)
 		{
 			m_ListUnits.Add (unit);
 
@@ -75,10 +75,10 @@ namespace GenericCampaignMasterLib
                 onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
 
-        public void removeUnit(BaseUnit unit)
+        public void removeUnit(Unit.clsUnit unit)
 		{
 
-            BaseUnit aktUnit = null;
+            Unit.clsUnit aktUnit = null;
 
             var objUnitList = from u in this.m_ListUnits
                                 where u.Id == unit.Id

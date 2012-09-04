@@ -7,7 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public class Move : ICommand
     {
-        public BaseUnit Unit { get; set; }
+        public Unit.clsUnit Unit { get; set; }
         public Sektor TargetSektor { get; set; }
 		public Sektor OriginSektor { get; set; }
 

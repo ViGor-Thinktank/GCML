@@ -30,7 +30,7 @@ namespace GenericCampaignMasterLib
         #endregion
 
         private List<Sektor> unitCollisionStack = new List<Sektor>();
-        private List<IUnit> unitActedStack = new List<IUnit>();
+        private List<Unit.clsUnit> unitActedStack = new List<Unit.clsUnit>();
         private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
 
         public event Field.delStatus onStatus;
@@ -123,7 +123,7 @@ namespace GenericCampaignMasterLib
             {
                 List<Player> unitOwnersInSektor = new List<Player>();
 
-                foreach (BaseUnit unit in sektor.ListUnits)
+                foreach (Unit.clsUnit unit in sektor.ListUnits)
                 {
                     Player owner = m_campaignEngine.getUnitOwner(unit);
                     if (!unitOwnersInSektor.Contains(owner))
@@ -147,9 +147,9 @@ namespace GenericCampaignMasterLib
         }
 
         
-        public void createNewUnit(string strPlayerID, Type type)
+        public void createNewUnit(string strPlayerID, int intUnitTypeID)
         {
-            BaseUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, type);
+            Unit.clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
@@ -172,19 +172,19 @@ namespace GenericCampaignMasterLib
             return m_campaignEngine.ListPlayers;
         }
 
-        public BaseUnit getUnit(string strUnitId)
+        public Unit.clsUnit getUnit(string strUnitId)
 		{
             return m_campaignEngine.getUnit(strUnitId);
 		}
 
         public UnitInfo getUnitInfo(string unitId)
         {
-            BaseUnit unit = getUnit(unitId);
+            Unit.clsUnit unit = getUnit(unitId);
             UnitInfo info = m_campaignEngine.getUnitInfo(unit);
             return info;
         }
 
-        public List<ICommand> getCommandsForUnit(BaseUnit unit)
+        public List<ICommand> getCommandsForUnit(Unit.clsUnit unit)
         {
             List <ICommand> lstCmds = this.m_campaignEngine.getCommandsForUnit(unit);
             foreach(ICommand cmd in lstCmds)
@@ -203,17 +203,17 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public List<BaseUnit> getActiveUnitsForPlayer(Player player)
+        public List<Unit.clsUnit> getActiveUnitsForPlayer(Player player)
         {
-            List<BaseUnit> unitsForPlayer = player.ListUnits;
+            List<Unit.clsUnit> unitsForPlayer = player.ListUnits;
             var lstUnitsCanAct = from u in player.ListUnits
                                  where !unitActedStack.Contains(u)
                                  select u;
 
-            return new List<BaseUnit>(lstUnitsCanAct);
+            return new List<Unit.clsUnit>(lstUnitsCanAct);
         }
 
-        public Sektor getSektorForUnit(BaseUnit unit)
+        public Sektor getSektorForUnit(Unit.clsUnit unit)
         {
              return campaignEngine.FieldField.getSektorForUnit(unit);
         }

@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
 {
     public class clsMoveFactory : clsSektorFactoryBase
     {
-        private BaseUnit m_Unit;
+        private Unit.clsUnit m_Unit;
         
         private List<string> m_listKnownMovements = new List<string>();
 
@@ -20,7 +20,7 @@ namespace GenericCampaignMasterLib
                 onNewMoveCommand(readyCmd);
         }
 
-        public clsMoveFactory(BaseUnit u, Field FieldField) : base(FieldField)
+        public clsMoveFactory(Unit.clsUnit u, Field FieldField) : base(FieldField)
         {
             
             //set Members

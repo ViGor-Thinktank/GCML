@@ -106,9 +106,9 @@ namespace GenericCampaignMasterLib
 						where p.Id == uInfo.playerId 
 						select p).First();
 
-                BaseUnit unit = aktP.getUnitByID(uInfo.unitId);
+                Unit.clsUnit unit = aktP.getUnitByID(uInfo.unitId);
 
-                //BaseUnit unit = new BaseUnit(uInfo.unitId);
+                //Unit.clsUnit unit = new Unit.clsUnit(uInfo.unitId);
                 field.dicSektors[uInfo.sektorId].addUnit(unit);
 
 				

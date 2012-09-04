@@ -34,8 +34,8 @@ namespace GenericCampaignMasterLib
         {
             return new JavaScriptSerializer().Deserialize<Player>(strData);
         }
-        
-        public List<BaseUnit> ListUnits = new List<BaseUnit>();
+
+        public List<Unit.clsUnit> ListUnits = new List<Unit.clsUnit>();
 
         public Dictionary<string, Sektor> dicVisibleSectors;
 
@@ -73,7 +73,7 @@ namespace GenericCampaignMasterLib
 
 
 
-        internal BaseUnit getUnitByID(string strUnitID)
+        internal Unit.clsUnit getUnitByID(string strUnitID)
         {
             return (from u in this.ListUnits
                            where u.Id == strUnitID
