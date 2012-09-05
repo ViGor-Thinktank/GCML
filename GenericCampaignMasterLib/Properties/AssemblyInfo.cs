@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GenericCampaignMasterLib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Stadt Frankfurt am Main")]
+[assembly: AssemblyCompany("ViGor")]
 [assembly: AssemblyProduct("GenericCampaignMasterLib")]
-[assembly: AssemblyCopyright("Copyright © Stadt Frankfurt am Main 2012")]
+[assembly: AssemblyCopyright("Copyright © ViGor 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

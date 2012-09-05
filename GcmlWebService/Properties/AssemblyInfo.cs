@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GcmlWebService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Stadt Frankfurt am Main")]
+[assembly: AssemblyCompany("ViGor")]
 [assembly: AssemblyProduct("GcmlWebService")]
-[assembly: AssemblyCopyright("Copyright © Stadt Frankfurt am Main 2012")]
+[assembly: AssemblyCopyright("Copyright © ViGor 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

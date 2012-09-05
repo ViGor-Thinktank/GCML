@@ -12,6 +12,7 @@
 *.bak
 obj/*
 Debug/*
+_UpgradeReport_Files/*
 GenericCampaignMasterLib/bin/*
 GenericCampaignMasterLib/obj/*
 GenericCampaignMasterLibTests/bin/*
@@ -22,7 +23,7 @@ GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
 *.userprefs
 GenericCampaignMasterLibTests/test-results/*
-
+UpgradeLog.*
 .DS_Store
 
 test-results/*
