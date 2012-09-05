@@ -81,7 +81,7 @@ namespace GcmlWebService
         {
             List<CommandInfo> result = new List<CommandInfo>();
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
-            BaseUnit unit = controller.getUnit(unitid);
+            clsUnit unit = controller.getUnit(unitid);
             List<ICommand> cmdlist = controller.getCommandsForUnit(unit);
             foreach (ICommand icmd in cmdlist)
                 result.Add(icmd.getInfo());

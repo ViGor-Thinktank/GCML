@@ -7,10 +7,10 @@ namespace GenericCampaignMasterLib
 {
     public class SektorEventArgs
     {
-        public Unit.clsUnit actingUnit;
+        public clsUnit actingUnit;
         public Sektor eventSektor;
 
-        public SektorEventArgs(Unit.clsUnit unit, Sektor sektor)
+        public SektorEventArgs(clsUnit unit, Sektor sektor)
         {
             actingUnit = unit;
             eventSektor = sektor;

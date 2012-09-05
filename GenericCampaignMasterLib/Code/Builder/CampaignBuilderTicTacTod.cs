@@ -60,8 +60,8 @@ namespace GenericCampaignMasterLib
             Player player1 = new Player("1");
             Player player2 = new Player("2");
 
-            Unit.clsUnit unit1 = new Unit.clsUnit("666", 0);
-            Unit.clsUnit unit2 = new Unit.clsUnit("667", 0);
+            clsUnit unit1 = new clsUnit("666", 0);
+            clsUnit unit2 = new clsUnit("667", 0);
 
             engine.addPlayer(player1);
             engine.addPlayer(player2);

@@ -163,7 +163,7 @@ namespace GenericCampaignMasterLib
             CampaignEngine engine = new CampaignEngine(field);
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
-            engine.addUnit(player, new Unit.clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
+            engine.addUnit(player, new clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;

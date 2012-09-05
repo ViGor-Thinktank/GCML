@@ -36,7 +36,7 @@ namespace Playground
                 comboBox1.DataSource = myPlayer.ListUnits;
                 
                 this.txtUnitInfo.Text = "";
-                foreach (GenericCampaignMasterLib.Unit.clsUnit objUnit in myPlayer.ListUnits)
+                foreach (GenericCampaignMasterLib.clsUnit objUnit in myPlayer.ListUnits)
                 {
                     this.txtUnitInfo.Text += objUnit.Bezeichnung + " " + Program.m_objCampaign.getSektorForUnit(objUnit).strUniqueID + Environment.NewLine;
                 }
@@ -106,7 +106,7 @@ namespace Playground
             ((ICommand)((Button)sender).Tag).Register();         
         }
 
-        private void erzeugeCommandButtonsForUnit(GenericCampaignMasterLib.Unit.clsUnit unit)
+        private void erzeugeCommandButtonsForUnit(GenericCampaignMasterLib.clsUnit unit)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace Playground
             {
                 string strUnitID = comboBox1.SelectedValue.ToString();
 
-                GenericCampaignMasterLib.Unit.clsUnit Unit = Program.m_objCampaign.getUnit(strUnitID);
+                GenericCampaignMasterLib.clsUnit Unit = Program.m_objCampaign.getUnit(strUnitID);
 
                 this.erzeugeCommandButtonsForUnit(Unit);
 

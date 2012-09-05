@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace GenericCampaignMasterLib.Unit
+namespace GenericCampaignMasterLib
 {
     public class clsUnitTypeCollection
     {
