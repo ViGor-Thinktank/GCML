@@ -19,6 +19,8 @@ namespace GenericCampaignMasterLib
             m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
         }
 
+        public clsUnit(){}
+
         public clsUnit(string unitId, clsUnitType UnitType)
         {
             m_strId = unitId;
