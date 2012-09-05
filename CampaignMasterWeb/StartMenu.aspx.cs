@@ -37,7 +37,7 @@ namespace CampaignMasterWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         // Wird nach dem (Login-) Clickevent ausgelöst
@@ -48,7 +48,7 @@ namespace CampaignMasterWeb
             {
                 pnCampaignInfo.Enabled = false;
                 ListItem it = lbCampaigns.Items.FindByText(selectedCampaign);
-                if(it != null)
+                if (it != null)
                     it.Selected = true;
             }
             else
@@ -68,7 +68,7 @@ namespace CampaignMasterWeb
         {
             string playername = tbPlayername.Text;
 
-            if(!String.IsNullOrEmpty(playername))
+            if (!String.IsNullOrEmpty(playername))
             {
                 string playerId = StartMenu.getService(this.Session).getPlayerId(playername);
                 if (!String.IsNullOrEmpty(playerId))
@@ -79,14 +79,14 @@ namespace CampaignMasterWeb
         protected void BtnNewCampaign_Click(object sender, EventArgs e)
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
-            string playerid = (string) this.Session[GcmlClientKeys.CONTEXTPLAYERID];
+            string playerid = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
             string campaignid = service.createNewCampaign(playerid, "");
 
         }
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
-            
+
 
             Response.Redirect("CampaignView.aspx");
 
@@ -150,7 +150,7 @@ namespace CampaignMasterWeb
                 lbId.Text = nfo.campaignId;
                 lbName.Text = nfo.campaignName;
                 string players = "";
-                foreach(var kvp in nfo.players)
+                foreach (var kvp in nfo.players)
                     players += (String.IsNullOrEmpty(players)) ? kvp.Value : ", " + kvp.Value;
 
                 lbPlayer.Text = players;
@@ -180,8 +180,16 @@ namespace CampaignMasterWeb
         protected void lbCampaigns_SelectedIndexChanged(object sender, EventArgs e)
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
-            string campaignid = lbCampaigns.SelectedItem.Text;
-            this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
-        } 
+
+            ListItem li = lbCampaigns.SelectedItem;
+            if (li != null)
+            {
+                string campaignid = li.Text;
+                if (!String.IsNullOrEmpty(campaignid))
+                    this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
+                else
+                    this.Session[GcmlClientKeys.CAMPAIGNID] = "";
+            }
+        }
     }
 }
