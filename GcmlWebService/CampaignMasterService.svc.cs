@@ -106,12 +106,23 @@ namespace GcmlWebService
         {
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
             ICommand cmd = controller.getCommand(command.commandId);
-            cmd.Execute();
+            
+            //cmd.Execute();
+            cmd.Register();
         }
 
         public void addUnitToField(string campaignid, string unit, string targetsektor)
         {
             throw new NotImplementedException();
+        }
+
+        
+        public void endRoundForPlayer(string campaignid, string playerid)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            Player p = controller.getPlayer(playerid);
+            controller.endRound(p);
+
         }
 
         #endregion

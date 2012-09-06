@@ -54,5 +54,8 @@ namespace GcmlWebService
 
         [OperationContract]
         void addUnitToField(string campaignid, string unit, string targetsektor);
+
+        [OperationContract]
+        void endRoundForPlayer(string campaignid, string playerid);
     }
 }

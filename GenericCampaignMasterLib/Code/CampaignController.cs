@@ -31,6 +31,7 @@ namespace GenericCampaignMasterLib
 
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         private List<clsUnit> unitActedStack = new List<clsUnit>();
+        private List<Player> lstFinishedPlayers = new List<Player>();
         private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
 
         public event Field.delStatus onStatus;
@@ -252,7 +253,20 @@ namespace GenericCampaignMasterLib
             return nfo;
         }
 
-        
+
+
+        public void endRound(Player p)
+        {
+            if (!lstFinishedPlayers.Contains(p))
+                lstFinishedPlayers.Add(p);
+
+            if (lstFinishedPlayers.Count() == m_campaignEngine.ListPlayers.Count())
+            {
+                Tick();
+                lstFinishedPlayers.Clear();
+
+            }
+        }
     }
 
 }
