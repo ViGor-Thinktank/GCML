@@ -72,7 +72,8 @@ namespace GenericCampaignMasterLib
         public CampaignController getController(string campaignId)
         {
             CampaignController controller;
-            if (m_dictLoadedController.ContainsKey(campaignId))
+            if ((!String.IsNullOrEmpty(campaignId)) &&
+                (m_dictLoadedController.ContainsKey(campaignId)))
             {
                 controller = m_dictLoadedController[campaignId];
             }

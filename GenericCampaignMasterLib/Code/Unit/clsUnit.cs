@@ -50,9 +50,8 @@ namespace GenericCampaignMasterLib
         private clsUnitType m_objUnitType;
         public clsUnitType UnitType
         {
-
             get { return m_objUnitType; }
-
+            set { m_objUnitType = value; }
         }
 
         public List<ICommand> getTypeCommands()
