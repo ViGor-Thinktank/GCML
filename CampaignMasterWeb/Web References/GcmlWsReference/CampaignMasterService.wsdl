@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CampaignMasterService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CampaignMasterService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -92,6 +92,12 @@
   <wsdl:message name="ICampaignMasterService_addUnitToField_OutputMessage">
     <wsdl:part name="parameters" element="tns:addUnitToFieldResponse" />
   </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_endRoundForPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:endRoundForPlayer" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_endRoundForPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:endRoundForPlayerResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICampaignMasterService">
     <wsdl:operation name="getPlayerId">
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerId" message="tns:ICampaignMasterService_getPlayerId_InputMessage" />
@@ -148,6 +154,10 @@
     <wsdl:operation name="addUnitToField">
       <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/addUnitToField" message="tns:ICampaignMasterService_addUnitToField_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/addUnitToFieldResponse" message="tns:ICampaignMasterService_addUnitToField_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="endRoundForPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/endRoundForPlayer" message="tns:ICampaignMasterService_endRoundForPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/endRoundForPlayerResponse" message="tns:ICampaignMasterService_endRoundForPlayer_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICampaignMasterService" type="tns:ICampaignMasterService">
@@ -271,6 +281,15 @@
     </wsdl:operation>
     <wsdl:operation name="addUnitToField">
       <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/addUnitToField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endRoundForPlayer">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/endRoundForPlayer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

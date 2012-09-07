@@ -70,6 +70,7 @@
       <xs:element minOccurs="0" name="actingUnitId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="commandType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
       <xs:element minOccurs="0" name="strInfo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

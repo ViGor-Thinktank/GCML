@@ -22,7 +22,7 @@
         
         .style3
         {
-            font-size: x-small;
+            font-size: small;
         }
         
     </style>
@@ -48,7 +48,10 @@
             <br class="style3" />
             <a href="StartMenu.aspx"><span class="style3">Zurück zum Kampagnenmenü</span></a>
         </td>
-        <td></td>
+        <td><asp:Button ID="btnEndRound" runat="server" Height="41px" 
+                                        
+                style="color: #FFFF00; background-color: #333333; font-weight: 700;" Text="Runde beenden" 
+                                        Width="190px" onclick="btnEndRound_Click" /></td>
         <td></td>
         <td>
             <img alt="" src="Bilder/gcml_logo_small.png" 
