@@ -42,10 +42,10 @@ namespace CampaignMasterWeb
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
-            
+
             if (service.getUnitCollisions(campaignId).Contains(this.Sektor))
                 bgcolor = System.Drawing.Color.Orange;
-            
+
             this.TableUnits.BackColor = bgcolor;
 
             // Sektorinformationen aktualisieren
@@ -75,7 +75,12 @@ namespace CampaignMasterWeb
                     {
                         CommandInfo cmd = contextCmdList[cmdkey];
 
+
+                        System.Drawing.Color cmdcolor = cmd.isActive ? System.Drawing.Color.Azure : System.Drawing.Color.LightGray;
+
                         TableRow rowcmd = createSelectableRow(cmdkey, cmd.strInfo, new EventHandler(executeUnitAction));
+                        rowcmd.BackColor = cmdcolor;
+
                         TableUnitActions.Rows.Add(rowcmd);
                     }
                 }
@@ -97,13 +102,24 @@ namespace CampaignMasterWeb
             Button btnSender = sender as Button;
             string cmdId = btnSender.ID;
             Dictionary<string, CommandInfo> cmdList = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.CONTEXTCOMMANDLIST];
-            if((cmdList != null) && cmdList.Keys.Contains(cmdId))
+            if ((cmdList != null) && cmdList.Keys.Contains(cmdId))
             {
                 CommandInfo cmd = cmdList[cmdId];
                 service.executeCommand(campaignId, cmd);
-            }
 
-            setSelectedUnitContext(null);       // Wenn die AKtion ausgeführt wurde keine Unit mehr selektiert
+                string contextUnit = (string)Session[GcmlClientKeys.CONTEXTUNITID];     // Wird eigentlich nicht gebraucht
+                string cmdUnit = cmd.actingUnitId;
+
+                if (contextUnit != cmdUnit)
+                    throw new Exception("Selektierte Unit stimmt nicht mit Command überein");
+
+                UnitInfo uinfo = service.getUnit(campaignId, cmdUnit);
+                setSelectedUnitContext(uinfo);
+            }
+            else
+            {
+                setSelectedUnitContext(null);       
+            }
         }
 
         private void setSelectedUnitContext(UnitInfo selectedUnit)
