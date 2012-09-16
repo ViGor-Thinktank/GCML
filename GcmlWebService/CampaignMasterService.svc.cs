@@ -125,6 +125,15 @@ namespace GcmlWebService
 
         }
 
+
+        public CommandInfo getCommandInfo(string commandId)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(commandId);
+            ICommand cmd = controller.getCommand(commandId);
+            CommandInfo cmdInfo = cmd.getInfo();
+            return cmdInfo;
+        }
+
         #endregion
     }
 

@@ -41,6 +41,8 @@ namespace CampaignMasterWeb
         public void drawContext()
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
+            PlayerInfo playerInfo = service.getPlayerInfo(playerId);
+
             System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
 
             if (service.getUnitCollisions(campaignId).Contains(this.Sektor))
@@ -74,7 +76,10 @@ namespace CampaignMasterWeb
                     foreach (string cmdkey in contextCmdList.Keys)
                     {
                         CommandInfo cmd = contextCmdList[cmdkey];
+                        string cmdKey = cmd.commandId;
 
+                        // CommandInfo neu laden (damit isActive-Flag aktuell ist)
+                        cmd = service.getCommandInfo(cmdKey);
 
                         System.Drawing.Color cmdcolor = cmd.isActive ? System.Drawing.Color.Azure : System.Drawing.Color.LightGray;
 
@@ -113,12 +118,15 @@ namespace CampaignMasterWeb
                 if (contextUnit != cmdUnit)
                     throw new Exception("Selektierte Unit stimmt nicht mit Command überein");
 
-                UnitInfo uinfo = service.getUnit(campaignId, cmdUnit);
-                setSelectedUnitContext(uinfo);
+                //UnitInfo uinfo = service.getUnit(campaignId, cmdUnit);
+                //setSelectedUnitContext(uinfo);
+
+                // ContextCommandList aktualisieren
+
             }
             else
             {
-                setSelectedUnitContext(null);       
+                //setSelectedUnitContext(null);       
             }
         }
 
