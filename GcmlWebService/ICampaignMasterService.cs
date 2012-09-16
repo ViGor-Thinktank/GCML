@@ -59,6 +59,6 @@ namespace GcmlWebService
         void endRoundForPlayer(string campaignid, string playerid);
 
         [OperationContract]
-        CommandInfo getCommandInfo(string commandId);
+        CommandInfo getCommandInfo(string campaignid, string commandId);
     }
 }

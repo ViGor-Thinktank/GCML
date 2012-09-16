@@ -612,23 +612,25 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ICampaignMasterService/getCommandInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CommandInfo getCommandInfo([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string commandId) {
+        public CommandInfo getCommandInfo([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string campaignid, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string commandId) {
             object[] results = this.Invoke("getCommandInfo", new object[] {
+                        campaignid,
                         commandId});
             return ((CommandInfo)(results[0]));
         }
         
         /// <remarks/>
-        public void getCommandInfoAsync(string commandId) {
-            this.getCommandInfoAsync(commandId, null);
+        public void getCommandInfoAsync(string campaignid, string commandId) {
+            this.getCommandInfoAsync(campaignid, commandId, null);
         }
         
         /// <remarks/>
-        public void getCommandInfoAsync(string commandId, object userState) {
+        public void getCommandInfoAsync(string campaignid, string commandId, object userState) {
             if ((this.getCommandInfoOperationCompleted == null)) {
                 this.getCommandInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCommandInfoOperationCompleted);
             }
             this.InvokeAsync("getCommandInfo", new object[] {
+                        campaignid,
                         commandId}, this.getCommandInfoOperationCompleted, userState);
         }
         

@@ -11,8 +11,8 @@ namespace CampaignMasterWeb
 {
     public partial class GcmlClientPage : System.Web.UI.Page
     {
-        string playerid;
-        string campaignid;
+        private string campaignId;
+        private string playerId;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -21,12 +21,12 @@ namespace CampaignMasterWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            playerid = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
-            campaignid = (string)Session[GcmlClientKeys.CAMPAIGNID];
+            playerId = (string)Session[GcmlClientKeys.CONTEXTPLAYERID];
+            campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
 
             CampaignMasterService service = StartMenu.getService(this.Session);
-            PlayerInfo playernfo = service.getPlayerInfo(playerid);
-            CampaignInfo campaignnfo = service.getCampaignInfo(campaignid);
+            PlayerInfo playernfo = service.getPlayerInfo(playerId);
+            CampaignInfo campaignnfo = service.getCampaignInfo(campaignId);
 
             lbPlayer.Text = playernfo.playerName;
             lbCampaign.Text = campaignnfo.campaignName;
@@ -35,7 +35,7 @@ namespace CampaignMasterWeb
         protected void btnEndRound_Click(object sender, EventArgs e)
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
-            service.endRoundForPlayer(campaignid, playerid);
+            service.endRoundForPlayer(campaignId, playerId);
         }
     }
 

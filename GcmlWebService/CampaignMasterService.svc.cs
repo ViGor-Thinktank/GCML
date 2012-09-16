@@ -126,9 +126,9 @@ namespace GcmlWebService
         }
 
 
-        public CommandInfo getCommandInfo(string commandId)
+        public CommandInfo getCommandInfo(string campaignid, string commandId)
         {
-            CampaignController controller = GcmlDataManager.Instance.getController(commandId);
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
             ICommand cmd = controller.getCommand(commandId);
             CommandInfo cmdInfo = cmd.getInfo();
             return cmdInfo;

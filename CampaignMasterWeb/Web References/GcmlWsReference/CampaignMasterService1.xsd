@@ -216,6 +216,7 @@
   <xs:element name="getCommandInfo">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

@@ -79,7 +79,7 @@ namespace CampaignMasterWeb
                         string cmdKey = cmd.commandId;
 
                         // CommandInfo neu laden (damit isActive-Flag aktuell ist)
-                        cmd = service.getCommandInfo(cmdKey);
+                        cmd = service.getCommandInfo(campaignId, cmdKey);
 
                         System.Drawing.Color cmdcolor = cmd.isActive ? System.Drawing.Color.Azure : System.Drawing.Color.LightGray;
 

@@ -86,10 +86,7 @@ namespace CampaignMasterWeb
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
-
-
-            Response.Redirect("CampaignView.aspx");
-
+             Response.Redirect("CampaignView.aspx");
         }
 
         private void drawPlayerCampaignData()
@@ -115,6 +112,7 @@ namespace CampaignMasterWeb
         protected void btnLogoff_Click(object sender, EventArgs e)
         {
             this.Session[GcmlClientKeys.CONTEXTPLAYERID] = "";
+            this.Session[GcmlClientKeys.CAMPAIGNID] = "";
             setLoggedOff();
         }
 
