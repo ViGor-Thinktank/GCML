@@ -270,6 +270,7 @@ namespace GenericCampaignMasterLib
             {
                 Tick();
                 lstFinishedPlayers.Clear();
+                m_dictCommandCache.Clear();
 
             }
         }

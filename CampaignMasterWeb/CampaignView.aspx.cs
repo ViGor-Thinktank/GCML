@@ -36,6 +36,7 @@ namespace CampaignMasterWeb
         {
             CampaignMasterService service = StartMenu.getService(this.Session);
             service.endRoundForPlayer(campaignId, playerId);
+            Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = new Dictionary<string, CommandInfo>();
         }
     }
 
