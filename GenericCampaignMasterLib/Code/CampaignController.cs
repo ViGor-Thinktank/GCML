@@ -77,6 +77,16 @@ namespace GenericCampaignMasterLib
                 sektor.onUnitEnteredSektor += onUnitMove;
                 sektor.onUnitLeftSektor += onUnitMove;
             }
+
+            // Unit CommandHandler registrieren
+            this.onTick = null;
+            foreach (Player p in m_campaignEngine.ListPlayers)
+            {
+                foreach (clsUnit u in p.ListUnits)
+                {
+                    this.onTick += new delTick(u.CampaignController_onTick);
+                }
+            }
         }
 
         public string saveCurrentGameState()
@@ -147,16 +157,12 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        
         public void createNewUnit(string strPlayerID, int intUnitTypeID)
         {
             clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
-
-        
-       
 
         public Player getPlayer(string pID)
         {
