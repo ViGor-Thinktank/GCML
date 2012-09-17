@@ -89,10 +89,18 @@ namespace GcmlWebService
             return result;
         }
 
-        public string createNewCampaign(string playerid, string fielddimension)
+        //public string createNewCampaign(string playerid, string fielddimension)
+        //{
+        //    return GcmlDataManager.Instance.createNewCampaign(playerid, fielddimension);
+        //}
+
+        public string createNewCampaign(string playerid, string campaignname, int x, int y, int anzUnits)
         {
-            return GcmlDataManager.Instance.createNewCampaign(playerid, fielddimension);
+            clsSektorKoordinaten fielddim = new clsSektorKoordinaten(x, y);
+            string newCampaignId = GcmlDataManager.Instance.createNewCampaign(playerid, campaignname, fielddim, anzUnits);
+            return newCampaignId;
         }
+
 
         public void addPlayerToCampaign(string playerid, string campaignid)
         {

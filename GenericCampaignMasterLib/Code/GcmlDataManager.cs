@@ -177,6 +177,40 @@ namespace GenericCampaignMasterLib
             return database.CampaignKey;
         }
 
+        public string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
+        {
+            Player player = getPlayer(playerid);
+            if (player == null)
+                return "";
+
+            // Datenbank
+            CampaignDatabaseRaptorDb database = (CampaignDatabaseRaptorDb)getCampaignDbOrNew("");
+
+            // Spielfeld
+            Field field = new Field(fielddim);
+
+            // Engine
+            CampaignEngine engine = new CampaignEngine(field);
+            engine.CampaignName = campaignname;
+            engine.FieldField.Id = 123;
+            engine.addPlayer(player);
+
+            for(int i = anzUnitsPerPlayer; i > 0; i--)
+            {
+                engine.addUnit(player, new clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
+            }
+
+            CampaignController controller = new CampaignController();
+            controller.CampaignDataBase = database;
+            controller.campaignEngine = engine;
+            controller.CampaignKey = database.CampaignKey;
+            controller.saveCurrentGameState();
+
+            m_dictLoadedController[controller.CampaignKey] = controller;
+            return database.CampaignKey;
+        }
+
+
         private CampaignDatabaseRaptorDb getCampaignDbOrNew(string campaignId)
         {
             CampaignDatabaseRaptorDb result = null;

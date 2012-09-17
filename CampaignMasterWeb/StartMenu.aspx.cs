@@ -37,7 +37,7 @@ namespace CampaignMasterWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            resetNewCampaignInput();
         }
 
         // Wird nach dem (Login-) Clickevent ausgelöst
@@ -81,6 +81,10 @@ namespace CampaignMasterWeb
             CampaignMasterService service = StartMenu.getService(this.Session);
             string playerid = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
             string campaignid = service.createNewCampaign(playerid, "");
+
+
+
+            resetNewCampaignInput();
 
         }
 
@@ -133,6 +137,13 @@ namespace CampaignMasterWeb
             pnPlayerCampaigns.Enabled = false;
         }
 
+        private void resetNewCampaignInput()
+        {
+            tbCampaignName.Text = DateTime.Now.ToString("s");
+            tbAnzUnits.Text = "1";
+            tbX.Text = "3";
+            tbY.Text = "3";
+        }
 
         private void showCampaignInfoPanel()
         {
@@ -189,5 +200,7 @@ namespace CampaignMasterWeb
                     this.Session[GcmlClientKeys.CAMPAIGNID] = "";
             }
         }
+
+
     }
 }
