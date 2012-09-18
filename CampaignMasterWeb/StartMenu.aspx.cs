@@ -184,7 +184,7 @@ namespace CampaignMasterWeb
             {
                 CampaignMasterService gcmlservice = StartMenu.getService(this.Session);
                 string playerId = gcmlservice.getPlayerId(addPlayername);
-                string campaignid = lbCampaigns.SelectedItem.Text;
+                string campaignid = lbCampaigns.SelectedItem.Value;
                 if (!String.IsNullOrEmpty(playerId) && !String.IsNullOrEmpty(campaignid))
                 {
                     gcmlservice.addPlayerToCampaign(playerId, campaignid);
