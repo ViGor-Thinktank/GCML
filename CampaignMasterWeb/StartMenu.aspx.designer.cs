@@ -157,13 +157,13 @@ namespace CampaignMasterWeb {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// btnNewCampaign0-Steuerelement
+        /// Button1-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewCampaign0;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// pnCampaignInfo-Steuerelement

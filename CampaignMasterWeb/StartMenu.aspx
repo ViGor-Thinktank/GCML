@@ -48,6 +48,9 @@
         {
             width: 148px;
         }
+        .auto-style1 {
+            width: 151px;
+        }
     </style>
 </head>
 <body>
@@ -77,9 +80,10 @@
             <table style="width: 100%;">
                 <tr>
                     <td class="style4">
-                        Kampagnen
+                        <b>Kampagnen:</b>
                     </td>
                     <td>
+                        <b>Neue Kampagne anlegen:</b>
                     </td>
                 </tr>
                 <tr>
@@ -87,68 +91,55 @@
                         <asp:ListBox ID="lbCampaigns" runat="server" Height="115px" Width="301px" 
                             BackColor="#CCCCCC"></asp:ListBox>
                         <br />
-                        <br />
-                        <br />
                         <asp:Button ID="btnSelectCampaign0" runat="server" BorderStyle="Solid" BorderWidth="1px"
-                            Height="36px" OnClick="lbCampaigns_SelectedIndexChanged" Text="Kampagne auswählen"
+                            Height="36px" OnClick="lbCampaigns_SelectedIndexChanged" Text="Kampagne laden"
                             Width="146px" />
                     </td>
                     <td valign="top">
                         <table width="100%">
-                            <tr>
-                                <td colspan="2">
-                                    <h2>
-                                        Neue Kampagne anlegen:</h2>
-                                </td>
-                                </tr>
                                 <tr>
-                                <td>Name</td>
+                                <td class="auto-style1">Name</td>
                                 <td><asp:TextBox ID="tbCampaignName" runat="server" BorderStyle="Solid" BorderWidth="1px"
                                     Width="217px"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                                         ControlToValidate="tbCampaignName" ErrorMessage="Feld muss ausgefüllt sein!"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
-                                <tr><td>Breite</td>
+                                <tr><td class="auto-style1">Breite</td>
                                 <td><asp:TextBox ID="tbX" runat="server" BorderStyle="Solid" BorderWidth="1px"
                                     Width="75px"></asp:TextBox>
                                     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                                         ErrorMessage="Feld muss ausgefüllt sein!" ControlToValidate="tbX"></asp:RequiredFieldValidator>
                                     </td></tr>
-                                <tr><td>Höhe</td>
+                                <tr><td class="auto-style1">Höhe</td>
                                 <td><asp:TextBox ID="tbY" runat="server" BorderStyle="Solid" BorderWidth="1px"
                                     Width="75px"></asp:TextBox>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                                         ErrorMessage="Feld muss ausgefüllt sein!" ControlToValidate="tbY"></asp:RequiredFieldValidator></td></tr>
                                 <tr>
-                                <td>Anzahl Units:</td>
+                                <td class="auto-style1">Anzahl Units:</td>
                                 <td><asp:TextBox ID="tbAnzUnits" runat="server" BorderStyle="Solid"
                                     BorderWidth="1px" Width="75px"></asp:TextBox>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
                                         ErrorMessage="Feld muss ausgefüllt sein!" ControlToValidate="tbAnzUnits"></asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
                                 <td>
-                                    &nbsp;</td>
-                                <td><asp:Button ID="btnNewCampaign0" runat="server" BorderStyle="Solid" BorderWidth="1px"
-                                    OnClick="BtnNewCampaign_Click" Text="Kampagne erstellen" Width="146px" /></td>
+                                   
+                                    </td>
+                                <td>&nbsp;</td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <asp:Button ID="Button1" runat="server" BorderStyle="Solid" BorderWidth="1px" OnClick="BtnNewCampaign_Click" Text="Kampagne erstellen" Width="146px" />
+                                    </td>
+                                <td>&nbsp;</td>
                                 </tr>
                                 
-                            <caption>
-                                &nbsp;
-                            </caption>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td class="style10" valign="top">
-                            &nbsp;
+                   
+                    </table> 
                         </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    </table> </td>
                 </tr>
             </table>
-            <br />
+            <hr />
             <asp:Panel ID="pnCampaignInfo" runat="server" BorderColor="#CCCCCC" BorderStyle="Solid"
                 BorderWidth="1px" Width="415px">
                 <table border="0" style="font-size: small">

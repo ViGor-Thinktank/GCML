@@ -252,7 +252,7 @@ namespace GenericCampaignMasterLib
         {
             CampaignInfo nfo = new CampaignInfo();
             nfo.campaignId = this.CampaignKey;
-            nfo.campaignName = "Campaign " + this.CampaignKey;          // TODO: Kampagnenname
+            nfo.campaignName = this.campaignEngine.CampaignName;
             nfo.players = new Dictionary<string, string>();
             foreach (Player p in this.campaignEngine.ListPlayers)
                 nfo.players.Add(p.Id, p.Playername);

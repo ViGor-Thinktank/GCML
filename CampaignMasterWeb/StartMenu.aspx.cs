@@ -78,11 +78,17 @@ namespace CampaignMasterWeb
 
         protected void BtnNewCampaign_Click(object sender, EventArgs e)
         {
+            int x, y, units;
+
+            Int32.TryParse(tbX.Text, out x);
+            Int32.TryParse(tbY.Text, out y);
+            Int32.TryParse(tbAnzUnits.Text, out units);
+            
+            string campaignname = tbCampaignName.Text;
+
             CampaignMasterService service = StartMenu.getService(this.Session);
             string playerid = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
-            string campaignid = service.createNewCampaign(playerid, "");
-
-
+            string campaignid = service.createNewCampaign(playerid, campaignname, x, true, y, true, units, true);
 
             resetNewCampaignInput();
 
@@ -105,8 +111,9 @@ namespace CampaignMasterWeb
             List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId).ToList<string>();
             foreach (string strCampaign in campaigns)
             {
+                CampaignInfo cinfo = gcmlservice.getCampaignInfo(strCampaign);
                 ListItem cmpItem = new ListItem();
-                cmpItem.Text = strCampaign;
+                cmpItem.Text = cinfo.campaignName;
                 cmpItem.Value = strCampaign;
                 lbCampaigns.Items.Add(cmpItem);
             }
@@ -193,7 +200,7 @@ namespace CampaignMasterWeb
             ListItem li = lbCampaigns.SelectedItem;
             if (li != null)
             {
-                string campaignid = li.Text;
+                string campaignid = li.Value;
                 if (!String.IsNullOrEmpty(campaignid))
                     this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
                 else
