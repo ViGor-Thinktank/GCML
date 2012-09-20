@@ -49,6 +49,7 @@
     <Compile Include="Code\CampaignEngine.cs" />
     <Compile Include="Code\CampaignState.cs" />
     <Compile Include="Code\Commands\MoveFactory.cs" />
+    <Compile Include="Code\Commands\PlaceUnit.cs" />
     <Compile Include="Code\Commands\SektorFactoryBase.cs" />
     <Compile Include="Code\Commands\ViewableSectorFactory.cs" />
     <Compile Include="Code\Db\CampaignDatabaseRaptorDb.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="Code\Unit\clsUnitTypeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Sektor\Sektor.cs" />
-    <Compile Include="Code\Ressourcen.cs" />
+    <Compile Include="Code\Ressource.cs" />
     <Compile Include="Code\Builder\CampaignBuilder.cs" />
     <Compile Include="Code\Builder\CampaignBuilderTicTacTod.cs" />
   </ItemGroup>

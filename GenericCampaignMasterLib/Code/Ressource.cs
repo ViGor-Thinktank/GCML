@@ -6,7 +6,10 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
     [Serializable()]
-    public class Ressourcen
+    public class Ressource
     {
+        public List<Player> UsableByPlayers { get; set; }
+
+
     }
 }

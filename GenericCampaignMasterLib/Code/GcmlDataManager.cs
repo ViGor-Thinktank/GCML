@@ -195,10 +195,10 @@ namespace GenericCampaignMasterLib
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
 
-            for(int i = anzUnitsPerPlayer; i > 0; i--)
-            {
-                engine.addUnit(player, new clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
-            }
+            //for(int i = anzUnitsPerPlayer; i > 0; i--)
+            //{
+            //    engine.addUnit(player, new clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
+            //}
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
