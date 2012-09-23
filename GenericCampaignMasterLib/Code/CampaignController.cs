@@ -274,6 +274,32 @@ namespace GenericCampaignMasterLib
 
             }
         }
+
+        #region Ressourcen Handling
+        
+        //public void addResssourceForAll(Ressource res)
+        //{
+
+
+
+        //}
+
+        //public void getRessourcesForPlayer(Player player)
+        //{
+        //    Ressource res = new Ressource();
+            
+
+        //}
+
+        
+        //public void RessourceIsUsedHandler(Ressource res)
+        //{
+
+        //    m_campaignEngine.listRessourcen.Remove(res);
+
+        //}
+        #endregion
+
     }
 
 }

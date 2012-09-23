@@ -9,10 +9,6 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class CampaignEngine
     {
-        // Todo: Ressourcen in Engine verwalten
-        // Platzieren erfolgt durch Commands (Units aus der Ressourcen Collection entfernen und auf dem Feld platzieren)
-        public List<Ressource> listRessourcen { get; set;}
-
         public string CampaignName { get; set; }
 
         public event Field.delStatus onStatus;

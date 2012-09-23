@@ -60,6 +60,9 @@
     <Compile Include="Code\Info\PlayerInfo.cs" />
     <Compile Include="Code\Info\SektorInfo.cs" />
     <Compile Include="Code\Info\UnitInfo.cs" />
+    <Compile Include="Code\Ressourcen\IResourcable.cs" />
+    <Compile Include="Code\Ressourcen\ResourceCommandDecorator.cs" />
+    <Compile Include="Code\Ressourcen\ResourceHandler.cs" />
     <Compile Include="Code\Sektor\SektorEventArgs.cs" />
     <Compile Include="Code\Sektor\SektorKoordinaten.cs" />
     <Compile Include="Code\Sektor\SektorType_heavyTerrain.cs" />
@@ -73,7 +76,7 @@
     <Compile Include="Code\Unit\clsUnitTypeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Sektor\Sektor.cs" />
-    <Compile Include="Code\Ressource.cs" />
+    <Compile Include="Code\Ressourcen\Resource.cs" />
     <Compile Include="Code\Builder\CampaignBuilder.cs" />
     <Compile Include="Code\Builder\CampaignBuilderTicTacTod.cs" />
   </ItemGroup>
