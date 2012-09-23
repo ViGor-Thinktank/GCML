@@ -6,7 +6,7 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
   
-    public class clsUnit : IResourcable
+    public class clsUnit : IResourceable
     {
         private static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
 

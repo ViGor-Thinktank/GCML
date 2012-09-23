@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     /// <summary>
     /// Muss von Objekten implementiert werden die als Ressource verwaltet werden.
     /// </summary>
-    public interface IResourcable
+    public interface IResourceable
     {
         List<ICommand> getResourceCommands(Player owner);
     }
