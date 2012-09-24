@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
   
     public class clsUnit : IResourceable
     {
-        private static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
+        public static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
 
         public clsUnit() { }
 
