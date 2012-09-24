@@ -148,7 +148,7 @@ namespace GenericCampaignMasterLib
         {
 
             var owner = (from p in m_ListPlayers
-                         where p.Id == unit.ownerID 
+                         where p.Id == unit.strOwnerID 
                          select p).First();
 
             return owner as Player;
@@ -175,7 +175,7 @@ namespace GenericCampaignMasterLib
 
         public clsUnit addUnit(Player owner, clsUnit newUnit, Sektor sektor)
         {
-            newUnit.ownerID = owner.Id;
+            newUnit.strOwnerID = owner.Id;
             owner.ListUnits.Add(newUnit);
             sektor.addUnit(newUnit);
             return newUnit;
@@ -187,7 +187,7 @@ namespace GenericCampaignMasterLib
              clsUnit newUnit = null;
             //Ergibt eineindeutige UnitIDs
             newUnit = new clsUnit(strPlayerID + getPlayer(strPlayerID).ListUnits.Count.ToString(), intUnitTypeID);
-            newUnit.ownerID = strPlayerID;
+            newUnit.strOwnerID = strPlayerID;
             return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);
         }
 
@@ -215,7 +215,7 @@ namespace GenericCampaignMasterLib
         public clsUnit addUnit(string strPlayerID, clsUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
 
-            newUnit.ownerID = strPlayerID;
+            newUnit.strOwnerID = strPlayerID;
             getPlayer(strPlayerID).ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
@@ -262,7 +262,7 @@ namespace GenericCampaignMasterLib
 
             foreach (clsUnit aktUnit in p.ListUnits)
             {
-                facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.Sichtweite);
+                facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.intSichtweite);
     
             }
 
