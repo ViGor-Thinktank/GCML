@@ -75,6 +75,7 @@ namespace GenericCampaignMasterLib
 
         public CampaignState Save(CampaignEngine engine)
         {
+            this["campaignname"] = engine.CampaignName;
             this["players"] = m_serializer.Serialize (engine.ListPlayers);
             this["sektors"] = m_serializer.Serialize (engine.FieldField.dicSektors.Values);
             this["fielddimension"] = m_serializer.Serialize(engine.FieldField.FieldDimension);
@@ -103,6 +104,7 @@ namespace GenericCampaignMasterLib
 
 			// Engine erstellen
             CampaignEngine engine = new CampaignEngine((Field)field);
+            engine.CampaignName = this.ContainsKey("campaignname") ? this["campaignname"] : "OLDCAMPAIGN";
             engine.setPlayerList(lstPlayers);
 
             clsUnit.objUnitTypeFountain.dicUnitTypeData = this.getDicUnitTypeInfo();

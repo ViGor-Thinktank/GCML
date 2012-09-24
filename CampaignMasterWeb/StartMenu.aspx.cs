@@ -37,7 +37,7 @@ namespace CampaignMasterWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            resetNewCampaignInput();
         }
 
         // Wird nach dem (Login-) Clickevent ausgelöst
@@ -78,18 +78,25 @@ namespace CampaignMasterWeb
 
         protected void BtnNewCampaign_Click(object sender, EventArgs e)
         {
+            int x, y, units;
+
+            Int32.TryParse(tbX.Text, out x);
+            Int32.TryParse(tbY.Text, out y);
+            Int32.TryParse(tbAnzUnits.Text, out units);
+            
+            string campaignname = tbCampaignName.Text;
+
             CampaignMasterService service = StartMenu.getService(this.Session);
             string playerid = (string)this.Session[GcmlClientKeys.CONTEXTPLAYERID];
-            string campaignid = service.createNewCampaign(playerid, "");
+            string campaignid = service.createNewCampaign(playerid, campaignname, x, true, y, true, units, true);
+
+            resetNewCampaignInput();
 
         }
 
         protected void btnLoadCampaign_Click(object sender, EventArgs e)
         {
-
-
-            Response.Redirect("CampaignView.aspx");
-
+             Response.Redirect("CampaignView.aspx");
         }
 
         private void drawPlayerCampaignData()
@@ -104,8 +111,9 @@ namespace CampaignMasterWeb
             List<string> campaigns = gcmlservice.getPlayerCampaigns(currentPlayerId).ToList<string>();
             foreach (string strCampaign in campaigns)
             {
+                CampaignInfo cinfo = gcmlservice.getCampaignInfo(strCampaign);
                 ListItem cmpItem = new ListItem();
-                cmpItem.Text = strCampaign;
+                cmpItem.Text = cinfo.campaignName;
                 cmpItem.Value = strCampaign;
                 lbCampaigns.Items.Add(cmpItem);
             }
@@ -115,6 +123,7 @@ namespace CampaignMasterWeb
         protected void btnLogoff_Click(object sender, EventArgs e)
         {
             this.Session[GcmlClientKeys.CONTEXTPLAYERID] = "";
+            this.Session[GcmlClientKeys.CAMPAIGNID] = "";
             setLoggedOff();
         }
 
@@ -135,6 +144,13 @@ namespace CampaignMasterWeb
             pnPlayerCampaigns.Enabled = false;
         }
 
+        private void resetNewCampaignInput()
+        {
+            tbCampaignName.Text = DateTime.Now.ToString("s");
+            tbAnzUnits.Text = "1";
+            tbX.Text = "3";
+            tbY.Text = "3";
+        }
 
         private void showCampaignInfoPanel()
         {
@@ -168,7 +184,7 @@ namespace CampaignMasterWeb
             {
                 CampaignMasterService gcmlservice = StartMenu.getService(this.Session);
                 string playerId = gcmlservice.getPlayerId(addPlayername);
-                string campaignid = lbCampaigns.SelectedItem.Text;
+                string campaignid = lbCampaigns.SelectedItem.Value;
                 if (!String.IsNullOrEmpty(playerId) && !String.IsNullOrEmpty(campaignid))
                 {
                     gcmlservice.addPlayerToCampaign(playerId, campaignid);
@@ -184,12 +200,14 @@ namespace CampaignMasterWeb
             ListItem li = lbCampaigns.SelectedItem;
             if (li != null)
             {
-                string campaignid = li.Text;
+                string campaignid = li.Value;
                 if (!String.IsNullOrEmpty(campaignid))
                     this.Session[GcmlClientKeys.CAMPAIGNID] = campaignid;
                 else
                     this.Session[GcmlClientKeys.CAMPAIGNID] = "";
             }
         }
+
+
     }
 }

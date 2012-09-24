@@ -40,22 +40,6 @@ namespace GenericCampaignMasterLib
         public Dictionary<string, Sektor> dicVisibleSectors;
 
 
-        public Ressourcen Ressourcen
-        {
-            get
-            {
-                //throw new System.NotImplementedException();
-                return new Ressourcen();
-            }
-            set
-            {
-
-            }
-        }
-
-               
-            
-    
         #region IEquatable<Player> Member
         
         // TODO: Wenn Ressourcen und ListUnits implementiert sind,
