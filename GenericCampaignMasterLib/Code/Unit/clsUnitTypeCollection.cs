@@ -9,48 +9,37 @@ namespace GenericCampaignMasterLib
     public class clsUnitTypeCollection
     {
 
-        private clsUnitDataDic m_tblUnitTypeData = null;
+        private Dictionary<string, clsUnitType> m_dicUnitTypeData = null;
 
-        private clsUnitDataDic tblUnitTypeData
+        public Dictionary<string, clsUnitType> dicUnitTypeData
         {
-            get {
-                if (m_tblUnitTypeData == null)
-                    { m_tblUnitTypeData = new clsUnitDataDic(); }
-                return m_tblUnitTypeData; 
-            
-            }
-            
-        }
-
-        public class clsUnitDataDic : Dictionary<int, clsUnitType>
-        {
-            public clsUnitDataDic() { initNewData(); }
-
-            public clsUnitDataDic(string strKey) { initLoadData(strKey); }
-
-
-            private void initNewData()
+            get
             {
-                clsUnitType newType = new clsUnitType();
-                newType.strBez = "böhmische Dragonerschwadron";
-                newType.intMovement = 2;
-                newType.intSichtweite = 1;
-
-                this.Add(1, newType);
+                if (m_dicUnitTypeData == null)
+                {
+                    m_dicUnitTypeData = new Dictionary<string, clsUnitType>();
+                    this.initNewData();
+                }
+                return m_dicUnitTypeData;
             }
-
-
-            private void initLoadData(string strKey)
+            set
             {
-                //m_tblUnitTypeData.ReadXml(strKey / "UnitTypeData.xml");
-                //Zwischenlösung:
-                //for each row .. etc
-
+                m_dicUnitTypeData = value;
             }
 
         }
 
-        
+        private void initNewData()
+        {
+            //erster Debugtype
+            clsUnitType newType = new clsUnitType();
+            newType.strBez = "böhmische Dragonerschwadron";
+            newType.intMovement = 2;
+            newType.intSichtweite = 1;
+
+            dicUnitTypeData.Add("1", newType);
+        }
+
 
         internal clsUnitType getUnitType(int intUnitTypeID)
         {
@@ -60,7 +49,7 @@ namespace GenericCampaignMasterLib
                     return new clsUnitTypeDummy();
 
                 case 1:
-                    return tblUnitTypeData[intUnitTypeID];                    
+                    return dicUnitTypeData[intUnitTypeID.ToString()];
 
                 default:
                     throw new Exception("unbekannter UnitType");

@@ -10,16 +10,14 @@ namespace GenericCampaignMasterLib
     {
         private static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
 
+        public clsUnit() { }
+
         public clsUnit(string unitId, int intUnitTypeID)
         {
             m_strId = unitId;
-
             m_objUnitType = objUnitTypeFountain.getUnitType(intUnitTypeID);
-            
             m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
         }
-
-        public clsUnit(){}
 
         public clsUnit(string unitId, clsUnitType UnitType)
         {
@@ -28,10 +26,10 @@ namespace GenericCampaignMasterLib
             m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
         }
 
-        public int Movement { get { return m_objUnitType.intMovement; } }
-        public int Sichtweite { get { return m_objUnitType.intSichtweite; } }
+        public int intMovement { get { return m_objUnitType.intMovement; } }
+        public int intSichtweite { get { return m_objUnitType.intSichtweite; } }
 
-        public string ownerID = "";
+        public string strOwnerID = "";
 
         private string m_strId = "-1";
         public string Id 

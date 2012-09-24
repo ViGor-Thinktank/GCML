@@ -54,6 +54,14 @@ namespace GenericCampaignMasterLib
 			return lstUnitInfo;
 		}
 
+        public Dictionary<string, clsUnitType> getDicUnitTypeInfo()
+        {
+            string strUnitInfo = this["unittypesinfo"];
+
+            Dictionary<string, clsUnitType> dicUnitTypeInfo = (Dictionary<string, clsUnitType>)m_serializer.Deserialize<Dictionary<string, clsUnitType>>(strUnitInfo);
+            return dicUnitTypeInfo;
+        }
+
         public clsSektorKoordinaten getListDimensions()
         {
             return (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(this["fielddimension"]);
@@ -75,6 +83,8 @@ namespace GenericCampaignMasterLib
 			
 			List<UnitInfo> lstUnitInfo = engine.getUnitInfo();
 			this["unitinfo"] = m_serializer.Serialize(lstUnitInfo);
+
+            this["unittypesinfo"] = m_serializer.Serialize(clsUnit.objUnitTypeFountain);
 			
             return this;
         }
@@ -96,7 +106,9 @@ namespace GenericCampaignMasterLib
             CampaignEngine engine = new CampaignEngine((Field)field);
             engine.CampaignName = this.ContainsKey("campaignname") ? this["campaignname"] : "OLDCAMPAIGN";
             engine.setPlayerList(lstPlayers);
-            
+
+            clsUnit.objUnitTypeFountain.dicUnitTypeData = this.getDicUnitTypeInfo();
+ 
             // Units platzieren
 			foreach(UnitInfo uInfo in getListUnitInfo())
 			{
@@ -114,6 +126,8 @@ namespace GenericCampaignMasterLib
 
 				
 			}//*/
+
+
 			
             return engine;
         }
