@@ -26,7 +26,7 @@ namespace GenericCampaignMasterLib
         public void Execute()
         {
             m_command.Execute();
-
+            m_resourceHandler.onResourceIsUsed(m_resourceId);
         }
 
         public void Register()

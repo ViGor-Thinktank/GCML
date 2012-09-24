@@ -60,7 +60,7 @@
     <Compile Include="Code\Info\PlayerInfo.cs" />
     <Compile Include="Code\Info\SektorInfo.cs" />
     <Compile Include="Code\Info\UnitInfo.cs" />
-    <Compile Include="Code\Ressourcen\IResourcable.cs" />
+    <Compile Include="Code\Ressourcen\IResourceable.cs" />
     <Compile Include="Code\Ressourcen\ResourceCommandDecorator.cs" />
     <Compile Include="Code\Ressourcen\ResourceHandler.cs" />
     <Compile Include="Code\Sektor\SektorEventArgs.cs" />

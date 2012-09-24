@@ -6,16 +6,15 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
     [Serializable()]
-    public class Resource<T> where T : IResourcable , new()
+    public class Resource<T> where T : IResourceable , new()
     {
         private T m_resourceObject;
-        private ResourceHandler m_resourceHandler;      
+        public ResourceHandler resourceHandler { get; set; }     
         public Player Owner { get; set; }
         public Guid resourceId { get; set; }
 
         public Resource()
         {
-            resourceId = Guid.NewGuid();
             m_resourceObject = new T();   
         }
 
