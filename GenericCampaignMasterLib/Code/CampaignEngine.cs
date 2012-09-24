@@ -9,6 +9,8 @@ namespace GenericCampaignMasterLib
     [Serializable()]
     public class CampaignEngine
     {
+        public string CampaignName { get; set; }
+
         public event Field.delStatus onStatus;
 
         public CampaignEngine(Field newField)

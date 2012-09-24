@@ -89,10 +89,18 @@ namespace GcmlWebService
             return result;
         }
 
-        public string createNewCampaign(string playerid, string fielddimension)
+        //public string createNewCampaign(string playerid, string fielddimension)
+        //{
+        //    return GcmlDataManager.Instance.createNewCampaign(playerid, fielddimension);
+        //}
+
+        public string createNewCampaign(string playerid, string campaignname, int x, int y, int anzUnits)
         {
-            return GcmlDataManager.Instance.createNewCampaign(playerid, fielddimension);
+            clsSektorKoordinaten fielddim = new clsSektorKoordinaten(x, y);
+            string newCampaignId = GcmlDataManager.Instance.createNewCampaign(playerid, campaignname, fielddim, anzUnits);
+            return newCampaignId;
         }
+
 
         public void addPlayerToCampaign(string playerid, string campaignid)
         {
@@ -123,6 +131,15 @@ namespace GcmlWebService
             Player p = controller.getPlayer(playerid);
             controller.endRound(p);
 
+        }
+
+
+        public CommandInfo getCommandInfo(string campaignid, string commandId)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
+            ICommand cmd = controller.getCommand(commandId);
+            CommandInfo cmdInfo = cmd.getInfo();
+            return cmdInfo;
         }
 
         #endregion

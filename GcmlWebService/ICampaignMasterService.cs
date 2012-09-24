@@ -43,8 +43,11 @@ namespace GcmlWebService
         [OperationContract]
         List<CommandInfo> getCommandsForUnit(string campaignid, string unitid);
 
+        //[OperationContract]
+        //string createNewCampaign(string playerid, string fielddimension);
+
         [OperationContract]
-        string createNewCampaign(string playerid, string fielddimension);
+        string createNewCampaign(string playerid, string campaignname, int x, int y, int anzUnits);
 
         [OperationContract]
         void addPlayerToCampaign(string playerid, string campaignid);
@@ -57,5 +60,8 @@ namespace GcmlWebService
 
         [OperationContract]
         void endRoundForPlayer(string campaignid, string playerid);
+
+        [OperationContract]
+        CommandInfo getCommandInfo(string campaignid, string commandId);
     }
 }

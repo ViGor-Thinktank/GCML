@@ -77,6 +77,16 @@ namespace GenericCampaignMasterLib
                 sektor.onUnitEnteredSektor += onUnitMove;
                 sektor.onUnitLeftSektor += onUnitMove;
             }
+
+            // Unit CommandHandler registrieren
+            this.onTick = null;
+            foreach (Player p in m_campaignEngine.ListPlayers)
+            {
+                foreach (clsUnit u in p.ListUnits)
+                {
+                    this.onTick += new delTick(u.CampaignController_onTick);
+                }
+            }
         }
 
         public string saveCurrentGameState()
@@ -147,16 +157,12 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        
         public void createNewUnit(string strPlayerID, int intUnitTypeID)
         {
             clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
-
-        
-       
 
         public Player getPlayer(string pID)
         {
@@ -246,7 +252,7 @@ namespace GenericCampaignMasterLib
         {
             CampaignInfo nfo = new CampaignInfo();
             nfo.campaignId = this.CampaignKey;
-            nfo.campaignName = "Campaign " + this.CampaignKey;          // TODO: Kampagnenname
+            nfo.campaignName = this.campaignEngine.CampaignName;
             nfo.players = new Dictionary<string, string>();
             foreach (Player p in this.campaignEngine.ListPlayers)
                 nfo.players.Add(p.Id, p.Playername);
@@ -264,9 +270,36 @@ namespace GenericCampaignMasterLib
             {
                 Tick();
                 lstFinishedPlayers.Clear();
+                m_dictCommandCache.Clear();
 
             }
         }
+
+        #region Ressourcen Handling
+        
+        //public void addResssourceForAll(Ressource res)
+        //{
+
+
+
+        //}
+
+        //public void getRessourcesForPlayer(Player player)
+        //{
+        //    Ressource res = new Ressource();
+            
+
+        //}
+
+        
+        //public void RessourceIsUsedHandler(Ressource res)
+        //{
+
+        //    m_campaignEngine.listRessourcen.Remove(res);
+
+        //}
+        #endregion
+
     }
 
 }
