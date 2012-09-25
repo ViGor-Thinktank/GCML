@@ -56,7 +56,7 @@ namespace GenericCampaignMasterLib
 
         public Dictionary<string, clsUnitType> getDicUnitTypeInfo()
         {
-            string strUnitInfo = this["unittypesinfo"];
+            string strUnitInfo = this.Keys.Contains("unittypesinfo") ? this["unittypesinfo"] : "";
 
             Dictionary<string, clsUnitType> dicUnitTypeInfo = (Dictionary<string, clsUnitType>)m_serializer.Deserialize<Dictionary<string, clsUnitType>>(strUnitInfo);
             return dicUnitTypeInfo;

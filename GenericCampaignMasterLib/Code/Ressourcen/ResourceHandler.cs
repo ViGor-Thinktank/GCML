@@ -25,11 +25,7 @@ namespace GenericCampaignMasterLib
             }
         }
  
-
-
-
-
-
+        
         /// <summary>
         /// Wird von beim Ausführen eines ICommands durch ResourceCommandDecorated aufgerufen. 
         /// </summary>

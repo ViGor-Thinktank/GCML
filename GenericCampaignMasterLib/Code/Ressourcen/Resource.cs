@@ -28,5 +28,14 @@ namespace GenericCampaignMasterLib
             return resourceActions;
         }
 
+        public ResourceInfo getInfo()
+        {
+            ResourceInfo nfo = new ResourceInfo();
+            nfo.ownerId = Owner.Id;
+            nfo.resourceId = resourceId.ToString();
+            nfo.resourceableType = m_resourceObject.GetType().ToString();
+            return nfo;
+        }
+
     }
 }
