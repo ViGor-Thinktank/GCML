@@ -10,7 +10,7 @@ namespace GenericCampaignMasterLib
     public class CampaignEngine
     {
         public string CampaignName { get; set; }
-
+        
         public event Field.delStatus onStatus;
 
         public CampaignEngine(Field newField)
@@ -49,6 +49,13 @@ namespace GenericCampaignMasterLib
             get { return m_FieldField; }
             }
 
+
+        private ResourceHandler m_resHandler = new ResourceHandler();
+        public ResourceHandler ResourceHandler
+        {
+            get { return m_resHandler; }
+            set { m_resHandler = value; }
+        }
         #endregion
 
         private clsMoveFactory m_objMovFactory;
@@ -270,7 +277,5 @@ namespace GenericCampaignMasterLib
 
             p.dicVisibleSectors = facViewSek.ListVisibleSektors;
         }
-
-        
     }
 }

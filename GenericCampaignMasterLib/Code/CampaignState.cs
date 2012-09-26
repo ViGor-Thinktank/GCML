@@ -73,6 +73,19 @@ namespace GenericCampaignMasterLib
             return this["fieldtype"];
         }
 
+        public List<ResourceInfo> getListResourceInfo()
+        {
+            List<ResourceInfo> lstResInfo;
+            string strResInfo = this.Keys.Contains("resourceinfo") ? this["resourceinfo"] : "";
+
+            if (String.IsNullOrEmpty(strResInfo))
+                lstResInfo = new List<ResourceInfo>();
+            else
+                lstResInfo = (List<ResourceInfo>)m_serializer.Deserialize<List<ResourceInfo>>(strResInfo);
+            
+            return lstResInfo;
+        }
+
         public CampaignState Save(CampaignEngine engine)
         {
             this["campaignname"] = engine.CampaignName;
@@ -84,8 +97,12 @@ namespace GenericCampaignMasterLib
 			List<UnitInfo> lstUnitInfo = engine.getUnitInfo();
 			this["unitinfo"] = m_serializer.Serialize(lstUnitInfo);
 
+
             this["unittypesinfo"] = m_serializer.Serialize(clsUnit.objUnitTypeFountain);
-			
+
+            List<ResourceInfo> lstResInfo = engine.ResourceHandler.getResourceInfo();
+            this["resourceinfo"] = m_serializer.Serialize(lstResInfo);
+            
             return this;
         }
         
@@ -127,8 +144,24 @@ namespace GenericCampaignMasterLib
 				
 			}//*/
 
+            // Ressourcehandler erzeugen und Ressourcen wiederherstellen
+            ResourceHandler resHandler = new ResourceHandler();
+            engine.ResourceHandler = resHandler;
+            foreach (ResourceInfo resInfo in getListResourceInfo())
+            {
+                string strResType = resInfo.resourceableType;
+                Type resType = Type.GetType(strResType);
+                Object typeObj = Activator.CreateInstance(resType);
 
-			
+                Player resourceOwner = (from p in lstPlayers
+                                       where p.Id == resInfo.ownerId
+                                       select p).First() as Player;
+
+                resHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+            }
+
+            
+
             return engine;
         }
 

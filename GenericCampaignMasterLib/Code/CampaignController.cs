@@ -276,28 +276,33 @@ namespace GenericCampaignMasterLib
         }
 
         #region Ressourcen Handling
-        
-        //public void addResssourceForAll(Ressource res)
-        //{
+
+        public List<ResourceInfo> getRessourcesForPlayer(Player player)
+        {
+            List<ResourceInfo> result;
+            List <ResourceInfo> resInfo = m_campaignEngine.ResourceHandler.getResourceInfo();
+
+            result = (from p in resInfo
+                      where p.ownerId == player.Id
+                      select p as ResourceInfo).ToList<ResourceInfo>();
+
+            return result;
+        }
 
 
+        public void addResource(ResourceInfo resInfo)
+        {
+            string strResType = resInfo.resourceableType;
+            Type resType = Type.GetType(strResType);
+            Object typeObj = Activator.CreateInstance(resType);
 
-        //}
+            Player resourceOwner = (from p in campaignEngine.ListPlayers
+                                    where p.Id == resInfo.ownerId
+                                    select p).First() as Player;
 
-        //public void getRessourcesForPlayer(Player player)
-        //{
-        //    Ressource res = new Ressource();
-            
 
-        //}
-
-        
-        //public void RessourceIsUsedHandler(Ressource res)
-        //{
-
-        //    m_campaignEngine.listRessourcen.Remove(res);
-
-        //}
+            campaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+        }
         #endregion
 
     }

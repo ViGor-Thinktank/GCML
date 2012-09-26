@@ -8,24 +8,26 @@ namespace GenericCampaignMasterLib
     public class ResourceHandler
     {
         // Todo: Alle IResourceable Objekte verwalten
-        List<Resource<clsUnit>> lstUnitResources = new List<Resource<clsUnit>>(); 
-        
+        List<Resource<clsUnit>> m_lstUnitResources = new List<Resource<clsUnit>>();
+
         public void addRessourcableObject(Player owner, IResourceable resourceObject)
         {
             Type resourceType = resourceObject.GetType();
-            
-            if(resourceType == typeof(clsUnit))
+
+            if (resourceType == typeof(clsUnit))
             {
                 clsUnit unit = resourceObject as clsUnit;
                 Resource<clsUnit> resUnit = new Resource<clsUnit>();
                 resUnit.Owner = owner;
                 resUnit.resourceId = Guid.NewGuid();
                 resUnit.resourceHandler = this;
-                lstUnitResources.Add(resUnit);
+                m_lstUnitResources.Add(resUnit);
             }
         }
- 
-        
+
+
+
+
         /// <summary>
         /// Wird von beim Ausführen eines ICommands durch ResourceCommandDecorated aufgerufen. 
         /// </summary>
@@ -36,8 +38,16 @@ namespace GenericCampaignMasterLib
 
         }
 
+        public List<ResourceInfo> getResourceInfo()
+        {
+            List<ResourceInfo> result = new List<ResourceInfo>();
+            foreach (var res in m_lstUnitResources)
+            {
+                ResourceInfo resinf = res.getInfo();
+                result.Add(resinf);
+            }
 
-
-    
-public  Type Resource { get; set; }}
+            return result;
+        }
+    }
 }
