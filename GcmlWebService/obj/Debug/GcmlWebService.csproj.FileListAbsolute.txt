@@ -1,0 +1,32 @@
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\RaptorDB.dll
+C:\Users\a160-eckert\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GcmlWebService.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GcmlWebService.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\RaptorDB.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.dll
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.pdb
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\bin\RaptorDB.dll
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
+C:\Users\userh\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.csprojResolveAssemblyReference.cache
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.dll
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GcmlWebService.pdb
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.dll
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\RaptorDB.dll
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb

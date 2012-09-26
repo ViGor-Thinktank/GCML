@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GenericCampaignMasterLibTests</RootNamespace>
     <AssemblyName>GenericCampaignMasterLibTests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,7 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CampaignControllerTest.cs" />
     <Compile Include="Tests\CampaignEngineTest.cs" />
+    <Compile Include="Tests\SektorTest.cs" />
+    <Compile Include="Tests\CampaignStateTest.cs" />
+    <Compile Include="Tests\GenericCampaignMasterLibTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
@@ -49,7 +52,6 @@
       <Name>GenericCampaignMasterLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

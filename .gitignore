@@ -1,16 +1,35 @@
-﻿
+*.dll
+*.mdb
+*.suo
+*.exe
+*.pdb
+*.cache
+*.mgbmp
+*.mgbmr
+*.mgidx
+*.mgdat
+*.mgrec
+*.bak
+obj/*
+Debug/*
+_UpgradeReport_Files/*
+GenericCampaignMasterLib/bin/*
+GenericCampaignMasterLib/obj/*
+GenericCampaignMasterLibTests/bin/*
+GenericCampaignMasterLibTests/obj/*
+Playground/bin/*
+Playground/obj/*
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb
 
-test-results/*.*
+*.userprefs
+GenericCampaignMasterLibTests/test-results/*
+UpgradeLog.*
+.DS_Store
 
-GenericCampaignMasterLibTests/test-results/GenericCampaignMasterLibTests.csproj-Debug-2012-05-28.xml
+test-results/*
 
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLibTests.dll.mdb
 
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLibTests.dll
 
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll.mdb
+CampaignMasterWeb\01dec023-5330-43d0-84c1-d129677771cf.txt
 
-GenericCampaignMasterLibTests/bin/Debug/GenericCampaignMasterLib.dll
-
-GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll
+CampaignMasterWeb\0ece3a2e-15b7-451d-b554-48fac291ab64.txt

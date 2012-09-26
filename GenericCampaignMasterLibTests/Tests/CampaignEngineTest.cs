@@ -12,57 +12,58 @@ namespace GenericCampaignMasterLibTests.Tests
     {
         CampaignEngine testEngine;
         
+        
         [SetUp]
         public void init()
         {
-            testEngine = new CampaignEngine();
-            testEngine.FieldField = new Field();
-            testEngine.FieldField.Id = 123;
-            testEngine.FieldField.ListSektors = new List<Sektor>() { new Sektor(1), new Sektor(2), new Sektor(3) };
-            testEngine.ListPlayers = new List<Player>() { new Player(1), new Player(2) };
+            //testEngine = new CampaignEngine(new Field_Schlauch(new List<Sektor>() { new Sektor("0"), new Sektor("1"), new Sektor("2") }));
+            
+            //testEngine.FieldField.Id = 123;
+
+            //testEngine.addPlayer("Player 1");
+            //testEngine.addPlayer("Player 2");
         }
-
-        [Test]
-        public void testSaveAndRestoreCampaignState()
-        {
-            CampaignState state = new CampaignState();
-            state.Save(testEngine);
-
-            CampaignEngine engineRestored = state.Restore();
-            Assert.AreEqual(testEngine.FieldField.Id, engineRestored.FieldField.Id, "FieldField aus dem wiederhergestellten State ist nicht identisch.");
-            Assert.AreEqual(testEngine.ListPlayers, engineRestored.ListPlayers, "ListPlayers aus dem wiederhergestellten State ist nicht identisch.");
-        }
-
 		
         [Test]
-		public void testMoveUnit()
+		public void testMoveUnitOneSektor()
 		{
-			int startPos = 0;
-			DummyUnit du = new DummyUnit(666);
-			testEngine.FieldField.ListSektors[startPos].addUnit(du);
-			
-			Assert.AreEqual(startPos, testEngine.FieldField.getSektorContainingUnit(du).ListUnits.IndexOf(du));
-			
-			
-			List<ICommand> cmds = testEngine.getCommandsForUnit(du);
-			foreach (ICommand c in cmds)
-			{
-				if (c.GetType() == typeof(Move))
-				{
-					c.Execute();
-					break;
-				}
-				
-			}
-			
-			Sektor newSektor = testEngine.FieldField.getSektorContainingUnit(du);
-			int newPos = testEngine.FieldField.ListSektors.IndexOf(newSektor);
-			
-			Assert.AreEqual(1, newPos);
-			Assert.AreNotEqual(newPos, startPos);			
+            // Testfall: Bewegung um einen Sektor
+            DummyUnit testUnit = new DummyUnit(666); ;
+            string startPos = "0";
+            string targetPos = "1";
+            
+            Sektor targetSektor = testEngine.FieldField.get(targetPos);
+
+            testEngine.FieldField.get(startPos).addUnit(testUnit);
+            Assert.AreEqual(startPos, testEngine.getSektorContainingUnit(testUnit).ListUnits.IndexOf(testUnit));
+
+            List<Move> possibleMoves = testEngine.getDefaultMoveCommandsForUnit(testUnit);
+
+            Move commandToTest = null;
+            foreach (Move m in possibleMoves)
+            {
+                if (m.TargetSektor == targetSektor)
+                {
+                    commandToTest = m;
+                    break;
+                }
+            }
+            commandToTest.Execute();
+
+			Sektor newPosition = testEngine.getSektorContainingUnit(testUnit);
+            Assert.AreEqual(targetSektor, newPosition);
 		}
 
+        [Test]
+        public void testGetUnitOwner()
+        {
+            DummyUnit testUnit = new DummyUnit(999);
+            testEngine.ListPlayers[0].ListUnits.Add(testUnit);
 
+            Player owner = testEngine.getUnitOwner(testUnit);
+
+            Assert.AreEqual(testEngine.ListPlayers[0], owner);
+        }
         
     }       
 

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CampaignMasterService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterLib" />
+      <xsd:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICampaignMasterService_getPlayerId_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerId" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerCampaigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerCampaigns" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getPlayerCampaigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPlayerCampaignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCampaignInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCampaignInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCampaignInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCampaignInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getFieldKoord_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFieldKoord" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getFieldKoord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFieldKoordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getSektor_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSektor" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getSektor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSektorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getSektorList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSektorList" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getSektorList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSektorListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUnit" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getUnitCollisions_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUnitCollisions" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getUnitCollisions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUnitCollisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCommandsForUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCommandsForUnit" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCommandsForUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCommandsForUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_createNewCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:createNewCampaign" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_createNewCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createNewCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_addPlayerToCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:addPlayerToCampaign" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_addPlayerToCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addPlayerToCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_executeCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:executeCommand" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_executeCommand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:executeCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_addUnitToField_InputMessage">
+    <wsdl:part name="parameters" element="tns:addUnitToField" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_addUnitToField_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addUnitToFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_endRoundForPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:endRoundForPlayer" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_endRoundForPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:endRoundForPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCommandInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCommandInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICampaignMasterService_getCommandInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCommandInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICampaignMasterService">
+    <wsdl:operation name="getPlayerId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerId" message="tns:ICampaignMasterService_getPlayerId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerIdResponse" message="tns:ICampaignMasterService_getPlayerId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerInfo" message="tns:ICampaignMasterService_getPlayerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerInfoResponse" message="tns:ICampaignMasterService_getPlayerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerCampaigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaigns" message="tns:ICampaignMasterService_getPlayerCampaigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getPlayerCampaignsResponse" message="tns:ICampaignMasterService_getPlayerCampaigns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getCampaignInfo" message="tns:ICampaignMasterService_getCampaignInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getCampaignInfoResponse" message="tns:ICampaignMasterService_getCampaignInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFieldKoord">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getFieldKoord" message="tns:ICampaignMasterService_getFieldKoord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getFieldKoordResponse" message="tns:ICampaignMasterService_getFieldKoord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSektor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getSektor" message="tns:ICampaignMasterService_getSektor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getSektorResponse" message="tns:ICampaignMasterService_getSektor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSektorList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getSektorList" message="tns:ICampaignMasterService_getSektorList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getSektorListResponse" message="tns:ICampaignMasterService_getSektorList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getUnit" message="tns:ICampaignMasterService_getUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getUnitResponse" message="tns:ICampaignMasterService_getUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUnitCollisions">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getUnitCollisions" message="tns:ICampaignMasterService_getUnitCollisions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getUnitCollisionsResponse" message="tns:ICampaignMasterService_getUnitCollisions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCommandsForUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getCommandsForUnit" message="tns:ICampaignMasterService_getCommandsForUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getCommandsForUnitResponse" message="tns:ICampaignMasterService_getCommandsForUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createNewCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/createNewCampaign" message="tns:ICampaignMasterService_createNewCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/createNewCampaignResponse" message="tns:ICampaignMasterService_createNewCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addPlayerToCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/addPlayerToCampaign" message="tns:ICampaignMasterService_addPlayerToCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/addPlayerToCampaignResponse" message="tns:ICampaignMasterService_addPlayerToCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="executeCommand">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/executeCommand" message="tns:ICampaignMasterService_executeCommand_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/executeCommandResponse" message="tns:ICampaignMasterService_executeCommand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addUnitToField">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/addUnitToField" message="tns:ICampaignMasterService_addUnitToField_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/addUnitToFieldResponse" message="tns:ICampaignMasterService_addUnitToField_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="endRoundForPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/endRoundForPlayer" message="tns:ICampaignMasterService_endRoundForPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/endRoundForPlayerResponse" message="tns:ICampaignMasterService_endRoundForPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCommandInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICampaignMasterService/getCommandInfo" message="tns:ICampaignMasterService_getCommandInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICampaignMasterService/getCommandInfoResponse" message="tns:ICampaignMasterService_getCommandInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICampaignMasterService" type="tns:ICampaignMasterService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getPlayerId">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayerCampaigns">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getPlayerCampaigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getCampaignInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFieldKoord">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getFieldKoord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSektor">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getSektor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSektorList">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getSektorList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnit">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnitCollisions">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getUnitCollisions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCommandsForUnit">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getCommandsForUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createNewCampaign">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/createNewCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPlayerToCampaign">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/addPlayerToCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="executeCommand">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/executeCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUnitToField">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/addUnitToField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endRoundForPlayer">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/endRoundForPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCommandInfo">
+      <soap:operation soapAction="http://tempuri.org/ICampaignMasterService/getCommandInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CampaignMasterService">
+    <wsdl:port name="BasicHttpBinding_ICampaignMasterService" binding="tns:BasicHttpBinding_ICampaignMasterService">
+      <soap:address location="http://localhost:8081/GcmlWebService/CampaignMasterService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Users\a160-eckert\Documents\GitHub\GCML\GenericCampaignMasterLibTests\GcmlTests.nunit</TopNode>
+  <SelectedNode>[0-1012]GenericCampaignMasterLibTests.Tests.CampaignControllerTest</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Users\a160-eckert\Documents\GitHub\GCML\GenericCampaignMasterLibTests\GcmlTests.nunit" Expanded="true" />
+    <Node UniqueName="[0-1017]C:\Users\a160-eckert\Documents\GitHub\GCML\GenericCampaignMasterLibTests\bin\Debug\GenericCampaignMasterLibTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1018]GenericCampaignMasterLibTests" Expanded="true" />
+    <Node UniqueName="[0-1015]GenericCampaignMasterLibTests.CampaignStateTest" Expanded="true" />
+    <Node UniqueName="[0-1005]GenericCampaignMasterLibTests.GenericCampaignMasterLibTest" Expanded="true" />
+    <Node UniqueName="[0-1019]GenericCampaignMasterLibTests.Tests" Expanded="true" />
+    <Node UniqueName="[0-1012]GenericCampaignMasterLibTests.Tests.CampaignControllerTest" Expanded="true" />
+    <Node UniqueName="[0-1002]GenericCampaignMasterLibTests.Tests.CampaignEngineTest" Expanded="true" />
+    <Node UniqueName="[0-1007]GenericCampaignMasterLibTests.Tests.SektorTest" Expanded="true" />
+  </Nodes>
+</VisualState>
