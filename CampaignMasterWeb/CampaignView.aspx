@@ -59,8 +59,17 @@
     </tr>
     </table>
       <hr />
+      <table>
+      <tr>
+      <td width="80%"><uc1:FieldControl ID="FieldControl1" runat="server" /></td>
+      <td valign="top"><b>Ressourcen</b><br />
+          <asp:ListBox ID="lbRessourcen" runat="server"></asp:ListBox><br />
+          <asp:ListBox ID="lbRessourceActions" runat="server"></asp:ListBox>
+      </td>
+      </tr>
+      </table>
 
-    <uc1:FieldControl ID="FieldControl1" runat="server" />
+    
     
   
     </form>

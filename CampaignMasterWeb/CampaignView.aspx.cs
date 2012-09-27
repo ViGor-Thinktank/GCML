@@ -30,6 +30,8 @@ namespace CampaignMasterWeb
 
             lbPlayer.Text = playernfo.playerName;
             lbCampaign.Text = campaignnfo.campaignName;
+
+            drawPlayerResources();
         }
 
         protected void btnEndRound_Click(object sender, EventArgs e)
@@ -37,6 +39,21 @@ namespace CampaignMasterWeb
             CampaignMasterService service = StartMenu.getService(this.Session);
             service.endRoundForPlayer(campaignId, playerId);
             Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = new Dictionary<string, CommandInfo>();
+        }
+
+        private void drawPlayerResources()
+        {
+            CampaignMasterService service = StartMenu.getService(this.Session);
+            lbRessourcen.Items.Clear();
+            foreach (var resource in service.getResourcesForPlayer(campaignId, playerId))
+            {
+                ListItem li = new ListItem();
+                li.Text = resource.resourceableType;
+                li.Value = resource.resourceId;
+                lbRessourcen.Items.Add(li);
+            }
+
+
         }
     }
 
