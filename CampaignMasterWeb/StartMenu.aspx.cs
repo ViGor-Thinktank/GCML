@@ -208,6 +208,27 @@ namespace CampaignMasterWeb
             }
         }
 
+        protected void btnAddUnit_Click(object sender, EventArgs e)
+        {
+            CampaignMasterService service = StartMenu.getService(this.Session);
+            string campaignId = (string)this.Session[GcmlClientKeys.CAMPAIGNID];
+
+            if (!String.IsNullOrEmpty(campaignId))
+            {
+                foreach (var p in service.getCampaignInfo(campaignId).players)
+                {
+                    PlayerInfo pinfo = service.getPlayerInfo(p.Key);
+                    
+                    ResourceInfo resinfo = new ResourceInfo();
+                    resinfo.ownerId = pinfo.playerId;
+                    resinfo.resourceableType = "GenericCampaignMasterLib.clsUnit";
+                    resinfo.resourceId = Guid.NewGuid().ToString();
+
+                    service.addResource(campaignId, resinfo);
+                }
+            }
+        }
+
 
     }
 }
