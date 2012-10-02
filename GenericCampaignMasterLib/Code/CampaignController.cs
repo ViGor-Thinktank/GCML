@@ -124,9 +124,18 @@ namespace GenericCampaignMasterLib
                 unitCollisionStack.Remove(sektor);
             }
 
-            if (!unitActedStack.Contains(args.actingUnit))       // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
+            // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
+            if (!unitActedStack.Contains(args.actingUnit))       
                 unitActedStack.Add(args.actingUnit);
+
+            // Todo AccessibleSectors für alle Player berechnen
+            // Vorerst jeder Sektor accessible der keine Unit enthält
+            foreach (Player p in campaignEngine.ListPlayers)
+                p.accessibleSectors = campaignEngine.getAccessibleSektorsForPlayer(p);
+
+
         }
+
         private bool checkSektorForUnitCollision(Sektor sektor)
         {
             bool resultCollision = false;
@@ -205,6 +214,7 @@ namespace GenericCampaignMasterLib
             ICommand result = null;
             if (m_dictCommandCache.ContainsKey(commandId))
                 result = m_dictCommandCache[commandId];
+
 
             return result;
         }
@@ -302,6 +312,17 @@ namespace GenericCampaignMasterLib
 
 
             campaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+        }
+
+        // Kapselt die Aufrufe von getResourceCommands beim ResourceHandler um die gelieferten Commands 
+        // CommandCache zu speichern
+        public List<ICommand> getResourceCommands(string resourceId)
+        {
+            List<ICommand> lstCmds = this.campaignEngine.ResourceHandler.getResourceCommands(resourceId);   
+            foreach (ICommand cmd in lstCmds)
+                m_dictCommandCache.Add(cmd.CommandId, cmd);
+
+            return lstCmds;
         }
         #endregion
 

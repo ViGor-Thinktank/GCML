@@ -10,10 +10,10 @@ namespace GenericCampaignMasterLib
         // Todo: Alle IResourceable Objekte verwalten
         List<Resource<clsUnit>> m_lstUnitResources = new List<Resource<clsUnit>>();
 
-        public void addRessourcableObject(Player owner, IResourceable resourceObject)
+        public string addRessourcableObject(Player owner, IResourceable resourceObject)
         {
+            string resourceId = "";
             Type resourceType = resourceObject.GetType();
-
             if (resourceType == typeof(clsUnit))
             {
                 clsUnit unit = resourceObject as clsUnit;
@@ -22,11 +22,11 @@ namespace GenericCampaignMasterLib
                 resUnit.resourceId = Guid.NewGuid();
                 resUnit.resourceHandler = this;
                 m_lstUnitResources.Add(resUnit);
+                resourceId = resUnit.resourceId.ToString();
             }
+
+            return resourceId;
         }
-
-
-
 
         /// <summary>
         /// Wird von beim Ausführen eines ICommands durch ResourceCommandDecorated aufgerufen. 
@@ -38,6 +38,28 @@ namespace GenericCampaignMasterLib
 
         }
 
+
+        internal List<ICommand> getResourceCommands(string resourceId)
+        {
+            List<ICommand> result = new List<ICommand>();
+            Guid resid = new Guid(resourceId);
+
+            var query = from r in m_lstUnitResources
+                        where r.resourceId == resid
+                        select r;
+
+            // Todo Handler registrieren
+            if (query.Count() > 0)
+                result = query.First().getResourceCommands();
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Liefert ResourceInfo Objekte für alle verwalteten Ressourcen.
+        /// </summary>
+        /// <returns></returns>
         public List<ResourceInfo> getResourceInfo()
         {
             List<ResourceInfo> result = new List<ResourceInfo>();

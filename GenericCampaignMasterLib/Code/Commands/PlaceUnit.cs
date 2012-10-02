@@ -28,10 +28,10 @@ namespace GenericCampaignMasterLib
         public CommandInfo getInfo()
         {
             CommandInfo nfo = new CommandInfo();
-            //nfo.commandId = this.CommandId;
-            //nfo.actingUnitId = this.UnitToPlace.Id;
-            //nfo.commandType = this.GetType().ToString();
-            //nfo.strInfo = this.strInfo;
+            nfo.commandId = this.CommandId;
+            nfo.actingUnitId = this.UnitToPlace.Id;
+            nfo.commandType = this.GetType().ToString();
+            nfo.strInfo = "Plazieren auf Sektor " + TargetSektor.strUniqueID;
             //nfo.isActive = (this.UnitToPlace.aktCommand == this) ? true : false;
             return nfo;    
         }

@@ -95,7 +95,8 @@ namespace GenericCampaignMasterLib
         public List<ICommand> getResourceCommands(Player player)
         {
             List<ICommand> placeUnitCommands = new List<ICommand>();
-            foreach (Sektor sektor in player.dicVisibleSectors.Values)
+            // Todo: Accessible-Fields Property für Player: Felder die Einheiten platziert werden können (Ruleset?)
+            foreach (Sektor sektor in player.accessibleSectors)
             {
                 PlaceUnit cmd = new PlaceUnit();
                 cmd.TargetSektor = sektor;
