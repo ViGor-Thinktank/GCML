@@ -87,6 +87,9 @@ namespace GenericCampaignMasterLib
                     this.onTick += new delTick(u.CampaignController_onTick);
                 }
             }
+
+            // ResourceHandler registrieren
+            this.onTick += new delTick(m_campaignEngine.ResourceHandler.CampaignController_onTick);
         }
 
         public string saveCurrentGameState()

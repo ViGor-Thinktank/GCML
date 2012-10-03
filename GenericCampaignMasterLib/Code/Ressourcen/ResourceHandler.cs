@@ -9,6 +9,8 @@ namespace GenericCampaignMasterLib
     {
         // Todo: Alle IResourceable Objekte verwalten
         List<Resource<clsUnit>> m_lstUnitResources = new List<Resource<clsUnit>>();
+        Dictionary<Guid, ResourceCommandDecorated> m_dicResourcesForExecution = new Dictionary<Guid, ResourceCommandDecorated>();  // Das Command das für eine Resource am Ende der Runde ausgeführt wird
+
 
         public string addRessourcableObject(Player owner, IResourceable resourceObject)
         {
@@ -37,7 +39,6 @@ namespace GenericCampaignMasterLib
 
 
         }
-
 
         internal List<ICommand> getResourceCommands(string resourceId)
         {
@@ -71,5 +72,32 @@ namespace GenericCampaignMasterLib
 
             return result;
         }
+
+        internal void RegisterResourceForExecution(Guid m_resourceId, ResourceCommandDecorated resourceCommandDecorated)
+        {
+            m_dicResourcesForExecution[m_resourceId] = resourceCommandDecorated;
+        }
+
+
+        public void CampaignController_onTick()
+        {
+            foreach (var res in m_dicResourcesForExecution)
+            {
+                Guid id = res.Key;
+                ICommand cmd = res.Value as ICommand;
+
+                cmd.Execute();
+                
+
+                var remRes = (from r in m_lstUnitResources
+                             where r.resourceId == id
+                             select r).First();
+
+                m_lstUnitResources.Remove(remRes);
+            }
+
+            m_dicResourcesForExecution.Clear();
+        }
+
     }
 }
