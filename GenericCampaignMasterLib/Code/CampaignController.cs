@@ -314,8 +314,8 @@ namespace GenericCampaignMasterLib
             campaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
         }
 
-        // Kapselt die Aufrufe von getResourceCommands beim ResourceHandler um die gelieferten Commands 
-        // CommandCache zu speichern
+        // Kapselt die Aufrufe von getResourceCommands im ResourceHandler um die gelieferten Commands 
+        // im CommandCache zu speichern
         public List<ICommand> getResourceCommands(string resourceId)
         {
             List<ICommand> lstCmds = this.campaignEngine.ResourceHandler.getResourceCommands(resourceId);   

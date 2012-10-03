@@ -31,7 +31,7 @@ namespace GenericCampaignMasterLib
 
         public void Register()
         {
-            m_command.Execute();
+            //m_command.Execute();
         }
 
         public string strInfo

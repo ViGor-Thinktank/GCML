@@ -18,7 +18,7 @@ namespace GenericCampaignMasterLib
 
         public void Register()
         {
-            throw new NotImplementedException();
+            
         }
 
         public string strInfo { get; set; }

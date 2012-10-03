@@ -99,6 +99,7 @@ namespace GenericCampaignMasterLib
             foreach (Sektor sektor in player.accessibleSectors)
             {
                 PlaceUnit cmd = new PlaceUnit();
+                cmd.CommandId = Guid.NewGuid().ToString();
                 cmd.TargetSektor = sektor;
                 cmd.UnitToPlace = this;
                 placeUnitCommands.Add(cmd);
