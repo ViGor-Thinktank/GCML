@@ -8,7 +8,7 @@ namespace GenericCampaignMasterLib
     public class ResourceHandler
     {
         // Todo: Alle IResourceable Objekte verwalten
-        List<Resource<clsUnit>> m_lstUnitResources = new List<Resource<clsUnit>>();
+        List<Resource<clsUnitType>> m_lstUnitResources = new List<Resource<clsUnitType>>();
         Dictionary<Guid, ResourceCommandDecorated> m_dicResourcesForExecution = new Dictionary<Guid, ResourceCommandDecorated>();  // Das Command das für eine Resource am Ende der Runde ausgeführt wird
 
 
@@ -16,10 +16,10 @@ namespace GenericCampaignMasterLib
         {
             string resourceId = "";
             Type resourceType = resourceObject.GetType();
-            if (resourceType == typeof(clsUnit))
+            if (resourceType == typeof(clsUnitType))
             {
-                clsUnit unit = resourceObject as clsUnit;
-                Resource<clsUnit> resUnit = new Resource<clsUnit>();
+                // Todo: Anstatt eine neue Instanz erstellen evtl. in der Ressource nur Info-Objekte speichern?
+                Resource<clsUnitType> resUnit = new Resource<clsUnitType>();
                 resUnit.Owner = owner;
                 resUnit.resourceId = Guid.NewGuid();
                 resUnit.resourceHandler = this;

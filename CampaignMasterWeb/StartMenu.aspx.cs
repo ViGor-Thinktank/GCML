@@ -221,7 +221,7 @@ namespace CampaignMasterWeb
                     
                     ResourceInfo resinfo = new ResourceInfo();
                     resinfo.ownerId = pinfo.playerId;
-                    resinfo.resourceableType = "GenericCampaignMasterLib.clsUnit";
+                    resinfo.resourceableType = "GenericCampaignMasterLib.clsUnitType";
                     resinfo.resourceId = Guid.NewGuid().ToString();
 
                     service.addResource(campaignId, resinfo);

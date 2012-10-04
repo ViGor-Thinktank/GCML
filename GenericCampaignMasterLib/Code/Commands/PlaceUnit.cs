@@ -7,13 +7,17 @@ namespace GenericCampaignMasterLib
 {
     public class PlaceUnit : ICommand
     {
-        public clsUnit UnitToPlace { get; set; }
+        public clsUnitType UnitTypeToPlace { get; set; }
         public Sektor TargetSektor { get; set; }
+        public Player Owner { get; set; }
 
         # region ICommand Member
         public void Execute()
         {
-            TargetSektor.addUnit(UnitToPlace);    
+            clsUnit unitToPlace = new clsUnit(UnitTypeToPlace);
+            unitToPlace.strOwnerID = Owner.Id;
+            Owner.ListUnits.Add(unitToPlace);
+            TargetSektor.addUnit(unitToPlace);    
         }
 
         public void Register()
@@ -29,13 +33,15 @@ namespace GenericCampaignMasterLib
         {
             CommandInfo nfo = new CommandInfo();
             nfo.commandId = this.CommandId;
-            nfo.actingUnitId = this.UnitToPlace.Id;
+            nfo.actingUnitId = "";
             nfo.commandType = this.GetType().ToString();
             nfo.strInfo = "Plazieren auf Sektor " + TargetSektor.strUniqueID;
-            //nfo.isActive = (this.UnitToPlace.aktCommand == this) ? true : false;
+          
             return nfo;    
         }
 
         #endregion
+
+        
     }
 }
