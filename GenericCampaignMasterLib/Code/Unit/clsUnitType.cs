@@ -16,7 +16,7 @@ namespace GenericCampaignMasterLib
         
     }
 
-    public class clsUnitType
+    public class clsUnitType : IResourceable
     {
         //Eigenschaften
         private string m_strBez = "";
@@ -44,7 +44,24 @@ namespace GenericCampaignMasterLib
             cmdlist.Add(cmd);
             return cmdlist;
         }
-        
-        
+
+
+
+        public List<ICommand> getResourceCommands(Player owner)
+        {
+            List<ICommand> placeUnitCommands = new List<ICommand>();
+            // Todo: Accessible-Fields Property für Player: Felder die Einheiten platziert werden können (Ruleset?)
+            foreach (Sektor sektor in owner.accessibleSectors)
+            {
+                PlaceUnit cmd = new PlaceUnit();
+                cmd.CommandId = Guid.NewGuid().ToString();
+                cmd.TargetSektor = sektor;
+                cmd.UnitTypeToPlace = this;
+                cmd.Owner = owner;
+                placeUnitCommands.Add(cmd);
+            }
+
+            return placeUnitCommands.ToList<ICommand>();
+        }
     }
 }

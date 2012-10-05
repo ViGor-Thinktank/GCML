@@ -178,6 +178,14 @@
                         </td>
                     </tr>
                     <tr>
+
+                    <td>
+                        <asp:Button ID="btnAddUnit" runat="server" Text="Unit Ressource hinzufügen" Width="198px" BorderStyle="Solid"
+                                BorderWidth="1px" onclick="btnAddUnit_Click"/>
+                    </td>
+                    <td>&nbsp;</td>
+                    </tr>
+                    <tr>
                         <td>
                             &nbsp;
                         </td>

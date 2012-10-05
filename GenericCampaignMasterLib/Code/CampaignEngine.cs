@@ -252,6 +252,7 @@ namespace GenericCampaignMasterLib
             if (m_ListPlayers == null)
                 m_ListPlayers = new List<Player>();
 
+            objNewPlayer.accessibleSectors = getAccessibleSektorsForPlayer(objNewPlayer);
             m_ListPlayers.Add(objNewPlayer);
             
             return objNewPlayer;
@@ -276,6 +277,19 @@ namespace GenericCampaignMasterLib
             }
 
             p.dicVisibleSectors = facViewSek.ListVisibleSektors;
+        }
+
+        public List<Sektor> getAccessibleSektorsForPlayer(Player p)
+        {
+            List<Sektor> result = new List<Sektor>();
+            var qsek = from s in this.FieldField.getSektorList()
+                       where s.ListUnits.Count() == 0
+                       select s;
+
+            if (qsek.Count() > 0)
+                result = qsek.ToList<Sektor>();
+
+            return result;
         }
     }
 }

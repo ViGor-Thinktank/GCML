@@ -38,7 +38,7 @@ namespace GenericCampaignMasterLib
         public List<clsUnit> ListUnits = new List<clsUnit>();
 
         public Dictionary<string, Sektor> dicVisibleSectors;
-
+        public List<Sektor> accessibleSectors { get; set; } // Sektoren in denen produzierte Einheiten plaziert werden können.
 
         #region IEquatable<Player> Member
         

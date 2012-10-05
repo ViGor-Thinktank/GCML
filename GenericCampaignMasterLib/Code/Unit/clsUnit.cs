@@ -6,7 +6,7 @@ using System.Text;
 namespace GenericCampaignMasterLib
 {
   
-    public class clsUnit : IResourceable
+    public class clsUnit
     {
         public static clsUnitTypeCollection objUnitTypeFountain = new clsUnitTypeCollection();
 
@@ -20,6 +20,16 @@ namespace GenericCampaignMasterLib
         }
 
         public clsUnit(string unitId, clsUnitType UnitType)
+        {
+            init(unitId, UnitType);
+        }
+
+        public clsUnit(clsUnitType UnitType)
+        {
+            init(Guid.NewGuid().ToString(), UnitType);
+        }
+
+        private void init(string unitId, clsUnitType UnitType)
         {
             m_strId = unitId;
             m_objUnitType = UnitType;
@@ -90,20 +100,6 @@ namespace GenericCampaignMasterLib
             {
                 this.aktCommand.Execute();
             }
-        }
-
-        public List<ICommand> getResourceCommands(Player player)
-        {
-            List<ICommand> placeUnitCommands = new List<ICommand>();
-            foreach (Sektor sektor in player.dicVisibleSectors.Values)
-            {
-                PlaceUnit cmd = new PlaceUnit();
-                cmd.TargetSektor = sektor;
-                cmd.UnitToPlace = this;
-                placeUnitCommands.Add(cmd);
-            }
-
-            return placeUnitCommands.ToList<ICommand>();
         }
     }
 }

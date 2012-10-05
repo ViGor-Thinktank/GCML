@@ -7,18 +7,26 @@ namespace GenericCampaignMasterLib
 {
     public class PlaceUnit : ICommand
     {
-        public clsUnit UnitToPlace { get; set; }
+        public string UnitId { get; set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
+        public clsUnitType UnitTypeToPlace { get; set; }
         public Sektor TargetSektor { get; set; }
+        public Player Owner { get; set; }
 
         # region ICommand Member
         public void Execute()
         {
-            TargetSektor.addUnit(UnitToPlace);    
+            clsUnit unitToPlace = new clsUnit(UnitTypeToPlace);
+            unitToPlace.strOwnerID = Owner.Id;
+            Owner.ListUnits.Add(unitToPlace);
+            TargetSektor.addUnit(unitToPlace); 
+   
+            // UnitId setzen damit Unit registriert werden kann
+            this.UnitId = unitToPlace.Id;
         }
 
         public void Register()
         {
-            throw new NotImplementedException();
+            
         }
 
         public string strInfo { get; set; }
@@ -28,14 +36,16 @@ namespace GenericCampaignMasterLib
         public CommandInfo getInfo()
         {
             CommandInfo nfo = new CommandInfo();
-            //nfo.commandId = this.CommandId;
-            //nfo.actingUnitId = this.UnitToPlace.Id;
-            //nfo.commandType = this.GetType().ToString();
-            //nfo.strInfo = this.strInfo;
-            //nfo.isActive = (this.UnitToPlace.aktCommand == this) ? true : false;
+            nfo.commandId = this.CommandId;
+            nfo.actingUnitId = "";
+            nfo.commandType = this.GetType().ToString();
+            nfo.strInfo = "Plazieren auf Sektor " + TargetSektor.strUniqueID;
+          
             return nfo;    
         }
 
         #endregion
+
+        
     }
 }

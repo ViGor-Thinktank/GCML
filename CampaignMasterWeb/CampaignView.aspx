@@ -25,6 +25,11 @@
             font-size: small;
         }
         
+        .style4
+        {
+            width: 67%;
+        }
+        
     </style>
 
 </head>
@@ -59,8 +64,22 @@
     </tr>
     </table>
       <hr />
+      <table>
+      <tr>
+      <td class="style4"><uc1:FieldControl ID="FieldControl1" runat="server" /></td>
+      <td valign="top"><b>Ressourcen</b><br />
+          <asp:ListBox ID="lbRessourcen" runat="server" Width="430px" 
+              onselectedindexchanged="lbRessourcen_SelectedIndexChanged" 
+              AutoPostBack="True"></asp:ListBox><br />
+          <asp:ListBox ID="lbRessourceActions" runat="server" Width="430px" 
+              Height="159px"></asp:ListBox>
+              <asp:Button ID="btnPlaceRessource" runat="server" 
+              Text="Ressource plazieren" onclick="btnPlaceRessource_Click" />
+      </td>
+      </tr>
+      </table>
 
-    <uc1:FieldControl ID="FieldControl1" runat="server" />
+    
     
   
     </form>
