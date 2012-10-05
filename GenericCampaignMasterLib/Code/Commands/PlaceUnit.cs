@@ -7,6 +7,7 @@ namespace GenericCampaignMasterLib
 {
     public class PlaceUnit : ICommand
     {
+        public string UnitId { get; set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
         public clsUnitType UnitTypeToPlace { get; set; }
         public Sektor TargetSektor { get; set; }
         public Player Owner { get; set; }
@@ -17,7 +18,10 @@ namespace GenericCampaignMasterLib
             clsUnit unitToPlace = new clsUnit(UnitTypeToPlace);
             unitToPlace.strOwnerID = Owner.Id;
             Owner.ListUnits.Add(unitToPlace);
-            TargetSektor.addUnit(unitToPlace);    
+            TargetSektor.addUnit(unitToPlace); 
+   
+            // UnitId setzen damit Unit registriert werden kann
+            this.UnitId = unitToPlace.Id;
         }
 
         public void Register()

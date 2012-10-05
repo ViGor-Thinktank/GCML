@@ -8,9 +8,11 @@ namespace GenericCampaignMasterLib
     public class ResourceHandler
     {
         // Todo: Alle IResourceable Objekte verwalten
-        List<Resource<clsUnitType>> m_lstUnitResources = new List<Resource<clsUnitType>>();
+        List<Resource<clsUnitType>> m_lstUnusedUnitResources = new List<Resource<clsUnitType>>();
+        List<Resource<clsUnitType>> m_lstUsedUnitResources = new List<Resource<clsUnitType>>();
         Dictionary<Guid, ResourceCommandDecorated> m_dicResourcesForExecution = new Dictionary<Guid, ResourceCommandDecorated>();  // Das Command das für eine Resource am Ende der Runde ausgeführt wird
 
+        public Stack<string> CreatedUnitIds = new Stack<string>();
 
         public string addRessourcableObject(Player owner, IResourceable resourceObject)
         {
@@ -23,21 +25,17 @@ namespace GenericCampaignMasterLib
                 resUnit.Owner = owner;
                 resUnit.resourceId = Guid.NewGuid();
                 resUnit.resourceHandler = this;
-                m_lstUnitResources.Add(resUnit);
+                m_lstUnusedUnitResources.Add(resUnit);
                 resourceId = resUnit.resourceId.ToString();
             }
 
             return resourceId;
         }
 
-        /// <summary>
-        /// Wird von beim Ausführen eines ICommands durch ResourceCommandDecorated aufgerufen. 
-        /// </summary>
-        /// <param name="resourceId">Eindeutige ID der Resource</param>
+        // Eigentlich überflüssig da der Tick() Event des Controllers 
+        // behandelt wird. --> kann raus.
         public void onResourceIsUsed(Guid resourceId)
         {
-
-
         }
 
         internal List<ICommand> getResourceCommands(string resourceId)
@@ -45,7 +43,7 @@ namespace GenericCampaignMasterLib
             List<ICommand> result = new List<ICommand>();
             Guid resid = new Guid(resourceId);
 
-            var query = from r in m_lstUnitResources
+            var query = from r in m_lstUnusedUnitResources
                         where r.resourceId == resid
                         select r;
 
@@ -64,7 +62,7 @@ namespace GenericCampaignMasterLib
         public List<ResourceInfo> getResourceInfo()
         {
             List<ResourceInfo> result = new List<ResourceInfo>();
-            foreach (var res in m_lstUnitResources)
+            foreach (var res in m_lstUnusedUnitResources)
             {
                 ResourceInfo resinf = res.getInfo();
                 result.Add(resinf);
@@ -78,22 +76,32 @@ namespace GenericCampaignMasterLib
             m_dicResourcesForExecution[m_resourceId] = resourceCommandDecorated;
         }
 
-
+        /// <summary>
+        /// Wird vom CampaignController am Ende einer Runde ausgelöst.
+        /// </summary>
         public void CampaignController_onTick()
         {
             foreach (var res in m_dicResourcesForExecution)
             {
                 Guid id = res.Key;
-                ICommand cmd = res.Value as ICommand;
+                ResourceCommandDecorated cmd = res.Value as ResourceCommandDecorated;
 
                 cmd.Execute();
                 
 
-                var remRes = (from r in m_lstUnitResources
+                var remRes = (from r in m_lstUnusedUnitResources
                              where r.resourceId == id
                              select r).First();
 
-                m_lstUnitResources.Remove(remRes);
+                m_lstUnusedUnitResources.Remove(remRes);
+                m_lstUsedUnitResources.Add(remRes);
+
+                if (cmd.InnerCommand.GetType() == typeof(PlaceUnit))
+                {
+                    PlaceUnit pu = cmd.InnerCommand as PlaceUnit;
+                    string unitId = pu.UnitId;
+                    this.CreatedUnitIds.Push(unitId);
+                }
             }
 
             m_dicResourcesForExecution.Clear();

@@ -176,6 +176,17 @@ namespace GenericCampaignMasterLib
             this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
 
+        public void createNewUnitAndRegister(Player owner, clsUnitType newUnitType, Sektor targetSektor)
+        {
+            clsUnit newUnit = new clsUnit(newUnitType);
+            newUnit.strOwnerID = owner.Id;
+            owner.ListUnits.Add(newUnit);
+            targetSektor.addUnit(newUnit);
+
+            this.onTick += new delTick(newUnit.CampaignController_onTick);
+        }
+
+
         public Player getPlayer(string pID)
         {
             return this.m_campaignEngine.getPlayer(pID);
@@ -286,6 +297,15 @@ namespace GenericCampaignMasterLib
                 m_dictCommandCache.Clear();
 
             }
+
+            // Neue Units die aus Ressourcen angelegt wurden registrieren
+            while (m_campaignEngine.ResourceHandler.CreatedUnitIds.Count > 0)
+            {
+                string newUnitId = m_campaignEngine.ResourceHandler.CreatedUnitIds.Pop();
+                clsUnit unit = m_campaignEngine.getUnit(newUnitId);
+                this.onTick += new delTick(unit.CampaignController_onTick);
+            }
+            
         }
 
         #region Ressourcen Handling

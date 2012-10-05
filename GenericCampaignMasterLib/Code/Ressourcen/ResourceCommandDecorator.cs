@@ -7,7 +7,7 @@ namespace GenericCampaignMasterLib
 {
     /// <summary>
     /// Erweitert eine ICommand-Klasse: Benachrichtigt den RessourceHandler beim Execute 
-    /// mit der ResourceID.
+    /// mit der ResourceID, bzw. registriert das ICommand für die Ausführung durch den Handler.
     /// </summary>
     class ResourceCommandDecorated : ICommand
     {
@@ -15,6 +15,11 @@ namespace GenericCampaignMasterLib
         ICommand m_command;
         Guid m_resourceId;
        
+        public ICommand InnerCommand 
+        {
+            get { return m_command; }
+        }
+
         public ResourceCommandDecorated(ICommand command, ResourceHandler handler, Guid resourceId)
         {
             m_command = command;
