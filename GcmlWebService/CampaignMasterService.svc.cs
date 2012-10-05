@@ -140,13 +140,20 @@ namespace GcmlWebService
         {
             List<ResourceInfo> result = new List<ResourceInfo>();
             CampaignController controller = GcmlDataManager.Instance.getController(campaignId);
-
+            Player p = controller.getPlayer(playerId);
+            if(p != null)
+                result = controller.getRessourcesForPlayer(p);
+            
             return result;
         }
 
         public List<CommandInfo> getCommandsForResource(string campaignId, string resourceId)
         {
             List<CommandInfo> result = new List<CommandInfo>();
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignId);
+
+            foreach (ICommand cmd in controller.getResourceCommands(resourceId))
+                result.Add(cmd.getInfo());
 
             return result;
         }

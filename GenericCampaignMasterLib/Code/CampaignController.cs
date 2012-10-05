@@ -87,6 +87,9 @@ namespace GenericCampaignMasterLib
                     this.onTick += new delTick(u.CampaignController_onTick);
                 }
             }
+
+            // ResourceHandler registrieren
+            this.onTick += new delTick(m_campaignEngine.ResourceHandler.CampaignController_onTick);
         }
 
         public string saveCurrentGameState()
@@ -124,9 +127,18 @@ namespace GenericCampaignMasterLib
                 unitCollisionStack.Remove(sektor);
             }
 
-            if (!unitActedStack.Contains(args.actingUnit))       // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
+            // onUnitMove wird pro Move 2x aufgerufen (Verlassen und Betreten)
+            if (!unitActedStack.Contains(args.actingUnit))       
                 unitActedStack.Add(args.actingUnit);
+
+            // Todo AccessibleSectors für alle Player berechnen
+            // Vorerst jeder Sektor accessible der keine Unit enthält
+            foreach (Player p in campaignEngine.ListPlayers)
+                p.accessibleSectors = campaignEngine.getAccessibleSektorsForPlayer(p);
+
+
         }
+
         private bool checkSektorForUnitCollision(Sektor sektor)
         {
             bool resultCollision = false;
@@ -163,6 +175,17 @@ namespace GenericCampaignMasterLib
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
         }
+
+        public void createNewUnitAndRegister(Player owner, clsUnitType newUnitType, Sektor targetSektor)
+        {
+            clsUnit newUnit = new clsUnit(newUnitType);
+            newUnit.strOwnerID = owner.Id;
+            owner.ListUnits.Add(newUnit);
+            targetSektor.addUnit(newUnit);
+
+            this.onTick += new delTick(newUnit.CampaignController_onTick);
+        }
+
 
         public Player getPlayer(string pID)
         {
@@ -205,6 +228,7 @@ namespace GenericCampaignMasterLib
             ICommand result = null;
             if (m_dictCommandCache.ContainsKey(commandId))
                 result = m_dictCommandCache[commandId];
+
 
             return result;
         }
@@ -273,6 +297,15 @@ namespace GenericCampaignMasterLib
                 m_dictCommandCache.Clear();
 
             }
+
+            // Neue Units die aus Ressourcen angelegt wurden registrieren
+            while (m_campaignEngine.ResourceHandler.CreatedUnitIds.Count > 0)
+            {
+                string newUnitId = m_campaignEngine.ResourceHandler.CreatedUnitIds.Pop();
+                clsUnit unit = m_campaignEngine.getUnit(newUnitId);
+                this.onTick += new delTick(unit.CampaignController_onTick);
+            }
+            
         }
 
         #region Ressourcen Handling
@@ -302,6 +335,17 @@ namespace GenericCampaignMasterLib
 
 
             campaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+        }
+
+        // Kapselt die Aufrufe von getResourceCommands im ResourceHandler um die gelieferten Commands 
+        // im CommandCache zu speichern
+        public List<ICommand> getResourceCommands(string resourceId)
+        {
+            List<ICommand> lstCmds = this.campaignEngine.ResourceHandler.getResourceCommands(resourceId);   
+            foreach (ICommand cmd in lstCmds)
+                m_dictCommandCache.Add(cmd.CommandId, cmd);
+
+            return lstCmds;
         }
         #endregion
 

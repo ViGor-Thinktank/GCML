@@ -22,10 +22,18 @@ namespace GenericCampaignMasterLib
         {
             List<ICommand> resourceActions = m_resourceObject.getResourceCommands(Owner);
             
-            // TODO
-            // Decorator erstellen
-
-            return resourceActions;
+            // Anstatt der originalen Resource-Commands Decoratoren erzeugen.
+            // Die Decorator-Objekte behalten die Eigenschaften des ICommands, benachrichtigen beim
+            // Aufruf von Execute() aber zusätzlich den ResourceHandler mit der Methode onResourceIsUsed()
+            // damit die Resource aus den verfügbaren Ressourcen entfernt wird.
+            List<ICommand> resourceCmdDecorated = new List<ICommand>();
+            foreach (ICommand cmd in resourceActions)
+            {
+                ResourceCommandDecorated cmdDec = new ResourceCommandDecorated(cmd, resourceHandler, resourceId);
+                resourceCmdDecorated.Add(cmdDec);
+            }
+            
+            return resourceCmdDecorated;
         }
 
         public ResourceInfo getInfo()
