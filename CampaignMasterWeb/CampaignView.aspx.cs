@@ -54,7 +54,7 @@ namespace CampaignMasterWeb
             CampaignMasterService service = StartMenu.getService(this.Session);
             service.endRoundForPlayer(campaignId, playerId);
             Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = new Dictionary<string, CommandInfo>();
-
+            Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = new Dictionary<string, CommandInfo>();
         }
 
         private void drawPlayerResources()
@@ -81,7 +81,12 @@ namespace CampaignMasterWeb
                     ListItem li = new ListItem();
                     li.Text = cmdinf.commandType + "#" + cmdinf.strInfo;
                     li.Value = cmdinf.commandId;
+                    //li.Attributes.Add("resourceid", resId);   -> Attributes gehen bei Postback verloren
+                    Session["selectedressource"] = resId;
+
                     lbRessourceActions.Items.Add(li);
+
+                    
                 }
             }
         }
@@ -102,24 +107,30 @@ namespace CampaignMasterWeb
             {
                 string cmdid = selitem.Value;
                 CommandInfo cmd = service.getCommandInfo(campaignId, cmdid);
+                string resourceid = (string)Session["selectedressource"];
+
                 service.executeCommand(campaignId, cmd);
 
-                List<CommandInfo> activeresourcecmds = (List<CommandInfo>)Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
+                Dictionary<string, CommandInfo> activeresourcecmds = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
                 if (activeresourcecmds == null)
                 {
-                    activeresourcecmds = new List<CommandInfo>();
+                    activeresourcecmds = new Dictionary<string, CommandInfo>();
                     Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = activeresourcecmds;
                 }
 
 
-                // Vo
                 //var query = from c in activeresourcecmds
                 //            where c. == cmd.targetId
                 //            select c;
                 //if (query.Count() > 0)
                 //    activeresourcecmds.Remove(query.First());
 
-                activeresourcecmds.Add(cmd);
+
+                // ggf. Vorheriges Cmd entfernen
+                if (activeresourcecmds.ContainsKey(resourceid))
+                    activeresourcecmds.Remove(resourceid);
+
+                activeresourcecmds.Add(resourceid, cmd);
             }
         }
     }

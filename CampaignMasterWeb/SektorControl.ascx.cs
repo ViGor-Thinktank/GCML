@@ -60,10 +60,10 @@ namespace CampaignMasterWeb
 
 
             // Wenn Kommando zum Platzieren einer Unit für Sektor aktiv, Rand zeichnen
-            List<CommandInfo> cmdinf = (List<CommandInfo>)this.Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
+            Dictionary<string, CommandInfo> cmdinf = (Dictionary<string, CommandInfo>)this.Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
             if (cmdinf != null)
             {
-                var queryres = from c in cmdinf
+                var queryres = from c in cmdinf.Values
                                where c.commandType == "GenericCampaignMasterLib.PlaceUnit"
                                && c.targetId == this.Sektor.sektorId
                                select c;
