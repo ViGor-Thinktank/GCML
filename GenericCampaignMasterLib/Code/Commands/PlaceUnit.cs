@@ -40,12 +40,10 @@ namespace GenericCampaignMasterLib
             nfo.actingUnitId = "";
             nfo.commandType = this.GetType().ToString();
             nfo.strInfo = "Plazieren auf Sektor " + TargetSektor.strUniqueID;
-          
+            nfo.targetId = TargetSektor.strUniqueID;
             return nfo;    
         }
 
         #endregion
-
-        
     }
 }

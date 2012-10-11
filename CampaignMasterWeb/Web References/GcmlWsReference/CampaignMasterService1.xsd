@@ -72,6 +72,7 @@
       <xs:element minOccurs="0" name="commandType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
       <xs:element minOccurs="0" name="strInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="targetId" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CommandInfo" nillable="true" type="tns:CommandInfo" />

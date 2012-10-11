@@ -20,6 +20,21 @@ namespace CampaignMasterWeb
             campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
 
             drawPlayerResources();
+            
+            // Contextressourcencommands laden, damit die Sektoren zum platzieren der Einheiten markiert werden können.
+            //CampaignMasterService service = StartMenu.getService(this.Session);
+            //List<CommandInfo> activeressourcecommands = new List<CommandInfo>();
+            //foreach (ResourceInfo resinfo in service.getResourcesForPlayer(campaignId, playerId))
+            //{
+            //    var querycmdinf = from cmdinf in service.getCommandsForResource(campaignId, resinfo.resourceId)
+            //                      where cmdinf.isActive = true
+            //                      select cmdinf;
+            //    foreach(var cmdinf in querycmdinf)
+            //        activeressourcecommands.Add(cmdinf);
+
+            //}
+
+            //Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = activeressourcecommands;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -88,6 +103,23 @@ namespace CampaignMasterWeb
                 string cmdid = selitem.Value;
                 CommandInfo cmd = service.getCommandInfo(campaignId, cmdid);
                 service.executeCommand(campaignId, cmd);
+
+                List<CommandInfo> activeresourcecmds = (List<CommandInfo>)Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
+                if (activeresourcecmds == null)
+                {
+                    activeresourcecmds = new List<CommandInfo>();
+                    Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = activeresourcecmds;
+                }
+
+
+                // Vo
+                //var query = from c in activeresourcecmds
+                //            where c. == cmd.targetId
+                //            select c;
+                //if (query.Count() > 0)
+                //    activeresourcecmds.Remove(query.First());
+
+                activeresourcecmds.Add(cmd);
             }
         }
     }

@@ -886,6 +886,8 @@ namespace CampaignMasterWeb.GcmlWsReference {
         
         private string strInfoField;
         
+        private string targetIdField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string actingUnitId {
@@ -948,6 +950,17 @@ namespace CampaignMasterWeb.GcmlWsReference {
             }
             set {
                 this.strInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string targetId {
+            get {
+                return this.targetIdField;
+            }
+            set {
+                this.targetIdField = value;
             }
         }
     }

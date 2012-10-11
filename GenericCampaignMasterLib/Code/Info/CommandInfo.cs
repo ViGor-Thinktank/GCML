@@ -10,6 +10,7 @@ namespace GenericCampaignMasterLib
         public string commandId;
         public string commandType;
         public string actingUnitId;
+        public string targetId;         // Kontextabhängig, ID eines Sektors oder einer Unit.
         public string strInfo;
         public bool isActive;
     }

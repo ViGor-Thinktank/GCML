@@ -19,6 +19,7 @@ namespace CampaignMasterWeb
         public const string CONTEXTUNITID = "contextunitid";
         public const string CONTEXTCOMMANDLIST = "contextcommandlist";
         public const string SEKTORSTACK = "sektorstack";
+        public const string ACTIVERESSOURCECOMMANDS = "activeressourcecommands"; 
     }
 
     public partial class StartMenu : System.Web.UI.Page
