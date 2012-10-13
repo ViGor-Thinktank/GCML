@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define USENOSQL
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -17,6 +18,7 @@ namespace GenericCampaignMasterLib
 
         private RaptorDB<string> m_playerDb;
         private RaptorDB<string> m_campaignDb;
+
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
         private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
 
@@ -40,9 +42,10 @@ namespace GenericCampaignMasterLib
 
         private void init()
         {
+#if USENOSQL
             string playerdbfile = Path.Combine(STOREPATH, PLAYER_DB);
             string campaigndbfile = Path.Combine(STOREPATH, CAMPAIGN_DB);
-            
+
             m_playerDb = RaptorDB<string>.Open(playerdbfile, false);
             m_campaignDb = RaptorDB<string>.Open(campaigndbfile, true);
 
@@ -62,6 +65,8 @@ namespace GenericCampaignMasterLib
                     m_dictRunningCampaigns.Add(campaignKey, (ICampaignDatabase)db);
                 }
             }
+#endif
+
         }
 
         public List<string> getRunningCampaignIds()
@@ -127,7 +132,7 @@ namespace GenericCampaignMasterLib
 
         public Dictionary<string, Player> getPlayerList()
         {
-            Dictionary <string, Player> result = new Dictionary<string,Player>();
+            Dictionary<string, Player> result = new Dictionary<string, Player>();
             for (int i = 0; i < m_playerDb.Count(); i++)
             {
                 string pstr = m_playerDb.FetchRecordString(i);
@@ -156,8 +161,8 @@ namespace GenericCampaignMasterLib
                 return "";
 
             // Datenbank
-            CampaignDatabaseRaptorDb database = (CampaignDatabaseRaptorDb)getCampaignDbOrNew("");
-            
+            ICampaignDatabase database = (ICampaignDatabase)getCampaignDbOrNew("");
+
             // Spielfeld
             Field field = new Field(3, 3);
 
@@ -184,7 +189,7 @@ namespace GenericCampaignMasterLib
                 return "";
 
             // Datenbank
-            CampaignDatabaseRaptorDb database = (CampaignDatabaseRaptorDb)getCampaignDbOrNew("");
+            ICampaignDatabase database = (ICampaignDatabase)getCampaignDbOrNew("");
 
             // Spielfeld
             Field field = new Field(fielddim);
@@ -194,11 +199,6 @@ namespace GenericCampaignMasterLib
             engine.CampaignName = campaignname;
             engine.FieldField.Id = 123;
             engine.addPlayer(player);
-
-            //for(int i = anzUnitsPerPlayer; i > 0; i--)
-            //{
-            //    engine.addUnit(player, new clsUnit(new Random().Next(1000, 9999).ToString(), 0), field.getSektorList()[0]);
-            //}
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
@@ -211,15 +211,20 @@ namespace GenericCampaignMasterLib
         }
 
 
-        private CampaignDatabaseRaptorDb getCampaignDbOrNew(string campaignId)
+        private ICampaignDatabase getCampaignDbOrNew(string campaignId)
         {
-            CampaignDatabaseRaptorDb result = null;
-            if (!m_dictRunningCampaigns.ContainsKey(campaignId)  || String.IsNullOrEmpty(campaignId))
-           { 
-                result = new CampaignDatabaseRaptorDb();
-                result.CampaignKey = Guid.NewGuid().ToString();
-                result.StorePath = STOREPATH;
-                result.init();
+            ICampaignDatabase result = null;
+            if (!m_dictRunningCampaigns.ContainsKey(campaignId) || String.IsNullOrEmpty(campaignId))
+            {
+#if USENOSQL
+                CampaignDatabaseRaptorDb rdb = new CampaignDatabaseRaptorDb();
+                rdb.CampaignKey = Guid.NewGuid().ToString();
+                rdb.StorePath = STOREPATH;
+                rdb.init();
+                result = rdb;
+
+#else
+#endif
 
                 m_dictRunningCampaigns.Add(result.CampaignKey, result);
                 m_campaignDb.Set(result.CampaignKey, result.CampaignKey + "#" + STOREPATH);
@@ -227,9 +232,9 @@ namespace GenericCampaignMasterLib
             }
             else
             {
-                result = (CampaignDatabaseRaptorDb)m_dictRunningCampaigns[campaignId];
+                result = (ICampaignDatabase)m_dictRunningCampaigns[campaignId];
             }
-            
+
             return result;
         }
 
