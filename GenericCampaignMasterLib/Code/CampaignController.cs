@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
-using GenericCampaignMasterLib;
+using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterLib
 {
@@ -102,7 +102,7 @@ namespace GenericCampaignMasterLib
         public void restoreGameState(string key)
         {
             CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
-            CampaignEngine engine = state.Restore();
+            CampaignEngine engine = CampaignEngine.restoreFromState(state);
             initEngine(engine);
         }
 

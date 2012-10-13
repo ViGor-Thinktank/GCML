@@ -6,8 +6,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.IO;
 using RaptorDB;
+using GenericCampaignMasterModel;
 
-/// TEST ASDF
 namespace GenericCampaignMasterLib
 {
     public sealed class GcmlDataManager
@@ -87,7 +87,7 @@ namespace GenericCampaignMasterLib
             {
                 ICampaignDatabase db = m_dictRunningCampaigns[campaignId];
                 CampaignState state = db.getLastGameState();
-                CampaignEngine engine = state.Restore();
+                CampaignEngine engine = CampaignEngine.restoreFromState(state);
                 controller = new CampaignController(engine);
                 controller.CampaignKey = campaignId;
                 controller.CampaignDataBase = db;
