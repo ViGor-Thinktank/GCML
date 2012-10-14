@@ -17,6 +17,13 @@ GenericCampaignMasterLib/bin/*
 GenericCampaignMasterLib/obj/*
 GenericCampaignMasterLibTests/bin/*
 GenericCampaignMasterLibTests/obj/*
+GenericCampaignMasterLibModel/bin/*
+GenericCampaignMasterModel/obj/Debug/*
+CampaignMasterWeb/obj/Debug/*
+GcmlWebService/obj/Debug/*
+
+
+
 Playground/bin/*
 Playground/obj/*
 GenericCampaignMasterLib/bin/Debug/GenericCampaignMasterLib.dll.mdb

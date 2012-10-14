@@ -92,6 +92,10 @@
       <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
       <Name>GenericCampaignMasterLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
+      <Project>{5f4d345a-fec4-47b5-ae52-cb27c741c8de}</Project>
+      <Name>GenericCampaignMasterModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
