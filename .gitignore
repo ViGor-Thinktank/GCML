@@ -10,6 +10,7 @@
 *.mgdat
 *.mgrec
 *.bak
+*FileListAbsolute*
 obj/*
 Debug/*
 _UpgradeReport_Files/*

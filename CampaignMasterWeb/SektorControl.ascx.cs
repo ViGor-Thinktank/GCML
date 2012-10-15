@@ -64,7 +64,7 @@ namespace CampaignMasterWeb
             if (cmdinf != null)
             {
                 var queryres = from c in cmdinf.Values
-                               where c.commandType == "GenericCampaignMasterLib.PlaceUnit"
+                               where c.commandType == "GenericCampaignMasterModel.PlaceUnit"
                                && c.targetId == this.Sektor.sektorId
                                select c;
 

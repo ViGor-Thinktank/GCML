@@ -32,10 +32,11 @@ namespace GenericCampaignMasterLib
             state.ListPlayers = this.ListPlayers;
             state.DicSektors = this.FieldField.dicSektors;
             state.FieldDimension = this.FieldField.FieldDimension;
-            state.FieldType = this.FieldField.GetType().ToString();
+            state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
             state.ListUnitInfo = this.getUnitInfo();
             state.ListUnitTypes = clsUnit.objUnitTypeFountain;
             state.ListResourceInfo = this.ResourceHandler.getResourceInfo();
+            state.Save();
             return state;
         }
 
@@ -45,7 +46,10 @@ namespace GenericCampaignMasterLib
             List<Sektor> lstSektors = state.getListSektors();
 
             // Feld erstellen;
-            Type fieldType = Type.GetType(state.getFieldtype());
+            //Type fieldType = Type.GetType(state.getFieldtype());  // Todo: GetType funktioniert nicht obwohl GenericCampaignMasterModel.Field korrekt ist
+            Type fieldType = typeof(GenericCampaignMasterModel.Field);      
+           
+            
             clsSektorKoordinaten objSekKoord = state.getListDimensions();
             Field field = (Field)Activator.CreateInstance(fieldType, new object[] { objSekKoord });
             field.setSektorList(lstSektors);
