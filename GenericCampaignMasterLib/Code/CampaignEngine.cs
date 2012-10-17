@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using GenericCampaignMasterLib;
+using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterLib
 {
-    [Serializable()]
     public class CampaignEngine
     {
         public string CampaignName { get; set; }
@@ -29,7 +28,72 @@ namespace GenericCampaignMasterLib
         public CampaignState getState()
         {
             CampaignState state = new CampaignState();
-            return state.Save(this);
+            state.CampaignName = this.CampaignName;
+            state.ListPlayers = this.ListPlayers;
+            state.DicSektors = this.FieldField.dicSektors;
+            state.FieldDimension = this.FieldField.FieldDimension;
+            state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
+            state.ListUnitInfo = this.getUnitInfo();
+            state.ListUnitTypes = clsUnit.objUnitTypeFountain;
+            state.ListResourceInfo = this.ResourceHandler.getResourceInfo();
+            state.Save();
+            return state;
+        }
+
+        public static CampaignEngine restoreFromState(CampaignState state)
+        {
+            List<Player> lstPlayers = state.getListPlayers();
+            List<Sektor> lstSektors = state.getListSektors();
+
+            // Feld erstellen;
+            //Type fieldType = Type.GetType(state.getFieldtype());  // Todo: GetType funktioniert nicht obwohl GenericCampaignMasterModel.Field korrekt ist
+            Type fieldType = typeof(GenericCampaignMasterModel.Field);      
+           
+            
+            clsSektorKoordinaten objSekKoord = state.getListDimensions();
+            Field field = (Field)Activator.CreateInstance(fieldType, new object[] { objSekKoord });
+            field.setSektorList(lstSektors);
+
+            // Engine erstellen
+            CampaignEngine engine = new CampaignEngine((Field)field);
+            engine.CampaignName = state.ContainsKey("campaignname") ? state["campaignname"] : "OLDCAMPAIGN";
+            engine.setPlayerList(lstPlayers);
+
+            clsUnit.objUnitTypeFountain.dicUnitTypeData = state.getDicUnitTypeInfo();
+            
+            // Units platzieren
+            foreach (UnitInfo uInfo in state.getListUnitInfo())
+            {
+                Type unitType = Type.GetType(uInfo.unitType);
+                //UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
+
+                Player aktP = (from p in lstPlayers
+                               where p.Id == uInfo.playerId
+                               select p).First();
+
+                clsUnit unit = aktP.getUnitByID(uInfo.unitId);
+
+                //clsUnit unit = new clsUnit(uInfo.unitId);
+                field.dicSektors[uInfo.sektorId].addUnit(unit);
+            }
+
+            // Ressourcehandler erzeugen und Ressourcen wiederherstellen
+            ResourceHandler resHandler = new ResourceHandler();
+            engine.ResourceHandler = resHandler;
+            foreach (ResourceInfo resInfo in state.getListResourceInfo())
+            {
+                string strResType = resInfo.resourceableType;
+                Type resType = Type.GetType(strResType);
+                Object typeObj = Activator.CreateInstance(resType);
+
+                Player resourceOwner = (from p in lstPlayers
+                                        where p.Id == resInfo.ownerId
+                                        select p).First() as Player;
+
+                resHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+            }
+
+            return engine;
         }
 
         #region " Properties && Felder "

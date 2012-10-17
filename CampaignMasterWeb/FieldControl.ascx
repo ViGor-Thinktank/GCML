@@ -12,7 +12,7 @@
     }
 </style>
 <input type="hidden" runat="server" ID="panelControlSessionId" />
-<table style="width: 100%;"  class="playerpanel">
+<table style="width: 100%;"  class="playerpanel" runat="server" ID="sektorTable">
 <tr>
 <td colspan="2" class="style2">
 </td>

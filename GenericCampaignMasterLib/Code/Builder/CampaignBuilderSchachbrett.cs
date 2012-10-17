@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel;
 
 
 namespace GenericCampaignMasterLib
@@ -18,7 +19,7 @@ namespace GenericCampaignMasterLib
             database.init();
 
             CampaignState state = database.getCampaignStateByKey(stateKey);
-            CampaignEngine engine = state.Restore();
+            CampaignEngine engine = CampaignEngine.restoreFromState(state);
             CampaignController controller = new CampaignController(engine);
             controller.CampaignKey = campaignKey;
             controller.CampaignDataBase = database;

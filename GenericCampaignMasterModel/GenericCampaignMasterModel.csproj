@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</ProjectGuid>
+    <ProjectGuid>{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GenericCampaignMasterLib</RootNamespace>
-    <AssemblyName>GenericCampaignMasterLib</AssemblyName>
+    <RootNamespace>GenericCampaignMasterModel</RootNamespace>
+    <AssemblyName>GenericCampaignMasterModel</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,12 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RaptorDB">
-      <HintPath>Alien\RaptorDB.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,19 +40,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Builder\CampaignBuilderSchachbrett.cs" />
-    <Compile Include="Code\CampaignController.cs" />
-    <Compile Include="Code\CampaignEngine.cs" />
-    <Compile Include="Code\Db\CampaignDatabaseRaptorDb.cs" />
-    <Compile Include="Code\Db\ICampaignDatabase.cs" />
-    <Compile Include="Code\GcmlDataManager.cs" />
+    <Compile Include="CampaignState.cs" />
+    <Compile Include="Commands\Attack.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Move.cs" />
+    <Compile Include="Commands\MoveFactory.cs" />
+    <Compile Include="Commands\PlaceUnit.cs" />
+    <Compile Include="Commands\SektorFactoryBase.cs" />
+    <Compile Include="Commands\ViewableSectorFactory.cs" />
+    <Compile Include="Field\Field.cs" />
+    <Compile Include="Info\CampaignInfo.cs" />
+    <Compile Include="Info\CommandInfo.cs" />
+    <Compile Include="Info\PlayerInfo.cs" />
+    <Compile Include="Info\ResourceInfo.cs" />
+    <Compile Include="Info\SektorInfo.cs" />
+    <Compile Include="Info\UnitInfo.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\Builder\CampaignBuilder.cs" />
-    <Compile Include="Code\Builder\CampaignBuilderTicTacTod.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="Dok\ClassDiagram1.cd" />
+    <Compile Include="Ressourcen\IResourceable.cs" />
+    <Compile Include="Ressourcen\Resource.cs" />
+    <Compile Include="Ressourcen\ResourceCommandDecorator.cs" />
+    <Compile Include="Ressourcen\ResourceHandler.cs" />
+    <Compile Include="Sektor\Sektor.cs" />
+    <Compile Include="Sektor\SektorEventArgs.cs" />
+    <Compile Include="Sektor\SektorKoordinaten.cs" />
+    <Compile Include="Sektor\SektorType_base.cs" />
+    <Compile Include="Sektor\SektorType_heavyTerrain.cs" />
+    <Compile Include="Unit\clsUnit.cs" />
+    <Compile Include="Unit\clsUnitType.cs" />
+    <Compile Include="Unit\clsUnitTypeCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -65,10 +78,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
-      <Project>{5f4d345a-fec4-47b5-ae52-cb27c741c8de}</Project>
-      <Name>GenericCampaignMasterModel</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

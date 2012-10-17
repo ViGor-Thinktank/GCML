@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Web.Script.Serialization;
 using RaptorDB;
-
+using GenericCampaignMasterModel;
 
 
 namespace GenericCampaignMasterLib

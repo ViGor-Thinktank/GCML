@@ -22,6 +22,15 @@ namespace CampaignMasterWeb {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden panelControlSessionId;
         
         /// <summary>
+        /// sektorTable-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable sektorTable;
+        
+        /// <summary>
         /// panelPlayer-Steuerelement
         /// </summary>
         /// <remarks>
