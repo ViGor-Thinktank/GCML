@@ -19,6 +19,7 @@ namespace CampaignMasterWeb
         public const string CONTEXTUNITID = "contextunitid";
         public const string CONTEXTCOMMANDLIST = "contextcommandlist";
         public const string SEKTORSTACK = "sektorstack";
+        public const string ACTIVERESSOURCECOMMANDS = "activeressourcecommands"; 
     }
 
     public partial class StartMenu : System.Web.UI.Page
@@ -221,7 +222,7 @@ namespace CampaignMasterWeb
                     
                     ResourceInfo resinfo = new ResourceInfo();
                     resinfo.ownerId = pinfo.playerId;
-                    resinfo.resourceableType = "GenericCampaignMasterLib.clsUnitType";
+                    resinfo.resourceableType = "GenericCampaignMasterModel.clsUnitType, GenericCampaignMasterModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
                     resinfo.resourceId = Guid.NewGuid().ToString();
 
                     service.addResource(campaignId, resinfo);

@@ -30,3 +30,5 @@ D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\RaptorDB.dll
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterLib.pdb
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.dll
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterModel.dll
+D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterModel.pdb

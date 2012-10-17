@@ -46,3 +46,5 @@ D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaignMaste
 D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\bin\GcmlWebService.pdb
 D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.dll
 D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\obj\Debug\CampaignMasterWeb.pdb
+D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaignMasterModel.dll
+D:\users\hagen2\Documents\GitHub\GCML\CampaignMasterWeb\bin\GenericCampaignMasterModel.pdb

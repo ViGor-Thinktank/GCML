@@ -20,6 +20,21 @@ namespace CampaignMasterWeb
             campaignId = (string)Session[GcmlClientKeys.CAMPAIGNID];
 
             drawPlayerResources();
+            
+            // Contextressourcencommands laden, damit die Sektoren zum platzieren der Einheiten markiert werden können.
+            //CampaignMasterService service = StartMenu.getService(this.Session);
+            //List<CommandInfo> activeressourcecommands = new List<CommandInfo>();
+            //foreach (ResourceInfo resinfo in service.getResourcesForPlayer(campaignId, playerId))
+            //{
+            //    var querycmdinf = from cmdinf in service.getCommandsForResource(campaignId, resinfo.resourceId)
+            //                      where cmdinf.isActive = true
+            //                      select cmdinf;
+            //    foreach(var cmdinf in querycmdinf)
+            //        activeressourcecommands.Add(cmdinf);
+
+            //}
+
+            //Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = activeressourcecommands;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -39,7 +54,7 @@ namespace CampaignMasterWeb
             CampaignMasterService service = StartMenu.getService(this.Session);
             service.endRoundForPlayer(campaignId, playerId);
             Session[GcmlClientKeys.CONTEXTCOMMANDLIST] = new Dictionary<string, CommandInfo>();
-
+            Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = new Dictionary<string, CommandInfo>();
         }
 
         private void drawPlayerResources()
@@ -66,7 +81,12 @@ namespace CampaignMasterWeb
                     ListItem li = new ListItem();
                     li.Text = cmdinf.commandType + "#" + cmdinf.strInfo;
                     li.Value = cmdinf.commandId;
+                    //li.Attributes.Add("resourceid", resId);   -> Attributes gehen bei Postback verloren
+                    Session["selectedressource"] = resId;
+
                     lbRessourceActions.Items.Add(li);
+
+                    
                 }
             }
         }
@@ -87,7 +107,30 @@ namespace CampaignMasterWeb
             {
                 string cmdid = selitem.Value;
                 CommandInfo cmd = service.getCommandInfo(campaignId, cmdid);
+                string resourceid = (string)Session["selectedressource"];
+
                 service.executeCommand(campaignId, cmd);
+
+                Dictionary<string, CommandInfo> activeresourcecmds = (Dictionary<string, CommandInfo>)Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
+                if (activeresourcecmds == null)
+                {
+                    activeresourcecmds = new Dictionary<string, CommandInfo>();
+                    Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS] = activeresourcecmds;
+                }
+
+
+                //var query = from c in activeresourcecmds
+                //            where c. == cmd.targetId
+                //            select c;
+                //if (query.Count() > 0)
+                //    activeresourcecmds.Remove(query.First());
+
+
+                // ggf. Vorheriges Cmd entfernen
+                if (activeresourcecmds.ContainsKey(resourceid))
+                    activeresourcecmds.Remove(resourceid);
+
+                activeresourcecmds.Add(resourceid, cmd);
             }
         }
     }

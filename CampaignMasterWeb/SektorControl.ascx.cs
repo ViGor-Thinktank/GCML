@@ -43,7 +43,7 @@ namespace CampaignMasterWeb
             CampaignMasterService service = StartMenu.getService(this.Session);
             PlayerInfo playerInfo = service.getPlayerInfo(playerId);
 
-            System.Drawing.Color bgcolor = System.Drawing.Color.LightCyan;
+            System.Drawing.Color bgcolor = System.Drawing.Color.LightGreen;
 
             if (service.getUnitCollisions(campaignId).Contains(this.Sektor))
                 bgcolor = System.Drawing.Color.Orange;
@@ -56,6 +56,29 @@ namespace CampaignMasterWeb
                 string sektorid = this.Sektor.sektorId;
                 SektorInfo s = service.getSektor(campaignId, Sektor.sektorKoordinaten);
                 this.Sektor = s;
+            }
+
+
+            // Wenn Kommando zum Platzieren einer Unit für Sektor aktiv, Rand zeichnen
+            Dictionary<string, CommandInfo> cmdinf = (Dictionary<string, CommandInfo>)this.Session[GcmlClientKeys.ACTIVERESSOURCECOMMANDS];
+            if (cmdinf != null)
+            {
+                var queryres = from c in cmdinf.Values
+                               where c.commandType == "GenericCampaignMasterModel.PlaceUnit"
+                               && c.targetId == this.Sektor.sektorId
+                               select c;
+
+                if (queryres.Count() > 0)
+                {
+                    this.TableUnits.BorderColor = System.Drawing.Color.Red;
+                    this.TableUnits.BorderWidth = Unit.Pixel(4);
+                }
+                else
+                {
+                    this.TableUnits.BorderColor = System.Drawing.Color.Black;
+                    this.TableUnits.BorderWidth = Unit.Pixel(1);
+                }
+
             }
 
             TableUnits.Rows.Clear();
