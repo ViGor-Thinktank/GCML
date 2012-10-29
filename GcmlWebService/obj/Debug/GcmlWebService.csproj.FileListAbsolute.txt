@@ -32,3 +32,5 @@ D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.dl
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\obj\Debug\GcmlWebService.pdb
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterModel.dll
 D:\users\hagen2\Documents\GitHub\GCML\GcmlWebService\bin\GenericCampaignMasterModel.pdb
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterModel.dll
+C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\GcmlWebService\bin\GenericCampaignMasterModel.pdb

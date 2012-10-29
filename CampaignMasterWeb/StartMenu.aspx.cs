@@ -100,6 +100,12 @@ namespace CampaignMasterWeb
              Response.Redirect("CampaignView.aspx");
         }
 
+
+        protected void btnEditCampaign_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CampaignEdit.aspx");
+        }
+
         private void drawPlayerCampaignData()
         {
             lbCampaigns.Items.Clear();

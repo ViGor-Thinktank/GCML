@@ -91,6 +91,7 @@
                         <asp:ListBox ID="lbCampaigns" runat="server" Height="115px" Width="301px" 
                             BackColor="#CCCCCC"></asp:ListBox>
                         <br />
+                        
                         <asp:Button ID="btnSelectCampaign0" runat="server" BorderStyle="Solid" BorderWidth="1px"
                             Height="36px" OnClick="lbCampaigns_SelectedIndexChanged" Text="Kampagne laden"
                             Width="146px" />
@@ -194,12 +195,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2">
+                        <td align="center">
                             <asp:Button ID="btnLoadCampaign" runat="server" Height="41px" OnClick="btnLoadCampaign_Click"
                                 Style="color: #FFFF00; background-color: #333333; font-weight: 700;" Text="Kampagne starten"
                                 Width="190px" />
                         </td>
-                        <td colspan="2">
+                        <td align="center">
+                            <asp:Button ID="btnEditCampaign" runat="server" Height="41px" OnClick="btnEditCampaign_Click"
+                                Style="color: #FFFF00; background-color: #333333; font-weight: 700;" Text="Kampagne bearbeiten"
+                                Width="190px" />
+                        </td>
+                        <td>
                         </td>
                     </tr>
                 </table>
