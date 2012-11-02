@@ -63,7 +63,6 @@
   <ItemGroup>
     <Content Include="Bilder\gcml_logo_big.png" />
     <Content Include="Bilder\gcml_logo_small.png" />
-    <Content Include="CampaignEdit.aspx" />
     <Content Include="FieldControl.ascx" />
     <Content Include="SektorControl.ascx" />
     <Content Include="StartMenu.aspx" />
@@ -75,15 +74,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="CampaignManager.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CampaignEdit.aspx.cs">
-      <DependentUpon>CampaignEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CampaignEdit.aspx.designer.cs">
-      <DependentUpon>CampaignEdit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="FieldControl.ascx.cs">
       <DependentUpon>FieldControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +122,13 @@
       <DependentUpon>Reference.map</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CampaignManager.aspx.cs">
+      <DependentUpon>CampaignManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CampaignManager.aspx.designer.cs">
+      <DependentUpon>CampaignManager.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

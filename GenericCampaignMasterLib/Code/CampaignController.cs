@@ -271,7 +271,7 @@ namespace GenericCampaignMasterLib
 
 
         }
-
+        
         public CampaignInfo getCampaignInfo()
         {
             CampaignInfo nfo = new CampaignInfo();
@@ -280,6 +280,10 @@ namespace GenericCampaignMasterLib
             nfo.players = new Dictionary<string, string>();
             foreach (Player p in this.campaignEngine.ListPlayers)
                 nfo.players.Add(p.Id, p.Playername);
+
+            nfo.objCampaignData = new CampaignState();
+            
+
             return nfo;
         }
 

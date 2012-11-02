@@ -10,15 +10,15 @@
 namespace CampaignMasterWeb {
     
     
-    public partial class CampaignEdit {
+    public partial class WebForm1 {
         
         /// <summary>
-        /// frmCampaignEdit-Steuerelement
+        /// form1-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmCampaignEdit;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

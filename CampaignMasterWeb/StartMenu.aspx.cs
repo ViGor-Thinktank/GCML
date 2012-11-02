@@ -103,7 +103,7 @@ namespace CampaignMasterWeb
 
         protected void btnEditCampaign_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CampaignEdit.aspx");
+            Response.Redirect("CampaignManager.aspx");
         }
 
         private void drawPlayerCampaignData()

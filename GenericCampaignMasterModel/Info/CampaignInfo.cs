@@ -10,5 +10,8 @@ namespace GenericCampaignMasterModel
         public string campaignId;
         public string campaignName;
         public Dictionary<string, string> players;
+        //
+        public GenericCampaignMasterModel.CampaignState objCampaignData;
+
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CampaignEdit.aspx.cs" Inherits="CampaignMasterWeb.CampaignEdit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CampaignManager.aspx.cs" Inherits="CampaignMasterWeb.WebForm1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,9 +7,9 @@
     <title></title>
 </head>
 <body>
-    <form id="frmCampaignEdit" runat="server">
+    <form id="form1" runat="server">
     <div>
-    
+    Manager
     </div>
     </form>
 </body>
