@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="frmCampaignManager" runat="server">
     <div>
     Manager
     </div>

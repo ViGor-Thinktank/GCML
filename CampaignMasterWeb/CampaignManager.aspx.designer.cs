@@ -13,12 +13,12 @@ namespace CampaignMasterWeb {
     public partial class WebForm1 {
         
         /// <summary>
-        /// form1-Steuerelement
+        /// frmCampaignManager-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Um dies zu ändern, verschieben Sie die Felddeklaration aus der Designerdatei in eine Code-Behind-Datei.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmCampaignManager;
     }
 }
