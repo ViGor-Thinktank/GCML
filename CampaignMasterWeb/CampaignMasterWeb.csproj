@@ -217,6 +217,9 @@
     <None Include="Web References\GcmlWsReference\clsSektorKoordinaten.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\GcmlWsReference\clsUnitType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\GcmlWsReference\CommandInfo.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>

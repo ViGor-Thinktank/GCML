@@ -1,93 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" />
   <xs:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:8081/GcmlWebService/CampaignMasterService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="PlayerInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="playerId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PlayerInfo" nillable="true" type="tns:PlayerInfo" />
-  <xs:complexType name="CampaignInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="campaignName" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="players" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CampaignInfo" nillable="true" type="tns:CampaignInfo" />
-  <xs:complexType name="clsSektorKoordinaten">
-    <xs:sequence>
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Position" nillable="true" type="q2:ArrayOfint" />
-      <xs:element minOccurs="0" name="X" type="xs:int" />
-      <xs:element minOccurs="0" name="Y" type="xs:int" />
-      <xs:element minOccurs="0" name="Z" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="clsSektorKoordinaten" nillable="true" type="tns:clsSektorKoordinaten" />
-  <xs:complexType name="SektorInfo">
-    <xs:sequence>
-      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="containedUnitIds" nillable="true" type="q3:ArrayOfstring" />
-      <xs:element minOccurs="0" name="sektorId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="sektorKoordinaten" nillable="true" type="tns:clsSektorKoordinaten" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SektorInfo" nillable="true" type="tns:SektorInfo" />
-  <xs:complexType name="UnitInfo">
-    <xs:annotation>
-      <xs:appinfo>
-        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" name="playerId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="sektorId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="unitId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="unitType" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UnitInfo" nillable="true" type="tns:UnitInfo" />
-  <xs:complexType name="ArrayOfSektorInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SektorInfo" nillable="true" type="tns:SektorInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSektorInfo" nillable="true" type="tns:ArrayOfSektorInfo" />
-  <xs:complexType name="ArrayOfCommandInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommandInfo" type="tns:CommandInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCommandInfo" nillable="true" type="tns:ArrayOfCommandInfo" />
-  <xs:complexType name="CommandInfo">
-    <xs:annotation>
-      <xs:appinfo>
-        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" name="actingUnitId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="commandType" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
-      <xs:element minOccurs="0" name="strInfo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="targetId" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CommandInfo" nillable="true" type="tns:CommandInfo" />
-  <xs:complexType name="ArrayOfResourceInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResourceInfo" nillable="true" type="tns:ResourceInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfResourceInfo" nillable="true" type="tns:ArrayOfResourceInfo" />
-  <xs:complexType name="ResourceInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ownerId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="resourceableType" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ResourceInfo" nillable="true" type="tns:ResourceInfo" />
+  <xs:element name="getPlayerId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playername" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPlayerIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getPlayerIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPlayerInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPlayerInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getPlayerInfoResult" nillable="true" type="q1:PlayerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPlayerCampaigns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPlayerCampaignsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getPlayerCampaignsResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCampaignInfoResult" nillable="true" type="q3:CampaignInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfo_UnitTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfo_UnitTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCampaignInfo_UnitTypesResult" nillable="true" type="q4:ArrayOfclsUnitType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfo_UnitTypeByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="intUnitID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCampaignInfo_UnitTypeByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCampaignInfo_UnitTypeByIDResult" nillable="true" type="q5:clsUnitType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFieldKoord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFieldKoordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getFieldKoordResult" nillable="true" type="q6:clsSektorKoordinaten" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSektor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="sektorkoord" nillable="true" type="q7:clsSektorKoordinaten" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSektorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getSektorResult" nillable="true" type="q8:SektorInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSektorList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSektorListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getSektorListResult" nillable="true" type="q9:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unitid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getUnitResult" type="q10:UnitInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitCollisions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitCollisionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getUnitCollisionsResult" nillable="true" type="q11:ArrayOfSektorInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandsForUnit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unitid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandsForUnitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCommandsForUnitResult" nillable="true" type="q12:ArrayOfCommandInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createNewCampaign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="campaignname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="x" type="xs:int" />
+        <xs:element minOccurs="0" name="y" type="xs:int" />
+        <xs:element minOccurs="0" name="anzUnits" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createNewCampaignResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="createNewCampaignResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addPlayerToCampaign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addPlayerToCampaignResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="executeCommand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="command" type="q13:CommandInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="executeCommandResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addUnitToField">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unit" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="targetsektor" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addUnitToFieldResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endRoundForPlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="playerid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endRoundForPlayerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="commandId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCommandInfoResult" type="q14:CommandInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getResourcesForPlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="playerId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getResourcesForPlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getResourcesForPlayerResult" nillable="true" type="q15:ArrayOfResourceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandsForResource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCommandsForResourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="getCommandsForResourceResult" nillable="true" type="q16:ArrayOfCommandInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addResource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="campaignId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/GenericCampaignMasterModel" minOccurs="0" name="resinfo" nillable="true" type="q17:ResourceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addResourceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

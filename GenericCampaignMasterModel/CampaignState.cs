@@ -111,5 +111,7 @@ namespace GenericCampaignMasterModel
             return m_serializer.Serialize(this);
         }
 
+
+        
     }
 }

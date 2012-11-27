@@ -271,19 +271,22 @@ namespace GenericCampaignMasterLib
 
 
         }
+
         
+
         public CampaignInfo getCampaignInfo()
         {
             CampaignInfo nfo = new CampaignInfo();
             nfo.campaignId = this.CampaignKey;
             nfo.campaignName = this.campaignEngine.CampaignName;
+            
             nfo.players = new Dictionary<string, string>();
             foreach (Player p in this.campaignEngine.ListPlayers)
+            {
                 nfo.players.Add(p.Id, p.Playername);
+            }
 
-            nfo.objCampaignData = new CampaignState();
             
-
             return nfo;
         }
 
@@ -353,6 +356,20 @@ namespace GenericCampaignMasterLib
         }
         #endregion
 
+
+        public List<clsUnitType> getCampaignInfo_UnitTypes()
+        {
+            clsUnitTypeCollection objUnitTypeCollection = new clsUnitTypeCollection();
+            objUnitTypeCollection.Add(new clsUnitType(objUnitTypeCollection.dicUnitTypeData.Count, "Star Destroyer"));
+            return objUnitTypeCollection.dicUnitTypeData.Values.ToList<clsUnitType>();
+        }
+
+        public clsUnitType getCampaignInfo_UnitTypeByID(int intUnitID)
+        {
+            clsUnitTypeCollection objUnitTypeCollection = new clsUnitTypeCollection();
+            objUnitTypeCollection.Add(new clsUnitType(objUnitTypeCollection.dicUnitTypeData.Count, "Star Destroyer"));
+            return objUnitTypeCollection.dicUnitTypeData[intUnitID.ToString()];
+        }
     }
 
 }

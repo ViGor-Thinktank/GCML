@@ -29,7 +29,7 @@ namespace GenericCampaignMasterModel
 
         }
 
-        private void initNewData()
+        public void initNewData()
         {
             //erster Debugtype
             clsUnitType newType = new clsUnitType();
@@ -37,7 +37,7 @@ namespace GenericCampaignMasterModel
             newType.intMovement = 2;
             newType.intSichtweite = 1;
 
-            dicUnitTypeData.Add("1", newType);
+            this.Add(newType);
         }
 
 
@@ -46,7 +46,7 @@ namespace GenericCampaignMasterModel
             switch (intUnitTypeID)
             {
                 case 0:
-                    return new clsUnitTypeDummy();
+                    return new clsUnitTypeDummy(0);
 
                 case 1:
                     return dicUnitTypeData[intUnitTypeID.ToString()];
@@ -55,6 +55,13 @@ namespace GenericCampaignMasterModel
                     throw new Exception("unbekannter UnitType");
 
             }
+        }
+
+        public int Add(clsUnitType testtyp)
+        {
+            int index = dicUnitTypeData.Count;
+            dicUnitTypeData.Add(index.ToString(), testtyp);
+            return index;
         }
     }
 }

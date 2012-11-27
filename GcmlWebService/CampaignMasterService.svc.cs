@@ -41,6 +41,19 @@ namespace GcmlWebService
             return nfo;
         }
 
+        public List<clsUnitType> getCampaignInfo_UnitTypes(string campaignId)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignId);
+            List<clsUnitType> nfo = controller.getCampaignInfo_UnitTypes();
+            return nfo;
+        }
+        public clsUnitType getCampaignInfo_UnitTypeByID(string campaignId, int intUnitID)
+        {
+            CampaignController controller = GcmlDataManager.Instance.getController(campaignId);
+            clsUnitType nfo = controller.getCampaignInfo_UnitTypeByID(intUnitID);
+            return nfo;
+        }
+
         public clsSektorKoordinaten getFieldKoord(string campaignid)
         {
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);

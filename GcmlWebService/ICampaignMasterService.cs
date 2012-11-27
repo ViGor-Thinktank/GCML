@@ -27,6 +27,12 @@ namespace GcmlWebService
         CampaignInfo getCampaignInfo(string campaignId);
 
         [OperationContract]
+        List<clsUnitType> getCampaignInfo_UnitTypes(string campaignId);
+
+        [OperationContract]
+        clsUnitType getCampaignInfo_UnitTypeByID(string campaignId, int intUnitID);
+        
+        [OperationContract]
         clsSektorKoordinaten getFieldKoord(string campaignid);
 
         [OperationContract]

@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel
 {
     public class clsUnitTypeDummy : clsUnitType 
     {
-        public clsUnitTypeDummy() : base("UnitTypeDummy")
+        public clsUnitTypeDummy(int ID) : base(ID, "UnitTypeDummy")
         {
             this.m_intMovement = 1;
             this.m_intSichtweite = 1;
@@ -18,19 +18,23 @@ namespace GenericCampaignMasterModel
 
     public class clsUnitType : IResourceable
     {
+
         //Eigenschaften
         private string m_strBez = "";
         protected  int m_intMovement = 0;
         protected int m_intSichtweite = 0;
+        private int m_ID = -1;
 
+        public int ID { get { return m_ID; } set { m_ID = value; } }
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
         public int intMovement { get { return m_intMovement; } set { m_intMovement = intMovement; } }
 
         //Konstruktoren
         public clsUnitType() { ; }
-        public clsUnitType(string strDefaultBez )
+        public clsUnitType(int newID, string strDefaultBez )
         {
+            m_ID = newID;
             m_strBez = strDefaultBez;
         }
 
