@@ -11,14 +11,22 @@
     <div>
     Manager
     </div>
-    <asp:ListBox ID="ListBox1" runat="server" Height="143px" Width="274px" 
-        onselectedindexchanged="ListBox1_SelectedIndexChanged">
+    <asp:ListBox ID="ListBox1" runat="server" Height="143px" Width="680px">
     </asp:ListBox>
     <br />
     <br />
+    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Edit" />
     <br />
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Label ID="Label1" runat="server" Text="Move"></asp:Label>
+&nbsp;<br />
+    <asp:TextBox ID="TextBox1" runat="server" ontextchanged="TextBox1_TextChanged"></asp:TextBox>
+    <br />
+    <p>
     <asp:TextBox ID="txtEx" runat="server" Height="96px" TextMode="MultiLine" 
-        Width="676px"></asp:TextBox>
+        Width="676px" style="margin-top: 39px"></asp:TextBox>
+    </p>
     </form>
 </body>
 </html>

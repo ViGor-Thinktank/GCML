@@ -38,13 +38,20 @@ namespace CampaignMasterWeb
             {
                clsUnitType[] objCPMInfo = objGMCL.getCampaignInfo_UnitTypes(this.strCCKey);
 
+               /*ListBox1.Items.Clear();
+
                 foreach (clsUnitType x in objCPMInfo)
                 {
                     ListItem newItem = new ListItem();
                     newItem.Text = x.strBez;
                     newItem.Value = x.ID.ToString();
                     ListBox1.Items.Add(newItem);
-                }
+                }*/
+
+               ListBox1.DataSource = objCPMInfo;
+               ListBox1.DataTextField = "strBez";
+               ListBox1.DataBind();
+                
 
                 
             }
@@ -57,8 +64,15 @@ namespace CampaignMasterWeb
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
             try
             {
+
+
                 int intUnitTypeID = Convert.ToInt32(ListBox1.SelectedItem.Value);
                 clsUnitType objUnitType = objGMCL.getCampaignInfo_UnitTypeByID(this.strCCKey, intUnitTypeID, true);
 
@@ -68,6 +82,11 @@ namespace CampaignMasterWeb
             {
                 txtEx.Text = ex.ToString();
             }
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
