@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,6 +102,10 @@
     <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
       <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
       <Name>GenericCampaignMasterLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
+      <Project>{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}</Project>
+      <Name>GenericCampaignMasterModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

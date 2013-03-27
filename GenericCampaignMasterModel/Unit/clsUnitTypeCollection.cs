@@ -37,7 +37,7 @@ namespace GenericCampaignMasterModel
             newType.intMovement = 2;
             newType.intSichtweite = 1;
 
-            this.Add(newType);
+            this.addNewType(newType);
         }
 
 
@@ -48,20 +48,32 @@ namespace GenericCampaignMasterModel
                 case 0:
                     return new clsUnitTypeDummy(0);
 
-                case 1:
-                    return dicUnitTypeData[intUnitTypeID.ToString()];
-
                 default:
+                if (dicUnitTypeData.ContainsKey(intUnitTypeID.ToString()))
+                    return dicUnitTypeData[intUnitTypeID.ToString()];
+                else
                     throw new Exception("unbekannter UnitType");
 
             }
         }
 
-        public int Add(clsUnitType testtyp)
+        public int addNewType(clsUnitType newUnitType)
         {
             int index = dicUnitTypeData.Count;
-            dicUnitTypeData.Add(index.ToString(), testtyp);
+            newUnitType.ID = index;
+            dicUnitTypeData.Add(index.ToString(), newUnitType);
             return index;
+        }
+
+        public clsUnitType getTypeByName(string strUnitTypeName)
+        {
+            foreach (clsUnitType aktType in dicUnitTypeData.Values)
+            {
+                if (aktType.strBez == strUnitTypeName)
+                    return aktType;
+            }
+
+            return null;
         }
     }
 }

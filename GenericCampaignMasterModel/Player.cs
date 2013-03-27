@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Script.Serialization;
 
 namespace GenericCampaignMasterModel
 {
@@ -21,21 +20,13 @@ namespace GenericCampaignMasterModel
         public Player() { }
         public Player(string playerId)
         {
-            this._id = playerId;
-            
+            this._id = playerId;            
         }
 
-        public override string ToString()
-        {
-            return new JavaScriptSerializer().Serialize(this);
-        }
-
-        public static Player FromString(string strData)
-        {
-            return new JavaScriptSerializer().Deserialize<Player>(strData);
-        }
-
+      
         public List<clsUnit> ListUnits = new List<clsUnit>();
+
+        public Sektor unitspawnSektor;
 
         public Dictionary<string, Sektor> dicVisibleSectors;
         public List<Sektor> accessibleSectors { get; set; } // Sektoren in denen produzierte Einheiten plaziert werden können.
@@ -54,8 +45,6 @@ namespace GenericCampaignMasterModel
         }
 
         #endregion
-
-
 
         public clsUnit getUnitByID(string strUnitID)
         {
@@ -81,5 +70,10 @@ namespace GenericCampaignMasterModel
 
 
 
+
+        public static Player FromString(string strPlayer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

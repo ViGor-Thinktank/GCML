@@ -169,11 +169,13 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        public void createNewUnit(string strPlayerID, int intUnitTypeID)
+        public clsUnit createNewUnit(string strPlayerID, int intUnitTypeID)
         {
             clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
+
+            return newUnit;
         }
 
         public void createNewUnitAndRegister(Player owner, clsUnitType newUnitType, Sektor targetSektor)
@@ -187,9 +189,14 @@ namespace GenericCampaignMasterLib
         }
 
 
-        public Player getPlayer(string pID)
+        public Player getPlayerByID(string pID)
         {
-            return this.m_campaignEngine.getPlayer(pID);
+            return this.m_campaignEngine.getPlayerByID(pID);
+        }
+
+        public Player getPlayerByName(string strName)
+        {
+            return this.m_campaignEngine.getPlayerByName(strName);
         }
 
         public Player addPlayer(string p)
@@ -251,6 +258,7 @@ namespace GenericCampaignMasterLib
 
         public Sektor getSektor(string sektorId)
         {
+            return m_campaignEngine.FieldField.dicSektors[sektorId];/*
             Sektor result = new Sektor();
             var query = from s in m_campaignEngine.FieldField.dicSektors.Values
                         where s.Id == sektorId
@@ -258,12 +266,12 @@ namespace GenericCampaignMasterLib
             if (query.Count() > 0)
                 result = query.First<Sektor>();
 
-            return result;
+            return result;*/
         }
 
         public Player getCampaignStateForPlayer(string pID, string strState = "")
         {
-            Player askingPlayer = this.m_campaignEngine.getPlayer(pID);
+            Player askingPlayer = this.m_campaignEngine.getPlayerByID(pID);
 
             this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
 
@@ -357,18 +365,27 @@ namespace GenericCampaignMasterLib
         #endregion
 
 
+        public int addCampaignInfo_UnitTypes(clsUnitType newUnit)
+        {
+            return clsUnit.objUnitTypeFountain.addNewType(newUnit);
+        }
+
+        public clsUnitType getCampaignInfo_UnitTypeByName(string strUnitName)
+        {
+            return clsUnit.objUnitTypeFountain.getTypeByName(strUnitName);
+        }
+
         public List<clsUnitType> getCampaignInfo_UnitTypes()
         {
-            clsUnitTypeCollection objUnitTypeCollection = new clsUnitTypeCollection();
-            objUnitTypeCollection.Add(new clsUnitType(objUnitTypeCollection.dicUnitTypeData.Count, "Star Destroyer"));
-            return objUnitTypeCollection.dicUnitTypeData.Values.ToList<clsUnitType>();
+           return clsUnit.objUnitTypeFountain.dicUnitTypeData.Values.ToList<clsUnitType>();
         }
 
         public clsUnitType getCampaignInfo_UnitTypeByID(int intUnitID)
         {
-            clsUnitTypeCollection objUnitTypeCollection = new clsUnitTypeCollection();
-            objUnitTypeCollection.Add(new clsUnitType(objUnitTypeCollection.dicUnitTypeData.Count, "Star Destroyer"));
-            return objUnitTypeCollection.dicUnitTypeData[intUnitID.ToString()];
+            if (clsUnit.objUnitTypeFountain.dicUnitTypeData.ContainsKey(intUnitID.ToString()))
+                return clsUnit.objUnitTypeFountain.dicUnitTypeData[intUnitID.ToString()];
+            else
+                return null;
         }
     }
 

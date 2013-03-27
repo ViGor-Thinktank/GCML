@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Script.Serialization;
 using System.Runtime.Serialization;
 
 namespace GenericCampaignMasterModel
@@ -62,9 +61,6 @@ namespace GenericCampaignMasterModel
             return new clsSektorKoordinaten(c1.X + c2.X, c1.Y + c2.Y, c1.Z + c2.Z);
         }
 
-        public string ToJson()
-        {
-            return new JavaScriptSerializer().Serialize(this);
-        }
+       
     }
 }

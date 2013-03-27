@@ -1,0 +1,14 @@
+syntax: glob
+*/obj/*
+*/bin/*
+obj/*
+bin/*
+*.suo
+*.user
+*.cachefile
+*.db
+.DS_Store
+*.userprefs
+.svn
+.git
+*.pidb

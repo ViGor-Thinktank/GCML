@@ -64,19 +64,23 @@ namespace CampaignMasterWeb
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                
+                this.Session["UnitTypeID"] = Convert.ToInt32(ListBox1.SelectedItem.Value);
+            }
+            catch (Exception ex)
+            {
+                 txtEx.Text = ex.ToString();
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-
-
-                int intUnitTypeID = Convert.ToInt32(ListBox1.SelectedItem.Value);
+                int intUnitTypeID = Convert.ToInt32(this.Session["UnitTypeID"]);
                 clsUnitType objUnitType = objGMCL.getCampaignInfo_UnitTypeByID(this.strCCKey, intUnitTypeID, true);
-
-
             }
             catch (Exception ex)
             {

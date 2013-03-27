@@ -259,12 +259,24 @@ namespace GenericCampaignMasterLib
         {
              clsUnit newUnit = null;
             //Ergibt eineindeutige UnitIDs
-            newUnit = new clsUnit(strPlayerID + getPlayer(strPlayerID).ListUnits.Count.ToString(), intUnitTypeID);
+            newUnit = new clsUnit(strPlayerID + getPlayerByID(strPlayerID).ListUnits.Count.ToString(), intUnitTypeID);
             newUnit.strOwnerID = strPlayerID;
-            return addUnit(strPlayerID, newUnit, this.FieldField.nullSektorKoord);
+            clsSektorKoordinaten insertSek = (getPlayerByID(strPlayerID).unitspawnSektor != null ? getPlayerByID(strPlayerID).unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
+            return addUnit(strPlayerID, newUnit, insertSek);
         }
 
-        public Player getPlayer(string playerId)
+        public Player getPlayerByName(string strName)
+        {
+
+            foreach (Player aktP in m_ListPlayers)
+            {
+                if (aktP.Playername == strName)
+                    return aktP;
+            }
+            return null;
+
+        }
+        public Player getPlayerByID(string playerId)
         {
 
             foreach (Player aktP in m_ListPlayers)
@@ -289,7 +301,7 @@ namespace GenericCampaignMasterLib
         {
 
             newUnit.strOwnerID = strPlayerID;
-            getPlayer(strPlayerID).ListUnits.Add(newUnit);
+            getPlayerByID(strPlayerID).ListUnits.Add(newUnit);
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
             return newUnit;

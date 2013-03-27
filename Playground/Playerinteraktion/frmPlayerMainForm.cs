@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GenericCampaignMasterLib;
-
+using GenericCampaignMasterModel;
 
 namespace Playground
 {
@@ -28,7 +28,7 @@ namespace Playground
                 this.clearCommandButtons();
 
 
-                Player myPlayer = Program.m_objCampaign.getCampaignStateForPlayer(this.strMyPlayerID);
+                GenericCampaignMasterModel.Player myPlayer = Program.m_objCampaign.getCampaignStateForPlayer(this.strMyPlayerID);
 
                 
                 comboBox1.DisplayMember = "Bezeichnung";
@@ -36,7 +36,7 @@ namespace Playground
                 comboBox1.DataSource = myPlayer.ListUnits;
                 
                 this.txtUnitInfo.Text = "";
-                foreach (GenericCampaignMasterLib.clsUnit objUnit in myPlayer.ListUnits)
+                foreach (clsUnit objUnit in myPlayer.ListUnits)
                 {
                     this.txtUnitInfo.Text += objUnit.Bezeichnung + " " + Program.m_objCampaign.getSektorForUnit(objUnit).strUniqueID + Environment.NewLine;
                 }
@@ -106,7 +106,7 @@ namespace Playground
             ((ICommand)((Button)sender).Tag).Register();         
         }
 
-        private void erzeugeCommandButtonsForUnit(GenericCampaignMasterLib.clsUnit unit)
+        private void erzeugeCommandButtonsForUnit(clsUnit unit)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace Playground
             {
                 string strUnitID = comboBox1.SelectedValue.ToString();
 
-                GenericCampaignMasterLib.clsUnit Unit = Program.m_objCampaign.getUnit(strUnitID);
+                clsUnit Unit = Program.m_objCampaign.getUnit(strUnitID);
 
                 this.erzeugeCommandButtonsForUnit(Unit);
 

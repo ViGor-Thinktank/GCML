@@ -42,7 +42,7 @@ namespace GenericCampaignMasterModel
 
                 if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
-                    
+
                     if (!m_listKnownMovements.Contains(newSek.strUniqueID))
                     {
                         m_listKnownMovements.Add(newSek.strUniqueID);
@@ -50,23 +50,24 @@ namespace GenericCampaignMasterModel
                         Move readyCmd = new Move();
                         readyCmd.Unit = m_Unit;
                         readyCmd.CommandId = Guid.NewGuid().ToString();
-                        
+                       
                         readyCmd.OriginSektor = m_originSektor;
-                        
+
                         Sektor targetSek = this.FieldField.get(newSek.objSektorKoord);
-                        
+
                         readyCmd.TargetSektor = targetSek;
-                        
+
                         raiseOnNewMoveCommand(readyCmd);
                     }
 
                     int intNewFieldsMoved = intFieldsMoved + newSek.intMoveCost;
-                    
+
                     if (intNewFieldsMoved < m_Unit.intMovement)
                     {
                         createMoveCommandsForSektor(newSek, intNewFieldsMoved);
                     }
                 }
+                
 
             }
                 

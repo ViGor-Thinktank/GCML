@@ -57,6 +57,12 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="Dok\ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
+      <Project>{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}</Project>
+      <Name>GenericCampaignMasterModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -65,10 +71,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
-      <Project>{5f4d345a-fec4-47b5-ae52-cb27c741c8de}</Project>
-      <Name>GenericCampaignMasterModel</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

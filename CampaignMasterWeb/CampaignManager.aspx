@@ -11,7 +11,8 @@
     <div>
     Manager
     </div>
-    <asp:ListBox ID="ListBox1" runat="server" Height="143px" Width="680px">
+    <asp:ListBox ID="ListBox1" runat="server" Height="143px" Width="680px" 
+        AutoPostBack="True">
     </asp:ListBox>
     <br />
     <br />

@@ -25,10 +25,16 @@ namespace GenericCampaignMasterModel
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
 
+        public string strClientData = ""; //extra Daten die der Client benötigt && verwaltet 
+
         public int ID { get { return m_ID; } set { m_ID = value; } }
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
-        public int intMovement { get { return m_intMovement; } set { m_intMovement = intMovement; } }
+        public int intMovement 
+        { 
+            get { return m_intMovement; } 
+            set { m_intMovement = value; } 
+        }
 
         //Konstruktoren
         public clsUnitType() { ; }

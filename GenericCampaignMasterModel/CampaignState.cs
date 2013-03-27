@@ -25,7 +25,7 @@ namespace GenericCampaignMasterModel
 
         public List<Sektor> getListSektors()
         {
-			return (List<Sektor>) m_serializer.Deserialize<List<Sektor>>(this["sektors"]);
+			return (List<Sektor>)m_serializer.Deserialize<List<Sektor>>(this["sektors"]);
         }
 
         public Player getPlayer(string strPlayerID)
@@ -50,9 +50,8 @@ namespace GenericCampaignMasterModel
 
         public List<Player> getListPlayers()
         {
-
+             return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
             
-           return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
         }
 		
 		public List<UnitInfo> getListUnitInfo()
