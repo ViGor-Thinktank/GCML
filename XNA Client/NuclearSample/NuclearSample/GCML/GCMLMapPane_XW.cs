@@ -66,7 +66,7 @@ namespace NuclearSample.GCML
 
         private void initXW()
         {
-            this.Clear();
+           
 
             clsUnitType newUnit = new clsUnitType();
             newUnit.strBez = "X-Wing";
@@ -99,6 +99,8 @@ namespace NuclearSample.GCML
             {
                 this.initXW();                
             }
+
+            this.Clear();
             
             //Background Image
             NuclearUI.Image imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures["Stars"], false);

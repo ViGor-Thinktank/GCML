@@ -23,7 +23,8 @@ GenericCampaignMasterModel/obj/Debug/*
 CampaignMasterWeb/obj/Debug/*
 GcmlWebService/obj/Debug/*
 
-
+XNA Client/NuclearSample/NuclearSample/bin/*
+XNA Client/NuclearSample/NuclearSample/obj/*
 
 Playground/bin/*
 Playground/obj/*
