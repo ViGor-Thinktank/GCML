@@ -36,7 +36,9 @@ namespace GenericCampaignMasterLib
 
         public event Field.delStatus onStatus;
         public event delTick onTick;
+        public event delTick onHasTicked;
         
+
         public delegate void delTick();
         
 
@@ -50,6 +52,8 @@ namespace GenericCampaignMasterLib
         {
             if (this.onTick != null)
                 this.onTick();
+            if (this.onHasTicked != null)
+                this.onHasTicked();
         }
 
         public CampaignController()

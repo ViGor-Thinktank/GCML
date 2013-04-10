@@ -18,24 +18,25 @@ namespace NuclearSample.GCML
         public GCMLMapPane_XW(MainMenuManager _manager) : base(_manager)
         {
             this.initTextures();
-            this.initMap(true);
+            
+            this.initXW();    
+            this.initMap();
 
-            Program.m_objCampaign.onTick += new CampaignController.delTick(m_objCampaign_onTick);
+            Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
         }
 
         void m_objCampaign_onTick()
         {
-            this.initMap(false);
+            this.initMap();
         }
 
         private void imgBtn_ClickHandler(NuclearUI.Image sender)
         {
-            string strID = m_dicImgCmds[sender];
-            ICommand aktCommand = Program.m_objCampaign.getCommand(strID);
+            ICommand aktCommand = Program.m_objCampaign.getCommand(m_dicImgCmds[sender]);
             //Manager.MessagePopup.Setup("Move Info", aktCommand.strInfo, NuclearWinter.i18n.Common.Confirm, false);
             //Manager.MessagePopup.Open(250, 250);
             aktCommand.Register();
-            initMap(false);
+            initMap();
         }
 
         private void imgUnit_ClickHandler(NuclearUI.Image sender)
@@ -92,14 +93,27 @@ namespace NuclearSample.GCML
             
         }
 
-        private NuclearUI.GridGroup m_gridMap;
-        protected void initMap(bool GCML_init)
+        private NuclearUI.Image newNumberCounter(int Index)
         {
-            if (GCML_init)
+            switch (Index)
             {
-                this.initXW();                
-            }
+                case 0:
+                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["eins"], false);
+                    break;
 
+                case 1:
+                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["zwei"], false);
+                    break;
+
+                default:
+                    return null;
+                    break;
+            }
+        }
+
+        private NuclearUI.GridGroup m_gridMap;
+        protected void initMap()
+        {
             this.Clear();
             
             //Background Image
@@ -121,6 +135,9 @@ namespace NuclearSample.GCML
             { 
                 foreach (clsUnit aktUnit in aktPly.ListUnits)
                 {
+
+                    NuclearUI.Image imgNumber = newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit));
+
                     clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
 
                     if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted)
@@ -133,6 +150,9 @@ namespace NuclearSample.GCML
                         int x_offset = Convert.ToInt32(str[0]);
                         int y_offset = Convert.ToInt32(str[1]);
                         m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
+                        if (imgNumber != null)
+                            m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
+
                         //Token einblenden das den Command angezeigt
 
                     }
@@ -142,7 +162,9 @@ namespace NuclearSample.GCML
                     imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
 
                     m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-                    
+                    if (imgNumber != null)
+                        m_gridMap.AddChildAt(newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit)), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+
                 }
             }
         }
