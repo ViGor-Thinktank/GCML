@@ -77,10 +77,32 @@ namespace NuclearSample.GCML
                 };
                 gridGroup.AddChildAt(button, 1, 1);
 
-                button = new NuclearUI.Button(Manager.MenuScreen, "add Player");
+                button = new NuclearUI.Button(Manager.MenuScreen, "Init");
                 button.ClickHandler = delegate
                 {
-                    string strState = "test";
+
+                    clsUnitType newUnit = new clsUnitType();
+                    newUnit.strBez = "X-Wing";
+                    newUnit.intSichtweite = 2;
+                    newUnit.intMovement = 1;
+                    newUnit.strClientData = "Texture:=XW";
+                    int XW_ID = Program.m_objCampaign.addCampaignInfo_UnitTypes(newUnit);
+
+                    newUnit = new clsUnitType();
+                    newUnit.strBez = "Tie Fighter";
+                    newUnit.intSichtweite = 1;
+                    newUnit.intMovement = 2;
+                    newUnit.strClientData = "Texture:=TieF";
+                    int TF_ID = Program.m_objCampaign.addCampaignInfo_UnitTypes(newUnit);
+
+                    //erzeuge Spieler1
+                    Player ply = Program.m_objCampaign.addPlayer("Rebel");
+                    ply.unitspawnSektor = Program.m_objCampaign.getSektor("|0|0|0|");
+
+                    //erzeuge Spieler2
+                    ply = Program.m_objCampaign.addPlayer("Empire");
+                    ply.unitspawnSektor = Program.m_objCampaign.getSektor("|5|5|0|");
+            
                 };
                 gridGroup.AddChildAt(button, 1, 2);
             }

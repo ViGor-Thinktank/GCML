@@ -41,7 +41,9 @@ namespace NuclearSample
             //demosBoxGroup.AddChild(CreateDemoButton("Basic", basicDemoPane), true);
 
             objBoxGroup.AddChild(CreateDemoButton("GCML Admin", new GCML.GCMLAdminPane(this)), true);
-            objBoxGroup.AddChild(CreateDemoButton("Map", new GCML.GCMLMapPane_XW(this)), true);
+            objBoxGroup.AddChild(CreateDemoButton("Map Player 1", new GCML.GCMLMapPane_XW(this, 0)), true);
+            objBoxGroup.AddChild(CreateDemoButton("Map Player 2", new GCML.GCMLMapPane_XW(this, 1)), true);
+            
             //objBoxGroup.AddChild(CreateDemoButton("bsps Stuff", new NuclearSample.Demos.NotebookPane(this)), true);
 
             NuclearUI.Button button = new NuclearUI.Button(MenuScreen, "Tick");

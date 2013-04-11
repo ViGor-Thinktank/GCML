@@ -15,12 +15,15 @@ namespace NuclearSample.GCML
 {
     class GCMLMapPane_XW : NuclearUI.ManagerPane<MainMenuManager>
     {
-        public GCMLMapPane_XW(MainMenuManager _manager) : base(_manager)
+        private int m_intPlayerIndex;
+
+        public GCMLMapPane_XW(MainMenuManager _manager, int intPlayerIndex) : base(_manager)
         {
             this.initTextures();
             
-            this.initXW();    
             this.initMap();
+
+            this.m_intPlayerIndex = intPlayerIndex;
 
             Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
         }
@@ -69,28 +72,6 @@ namespace NuclearSample.GCML
         {
            
 
-            clsUnitType newUnit = new clsUnitType();
-            newUnit.strBez = "X-Wing";
-            newUnit.intSichtweite = 2;
-            newUnit.intMovement = 1;
-            newUnit.strClientData = "Texture:=XW";
-            int XW_ID = Program.m_objCampaign.addCampaignInfo_UnitTypes(newUnit);
-
-            newUnit = new clsUnitType();
-            newUnit.strBez = "Tie Fighter";
-            newUnit.intSichtweite = 1;
-            newUnit.intMovement = 2;
-            newUnit.strClientData = "Texture:=TieF";
-            int TF_ID = Program.m_objCampaign.addCampaignInfo_UnitTypes(newUnit);
-
-            //erzeuge Spieler1
-            Player ply = Program.m_objCampaign.addPlayer("Rebel");
-            ply.unitspawnSektor = Program.m_objCampaign.getSektor("|0|0|0|");
-            
-            //erzeuge Spieler2
-            ply = Program.m_objCampaign.addPlayer("Empire");
-            ply.unitspawnSektor = Program.m_objCampaign.getSektor("|5|5|0|");
-            
         }
 
         private NuclearUI.Image newNumberCounter(int Index)
@@ -99,15 +80,13 @@ namespace NuclearSample.GCML
             {
                 case 0:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["eins"], false);
-                    break;
 
                 case 1:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["zwei"], false);
-                    break;
 
                 default:
                     return null;
-                    break;
+
             }
         }
 
@@ -130,12 +109,23 @@ namespace NuclearSample.GCML
             
             //Grid auf das Background Image werfen
             m_gridMap.AnchoredRect = NuclearUI.AnchoredRect.CreateCentered(imgMap.ContentWidth, imgMap.ContentHeight);
-   
-            foreach (GenericCampaignMasterModel.Player aktPly in Program.m_objCampaign.getPlayerList())
-            { 
-                foreach (clsUnit aktUnit in aktPly.ListUnits)
+
+            GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.getPlayerByID(m_intPlayerIndex.ToString());
+            if (aktPly != null && aktPly.ListUnits != null)
+            {
+                foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)
                 {
 
+                    foreach (clsUnit aktUnit in aktPly.ListUnits)
+                    {
+                        //todo
+                    }
+                    
+                }
+                
+
+                foreach (clsUnit aktUnit in aktPly.ListUnits)
+                {
                     NuclearUI.Image imgNumber = newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit));
 
                     clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
