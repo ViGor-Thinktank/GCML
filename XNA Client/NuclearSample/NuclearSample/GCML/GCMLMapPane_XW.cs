@@ -110,53 +110,56 @@ namespace NuclearSample.GCML
             //Grid auf das Background Image werfen
             m_gridMap.AnchoredRect = NuclearUI.AnchoredRect.CreateCentered(imgMap.ContentWidth, imgMap.ContentHeight);
 
-            GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.getPlayerByID(m_intPlayerIndex.ToString());
+            GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.getCampaignStateForPlayer(m_intPlayerIndex.ToString());
             if (aktPly != null && aktPly.ListUnits != null)
             {
                 foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)
                 {
-
-                    foreach (clsUnit aktUnit in aktPly.ListUnits)
+                    foreach (clsUnit aktUnit in aktSek.ListUnits)
                     {
-                        //todo
-                    }
-                    
+                        drawUnit(aktUnit, aktPly);
+                    }                    
                 }
                 
 
-                foreach (clsUnit aktUnit in aktPly.ListUnits)
+/*                foreach (clsUnit aktUnit in aktPly.ListUnits)
                 {
-                    NuclearUI.Image imgNumber = newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit));
-
-                    clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
-
-                    if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted)
-                    {
-                        NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["pfeil"], false);
-
-                        imgBtn.fltRotation = 0;
-
-                        string[] str = ((Move)objUnit.objUnit.aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                        int x_offset = Convert.ToInt32(str[0]);
-                        int y_offset = Convert.ToInt32(str[1]);
-                        m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
-                        if (imgNumber != null)
-                            m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
-
-                        //Token einblenden das den Command angezeigt
-
-                    }
-
-                    NuclearUI.Image imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[objUnit.strTexName], false);
-                    m_dicUnits.Add(imgUnit, aktUnit);
-                    imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
-
-                    m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-                    if (imgNumber != null)
-                        m_gridMap.AddChildAt(newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit)), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-
-                }
+                    drawUnit(aktUnit);
+                }*/
             }
+        }
+
+        private void drawUnit(clsUnit aktUnit, GenericCampaignMasterModel.Player aktPly)
+        {
+            NuclearUI.Image imgNumber = newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit));
+
+            clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
+
+            if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted)
+            {
+                NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["pfeil"], false);
+
+                imgBtn.fltRotation = 0;
+
+                string[] str = ((Move)objUnit.objUnit.aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                int x_offset = Convert.ToInt32(str[0]);
+                int y_offset = Convert.ToInt32(str[1]);
+                m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
+                if (imgNumber != null)
+                    m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
+
+                //Token einblenden das den Command angezeigt
+
+            }
+
+            NuclearUI.Image imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[objUnit.strTexName], false);
+            m_dicUnits.Add(imgUnit, aktUnit);
+            imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
+
+            m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+            if (imgNumber != null)
+                m_gridMap.AddChildAt(newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit)), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+
         }
 
         private void addButton(ICommand aktCommand, ref int offset, string p)

@@ -277,7 +277,8 @@ namespace GenericCampaignMasterLib
         {
             Player askingPlayer = this.m_campaignEngine.getPlayerByID(pID);
 
-            this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
+            if (askingPlayer !=null)
+                this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
 
             return askingPlayer;
 
