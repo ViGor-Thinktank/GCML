@@ -13,7 +13,7 @@ namespace GCML_XNA_Client
     internal class MainMenuManager: NuclearUI.MenuManager<NuclearSampleGame>
     {
         public NuclearUI.Splitter      mSplitterLinks;
-        //public NuclearUI.Splitter      mSplitterRechts;
+        public NuclearUI.Splitter      mSplitterRechts;
         public NuclearUI.Panel         mRightPanel;
         
 
@@ -46,8 +46,20 @@ namespace GCML_XNA_Client
 
             //rechts Panel
             mRightPanel = new NuclearUI.Panel( MenuScreen, Content.Load<Texture2D>( "Sprites/UI/Panel04" ), MenuScreen.Style.PanelCornerSize );
-            mSplitterLinks.SecondPane = mRightPanel;
+            //mSplitterLinks.SecondPane = mRightPanel;
             
+            mSplitterRechts = new NuclearUI.Splitter(MenuScreen, NuclearUI.Direction.Right);
+            mSplitterRechts.AnchoredRect = NuclearUI.AnchoredRect.CreateFull(10);
+            mSplitterRechts.Collapsable = false;
+            mSplitterRechts.FirstPaneMinSize = 200;
+            
+
+            mSplitterLinks.SecondPane = mSplitterRechts;
+
+            objBoxGroup = new NuclearUI.BoxGroup(MenuScreen, NuclearUI.Orientation.Vertical, 0, NuclearUI.Anchor.Start);
+            mSplitterRechts.FirstPane = objBoxGroup;
+
+            mSplitterRechts.SecondPane = mRightPanel;
         }
 
         //----------------------------------------------------------------------
