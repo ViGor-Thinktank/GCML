@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework;
 namespace GCML_XNA_Client.GameStates
 {
     //--------------------------------------------------------------------------
-    internal class GameStateMainMenu: NuclearWinter.GameFlow.GameStateFadeTransition<NuclearSampleGame>
+    internal class GameStateMainMenu: NuclearWinter.GameFlow.GameStateFadeTransition<GCML_XNA_Client>
     {
         
         //----------------------------------------------------------------------
         public MainMenuManager      MainMenuManager { get; private set; }
 
         //----------------------------------------------------------------------
-        public GameStateMainMenu( NuclearSampleGame _game )
+        public GameStateMainMenu( GCML_XNA_Client _game )
         : base( _game )
         {
 
@@ -60,10 +60,6 @@ namespace GCML_XNA_Client.GameStates
         {
             Game.GraphicsDevice.Clear( new Color( 111, 125, 120 ) );
             
-            /*Game.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Game.SpriteMatrix);
-            Game.SpriteBatch.Draw(this.texMapTex, new Vector2(20, 20), Color.White);
-            Game.SpriteBatch.End();
-        */
             MainMenuManager.Draw();
         }
     }

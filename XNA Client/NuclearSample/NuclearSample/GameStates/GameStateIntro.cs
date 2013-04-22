@@ -10,7 +10,7 @@ using NuclearAnim = NuclearWinter.Animation;
 namespace GCML_XNA_Client.GameStates
 {
     //--------------------------------------------------------------------------
-    internal class GameStateIntro: NuclearWinter.GameFlow.GameStateFadeTransition<NuclearSampleGame>
+    internal class GameStateIntro: NuclearWinter.GameFlow.GameStateFadeTransition<GCML_XNA_Client>
     {
         //----------------------------------------------------------------------
         NuclearAnim.LerpValue               mSwitchTimer;
@@ -21,7 +21,7 @@ namespace GCML_XNA_Client.GameStates
         Random                              mRandom;
 
         //----------------------------------------------------------------------
-        public GameStateIntro( NuclearSampleGame _game )
+        public GameStateIntro( GCML_XNA_Client _game )
         : base( _game )
         {
 

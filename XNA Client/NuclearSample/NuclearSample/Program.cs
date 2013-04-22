@@ -16,7 +16,7 @@ namespace GCML_XNA_Client
             {
                 if( mutex.HasHandle )
                 {
-                    using( NuclearSampleGame game = new NuclearSampleGame() )
+                    using( GCML_XNA_Client game = new GCML_XNA_Client() )
                     {
                         game.Run();
                     }

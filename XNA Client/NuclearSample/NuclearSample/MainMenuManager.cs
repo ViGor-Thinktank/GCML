@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GCML_XNA_Client
 {
     //--------------------------------------------------------------------------
-    internal class MainMenuManager: NuclearUI.MenuManager<NuclearSampleGame>
+    internal class MainMenuManager: NuclearUI.MenuManager<GCML_XNA_Client>
     {
         public NuclearUI.Splitter      mSplitterLinks;
         public NuclearUI.Splitter      mSplitterRechts;
@@ -18,7 +18,7 @@ namespace GCML_XNA_Client
         
 
         //----------------------------------------------------------------------
-        public MainMenuManager( NuclearSampleGame _game, ContentManager _content )
+        public MainMenuManager( GCML_XNA_Client _game, ContentManager _content )
         : base( _game, _game.UIStyle, _content )
         {
             // Splitter

@@ -18,7 +18,7 @@ using NuclearUI = NuclearWinter.UI;
 namespace GCML_XNA_Client
 {
     //--------------------------------------------------------------------------
-    public class NuclearSampleGame : NuclearGame
+    public class GCML_XNA_Client : NuclearGame
     {
         //----------------------------------------------------------------------
         internal GameStates.GameStateIntro      gmsIntro       { get; private set; }
@@ -28,11 +28,11 @@ namespace GCML_XNA_Client
         internal NuclearUI.Style                UIStyle     { get; private set; }
 
         //----------------------------------------------------------------------
-        public NuclearSampleGame()
+        public GCML_XNA_Client()
         {
             Content.RootDirectory = "Content";
 
-            Graphics.PreferredBackBufferWidth = 800;
+            Graphics.PreferredBackBufferWidth = 1000;
             Graphics.PreferredBackBufferHeight = 500;
 
         }
