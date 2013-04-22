@@ -5,15 +5,12 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace NuclearSample.GameStates
+namespace GCML_XNA_Client.GameStates
 {
     //--------------------------------------------------------------------------
     internal class GameStateMainMenu: NuclearWinter.GameFlow.GameStateFadeTransition<NuclearSampleGame>
     {
-        public Texture2D texMapTex;
-        public Texture2D texIconGI;
-        public Texture2D texIconLandser;
-
+        
         //----------------------------------------------------------------------
         public MainMenuManager      MainMenuManager { get; private set; }
 
@@ -27,10 +24,6 @@ namespace NuclearSample.GameStates
         //----------------------------------------------------------------------
         public override void Start()
         {
-            this.texMapTex = Content.Load<Texture2D>("Sprites/Map_klein");
-            this.texIconLandser = Content.Load<Texture2D>("Sprites/IconLandser");
-            this.texIconGI = Content.Load<Texture2D>("Sprites/IconGI");
-
             MainMenuManager = new MainMenuManager( Game, Content );
             Game.IsMouseVisible = true;
 

@@ -5,7 +5,7 @@ using System.Text;
 
 using NuclearUI = NuclearWinter.UI;
 
-namespace NuclearSample.Demos
+namespace GCML_XNA_Client.Demos
 {
     class NotebookPane: NuclearUI.ManagerPane<MainMenuManager>
     {

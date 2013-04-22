@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 using NuclearAnim = NuclearWinter.Animation;
 
-namespace NuclearSample.GameStates
+namespace GCML_XNA_Client.GameStates
 {
     //--------------------------------------------------------------------------
     internal class GameStateIntro: NuclearWinter.GameFlow.GameStateFadeTransition<NuclearSampleGame>

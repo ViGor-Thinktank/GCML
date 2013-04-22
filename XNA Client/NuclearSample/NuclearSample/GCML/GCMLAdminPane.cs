@@ -9,7 +9,7 @@ using GenericCampaignMasterLib;
 using GenericCampaignMasterModel; 
 
 
-namespace NuclearSample.GCML
+namespace GCML_XNA_Client.GCML
 {
     class GCMLAdminPane: NuclearUI.ManagerPane<MainMenuManager>
     {
@@ -124,16 +124,7 @@ namespace NuclearSample.GCML
                 Program.objCampaignState.load();
                 Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
                 List<Player> listPlayers = Program.m_objCampaign.getPlayerList();
-                foreach (Player newP in listPlayers)
-                {
-                    /*frmPlayerMainForm frmP = new frmPlayerMainForm();
-                    frmP.strMyPlayerID = newP.Id;
-                    frmP.button1.Visible = false;
-                    frmP.Text = newP.Playername;
-                    frmP.Show();
-                    lisForms.Add(frmP);*/
-                }
-
+           
             }
             else
             {

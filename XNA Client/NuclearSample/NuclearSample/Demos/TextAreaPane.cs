@@ -6,7 +6,7 @@ using System.Text;
 using NuclearUI = NuclearWinter.UI;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace NuclearSample.Demos
+namespace GCML_XNA_Client.Demos
 {
     class TextAreaPane: NuclearUI.ManagerPane<MainMenuManager>
     {

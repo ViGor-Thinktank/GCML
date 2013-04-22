@@ -15,7 +15,7 @@ using GenericCampaignMasterLib;
 using NuclearWinter;
 using NuclearUI = NuclearWinter.UI;
 
-namespace NuclearSample
+namespace GCML_XNA_Client
 {
     //--------------------------------------------------------------------------
     public class NuclearSampleGame : NuclearGame

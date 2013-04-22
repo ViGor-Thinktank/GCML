@@ -1,14 +1,12 @@
 using System;
 using GenericCampaignMasterLib; 
 
-namespace NuclearSample
+namespace GCML_XNA_Client
 {
     static class Program
     {
         public static CampaignController m_objCampaign;
         public static GCML.clsCampaignInfo objCampaignState;
-
-        
 
         static void Main( string[] args )
         {

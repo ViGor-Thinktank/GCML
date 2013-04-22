@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using GenericCampaignMasterLib;
 
-namespace NuclearSample.GameStates
+namespace GCML_XNA_Client.GameStates
 {
  
 }

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 using NuclearUI = NuclearWinter.UI;
 
-namespace NuclearSample.GCML
+namespace GCML_XNA_Client.GCML
 {
     class GCMLMapPane: NuclearUI.ManagerPane<MainMenuManager>
     {
