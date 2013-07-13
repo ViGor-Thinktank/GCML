@@ -43,18 +43,10 @@ namespace GenericCampaignMasterModel
 
         internal clsUnitType getUnitType(int intUnitTypeID)
         {
-            switch (intUnitTypeID)
-            {
-                case 0:
-                    return new clsUnitTypeDummy(0);
-
-                default:
-                if (dicUnitTypeData.ContainsKey(intUnitTypeID.ToString()))
-                    return dicUnitTypeData[intUnitTypeID.ToString()];
-                else
-                    throw new Exception("unbekannter UnitType");
-
-            }
+            if (dicUnitTypeData.ContainsKey(intUnitTypeID.ToString()))
+                return dicUnitTypeData[intUnitTypeID.ToString()];
+            else
+                throw new Exception("unbekannte UnitType ID");
         }
 
         public int addNewType(clsUnitType newUnitType)

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCML DemoClient-windows", "NuclearSample\NuclearSample\GCML DemoClient-windows.csproj", "{9027822D-280E-4306-BAF1-F5B2C03D951C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCML DemoClient", "NuclearSample\NuclearSampleContent\GCML DemoClient.contentproj", "{A32183B7-F5FD-4FD9-8E3B-55791E948330}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCML_XNA_Client", "NuclearSample\NuclearSampleContent\GCML_XNA_Client.contentproj", "{A32183B7-F5FD-4FD9-8E3B-55791E948330}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearWinter-windows", "NuclearWinter\NuclearWinter-windows.csproj", "{2F2A1E2C-560B-44D3-B693-FFB05D271C53}"
 EndProject

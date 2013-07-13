@@ -8,7 +8,7 @@ using GenericCampaignMasterModel.Commands;
 
 namespace NuclearWinter.UI
 {
-    public class MessagePopup : Popup<IMenuManager>
+    public class clsXWCommandPopup : Popup<IMenuManager>
     {
         public Label TitleLabel { get; private set; }
         public Label MessageLabel { get; private set; }
@@ -18,36 +18,13 @@ namespace NuclearWinter.UI
         BoxGroup mActionsGroup;
 
         Button mCloseButton;
-        Button mConfirmButton;
 
         Action mCloseCallback;
-        Action<bool> mConfirmCallback;
+        Action<ICommand, clsCommandCollection> mCommandCallback;
 
-        SpinningWheel mSpinningWheel;
-
-        public bool ShowSpinningWheel
-        {
-            set
-            {
-                if (value)
-                {
-                    if (mSpinningWheel.Parent == null)
-                    {
-                        AddChild(mSpinningWheel);
-                    }
-                }
-                else
-                {
-                    if (mSpinningWheel.Parent != null)
-                    {
-                        RemoveChild(mSpinningWheel);
-                    }
-                }
-            }
-        }
 
         //----------------------------------------------------------------------
-        public MessagePopup(IMenuManager _manager)
+        public clsXWCommandPopup(IMenuManager _manager)
             : base(_manager)
         {
             TitleLabel = new Label(Screen, "", Anchor.Start);
@@ -56,9 +33,6 @@ namespace NuclearWinter.UI
             AddChild(TitleLabel);
 
             {
-                mSpinningWheel = new SpinningWheel(Screen, Screen.Style.SpinningWheel);
-                mSpinningWheel.AnchoredRect = AnchoredRect.CreateCentered(mSpinningWheel.ContentWidth, mSpinningWheel.ContentHeight);
-
                 // Message label
                 ContentGroup = new Group(Screen);
                 ContentGroup.AnchoredRect = AnchoredRect.CreateFull(0, 60, 0, 80);
@@ -77,11 +51,6 @@ namespace NuclearWinter.UI
                 mCloseButton = new Button(Screen, i18n.Common.Close);
                 mCloseButton.ClickHandler = delegate { Dismiss(); };
                 mCloseButton.BindPadButton(Buttons.A);
-
-                // Confirm
-                mConfirmButton = new Button(Screen, i18n.Common.Confirm);
-                mConfirmButton.ClickHandler = delegate { Confirm(); };
-                mActionsGroup.AddChild(mConfirmButton);
             }
         }
 
@@ -94,49 +63,43 @@ namespace NuclearWinter.UI
             Manager.PushPopup(this);
             Screen.Focus(GetFirstFocusableDescendant(Direction.Down));
 
-            mSpinningWheel.Reset();
+
+        }
+        private void imgCommandIcon_ClickHandler(Button sender)
+        {
+            this.Confirm((ICommand)sender.Tag);
         }
 
-        //----------------------------------------------------------------------
-        public void Setup(string _strTitleText, string _strMessageText, string _strCloseButtonCaption, bool _bShowSpinningWheel = false, Action _closeCallback = null)
-        {
-            TitleLabel.Text = _strTitleText;
-
-            if (_strMessageText != null)
-            {
-                MessageLabel.Text = _strMessageText;
-                ContentGroup.Clear();
-                ContentGroup.AddChild(MessageLabel);
-            }
-
-            mCloseButton.Text = _strCloseButtonCaption;
-            ShowSpinningWheel = _bShowSpinningWheel;
-
-            mActionsGroup.Clear();
-            mActionsGroup.AddChild(mCloseButton);
-            mCloseCallback = _closeCallback;
-        }
+        private clsCommandCollection m_objCommandCollection;
 
         //----------------------------------------------------------------------
-        public void Setup(string _strTitleText, string _strMessageText, string _strConfirmButtonCaption, string _strCloseButtonCaption, Action<bool> _confirmCallback = null)
+        public void Setup(clsCommandCollection objCommandCollection, Action<ICommand, clsCommandCollection> _commandCallback)
         {
-            TitleLabel.Text = _strTitleText;
+            m_objCommandCollection = objCommandCollection;
 
-            if (_strMessageText != null)
-            {
-                MessageLabel.Text = _strMessageText;
-                ContentGroup.Clear();
-                ContentGroup.AddChild(MessageLabel);
-            }
+            TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID: " + objCommandCollection.aktUnit.Id;
+            MessageLabel.Text = objCommandCollection.aktUnit.strDescription;
 
-            mConfirmButton.Text = _strConfirmButtonCaption;
-            mCloseButton.Text = _strCloseButtonCaption;
+            ContentGroup.Clear();
+            ContentGroup.AddChild(MessageLabel);
+
+            mCloseButton.Text = "Schließen";
 
             mActionsGroup.Clear();
-            mActionsGroup.AddChild(mConfirmButton);
+
+            foreach (ICommand aktCommandType in objCommandCollection.listRawCommands)
+            {
+                Button mCommandButton = new Button(Screen);
+                mCommandButton.Text = aktCommandType.strTypeName;
+                mCommandButton.Tag = aktCommandType;
+                mCommandButton.ClickHandler = new Action<Button>(imgCommandIcon_ClickHandler);
+                mActionsGroup.AddChild(mCommandButton);
+            }
+
+            //immer
             mActionsGroup.AddChild(mCloseButton);
 
-            mConfirmCallback = _confirmCallback;
+            mCommandCallback = _commandCallback;
         }
 
         //----------------------------------------------------------------------
@@ -144,12 +107,11 @@ namespace NuclearWinter.UI
         {
             TitleLabel.Text = "";
             MessageLabel.Text = "";
-            mConfirmButton.Text = i18n.Common.Confirm;
+
             mCloseButton.Text = i18n.Common.Close;
 
-            ShowSpinningWheel = false;
             mCloseCallback = null;
-            mConfirmCallback = null;
+            mCommandCallback = null;
 
             ContentGroup.Clear();
 
@@ -160,20 +122,19 @@ namespace NuclearWinter.UI
         protected override void Dismiss()
         {
             var closeCallback = mCloseCallback;
-            var confirmCallback = mConfirmCallback;
+            var confirmCallback = mCommandCallback;
             base.Dismiss();
             if (closeCallback != null) closeCallback();
-            if (confirmCallback != null) confirmCallback(false);
+
         }
 
         //----------------------------------------------------------------------
-        protected void Confirm()
+        protected void Confirm(ICommand chosenCommand)
         {
-            var confirmCallback = mConfirmCallback;
+            var confirmCallback = mCommandCallback;
             Close();
-            confirmCallback(true);
+
+            confirmCallback(chosenCommand, m_objCommandCollection);
         }
     }
-
-  
 }

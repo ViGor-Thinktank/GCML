@@ -42,13 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignState.cs" />
-    <Compile Include="Commands\Attack.cs" />
+    <Compile Include="Commands\clsCommandCollection.cs" />
+    <Compile Include="Commands\facDropResourceFactory.cs" />
+    <Compile Include="Commands\facFactoryBase.cs" />
+    <Compile Include="Commands\comDropResource.cs" />
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\Move.cs" />
-    <Compile Include="Commands\MoveFactory.cs" />
-    <Compile Include="Commands\PlaceUnit.cs" />
-    <Compile Include="Commands\SektorFactoryBase.cs" />
-    <Compile Include="Commands\ViewableSectorFactory.cs" />
+    <Compile Include="Commands\comMove.cs" />
+    <Compile Include="Commands\facMoveFactory.cs" />
+    <Compile Include="Commands\comPlaceUnit.cs" />
+    <Compile Include="Commands\facSektorFactoryBase.cs" />
+    <Compile Include="Commands\facViewableSectorFactory.cs" />
     <Compile Include="Field\Field.cs" />
     <Compile Include="Info\CampaignInfo.cs" />
     <Compile Include="Info\CommandInfo.cs" />

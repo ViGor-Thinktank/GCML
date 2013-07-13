@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterModel
 {
@@ -14,9 +15,7 @@ namespace GenericCampaignMasterModel
 
         public clsUnit(string unitId, int intUnitTypeID)
         {
-            m_strId = unitId;
-            m_objUnitType = objUnitTypeFountain.getUnitType(intUnitTypeID);
-            m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
+            init(unitId,objUnitTypeFountain.getUnitType(intUnitTypeID));
         }
 
         public clsUnit(string unitId, clsUnitType UnitType)
@@ -34,10 +33,13 @@ namespace GenericCampaignMasterModel
             m_strId = unitId;
             m_objUnitType = UnitType;
             m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
+            this.intResourceValue = UnitType.intResourceValue;
         }
 
         public int intMovement { get { return m_objUnitType.intMovement; } }
         public int intSichtweite { get { return m_objUnitType.intSichtweite; } }
+        public int intResourceValue = 0;
+
 
         public string strOwnerID = "";
 
@@ -67,9 +69,9 @@ namespace GenericCampaignMasterModel
             return m_objUnitType.getTypeCommands(this);
         }
 
-        private Move m_aktCommand = null;
+        private ICommand m_aktCommand = null;
 
-        public Move aktCommand
+        public ICommand aktCommand
         {
             get { return m_aktCommand; }
             set { m_aktCommand = value; }
@@ -101,5 +103,15 @@ namespace GenericCampaignMasterModel
                 this.aktCommand.Execute();
             }
         }
+
+        public string strDescription
+        {
+            get
+            {
+                return this.m_objUnitType.strDescription.Replace("[%intResourceValue%]", intResourceValue.ToString());
+            }
+        }
+
+        public string strBez { get { return m_objUnitType.strBez; } }
     }
 }

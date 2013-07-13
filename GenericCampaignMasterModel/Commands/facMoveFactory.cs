@@ -4,23 +4,13 @@ using System.Linq;
 using System.Text;
 
 
-namespace GenericCampaignMasterModel
+namespace GenericCampaignMasterModel.Commands
 {
-    public class clsMoveFactory : clsSektorFactoryBase
+    public class facMoveFactory : clsSektorFactoryBase
     {
-        private clsUnit m_Unit;
-        
         private List<string> m_listKnownMovements = new List<string>();
 
-        public delegate void delNewMoveCommand(Move readyCmd);
-        public event delNewMoveCommand onNewMoveCommand;
-        private void raiseOnNewMoveCommand(Move readyCmd)
-        {
-            if (onNewMoveCommand != null)
-                onNewMoveCommand(readyCmd);
-        }
-
-        public clsMoveFactory(clsUnit u, Field FieldField) : base(FieldField)
+        public facMoveFactory(clsUnit u, Field FieldField) : base(u, FieldField)
         {
             
             //set Members
@@ -47,8 +37,7 @@ namespace GenericCampaignMasterModel
                     {
                         m_listKnownMovements.Add(newSek.strUniqueID);
 
-                        Move readyCmd = new Move();
-                        readyCmd.Unit = m_Unit;
+                        comMove readyCmd = new comMove(m_Unit);
                         readyCmd.CommandId = Guid.NewGuid().ToString();
                        
                         readyCmd.OriginSektor = m_originSektor;
@@ -57,7 +46,7 @@ namespace GenericCampaignMasterModel
 
                         readyCmd.TargetSektor = targetSek;
 
-                        raiseOnNewMoveCommand(readyCmd);
+                        this.raiseOnNewCommand(readyCmd);
                     }
 
                     int intNewFieldsMoved = intFieldsMoved + newSek.intMoveCost;
@@ -75,9 +64,8 @@ namespace GenericCampaignMasterModel
         }
 
 
-        public void go()
+        public override void go()
         {
-            //go
             this.createMoveCommandsForSektor(this.FieldField.get(m_originSektor.objSektorKoord), 0);
         }
     }

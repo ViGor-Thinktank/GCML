@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterModel
 {
@@ -65,6 +66,18 @@ namespace GenericCampaignMasterModel
             return m_command.getInfo();
         }
 
+        public clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
+        {
+            return null;
+        }
         #endregion
+
+        public string strTypeName
+        {
+            get
+            {
+                return this.ToString();
+            }
+        }
     }
 }

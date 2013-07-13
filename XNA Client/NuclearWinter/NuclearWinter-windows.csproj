@@ -130,6 +130,7 @@
     <Compile Include="UI\KeyBox.cs" />
     <Compile Include="UI\Label.cs" />
     <Compile Include="UI\ListView.cs" />
+    <Compile Include="UI\Menu\clsXWCommandPopup.cs" />
     <Compile Include="UI\Menu\IMenuManager.cs" />
     <Compile Include="UI\Menu\ManagerPane.cs" />
     <Compile Include="UI\Menu\MenuManager.cs" />
@@ -203,6 +204,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
+      <Project>{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}</Project>
+      <Name>GenericCampaignMasterModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

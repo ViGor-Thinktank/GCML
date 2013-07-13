@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 using GenericCampaignMasterLib;
-using GenericCampaignMasterModel; 
+using GenericCampaignMasterModel;
+using GenericCampaignMasterModel.Commands;
 
 using NuclearUI = NuclearWinter.UI;
 
@@ -17,60 +18,43 @@ namespace GCML_XNA_Client.GCML
     {
         private int m_intPlayerIndex;
 
-        public GCMLMapPane_XW(MainMenuManager _manager, int intPlayerIndex) : base(_manager)
+        private Dictionary<NuclearUI.Image, string> m_dicCommandIcons;
+        private Dictionary<NuclearUI.Image, clsUnit> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnit>();
+
+#region Texturehandling
+
+        private Dictionary<string, Texture2D> m_dicTextures;
+        
+        private void initTextures()
         {
-            this.initTextures();
-            
-            this.initMap();
+            m_dicTextures = new Dictionary<string, Texture2D>();
+            this.loadTexture("Stars");
 
-            this.m_intPlayerIndex = intPlayerIndex;
+            this.loadTexture("TieF");
+            this.loadTexture("XW");
 
-            Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
+
+            this.loadTexture("Transport");
+            this.loadTexture("Cruiser");
+            this.loadTexture("Station");
+
+            this.loadTexture("eins");
+            this.loadTexture("zwei");
+
+            this.loadTexture("Move");
+            this.loadTexture("DropResource");
+
+            this.loadTexture("Move_Done");
+            this.loadTexture("DropResource_Done");
+
         }
 
-        void m_objCampaign_onTick()
+        private void loadTexture(string p)
         {
-            this.initMap();
-        }
-
-        private void imgBtn_ClickHandler(NuclearUI.Image sender)
-        {
-            ICommand aktCommand = Program.m_objCampaign.getCommand(m_dicImgCmds[sender]);
-            //Manager.MessagePopup.Setup("Move Info", aktCommand.strInfo, NuclearWinter.i18n.Common.Confirm, false);
-            //Manager.MessagePopup.Open(250, 250);
-            aktCommand.Register();
-            initMap();
-        }
-
-        private void imgUnit_ClickHandler(NuclearUI.Image sender)
-        {
-            clsUnit aktUnit = m_dicUnits[sender];
-    
-            clsGCML_Unit Unit = new clsGCML_Unit(aktUnit);
-
-            NuclearUI.GridGroup gridAction = new NuclearUI.GridGroup(Manager.MenuScreen, 3, 3, false, 0);
-            m_gridMap.AddChildAt(gridAction, Unit.aktSektor.objSektorKoord.X, Unit.aktSektor.objSektorKoord.Y);
-            gridAction.AnchoredRect = NuclearUI.AnchoredRect.CreateCentered(sender.ContentWidth, sender.ContentHeight);
-
-            m_dicImgCmds = new Dictionary<NuclearUI.Image, string>();
-
-            IList<ICommand> tm = Program.m_objCampaign.getCommandsForUnit(aktUnit);
-            foreach (ICommand aktCommand in tm)
-            {
-                NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["move"], false);
-                m_dicImgCmds.Add(imgBtn, aktCommand.CommandId);
-                imgBtn.ClickHandler = new Action<NuclearUI.Image>(imgBtn_ClickHandler);
-
-                string[] str = ((Move)aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                int x_offset = Convert.ToInt32(str[0]);
-                int y_offset = Convert.ToInt32(str[1]);
-                m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
-            }
-        }
-
-        private void initXW()
-        {
-           
+            if (!m_dicTextures.ContainsKey(p))
+                m_dicTextures.Add(p, base.Manager.Content.Load<Texture2D>("Sprites/" + p));
+            else
+                m_dicTextures[p] = base.Manager.Content.Load<Texture2D>("Sprites/" + p);
 
         }
 
@@ -90,6 +74,79 @@ namespace GCML_XNA_Client.GCML
             }
         }
 
+#endregion 
+
+        public GCMLMapPane_XW(MainMenuManager _manager, int intPlayerIndex) : base(_manager)
+        {
+            this.initTextures();
+            
+            this.initMap();
+
+            this.m_intPlayerIndex = intPlayerIndex;
+
+            Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
+        }
+
+        void m_objCampaign_onTick()
+        {
+            this.initMap();
+        }
+
+        private void imgCommandIcon_ClickHandler(NuclearUI.Image sender)
+        {
+            Program.m_objCampaign.getCommand(m_dicCommandIcons[sender]).Register();
+            initMap();
+        }
+
+        private void XWCommandPopup_Confirm(ICommand aktCommandType, clsCommandCollection objCommandCollection)
+        {
+            
+            foreach (ICommand aktCommand in objCommandCollection.listReadyCommandsWithTypeFilter(aktCommandType))
+                {
+                    int x_offset = 0;
+                    int y_offset = 0;
+
+                    NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[aktCommand.strTypeName], false);
+                    m_dicCommandIcons.Add(imgBtn, aktCommand.CommandId);
+                    imgBtn.ClickHandler = new Action<NuclearUI.Image>(this.imgCommandIcon_ClickHandler);
+                    if (aktCommand.GetType() == typeof(comMove) || aktCommand.GetType() == typeof(comDropResource))
+                    {
+                        string[] str = ((ICommandWithSektor)aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                        x_offset = Convert.ToInt32(str[0]);
+                        y_offset = Convert.ToInt32(str[1]);
+                    }
+                    else
+                    { 
+                        clsGCML_Unit objGCML_Unit = new clsGCML_Unit(objCommandCollection.aktUnit);
+                        x_offset = objGCML_Unit.aktSektor.objSektorKoord.X;
+                        y_offset = objGCML_Unit.aktSektor.objSektorKoord.Y;
+                    }
+
+                    m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
+                }
+            }
+        
+
+        private void imgUnit_ClickHandler(NuclearUI.Image sender)
+        {
+            clsUnit aktUnit = m_dicUnits[sender];
+    
+            clsGCML_Unit Unit = new clsGCML_Unit(aktUnit);
+
+            NuclearUI.GridGroup gridAction = new NuclearUI.GridGroup(Manager.MenuScreen, 3, 3, false, 0);
+            m_gridMap.AddChildAt(gridAction, Unit.aktSektor.objSektorKoord.X, Unit.aktSektor.objSektorKoord.Y);
+            gridAction.AnchoredRect = NuclearUI.AnchoredRect.CreateCentered(sender.ContentWidth, sender.ContentHeight);
+
+            m_dicCommandIcons = new Dictionary<NuclearUI.Image, string>();
+
+            clsCommandCollection tm = Program.m_objCampaign.getCommandsForUnit(aktUnit);
+
+            Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
+            Manager.XWCommandPopup.Open(500, 300);            
+        }
+
+      
+
         private NuclearUI.GridGroup m_gridMap;
         protected void initMap()
         {
@@ -97,7 +154,6 @@ namespace GCML_XNA_Client.GCML
             
             //Background Image
             NuclearUI.Image imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures["Stars"], false);
-            
             AddChild(imgMap);
 
             int intGridWidth = Program.m_objCampaign.campaignEngine.FieldField.FieldDimension.X+1;
@@ -121,11 +177,6 @@ namespace GCML_XNA_Client.GCML
                     }                    
                 }
                 
-
-/*                foreach (clsUnit aktUnit in aktPly.ListUnits)
-                {
-                    drawUnit(aktUnit);
-                }*/
             }
         }
 
@@ -135,65 +186,48 @@ namespace GCML_XNA_Client.GCML
 
             clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
 
-            if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted)
-            {
-                NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["pfeil"], false);
-
-                imgBtn.fltRotation = 0;
-
-                string[] str = ((Move)objUnit.objUnit.aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                int x_offset = Convert.ToInt32(str[0]);
-                int y_offset = Convert.ToInt32(str[1]);
-                m_gridMap.AddChildAt(imgBtn, x_offset, y_offset);
-                if (imgNumber != null)
-                    m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
-
-                //Token einblenden das den Command angezeigt
-
-            }
-
             NuclearUI.Image imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[objUnit.strTexName], false);
             m_dicUnits.Add(imgUnit, aktUnit);
-            imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
+            if (aktUnit.strOwnerID == aktPly.Id)
+                imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
 
             m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
             if (imgNumber != null)
                 m_gridMap.AddChildAt(newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit)), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
 
-        }
 
-        private void addButton(ICommand aktCommand, ref int offset, string p)
-        {
-            throw new NotImplementedException();
-        }
-        
-        private Dictionary<string, Texture2D> m_dicTextures;
-        private Dictionary<NuclearUI.Image, string> m_dicImgCmds;
-        private Dictionary<NuclearUI.Image, clsUnit> m_dicUnits = new Dictionary<NuclearUI.Image,clsUnit>();
+            if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted && objUnit.objUnit.strOwnerID == aktPly.Id)
+            {
+                NuclearUI.Image imgDoneIcon = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[objUnit.objUnit.aktCommand.strTypeName + "_Done"], false);
 
-        private void initTextures()
-        {
-            m_dicTextures = new Dictionary<string, Texture2D>();
-            this.loadTexture("Stars");
-            
-            this.loadTexture("TieF");
-            this.loadTexture("XW");
+                imgDoneIcon.fltRotation = 0;
 
-            this.loadTexture("eins");
-            this.loadTexture("zwei");
+                int x_offset = 0;
+                int y_offset = 0;
 
-            this.loadTexture("move");
-            this.loadTexture("pfeil");
-        }
+                if (objUnit.objUnit.aktCommand.GetType() == typeof(comMove) || objUnit.objUnit.aktCommand.GetType() == typeof(comDropResource))
+                {
+                    //Token einblenden das den Command angezeigt
+                    string[] str = ((ICommandWithSektor)objUnit.objUnit.aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                    x_offset = Convert.ToInt32(str[0]);
+                    y_offset = Convert.ToInt32(str[1]);
+                }
+                else
+                {
+                    x_offset = objUnit.aktSektor.objSektorKoord.X;
+                    y_offset = objUnit.aktSektor.objSektorKoord.Y;
+                }
 
-        private void loadTexture(string p)
-        {
-            if (!m_dicTextures.ContainsKey(p))
-                m_dicTextures.Add(p, base.Manager.Content.Load<Texture2D>("Sprites/" + p));
-            else
-                m_dicTextures[p] = base.Manager.Content.Load<Texture2D>("Sprites/" + p);
-            
+                if (imgDoneIcon != null)
+                    m_gridMap.AddChildAt(imgDoneIcon, x_offset, y_offset);
+
+                if (imgNumber != null)
+                    m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
+
+
+            }
         }
         
+    
     }
 }

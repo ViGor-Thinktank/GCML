@@ -120,7 +120,6 @@
     <Compile Include="GCML\clsCampaignInfo.cs" />
     <Compile Include="GCML\clsGCML_Unit.cs" />
     <Compile Include="GCML\GCMLAdminPane.cs" />
-    <Compile Include="GCML\GCMLMapPane.cs" />
     <Compile Include="GCML\GCMLMapPane_XW.cs" />
     <Compile Include="MainMenuManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,8 +143,8 @@
       <Project>{2F2A1E2C-560B-44D3-B693-FFB05D271C53}</Project>
       <Name>NuclearWinter-windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NuclearSampleContent\GCML DemoClient.contentproj">
-      <Name>GCML DemoClient %28Content%29</Name>
+    <ProjectReference Include="..\NuclearSampleContent\GCML_XNA_Client.contentproj">
+      <Name>GCML_XNA_Client %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
       <Project>{A32183B7-F5FD-4FD9-8E3B-55791E948330}</Project>
     </ProjectReference>

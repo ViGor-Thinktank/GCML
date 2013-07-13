@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterModel
 {
-    public class clsUnitTypeDummy : clsUnitType 
-    {
-        public clsUnitTypeDummy(int ID) : base(ID, "UnitTypeDummy")
-        {
-            this.m_intMovement = 1;
-            this.m_intSichtweite = 1;
-        }
-
-        
-    }
-
     public class clsUnitType : IResourceable
     {
 
@@ -24,16 +14,32 @@ namespace GenericCampaignMasterModel
         protected  int m_intMovement = 0;
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
+        private int m_intUnitStorage = -1;
+        private int m_intResourceValue = -1;
 
-        public string strClientData = ""; //extra Daten die der Client benötigt && verwaltet 
+        public string strClientData = ""; //extra Daten die der Client benötigt && verwaltet, Beispiel Texturen Infos
+        public string strDescription = "";
 
         public int ID { get { return m_ID; } set { m_ID = value; } }
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
-        public int intMovement 
-        { 
-            get { return m_intMovement; } 
-            set { m_intMovement = value; } 
+        public int intMovement  { get { return m_intMovement; } set { m_intMovement = value; } }
+        public int intUnitStorage { get { return m_intUnitStorage; } set { m_intUnitStorage = value; } }
+        public int intResourceValue { get { return m_intResourceValue; } set { m_intResourceValue = value; } }
+
+        public bool blnCanStoreResourceValue { get { return m_intResourceValue != -1; } }
+
+
+        //q&d lösung für einfache Uniterzeugung
+        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", int intStorage = -1, int intResourceValue = -1)
+        {
+            this.strBez = strBez;
+            this.intSichtweite = intSichtweite;
+            this.intMovement = intMovement;
+            this.strClientData = "Texture:=" + strTexture ;
+            this.intUnitStorage = intStorage;
+            this.intResourceValue = intResourceValue;
+            this.strDescription = strDescription;
         }
 
         //Konstruktoren
@@ -47,11 +53,28 @@ namespace GenericCampaignMasterModel
         //Funktionen
         public List<ICommand> getTypeCommands(clsUnit CallingUnit)
         {
-            Move cmd = new Move();
-            cmd.Unit = CallingUnit;
-
             List<ICommand> cmdlist = new List<ICommand>();
-            cmdlist.Add(cmd);
+
+            ICommand cmd;
+
+            if (CallingUnit.intMovement > 0)
+            {
+                cmd = new comMove(CallingUnit);
+                cmdlist.Add(cmd);
+            }
+
+            if (CallingUnit.UnitType.intUnitStorage > 0)
+            {
+                cmd = new comPlaceUnit();
+                cmdlist.Add(cmd);
+            }
+
+            if (CallingUnit.UnitType.intResourceValue > 0)
+            {
+                cmd = new comDropResource(CallingUnit, null);
+                cmdlist.Add(cmd);
+            }
+
             return cmdlist;
         }
 
@@ -63,7 +86,7 @@ namespace GenericCampaignMasterModel
             // Todo: Accessible-Fields Property für Player: Felder die Einheiten platziert werden können (Ruleset?)
             foreach (Sektor sektor in owner.accessibleSectors)
             {
-                PlaceUnit cmd = new PlaceUnit();
+                comPlaceUnit cmd = new comPlaceUnit();
                 cmd.CommandId = Guid.NewGuid().ToString();
                 cmd.TargetSektor = sektor;
                 cmd.UnitTypeToPlace = this;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using GenericCampaignMasterModel;
+using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterLib
 {
@@ -225,13 +226,14 @@ namespace GenericCampaignMasterLib
             return info;
         }
 
-        public List<ICommand> getCommandsForUnit(clsUnit unit)
+        public clsCommandCollection getCommandsForUnit(clsUnit unit)
         {
-            List <ICommand> lstCmds = this.m_campaignEngine.getCommandsForUnit(unit);
-            foreach(ICommand cmd in lstCmds)
+            clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
+            
+            foreach (ICommand cmd in objCommands.listReadyCommands)
                 m_dictCommandCache.Add(cmd.CommandId, cmd);
 
-            return lstCmds;
+            return objCommands;
         }
 
         public ICommand getCommand(string commandId)

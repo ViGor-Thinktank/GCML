@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterModel
 {
@@ -96,9 +97,9 @@ namespace GenericCampaignMasterModel
                 m_lstUnusedUnitResources.Remove(remRes);
                 m_lstUsedUnitResources.Add(remRes);
 
-                if (cmd.InnerCommand.GetType() == typeof(PlaceUnit))
+                if (cmd.InnerCommand.GetType() == typeof(comPlaceUnit))
                 {
-                    PlaceUnit pu = cmd.InnerCommand as PlaceUnit;
+                    comPlaceUnit pu = cmd.InnerCommand as comPlaceUnit;
                     string unitId = pu.UnitId;
                     this.CreatedUnitIds.Push(unitId);
                 }
