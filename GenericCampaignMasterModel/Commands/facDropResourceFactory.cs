@@ -65,7 +65,7 @@ namespace GenericCampaignMasterModel.Commands
                     intDistance += 1;
 
                     //atm zu Dev zwecken: es kann ins eigene Feld und in anliegende Deliverd werden 
-                    if (intDistance < 2)
+                    if (intDistance < 1)
                     {
                         createDropResourceCommandsForSektor(newSek, intDistance);
                     }

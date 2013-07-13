@@ -15,9 +15,9 @@ namespace GenericCampaignMasterModel.Commands
 
         public Sektor OriginSektor { get; set; }
 
-        public new void Execute()
+        public override void Execute()
 		{
-            base.Execute();
+            base.markExecute();
 			OriginSektor.removeUnit(this.m_objUnitToCommand);
 			TargetSektor.addUnit(this.m_objUnitToCommand);
         }

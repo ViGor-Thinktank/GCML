@@ -53,8 +53,8 @@ namespace GenericCampaignMasterModel.Commands
         public bool blnExecuted { get { return m_blnExecuted; } }
 
         public string CommandId { get; set; }
-
-        public void Execute()
+        public abstract void Execute();
+        protected void markExecute()
         {
             Register();
             m_blnExecuted = true;

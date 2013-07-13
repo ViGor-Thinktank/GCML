@@ -15,8 +15,10 @@ namespace GenericCampaignMasterModel.Commands
             : base("PlaceUnit")
         { }
        
-        public new void Execute()
+        public override void Execute() 
         {
+            base.markExecute();
+
             clsUnit unitToPlace = new clsUnit(UnitTypeToPlace);
             unitToPlace.strOwnerID = Owner.Id;
             Owner.ListUnits.Add(unitToPlace);

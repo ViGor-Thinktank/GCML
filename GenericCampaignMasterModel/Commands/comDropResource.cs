@@ -28,9 +28,9 @@ namespace GenericCampaignMasterModel.Commands
             this.m_objRecieveUnit = objRecieveUnit;
         }
 
-        public new void Execute ()
+        public override void Execute ()
 		{
-            base.Execute();
+            base.markExecute();
 
             this.m_objRecieveUnit.intResourceValue += this.m_objDeliverUnit.intResourceValue;
             this.m_objDeliverUnit.intResourceValue = 0;

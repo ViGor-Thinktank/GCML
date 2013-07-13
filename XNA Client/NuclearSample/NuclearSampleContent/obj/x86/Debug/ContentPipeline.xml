@@ -533,13 +533,67 @@
       <Time>2013-03-15T08:18:42.7811745+01:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\move.png</Source>
-      <Name>Sprites\move</Name>
+      <Source>Sprites\Move.png</Source>
+      <Name>Sprites\Move</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\move.xnb</Output>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move.xnb</Output>
       <Time>2013-03-13T08:12:47.5161079+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Move_Done.png</Source>
+      <Name>Sprites\Move_Done</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move_Done.xnb</Output>
+      <Time>2013-03-14T18:14:30.2123314+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Cruiser.png</Source>
+      <Name>Sprites\Cruiser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser.xnb</Output>
+      <Time>2013-07-13T15:46:30.0822885+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Station.png</Source>
+      <Name>Sprites\Station</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station.xnb</Output>
+      <Time>2013-07-11T21:45:17.0509286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Transport.png</Source>
+      <Name>Sprites\Transport</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transport.xnb</Output>
+      <Time>2013-07-11T21:43:53.8665822+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\DropResource.png</Source>
+      <Name>Sprites\DropResource</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource.xnb</Output>
+      <Time>2013-07-12T22:13:23.8700279+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\DropResource_Done.png</Source>
+      <Name>Sprites\DropResource_Done</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource_Done.xnb</Output>
+      <Time>2013-07-13T10:43:09.8063592+02:00</Time>
     </Item>
     <Item>
       <Source>Fonts\LargeFont.spritefont</Source>
@@ -576,60 +630,6 @@
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
       <Time>2013-01-17T08:10:01.2258139+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Cruiser.png</Source>
-      <Name>Sprites\Cruiser</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser.xnb</Output>
-      <Time>2013-07-13T15:46:30.0822885+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\station.png</Source>
-      <Name>Sprites\station</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\station.xnb</Output>
-      <Time>2013-07-11T21:45:17.0509286+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Transport.png</Source>
-      <Name>Sprites\Transport</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transport.xnb</Output>
-      <Time>2013-07-11T21:43:53.8665822+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\DropResource.png</Source>
-      <Name>Sprites\DropResource</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource.xnb</Output>
-      <Time>2013-07-12T22:13:23.8700279+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Move_Done.png</Source>
-      <Name>Sprites\Move_Done</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move_Done.xnb</Output>
-      <Time>2013-03-14T18:14:30.2123314+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\DropResource_Done.png</Source>
-      <Name>Sprites\DropResource_Done</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource_Done.xnb</Output>
-      <Time>2013-07-13T10:43:09.8063592+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

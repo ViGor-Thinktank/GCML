@@ -117,7 +117,7 @@ namespace GCML_XNA_Client.GCML
             Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader"));
             Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Tie", 1, 2, "TieF"));
 
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumstation", 2, 0, "Station", "", 3, 0));
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", 3, 0));
             Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", 0, 100));
             Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser","",1));
 

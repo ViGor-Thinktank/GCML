@@ -63,16 +63,16 @@ namespace GenericCampaignMasterModel
                 cmdlist.Add(cmd);
             }
 
-            if (CallingUnit.UnitType.intUnitStorage > 0)
-            {
-                cmd = new comPlaceUnit();
-                cmdlist.Add(cmd);
-            }
-
-            if (CallingUnit.UnitType.intResourceValue > 0)
+            if (CallingUnit.intResourceValue > 0)
             {
                 cmd = new comDropResource(CallingUnit, null);
                 cmdlist.Add(cmd);
+
+                if (CallingUnit.UnitType.intUnitStorage > 0)
+                {
+                    cmd = new comPlaceUnit();
+                    cmdlist.Add(cmd);
+                }
             }
 
             return cmdlist;
