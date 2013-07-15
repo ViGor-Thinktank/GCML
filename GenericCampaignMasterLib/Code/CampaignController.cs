@@ -174,9 +174,12 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        public clsUnit createNewUnit(string strPlayerID, int intUnitTypeID)
+        //, string strSpawnSektorKoord = "" --> zu devzwecken 
+        public clsUnit createNewUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
-            clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID);
+           
+
+            clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
 

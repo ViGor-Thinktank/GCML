@@ -13,6 +13,7 @@ namespace GenericCampaignMasterModel
         public int Z { get; set; }
 
         private List<int> m_lstIntPosition;
+        
         public List<int> Position
         {
             get
@@ -39,6 +40,7 @@ namespace GenericCampaignMasterModel
             this.m_lstIntPosition = new List<int> { x, y, z };
         }
 
+      
         public virtual bool Equals(clsSektorKoordinaten other)
         {
             if (this.Position == other.Position)

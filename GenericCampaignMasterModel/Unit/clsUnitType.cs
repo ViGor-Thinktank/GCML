@@ -14,7 +14,8 @@ namespace GenericCampaignMasterModel
         protected  int m_intMovement = 0;
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
-        private int m_intUnitStorage = -1;
+        private List<clsUnitType> m_listUnitSpawn = null;
+
         private int m_intResourceValue = -1;
 
         public string strClientData = ""; //extra Daten die der Client benötigt && verwaltet, Beispiel Texturen Infos
@@ -24,20 +25,20 @@ namespace GenericCampaignMasterModel
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
         public int intMovement  { get { return m_intMovement; } set { m_intMovement = value; } }
-        public int intUnitStorage { get { return m_intUnitStorage; } set { m_intUnitStorage = value; } }
         public int intResourceValue { get { return m_intResourceValue; } set { m_intResourceValue = value; } }
 
         public bool blnCanStoreResourceValue { get { return m_intResourceValue != -1; } }
+        public bool blnCanSpawnUnits { get { return m_listUnitSpawn != null; } }
 
 
         //q&d lösung für einfache Uniterzeugung
-        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", int intStorage = -1, int intResourceValue = -1)
+        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", List<clsUnitType> listUnitspawn = null, int intResourceValue = -1)
         {
             this.strBez = strBez;
             this.intSichtweite = intSichtweite;
             this.intMovement = intMovement;
             this.strClientData = "Texture:=" + strTexture ;
-            this.intUnitStorage = intStorage;
+            this.m_listUnitSpawn = listUnitspawn;
             this.intResourceValue = intResourceValue;
             this.strDescription = strDescription;
         }
@@ -68,7 +69,7 @@ namespace GenericCampaignMasterModel
                 cmd = new comDropResource(CallingUnit, null);
                 cmdlist.Add(cmd);
 
-                if (CallingUnit.UnitType.intUnitStorage > 0)
+                if (CallingUnit.UnitType.blnCanSpawnUnits)
                 {
                     cmd = new comPlaceUnit();
                     cmdlist.Add(cmd);

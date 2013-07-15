@@ -109,14 +109,19 @@ namespace GCML_XNA_Client.GCML
                     NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[aktCommand.strTypeName], false);
                     m_dicCommandIcons.Add(imgBtn, aktCommand.CommandId);
                     imgBtn.ClickHandler = new Action<NuclearUI.Image>(this.imgCommandIcon_ClickHandler);
+                    
                     if (aktCommand.GetType() == typeof(comMove) || aktCommand.GetType() == typeof(comDropResource))
                     {
                         string[] str = ((ICommandWithSektor)aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                         x_offset = Convert.ToInt32(str[0]);
                         y_offset = Convert.ToInt32(str[1]);
                     }
+                    else if (aktCommand.GetType() == typeof(comPlaceUnit))
+                    {
+                        
+                    }
                     else
-                    { 
+                    {
                         clsGCML_Unit objGCML_Unit = new clsGCML_Unit(objCommandCollection.aktUnit);
                         x_offset = objGCML_Unit.aktSektor.objSektorKoord.X;
                         y_offset = objGCML_Unit.aktSektor.objSektorKoord.Y;

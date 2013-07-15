@@ -240,14 +240,31 @@ namespace GenericCampaignMasterLib
         }
 
 
-        internal clsUnit addUnit(string strPlayerID, int intUnitTypeID)
+        //, string strSpawnSektorKoord = "" --> zu devzwecken 
+        internal clsUnit addUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
-             clsUnit newUnit = null;
+            clsSektorKoordinaten objSpawSek = null;
+            if (strSpawnSektorKoord != "")
+            {
+                string[] split = strSpawnSektorKoord.Split(new string[] { "|" }, StringSplitOptions.None);
+
+                int x = Convert.ToInt32(split[0]);
+                int y = Convert.ToInt32(split[1]);
+                int z = Convert.ToInt32(split[2]);
+                objSpawSek = new clsSektorKoordinaten(x, y, z);
+            }
+            else
+            {
+                objSpawSek = (getPlayerByID(strPlayerID).unitspawnSektor != null ? getPlayerByID(strPlayerID).unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
+            }
+            clsUnit newUnit = null;
+            
             //Ergibt eineindeutige UnitIDs
             newUnit = new clsUnit(strPlayerID + getPlayerByID(strPlayerID).ListUnits.Count.ToString(), intUnitTypeID);
             newUnit.strOwnerID = strPlayerID;
-            clsSektorKoordinaten insertSek = (getPlayerByID(strPlayerID).unitspawnSektor != null ? getPlayerByID(strPlayerID).unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
-            return addUnit(strPlayerID, newUnit, insertSek);
+
+
+            return addUnit(strPlayerID, newUnit, objSpawSek);
         }
 
         public Player getPlayerByName(string strName)

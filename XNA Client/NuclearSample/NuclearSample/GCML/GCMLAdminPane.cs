@@ -17,7 +17,7 @@ namespace GCML_XNA_Client.GCML
         public GCMLAdminPane(MainMenuManager _manager)
         : base( _manager )
         {
-            int iRows = 4;
+            int iRows = 5;
 
             NuclearUI.GridGroup gridGroup = new NuclearUI.GridGroup( Manager.MenuScreen, 5, iRows, false, 0 );
             gridGroup.AnchoredRect = NuclearUI.AnchoredRect.CreateTopLeftAnchored(0, 0, 700, iRows * 50);
@@ -94,32 +94,49 @@ namespace GCML_XNA_Client.GCML
                 button.ClickHandler = delegate
                 {
                     this.manualDataInit();
-                    
-            
                 };
                 gridGroup.AddChildAt(button, 1, 2);
+
+                button = new NuclearUI.Button(Manager.MenuScreen, "Init Build Demo");
+                button.ClickHandler = delegate
+                {
+                    this.InitBuildDemo();
+                   
+                };
+                gridGroup.AddChildAt(button, 0, 4);
+
             }
 
             
             
         }
 
-        private void addUnit(string strUnit, string strSpieler)
+        private void InitBuildDemo()
+        {
+            this.manualDataInit();
+            this.addUnit("Raumtransporter", "Rebel");
+            this.addUnit("Raumstation", "Rebel", "3|3|0");
+            Program.m_objCampaign.Tick();
+        }
+
+        private void addUnit(string strUnit, string strSpieler, string strSektor = "")
         {
             int XW_ID = Program.m_objCampaign.getCampaignInfo_UnitTypeByName(strUnit).ID;
             Player ply = Program.m_objCampaign.getPlayerByName(strSpieler);
             //erzeuge Spieler1 
-            Program.m_objCampaign.createNewUnit(ply.Id, XW_ID);
+            Program.m_objCampaign.createNewUnit(ply.Id, XW_ID, strSektor);
         }
 
         private void manualDataInit()
         {
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader"));
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Tie", 1, 2, "TieF"));
-
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", 3, 0));
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", 0, 100));
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser","",1));
+            clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader");
+            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "TieF");
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(objXWing);
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(objTie);
+           
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> {objXWing}, 0));
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen",null, 100));
+            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser","kann Tie Schwadronen spawnen", new List<clsUnitType> { objTie }, 1));
 
             //erzeuge Spieler1
             Player ply = Program.m_objCampaign.addPlayer("Rebel");
@@ -130,10 +147,6 @@ namespace GCML_XNA_Client.GCML
             ply.unitspawnSektor = Program.m_objCampaign.getSektor("|5|5|0|");
            
         }
-
-        //----------------------------------------------------------------------
-
-
 
         private void initGCML()
         {
