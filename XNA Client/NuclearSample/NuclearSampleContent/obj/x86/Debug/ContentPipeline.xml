@@ -512,7 +512,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\eins.xnb</Output>
-      <Time>2013-03-06T07:57:45.5247287+01:00</Time>
+      <Time>2013-07-16T14:55:51.9670378+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\zwei.png</Source>
@@ -521,7 +521,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\zwei.xnb</Output>
-      <Time>2013-03-06T07:58:05.1203633+01:00</Time>
+      <Time>2013-07-16T14:56:22.293491+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stars.jpg</Source>
@@ -630,6 +630,33 @@
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
       <Time>2013-01-17T08:10:01.2258139+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\PlaceUnit.png</Source>
+      <Name>Sprites\PlaceUnit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit.xnb</Output>
+      <Time>2013-07-16T14:58:25.6907078+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\PlaceUnit_Done.png</Source>
+      <Name>Sprites\PlaceUnit_Done</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit_Done.xnb</Output>
+      <Time>2013-07-15T14:10:18.1779092+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\drei.png</Source>
+      <Name>Sprites\drei</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\drei.xnb</Output>
+      <Time>2013-07-16T14:57:23.8365992+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

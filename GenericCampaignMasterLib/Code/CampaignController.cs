@@ -186,17 +186,6 @@ namespace GenericCampaignMasterLib
             return newUnit;
         }
 
-        public void createNewUnitAndRegister(Player owner, clsUnitType newUnitType, Sektor targetSektor)
-        {
-            clsUnit newUnit = new clsUnit(newUnitType);
-            newUnit.strOwnerID = owner.Id;
-            owner.ListUnits.Add(newUnit);
-            targetSektor.addUnit(newUnit);
-
-            this.onTick += new delTick(newUnit.CampaignController_onTick);
-        }
-
-
         public Player getPlayerByID(string pID)
         {
             return this.m_campaignEngine.getPlayerByID(pID);
@@ -232,20 +221,31 @@ namespace GenericCampaignMasterLib
         public clsCommandCollection getCommandsForUnit(clsUnit unit)
         {
             clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
-            
-            foreach (ICommand cmd in objCommands.listReadyCommands)
-                m_dictCommandCache.Add(cmd.CommandId, cmd);
 
+            foreach (ICommand cmd in objCommands.listReadyCommands)
+            {
+                m_dictCommandCache.Add(cmd.CommandId, cmd);
+                cmd.onControllerEvent += new delControllerEvent(cmd_onControllerEvent);
+            }
             return objCommands;
         }
 
+        //FA 16.07.13 beschissene Q&D Lösung, Trennung Lib und Model zur Diskussion stellen
+        public void cmd_onControllerEvent(clsEventData objEventData)
+        {
+            if (objEventData.objCommand.GetType() == typeof(comPlaceUnit))
+            {
+                comPlaceUnit cmd = (comPlaceUnit)objEventData.objCommand;
+                this.createNewUnit(cmd.strNewOwner(), cmd.intNewUnitTypeID(), cmd.TargetSektor.objSektorKoord.uniqueIDstr());
+            }
+        }
+
+      
         public ICommand getCommand(string commandId)
         {
             ICommand result = null;
             if (m_dictCommandCache.ContainsKey(commandId))
                 result = m_dictCommandCache[commandId];
-
-
             return result;
         }
 

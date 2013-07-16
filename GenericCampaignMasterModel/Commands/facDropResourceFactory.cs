@@ -51,7 +51,7 @@ namespace GenericCampaignMasterModel.Commands
                                 m_listPossibleDrops.Add(objPosibleRecieverUnit);
 
                                 comDropResource readyCmd = new comDropResource(m_objDeliverUnit, objPosibleRecieverUnit);
-                                readyCmd.CommandId = Guid.NewGuid().ToString();
+                                
 
                                 Sektor targetSek = this.FieldField.get(newSek.objSektorKoord);
 

@@ -40,12 +40,17 @@ namespace GCML_XNA_Client.GCML
 
             this.loadTexture("eins");
             this.loadTexture("zwei");
+            this.loadTexture("drei");
+
 
             this.loadTexture("Move");
-            this.loadTexture("DropResource");
-
             this.loadTexture("Move_Done");
+            
+            this.loadTexture("DropResource");
             this.loadTexture("DropResource_Done");
+
+            this.loadTexture("PlaceUnit");
+            this.loadTexture("PlaceUnit_Done");
 
         }
 
@@ -67,6 +72,9 @@ namespace GCML_XNA_Client.GCML
 
                 case 1:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["zwei"], false);
+
+                case 2:
+                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["drei"], false);
 
                 default:
                     return null;
@@ -118,7 +126,9 @@ namespace GCML_XNA_Client.GCML
                     }
                     else if (aktCommand.GetType() == typeof(comPlaceUnit))
                     {
-                        
+                        clsGCML_Unit objGCML_Unit = new clsGCML_Unit(objCommandCollection.aktUnit);
+                        x_offset = objGCML_Unit.aktSektor.objSektorKoord.X;
+                        y_offset = objGCML_Unit.aktSektor.objSektorKoord.Y;
                     }
                     else
                     {

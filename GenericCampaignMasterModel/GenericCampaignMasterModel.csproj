@@ -43,15 +43,32 @@
   <ItemGroup>
     <Compile Include="CampaignState.cs" />
     <Compile Include="Commands\clsCommandCollection.cs" />
-    <Compile Include="Commands\facDropResourceFactory.cs" />
+    <Compile Include="Commands\comDropResource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\comMove.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\comPlaceUnit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\facDropResourceFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Commands\facFactoryBase.cs" />
-    <Compile Include="Commands\comDropResource.cs" />
+    <Compile Include="Commands\facMoveFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\facPlaceUnitFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\facSektorFactoryBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\facViewableSectorFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\comMove.cs" />
-    <Compile Include="Commands\facMoveFactory.cs" />
-    <Compile Include="Commands\comPlaceUnit.cs" />
-    <Compile Include="Commands\facSektorFactoryBase.cs" />
-    <Compile Include="Commands\facViewableSectorFactory.cs" />
     <Compile Include="Field\Field.cs" />
     <Compile Include="Info\CampaignInfo.cs" />
     <Compile Include="Info\CommandInfo.cs" />

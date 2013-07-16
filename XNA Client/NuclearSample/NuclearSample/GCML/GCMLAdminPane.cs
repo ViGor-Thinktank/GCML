@@ -115,7 +115,7 @@ namespace GCML_XNA_Client.GCML
         {
             this.manualDataInit();
             this.addUnit("Raumtransporter", "Rebel");
-            this.addUnit("Raumstation", "Rebel", "3|3|0");
+            this.addUnit("Raumstation", "Rebel", "2|2|0");
             Program.m_objCampaign.Tick();
         }
 

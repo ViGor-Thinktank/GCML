@@ -17,17 +17,7 @@ namespace GenericCampaignMasterModel
         {
             init(unitId,objUnitTypeFountain.getUnitType(intUnitTypeID));
         }
-
-        public clsUnit(string unitId, clsUnitType UnitType)
-        {
-            init(unitId, UnitType);
-        }
-
-        public clsUnit(clsUnitType UnitType)
-        {
-            init(Guid.NewGuid().ToString(), UnitType);
-        }
-
+      
         private void init(string unitId, clsUnitType UnitType)
         {
             m_strId = unitId;
@@ -86,14 +76,6 @@ namespace GenericCampaignMasterModel
                 else
                     return "";
             }
-        }
-
-        private List<ICommand> m_cmdCache;
-
-        public List<ICommand> cmdCache
-        {
-            get { return m_cmdCache; }
-            set { m_cmdCache = value; }
         }
 
         public void CampaignController_onTick()

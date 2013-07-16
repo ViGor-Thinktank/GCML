@@ -38,7 +38,7 @@ namespace GenericCampaignMasterModel.Commands
                         m_listKnownMovements.Add(newSek.strUniqueID);
 
                         comMove readyCmd = new comMove(m_Unit);
-                        readyCmd.CommandId = Guid.NewGuid().ToString();
+                        
                        
                         readyCmd.OriginSektor = m_originSektor;
 

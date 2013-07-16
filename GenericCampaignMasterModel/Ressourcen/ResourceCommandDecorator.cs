@@ -15,7 +15,9 @@ namespace GenericCampaignMasterModel
         ResourceHandler m_resourceHandler;
         ICommand m_command;
         Guid m_resourceId;
-       
+
+        public event delControllerEvent onControllerEvent;
+
         public ICommand InnerCommand 
         {
             get { return m_command; }

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterModel.Commands
 {
     public abstract class clsFactoryBase
     {
+        public Player actingPlayer = null;
+
         public abstract void go();
 
         public delegate void delNewStatus(string strStatus);

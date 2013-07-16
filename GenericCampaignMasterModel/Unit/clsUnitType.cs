@@ -15,6 +15,15 @@ namespace GenericCampaignMasterModel
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
         private List<clsUnitType> m_listUnitSpawn = null;
+        
+        //Q&&D Dev Zwischenlösung
+        public clsUnitType firstUnitSpawnType
+        {
+            get
+            {
+                return m_listUnitSpawn[0];
+            }
+        }
 
         private int m_intResourceValue = -1;
 
@@ -71,7 +80,7 @@ namespace GenericCampaignMasterModel
 
                 if (CallingUnit.UnitType.blnCanSpawnUnits)
                 {
-                    cmd = new comPlaceUnit();
+                    cmd = new comPlaceUnit(CallingUnit);
                     cmdlist.Add(cmd);
                 }
             }
@@ -87,11 +96,9 @@ namespace GenericCampaignMasterModel
             // Todo: Accessible-Fields Property für Player: Felder die Einheiten platziert werden können (Ruleset?)
             foreach (Sektor sektor in owner.accessibleSectors)
             {
-                comPlaceUnit cmd = new comPlaceUnit();
+                comPlaceUnit cmd = new comPlaceUnit(null, owner, this);
                 cmd.CommandId = Guid.NewGuid().ToString();
                 cmd.TargetSektor = sektor;
-                cmd.UnitTypeToPlace = this;
-                cmd.Owner = owner;
                 placeUnitCommands.Add(cmd);
             }
 

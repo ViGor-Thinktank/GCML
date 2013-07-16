@@ -7,25 +7,38 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class comPlaceUnit : clsCommandBaseClass
     {
-        public string UnitId { get; set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
-        public clsUnitType UnitTypeToPlace { get; set; }
-        public Player Owner { get; set; }
+      
+        public string UnitId { get; private set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
+        private clsUnitType m_UnitTypeToPlace = null;
 
-        public comPlaceUnit()
+        private Player m_Owner = null;
+        
+        public comPlaceUnit(clsUnit Unit)
             : base("PlaceUnit")
-        { }
-       
+        {
+            this.m_objUnitToCommand = Unit;
+        }
+
+        public comPlaceUnit(clsUnit Unit, Player owner, clsUnitType UnitTypeToPlace)
+            : base("PlaceUnit")
+        {   
+            this.m_objUnitToCommand = Unit;
+            this.m_Owner = owner;
+            this.m_UnitTypeToPlace = UnitTypeToPlace;
+        }
+
+        public string strNewOwner()
+        {
+            return this.m_objUnitToCommand.strOwnerID;
+        }
+        public int intNewUnitTypeID()
+        {
+            return this.m_UnitTypeToPlace.ID;
+        }
+
         public override void Execute() 
         {
             base.markExecute();
-
-            clsUnit unitToPlace = new clsUnit(UnitTypeToPlace);
-            unitToPlace.strOwnerID = Owner.Id;
-            Owner.ListUnits.Add(unitToPlace);
-            TargetSektor.addUnit(unitToPlace); 
-   
-            // UnitId setzen damit Unit registriert werden kann
-            this.UnitId = unitToPlace.Id;
         }
 
         public new void Register()
@@ -44,7 +57,7 @@ namespace GenericCampaignMasterModel.Commands
 
         public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
-            return null;
+            return new facPlaceUnitFactory(objUnit, FieldField);
         }
         
     }

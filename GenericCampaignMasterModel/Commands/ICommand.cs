@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterModel.Commands
 {
     public interface ICommandWithSektor : ICommand
     {
-        Sektor TargetSektor { get; set; }
-        
+        Sektor TargetSektor { get; set; }        
     }
 
     public interface ICommand
@@ -22,14 +22,36 @@ namespace GenericCampaignMasterModel.Commands
         CommandInfo getInfo();
 
         clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField);
+        event delControllerEvent onControllerEvent;
+    }
+
+    public delegate void delControllerEvent(clsEventData objEventData);
+    public class clsEventData 
+    {
+        public clsCommandBaseClass objCommand = null;
+
+
     }
 
     public abstract class clsCommandBaseClass : ICommandWithSektor
     {
+
         public clsCommandBaseClass(string strTypeName)
         {
             this.m_strTypeName = strTypeName;
+            this.CommandId = Guid.NewGuid().ToString();
         }
+
+        public void raiseControllerEvent()
+        {
+            if (onControllerEvent != null)
+            {
+                clsEventData obj = new clsEventData();
+                obj.objCommand = this;
+                onControllerEvent(obj);
+            }
+        }
+        public event delControllerEvent onControllerEvent;
 
         public abstract string strInfo { get;  }
         
@@ -58,11 +80,13 @@ namespace GenericCampaignMasterModel.Commands
         {
             Register();
             m_blnExecuted = true;
+            this.raiseControllerEvent();
         }
 
         public void Register()
         {
             this.m_objUnitToCommand.aktCommand = this;
+            
         }
 
         public CommandInfo getInfo()
