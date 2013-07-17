@@ -22,6 +22,21 @@ namespace NuclearWinter.UI
         public MessagePopup             MessagePopup            { get; private set; }
         public clsXWCommandPopup        XWCommandPopup          { get; private set; }
 
+        private clsXWNotePopup m_XWNotePopup = null;
+        
+        public clsXWNotePopup           XWNotePopup
+        {
+            get
+            {
+                if (m_XWNotePopup == null)
+                    m_XWNotePopup = new clsXWNotePopup(this);
+                return m_XWNotePopup;
+            }
+            private set
+            {
+                m_XWNotePopup = value;
+            }
+        }
 
         public IEnumerable<Panel>       PopupStack              { get { return (IEnumerable<Panel>)mPopupStack; } }
         public Panel                    TopMostPopup            { get { return mPopupStack.Count > 0 ? mPopupStack.Peek() : null; } }
@@ -45,8 +60,7 @@ namespace NuclearWinter.UI
             mPopupStack         = new Stack<Panel>();
             MessagePopup        = new MessagePopup( this );
             XWCommandPopup      = new clsXWCommandPopup(this);
-
-
+            
             mPopupFade          = new NuclearWinter.UI.Image( PopupScreen, Game.WhitePixelTex, true );
             mPopupFade.Color    = PopupScreen.Style.PopupBackgroundFadeColor;
         }
@@ -113,6 +127,7 @@ namespace NuclearWinter.UI
             }
         }
 
-        public clsXWCommandPopup CommandPopup { get; set; }
+       
+        
     }
 }

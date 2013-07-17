@@ -34,12 +34,11 @@ namespace GenericCampaignMasterModel.Commands
 
                     intFieldsMoved += 1;
 
-                    if (intFieldsMoved < 2)
+                    if (intFieldsMoved < 1)
                         createPlaceCommandsForSektor(newSek, intFieldsMoved);
                 }
             }
         }
-
 
         public override void go()
         {

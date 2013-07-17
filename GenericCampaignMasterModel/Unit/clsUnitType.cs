@@ -16,7 +16,7 @@ namespace GenericCampaignMasterModel
         private int m_ID = -1;
         private List<clsUnitType> m_listUnitSpawn = null;
         
-        //Q&&D Dev Zwischenlösung
+        //Q&D Dev Zwischenlösung
         public clsUnitType firstUnitSpawnType
         {
             get

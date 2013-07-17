@@ -36,6 +36,6 @@ namespace GCML_XNA_Client.Demos
             homeTab.PageGroup.AddChild( createTab );
         }
 
-        //----------------------------------------------------------------------
+        
     }
 }

@@ -27,6 +27,7 @@ namespace NuclearWinter.UI
         public clsXWCommandPopup(IMenuManager _manager)
             : base(_manager)
         {
+          
             TitleLabel = new Label(Screen, "", Anchor.Start);
             TitleLabel.Font = Screen.Style.LargeFont;
             TitleLabel.AnchoredRect = AnchoredRect.CreateTopAnchored(0, 0, 0, Screen.Style.DefaultButtonHeight);
@@ -50,7 +51,7 @@ namespace NuclearWinter.UI
                 // Close / Cancel
                 mCloseButton = new Button(Screen, i18n.Common.Close);
                 mCloseButton.ClickHandler = delegate { Dismiss(); };
-                mCloseButton.BindPadButton(Buttons.A);
+                mCloseButton.BindPadButton(Buttons.A); //*/
             }
         }
 
@@ -80,13 +81,14 @@ namespace NuclearWinter.UI
             TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID: " + objCommandCollection.aktUnit.Id;
             MessageLabel.Text = objCommandCollection.aktUnit.strDescription;
 
+            
             ContentGroup.Clear();
             ContentGroup.AddChild(MessageLabel);
-
+            
             mCloseButton.Text = "Schließen";
 
             mActionsGroup.Clear();
-
+            
             foreach (ICommand aktCommandType in objCommandCollection.listRawCommands)
             {
                 Button mCommandButton = new Button(Screen);
@@ -98,7 +100,7 @@ namespace NuclearWinter.UI
 
             //immer
             mActionsGroup.AddChild(mCloseButton);
-
+            //*/
             mCommandCallback = _commandCallback;
         }
 

@@ -30,7 +30,7 @@ namespace NuclearWinter.UI
         public virtual void AddChild( Widget _widget, int _iIndex )
         {
             Debug.Assert( _widget.Parent == null );
-            Debug.Assert( _widget.Screen == Screen );
+            //Debug.Assert( _widget.Screen == Screen );
 
             _widget.Parent = this;
             mlChildren.Insert( _iIndex, _widget );

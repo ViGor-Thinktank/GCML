@@ -117,18 +117,12 @@ namespace GCML_XNA_Client.GCML
                     NuclearUI.Image imgBtn = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[aktCommand.strTypeName], false);
                     m_dicCommandIcons.Add(imgBtn, aktCommand.CommandId);
                     imgBtn.ClickHandler = new Action<NuclearUI.Image>(this.imgCommandIcon_ClickHandler);
-                    
-                    if (aktCommand.GetType() == typeof(comMove) || aktCommand.GetType() == typeof(comDropResource))
+
+                    if (aktCommand.GetType() == typeof(comMove) || aktCommand.GetType() == typeof(comDropResource) || aktCommand.GetType() == typeof(comPlaceUnit))
                     {
                         string[] str = ((ICommandWithSektor)aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                         x_offset = Convert.ToInt32(str[0]);
                         y_offset = Convert.ToInt32(str[1]);
-                    }
-                    else if (aktCommand.GetType() == typeof(comPlaceUnit))
-                    {
-                        clsGCML_Unit objGCML_Unit = new clsGCML_Unit(objCommandCollection.aktUnit);
-                        x_offset = objGCML_Unit.aktSektor.objSektorKoord.X;
-                        y_offset = objGCML_Unit.aktSektor.objSektorKoord.Y;
                     }
                     else
                     {
@@ -155,9 +149,14 @@ namespace GCML_XNA_Client.GCML
             m_dicCommandIcons = new Dictionary<NuclearUI.Image, string>();
 
             clsCommandCollection tm = Program.m_objCampaign.getCommandsForUnit(aktUnit);
+           
+            //Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
+            //Manager.XWCommandPopup.Open(500, 300);
 
-            Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
-            Manager.XWCommandPopup.Open(500, 300);            
+            Manager.XWNotePopup.Setup(tm);
+            Manager.XWNotePopup.Open(300, 300);
+           
+           
         }
 
       
@@ -220,7 +219,7 @@ namespace GCML_XNA_Client.GCML
                 int x_offset = 0;
                 int y_offset = 0;
 
-                if (objUnit.objUnit.aktCommand.GetType() == typeof(comMove) || objUnit.objUnit.aktCommand.GetType() == typeof(comDropResource))
+                if (objUnit.objUnit.aktCommand.GetType() == typeof(comMove) || objUnit.objUnit.aktCommand.GetType() == typeof(comDropResource) || objUnit.objUnit.aktCommand.GetType() == typeof(comPlaceUnit))
                 {
                     //Token einblenden das den Command angezeigt
                     string[] str = ((ICommandWithSektor)objUnit.objUnit.aktCommand).TargetSektor.strUniqueID.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
