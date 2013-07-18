@@ -30,7 +30,7 @@ namespace GenericCampaignMasterLib
         {
             CampaignState state = new CampaignState();
             state.CampaignName = this.CampaignName;
-            state.ListPlayers = this.ListPlayers;
+            state.ListPlayers = this.lisPlayers;
             state.DicSektors = this.FieldField.dicSektors;
             state.FieldDimension = this.FieldField.FieldDimension;
             state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
@@ -99,22 +99,11 @@ namespace GenericCampaignMasterLib
 
 #region " Properties && Felder "
 
-        private List<Player> m_ListPlayers = new List<Player>();
-        public List<Player> ListPlayers
-        {
-            get
-            {
-                return m_ListPlayers;
-            }
-        }
-
         private Field m_FieldField;
-
         public Field FieldField
         {
             get { return m_FieldField; }
             }
-
 
         private ResourceHandler m_resHandler = new ResourceHandler();
         public ResourceHandler ResourceHandler
@@ -122,6 +111,40 @@ namespace GenericCampaignMasterLib
             get { return m_resHandler; }
             set { m_resHandler = value; }
         }
+
+        private Dictionary<string, Faction> m_dicFactions = null;
+        public Dictionary<string, Faction> dicFactions
+        {
+            get
+            {
+                if (m_dicFactions == null)
+                {
+                    m_dicFactions = new Dictionary<string, Faction>();
+                    m_dicFactions.Add("neutral", new Faction("neutral"));
+                }
+                return m_dicFactions;
+            }
+        }
+        public List<Faction> lisFactions
+        {
+            get
+            {
+                return dicFactions.Values.ToList<Faction>();
+            }
+        }
+
+        private List<Player> m_lisPlayers = new List<Player>();
+        public List<Player> lisPlayers
+        {
+            get
+            {
+                if (m_lisPlayers == null)
+                    m_lisPlayers = new List<Player>();
+
+                return m_lisPlayers;
+            }
+        }
+
 #endregion
        
         public clsCommandCollection getCommandsForUnit(clsUnit objAktUnit)
@@ -171,7 +194,7 @@ namespace GenericCampaignMasterLib
         public List<UnitInfo> getUnitInfo()
         {
             List<UnitInfo> result = new List<UnitInfo>();
-            foreach(Player p in ListPlayers)
+            foreach(Player p in lisPlayers)
             {
                 foreach (clsUnit u in p.ListUnits)
                 {
@@ -204,7 +227,7 @@ namespace GenericCampaignMasterLib
         public Player getUnitOwner(clsUnit unit)
         {
 
-            var owner = (from p in m_ListPlayers
+            var owner = (from p in lisPlayers
                          where p.Id == unit.strOwnerID 
                          select p).First();
 
@@ -213,7 +236,7 @@ namespace GenericCampaignMasterLib
 
         public clsUnit getUnit(string id)
 		{
-        	var units = from p in m_ListPlayers
+            var units = from p in lisPlayers
 						from u in p.ListUnits
 						where u.Id.ToString() == id
 						select u;
@@ -280,7 +303,7 @@ namespace GenericCampaignMasterLib
         public Player getPlayerByName(string strName)
         {
 
-            foreach (Player aktP in m_ListPlayers)
+            foreach (Player aktP in lisPlayers)
             {
                 if (aktP.Playername == strName)
                     return aktP;
@@ -292,7 +315,7 @@ namespace GenericCampaignMasterLib
         public Player getPlayerByID(string playerId)
         {
 
-            foreach (Player aktP in m_ListPlayers)
+            foreach (Player aktP in lisPlayers)
             {
                 if (aktP.Id == playerId)
                     return aktP;
@@ -312,24 +335,34 @@ namespace GenericCampaignMasterLib
 
         public void flushPlayers()
         {
-            this.m_ListPlayers.Clear();
+            this.lisPlayers.Clear();
         }
-
-        public Player addPlayer(string strPlayerName)
+        public Faction addGetFaction(string strFaction)
         {
-            Player newPlayer = new Player(ListPlayers.Count.ToString());
-            newPlayer.Playername = strPlayerName;
+            Faction f = null;
 
-            return this.addPlayer(newPlayer);
+            if (!dicFactions.ContainsKey(strFaction))
+            {
+                f = new Faction(strFaction);
+                dicFactions.Add(strFaction,f);
+            }
+
+            return dicFactions[strFaction];
+
+        }
+        public Player addPlayer(string strPlayerName, string strFaction)
+        {
+            Player p = new Player(lisPlayers.Count.ToString());
+            p.Playername = strPlayerName;
+            p.objPlayerFaction = addGetFaction(strFaction);
+            return this.addPlayer(p);
         }
 
         public Player addPlayer(Player objNewPlayer)
         {
-            if (m_ListPlayers == null)
-                m_ListPlayers = new List<Player>();
-
+            
             objNewPlayer.accessibleSectors = getAccessibleSektorsForPlayer(objNewPlayer);
-            m_ListPlayers.Add(objNewPlayer);
+            lisPlayers.Add(objNewPlayer);
             
             return objNewPlayer;
         }

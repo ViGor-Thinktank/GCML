@@ -36,14 +36,14 @@ namespace GCML_XNA_Client.GCML
                 NuclearUI.Button initButton = new NuclearUI.Button(Manager.MenuScreen, "add X-Wing");
                 initButton.ClickHandler = delegate
                 {
-                    this.addUnit("XWing", "Rebel");
+                    this.addUnit("XWing", "Admiral Ackbar");
                 };
                 gridGroup.AddChildAt(initButton, 0, 3);
 
                 NuclearUI.Button tieButton = new NuclearUI.Button(Manager.MenuScreen, "add Tie");
                 tieButton.ClickHandler = delegate
                 {
-                    this.addUnit("Tie", "Empire");
+                    this.addUnit("Tie", "Grand Moff Tarkin");
                 };
 
                 gridGroup.AddChildAt(tieButton, 1, 3);
@@ -51,21 +51,21 @@ namespace GCML_XNA_Client.GCML
                 button = new NuclearUI.Button(Manager.MenuScreen, "add Station");
                 button.ClickHandler = delegate
                 {
-                    this.addUnit("Raumstation", "Rebel");
+                    this.addUnit("Raumstation", "Admiral Ackbar");
                 };
                 gridGroup.AddChildAt(button, 2, 3);
 
                 button = new NuclearUI.Button(Manager.MenuScreen, "add Kreuzer");
                 button.ClickHandler = delegate
                 {
-                    this.addUnit("Raumkreuzer", "Empire");
+                    this.addUnit("Raumkreuzer", "Grand Moff Tarkin");
                 };
                 gridGroup.AddChildAt(button, 3, 3);
 
                 button = new NuclearUI.Button(Manager.MenuScreen, "add Transporter");
                 button.ClickHandler = delegate
                 {
-                    this.addUnit("Raumtransporter", "Rebel");
+                    this.addUnit("Raumtransporter", "Admiral Ackbar");
                 };
                 gridGroup.AddChildAt(button, 4, 3);
 
@@ -73,7 +73,7 @@ namespace GCML_XNA_Client.GCML
                 button = new NuclearUI.Button(Manager.MenuScreen, "safe State");
                 button.ClickHandler = delegate
                 {
-                    string strState = Program.m_objCampaign.saveCurrentGameState();
+                    string strState = Program.m_objCampaign.GameState_saveCurrent();
 
                     Program.objCampaignState.strCCKey = strState;
                     Program.objCampaignState.strSaveKey = strState;
@@ -86,7 +86,7 @@ namespace GCML_XNA_Client.GCML
                 button = new NuclearUI.Button(Manager.MenuScreen, "load State");
                 button.ClickHandler = delegate
                 {
-                    Program.m_objCampaign.restoreGameState(Program.objCampaignState.strCCKey);
+                    Program.m_objCampaign.GameState_restoreByKey(Program.objCampaignState.strCCKey);
                 };
                 gridGroup.AddChildAt(button, 1, 1);
 
@@ -114,37 +114,36 @@ namespace GCML_XNA_Client.GCML
         private void InitBuildDemo()
         {
             this.manualDataInit();
-            this.addUnit("Raumtransporter", "Rebel");
-            this.addUnit("Raumstation", "Rebel", "2|2|0");
+            this.addUnit("Raumtransporter", "Admiral Ackbar");
+            this.addUnit("Raumstation", "Admiral Ackbar", "2|2|0");
             Program.m_objCampaign.Tick();
         }
 
         private void addUnit(string strUnit, string strSpieler, string strSektor = "")
         {
-            int XW_ID = Program.m_objCampaign.getCampaignInfo_UnitTypeByName(strUnit).ID;
-            Player ply = Program.m_objCampaign.getPlayerByName(strSpieler);
-            //erzeuge Spieler1 
-            Program.m_objCampaign.createNewUnit(ply.Id, XW_ID, strSektor);
+            int XW_ID = Program.m_objCampaign.UnitType_getTypeByName(strUnit).ID;
+            Player ply = Program.m_objCampaign.Player_getByName(strSpieler);
+            Program.m_objCampaign.Unit_createNew(ply.Id, XW_ID, strSektor);
         }
 
         private void manualDataInit()
         {
             clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader");
             clsUnitType objTie = new clsUnitType("Tie", 1, 2, "TieF");
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(objXWing);
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(objTie);
-           
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> {objXWing}, 0));
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen",null, 100));
-            Program.m_objCampaign.addCampaignInfo_UnitTypes(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser","kann Tie Schwadronen spawnen", new List<clsUnitType> { objTie }, 1));
+            Program.m_objCampaign.UnitType_addNew(objXWing);
+            Program.m_objCampaign.UnitType_addNew(objTie);
+
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> { objXWing }, 0));
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", null, 100));
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser", "kann Tie Schwadronen spawnen", new List<clsUnitType> { objTie }, 1));
 
             //erzeuge Spieler1
-            Player ply = Program.m_objCampaign.addPlayer("Rebel");
-            ply.unitspawnSektor = Program.m_objCampaign.getSektor("|0|0|0|");
+            Player ply = Program.m_objCampaign.Player_add("Admiral Ackbar", "Rebellen Allianz");
+            ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|0|0|0|");
 
             //erzeuge Spieler2
-            ply = Program.m_objCampaign.addPlayer("Empire");
-            ply.unitspawnSektor = Program.m_objCampaign.getSektor("|5|5|0|");
+            ply = Program.m_objCampaign.Player_add("Grand Moff Tarkin", "Imperium");
+            ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|5|5|0|");
            
         }
 
@@ -156,7 +155,7 @@ namespace GCML_XNA_Client.GCML
             {
                 Program.objCampaignState.load();
                 Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
-                List<Player> listPlayers = Program.m_objCampaign.getPlayerList();
+                List<Player> listPlayers = Program.m_objCampaign.Player_getPlayerList();
            
             }
             else

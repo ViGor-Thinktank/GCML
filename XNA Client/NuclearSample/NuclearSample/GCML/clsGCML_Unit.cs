@@ -45,7 +45,7 @@ namespace GCML_XNA_Client.GCML
         {
             get
             {
-                return Program.m_objCampaign.getSektorForUnit(this.objUnit);
+                return Program.m_objCampaign.Unit_getSektorForUnit(this.objUnit);
             }
         }
         }

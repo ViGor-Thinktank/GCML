@@ -21,6 +21,8 @@ namespace GCML_XNA_Client.GCML
         private Dictionary<NuclearUI.Image, string> m_dicCommandIcons;
         private Dictionary<NuclearUI.Image, clsUnit> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnit>();
 
+        private NuclearUI.GridGroup m_gridMap;
+
 #region Texturehandling
 
         private Dictionary<string, Texture2D> m_dicTextures;
@@ -102,7 +104,7 @@ namespace GCML_XNA_Client.GCML
 
         private void imgCommandIcon_ClickHandler(NuclearUI.Image sender)
         {
-            Program.m_objCampaign.getCommand(m_dicCommandIcons[sender]).Register();
+            Program.m_objCampaign.Command_getByID(m_dicCommandIcons[sender]).Register();
             initMap();
         }
 
@@ -135,7 +137,6 @@ namespace GCML_XNA_Client.GCML
                 }
             }
         
-
         private void imgUnit_ClickHandler(NuclearUI.Image sender)
         {
             clsUnit aktUnit = m_dicUnits[sender];
@@ -148,30 +149,26 @@ namespace GCML_XNA_Client.GCML
 
             m_dicCommandIcons = new Dictionary<NuclearUI.Image, string>();
 
-            clsCommandCollection tm = Program.m_objCampaign.getCommandsForUnit(aktUnit);
+            clsCommandCollection tm = Program.m_objCampaign.Unit_getCommandsForUnit(aktUnit);
            
-            //Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
-            //Manager.XWCommandPopup.Open(500, 300);
+            Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
+            Manager.XWCommandPopup.Open(500, 300);
 
-            Manager.XWNotePopup.Setup(tm);
-            Manager.XWNotePopup.Open(300, 300);
-           
+            
            
         }
 
-      
-
-        private NuclearUI.GridGroup m_gridMap;
         protected void initMap()
         {
+            
             this.Clear();
             
             //Background Image
             NuclearUI.Image imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures["Stars"], false);
             AddChild(imgMap);
 
-            int intGridWidth = Program.m_objCampaign.campaignEngine.FieldField.FieldDimension.X+1;
-            int intGridHeight = Program.m_objCampaign.campaignEngine.FieldField.FieldDimension.Y+1;
+            int intGridWidth = Program.m_objCampaign.FieldField.FieldDimension.X+1;
+            int intGridHeight = Program.m_objCampaign.FieldField.FieldDimension.Y+1;
 
             //Grid erzeugen
             m_gridMap = new NuclearUI.GridGroup(Manager.MenuScreen, intGridHeight, intGridWidth, false, 0);
@@ -180,7 +177,7 @@ namespace GCML_XNA_Client.GCML
             //Grid auf das Background Image werfen
             m_gridMap.AnchoredRect = NuclearUI.AnchoredRect.CreateCentered(imgMap.ContentWidth, imgMap.ContentHeight);
 
-            GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.getCampaignStateForPlayer(m_intPlayerIndex.ToString());
+            GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.Campaign_getStateForPlayer(m_intPlayerIndex.ToString());
             if (aktPly != null && aktPly.ListUnits != null)
             {
                 foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)

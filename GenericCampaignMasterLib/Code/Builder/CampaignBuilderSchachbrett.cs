@@ -36,12 +36,12 @@ namespace GenericCampaignMasterLib
             database.StorePath = storepath;
             database.init();
             
-            CampaignEngine engine = new CampaignEngine(new Field(5, 5));
+            CampaignEngine engine = new CampaignEngine(new Field(9, 9));
             engine.FieldField.Id = 123;
 
 			CampaignController controller = new CampaignController();
 			controller.CampaignDataBase = database;
-			controller.campaignEngine = engine;
+			controller.CampaignEngine = engine;
 			controller.CampaignKey = campaignkey;
 			return controller;
 		}

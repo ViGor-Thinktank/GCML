@@ -10,9 +10,24 @@ namespace GenericCampaignMasterLib
 {
     public class CampaignController
     {
-        # region Properties
+        public CampaignController()
+        {
+
+
+        }
+        public CampaignController(string strKey)
+        {
+            this.GameState_restoreByKey(strKey);
+        }
+        public CampaignController(CampaignEngine engine)
+        {
+            initEngine(engine);
+        }
+
+# region Properties
+
         private CampaignEngine m_campaignEngine;
-        public CampaignEngine campaignEngine
+        public CampaignEngine CampaignEngine
         {
             get { return m_campaignEngine; }
             set { initEngine(value); }
@@ -28,7 +43,17 @@ namespace GenericCampaignMasterLib
         }
 
 		public string CampaignKey { get; set;}
-        #endregion
+
+        public Field FieldField
+        {
+            get
+            {
+                if (CampaignEngine != null)
+                    return CampaignEngine.FieldField;
+                else
+                    return null;
+            }
+        }
 
         private List<Sektor> unitCollisionStack = new List<Sektor>();
         private List<clsUnit> unitActedStack = new List<clsUnit>();
@@ -39,15 +64,15 @@ namespace GenericCampaignMasterLib
         public event delTick onTick;
         public event delTick onHasTicked;
         
-
-        public delegate void delTick();
-        
+#endregion
 
         public void Global_onStatus(string strText)
         {
             if (onStatus != null)
                 onStatus(strText);
         }
+
+        public delegate void delTick();
 
         public void Tick()
         {
@@ -57,21 +82,7 @@ namespace GenericCampaignMasterLib
                 this.onHasTicked();
         }
 
-        public CampaignController()
-        {
-
-
-        }
-        public CampaignController(string strKey)
-        {
-            this.restoreGameState(strKey);
-        }
-
-        public CampaignController(CampaignEngine engine)
-        {
-            initEngine(engine);
-        }
-
+        
 #region " Init, Save, Load "
 
         private void initEngine(CampaignEngine engine)
@@ -85,7 +96,7 @@ namespace GenericCampaignMasterLib
 
             // Unit CommandHandler registrieren
             this.onTick = null;
-            foreach (Player p in m_campaignEngine.ListPlayers)
+            foreach (Player p in m_campaignEngine.lisPlayers)
             {
                 foreach (clsUnit u in p.ListUnits)
                 {
@@ -97,14 +108,14 @@ namespace GenericCampaignMasterLib
             this.onTick += new delTick(m_campaignEngine.ResourceHandler.CampaignController_onTick);
         }
 
-        public string saveCurrentGameState()
+        public string GameState_saveCurrent()
         {
             CampaignState state = m_campaignEngine.getState();
             string key = m_campaignDataBase.saveGameState(state);
             return key;
         }
 
-        public void restoreGameState(string key)
+        public void GameState_restoreByKey(string key)
         {
             CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
             CampaignEngine engine = CampaignEngine.restoreFromState(state);
@@ -115,10 +126,7 @@ namespace GenericCampaignMasterLib
 
        
 
-        public List<Sektor> getUnitCollisions()
-        {
-            return unitCollisionStack;
-        }
+      
        
         private void onUnitMove(object sender, SektorEventArgs args)
         {
@@ -138,12 +146,11 @@ namespace GenericCampaignMasterLib
 
             // Todo AccessibleSectors für alle Player berechnen
             // Vorerst jeder Sektor accessible der keine Unit enthält
-            foreach (Player p in campaignEngine.ListPlayers)
-                p.accessibleSectors = campaignEngine.getAccessibleSektorsForPlayer(p);
+            foreach (Player p in CampaignEngine.lisPlayers)
+                p.accessibleSectors = CampaignEngine.getAccessibleSektorsForPlayer(p);
 
 
         }
-
         private bool checkSektorForUnitCollision(Sektor sektor)
         {
             bool resultCollision = false;
@@ -174,83 +181,28 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
-        //, string strSpawnSektorKoord = "" --> zu devzwecken 
-        public clsUnit createNewUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
-        {
-           
-
-            clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
-
-            this.onTick += new delTick(newUnit.CampaignController_onTick);
-
-            return newUnit;
-        }
-
-        public Player getPlayerByID(string pID)
+      
+        public Player Player_getByID(string pID)
         {
             return this.m_campaignEngine.getPlayerByID(pID);
         }
 
-        public Player getPlayerByName(string strName)
+        public Player Player_getByName(string strName)
         {
             return this.m_campaignEngine.getPlayerByName(strName);
         }
 
-        public Player addPlayer(string p)
+        public Player Player_add(string strPlayerName, string strFaction)
         {
-            return this.m_campaignEngine.addPlayer(p);
+            return this.m_campaignEngine.addPlayer(strPlayerName, strFaction);
         }
 
-        public List<Player> getPlayerList()
+        public List<Player> Player_getPlayerList()
         {
-            return m_campaignEngine.ListPlayers;
+            return m_campaignEngine.lisPlayers;
         }
 
-        public clsUnit getUnit(string strUnitId)
-		{
-            return m_campaignEngine.getUnit(strUnitId);
-		}
-
-        public UnitInfo getUnitInfo(string unitId)
-        {
-            clsUnit unit = getUnit(unitId);
-            UnitInfo info = m_campaignEngine.getUnitInfo(unit);
-            return info;
-        }
-
-        public clsCommandCollection getCommandsForUnit(clsUnit unit)
-        {
-            clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
-
-            foreach (ICommand cmd in objCommands.listReadyCommands)
-            {
-                m_dictCommandCache.Add(cmd.CommandId, cmd);
-                cmd.onControllerEvent += new delControllerEvent(cmd_onControllerEvent);
-            }
-            return objCommands;
-        }
-
-        //FA 16.07.13 beschissene Q&D Lösung, Trennung Lib und Model zur Diskussion stellen
-        public void cmd_onControllerEvent(clsEventData objEventData)
-        {
-            if (objEventData.objCommand.GetType() == typeof(comPlaceUnit))
-            {
-                comPlaceUnit cmd = (comPlaceUnit)objEventData.objCommand;
-                this.createNewUnit(cmd.strNewOwner(), cmd.intNewUnitTypeID(), cmd.TargetSektor.objSektorKoord.uniqueIDstr());
-            }
-        }
-
-      
-        public ICommand getCommand(string commandId)
-        {
-            ICommand result = null;
-            if (m_dictCommandCache.ContainsKey(commandId))
-                result = m_dictCommandCache[commandId];
-            return result;
-        }
-
-
-        public List<clsUnit> getActiveUnitsForPlayer(Player player)
+        public List<clsUnit> Player_getActiveUnitsForPlayer(Player player)
         {
             List<clsUnit> unitsForPlayer = player.ListUnits;
             var lstUnitsCanAct = from u in player.ListUnits
@@ -260,62 +212,12 @@ namespace GenericCampaignMasterLib
             return new List<clsUnit>(lstUnitsCanAct);
         }
 
-        public Sektor getSektorForUnit(clsUnit unit)
-        {
-             return campaignEngine.FieldField.getSektorForUnit(unit);
-        }
-
-        public Sektor getSektor(string sektorId)
-        {
-            return m_campaignEngine.FieldField.dicSektors[sektorId];/*
-            Sektor result = new Sektor();
-            var query = from s in m_campaignEngine.FieldField.dicSektors.Values
-                        where s.Id == sektorId
-                        select s;
-            if (query.Count() > 0)
-                result = query.First<Sektor>();
-
-            return result;*/
-        }
-
-        public Player getCampaignStateForPlayer(string pID, string strState = "")
-        {
-            Player askingPlayer = this.m_campaignEngine.getPlayerByID(pID);
-
-            if (askingPlayer !=null)
-                this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
-
-            return askingPlayer;
-
-
-        }
-
-        
-
-        public CampaignInfo getCampaignInfo()
-        {
-            CampaignInfo nfo = new CampaignInfo();
-            nfo.campaignId = this.CampaignKey;
-            nfo.campaignName = this.campaignEngine.CampaignName;
-            
-            nfo.players = new Dictionary<string, string>();
-            foreach (Player p in this.campaignEngine.ListPlayers)
-            {
-                nfo.players.Add(p.Id, p.Playername);
-            }
-
-            
-            return nfo;
-        }
-
-
-
-        public void endRound(Player p)
+        public void Player_endRound(Player p)
         {
             if (!lstFinishedPlayers.Contains(p))
                 lstFinishedPlayers.Add(p);
 
-            if (lstFinishedPlayers.Count() == m_campaignEngine.ListPlayers.Count())
+            if (lstFinishedPlayers.Count() == m_campaignEngine.lisPlayers.Count())
             {
                 Tick();
                 lstFinishedPlayers.Clear();
@@ -330,12 +232,118 @@ namespace GenericCampaignMasterLib
                 clsUnit unit = m_campaignEngine.getUnit(newUnitId);
                 this.onTick += new delTick(unit.CampaignController_onTick);
             }
+
+        }
+
+        //, string strSpawnSektorKoord = "" --> zu devzwecken 
+        public clsUnit Unit_createNew(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
+        {
+
+
+            clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
+
+            this.onTick += new delTick(newUnit.CampaignController_onTick);
+
+            return newUnit;
+        }
+
+        public clsUnit Unit_getByID(string strUnitId)
+		{
+            return m_campaignEngine.getUnit(strUnitId);
+		}
+
+        public UnitInfo Unit_getInfoByID(string unitId)
+        {
+            clsUnit unit = Unit_getByID(unitId);
+            UnitInfo info = m_campaignEngine.getUnitInfo(unit);
+            return info;
+        }
+
+        public clsCommandCollection Unit_getCommandsForUnit(clsUnit unit)
+        {
+            clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
+
+            foreach (ICommand cmd in objCommands.listReadyCommands)
+            {
+                m_dictCommandCache.Add(cmd.CommandId, cmd);
+                cmd.onControllerEvent += new delControllerEvent(Command_onControllerEvent);
+            }
+            return objCommands;
+        }
+
+        public Sektor Unit_getSektorForUnit(clsUnit unit)
+        {
+            return CampaignEngine.FieldField.getSektorForUnit(unit);
+        }
+
+
+        //FA 16.07.13 beschissene Q&D Lösung, Trennung Lib und Model zur Diskussion stellen
+        public void Command_onControllerEvent(clsEventData objEventData)
+        {
+            if (objEventData.objCommand.GetType() == typeof(comPlaceUnit))
+            {
+                comPlaceUnit cmd = (comPlaceUnit)objEventData.objCommand;
+                this.Unit_createNew(cmd.strNewOwner(), cmd.intNewUnitTypeID(), cmd.TargetSektor.objSektorKoord.uniqueIDstr());
+            }
+        }
+
+        public ICommand Command_getByID(string commandId)
+        {
+            ICommand result = null;
+            if (m_dictCommandCache.ContainsKey(commandId))
+                result = m_dictCommandCache[commandId];
+            return result;
+        }
+
+
+        public Sektor Sektor_getByID(string sektorId)
+        {
+            return m_campaignEngine.FieldField.dicSektors[sektorId];/*
+            Sektor result = new Sektor();
+            var query = from s in m_campaignEngine.FieldField.dicSektors.Values
+                        where s.Id == sektorId
+                        select s;
+            if (query.Count() > 0)
+                result = query.First<Sektor>();
+
+            return result;*/
+        }
+        public List<Sektor> Sektor_getUnitCollisions()
+        {
+            return unitCollisionStack;
+        }
+
+        public Player Campaign_getStateForPlayer(string pID, string strState = "")
+        {
+            Player askingPlayer = this.m_campaignEngine.getPlayerByID(pID);
+
+            if (askingPlayer !=null)
+                this.m_campaignEngine.fillVisibleSektors(ref askingPlayer);
+
+            return askingPlayer;
+
+
+        }
+
+        public CampaignInfo Campaign_getInfo()
+        {
+            CampaignInfo nfo = new CampaignInfo();
+            nfo.campaignId = this.CampaignKey;
+            nfo.campaignName = this.CampaignEngine.CampaignName;
             
+            nfo.players = new Dictionary<string, string>();
+            foreach (Player p in this.CampaignEngine.lisPlayers)
+            {
+                nfo.players.Add(p.Id, p.Playername);
+            }
+
+            
+            return nfo;
         }
 
         #region Ressourcen Handling
 
-        public List<ResourceInfo> getRessourcesForPlayer(Player player)
+            public List<ResourceInfo> Ressource_getRessourcesForPlayer(Player player)
         {
             List<ResourceInfo> result;
             List <ResourceInfo> resInfo = m_campaignEngine.ResourceHandler.getResourceInfo();
@@ -346,51 +354,44 @@ namespace GenericCampaignMasterLib
 
             return result;
         }
-
-
-        public void addResource(ResourceInfo resInfo)
+            public void Ressource_add(ResourceInfo resInfo)
         {
             string strResType = resInfo.resourceableType;
             Type resType = Type.GetType(strResType);
             Object typeObj = Activator.CreateInstance(resType);
 
-            Player resourceOwner = (from p in campaignEngine.ListPlayers
+            Player resourceOwner = (from p in CampaignEngine.lisPlayers
                                     where p.Id == resInfo.ownerId
                                     select p).First() as Player;
 
 
-            campaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
+            CampaignEngine.ResourceHandler.addRessourcableObject(resourceOwner, (IResourceable)typeObj);
         }
-
-        // Kapselt die Aufrufe von getResourceCommands im ResourceHandler um die gelieferten Commands 
+            // Kapselt die Aufrufe von getResourceCommands im ResourceHandler um die gelieferten Commands 
         // im CommandCache zu speichern
-        public List<ICommand> getResourceCommands(string resourceId)
+            public List<ICommand> Ressource_getCommandsByID(string resourceId)
         {
-            List<ICommand> lstCmds = this.campaignEngine.ResourceHandler.getResourceCommands(resourceId);   
+            List<ICommand> lstCmds = this.CampaignEngine.ResourceHandler.getResourceCommands(resourceId);   
             foreach (ICommand cmd in lstCmds)
                 m_dictCommandCache.Add(cmd.CommandId, cmd);
 
             return lstCmds;
         }
+
         #endregion
 
 
-        public int addCampaignInfo_UnitTypes(clsUnitType newUnit)
+        public int UnitType_addNew(clsUnitType newUnit)
         {
             return clsUnit.objUnitTypeFountain.addNewType(newUnit);
         }
 
-        public clsUnitType getCampaignInfo_UnitTypeByName(string strUnitName)
+        public clsUnitType UnitType_getTypeByName(string strUnitName)
         {
             return clsUnit.objUnitTypeFountain.getTypeByName(strUnitName);
         }
 
-        public List<clsUnitType> getCampaignInfo_UnitTypes()
-        {
-           return clsUnit.objUnitTypeFountain.dicUnitTypeData.Values.ToList<clsUnitType>();
-        }
-
-        public clsUnitType getCampaignInfo_UnitTypeByID(int intUnitID)
+        public clsUnitType UnitType_getTypeByID(int intUnitID)
         {
             if (clsUnit.objUnitTypeFountain.dicUnitTypeData.ContainsKey(intUnitID.ToString()))
                 return clsUnit.objUnitTypeFountain.dicUnitTypeData[intUnitID.ToString()];

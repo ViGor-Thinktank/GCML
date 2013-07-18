@@ -6,8 +6,40 @@ using System.Text;
 namespace GenericCampaignMasterModel
 {
     [Serializable()]
+    public class Faction : IEquatable<Faction>
+    {
+        public Faction()
+            { }
+
+        public Faction(string strFactionName)
+        { this.strFactionName = strFactionName; }
+
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            set { this._id = value; }
+        }
+
+      public string strFactionName { get; set; }
+
+      public bool Equals(Faction other)
+      {
+          if ((this.Id == other.Id) &&
+               (this.strFactionName == other.strFactionName))
+              return true;
+          else
+              return false;
+      }
+
+    }
+
+    [Serializable()]
     public class Player : IEquatable<Player>
     {
+      
+
         private string _id;
         public string Id 
         { 
@@ -23,6 +55,7 @@ namespace GenericCampaignMasterModel
             this._id = playerId;            
         }
 
+        public Faction objPlayerFaction = null;
       
         public List<clsUnit> ListUnits = new List<clsUnit>();
 
@@ -37,11 +70,7 @@ namespace GenericCampaignMasterModel
         // Equals Erweitern!
         public bool Equals(Player other)
         {
-            if ((this.Id == other.Id) &&
-                 (this.Playername == other.Playername))
-                return true;
-            else
-                return false;
+            return ((this.Id == other.Id) && (this.Playername == other.Playername));
         }
 
         #endregion
@@ -67,9 +96,6 @@ namespace GenericCampaignMasterModel
             nfo.playerName = this.Playername;
             return nfo;
         }
-
-
-
 
         public static Player FromString(string strPlayer)
         {

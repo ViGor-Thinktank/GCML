@@ -148,7 +148,7 @@ namespace GenericCampaignMasterLib
         {
             List<string> campaignIds = m_dictRunningCampaigns.Keys.ToList<string>();
             var campaigns = from id in campaignIds
-                            from pl in getController(id).getPlayerList()
+                            from pl in getController(id).Player_getPlayerList()
                             where pl.Id == playerid
                             select id;
             return campaigns.ToList<string>();
@@ -174,9 +174,9 @@ namespace GenericCampaignMasterLib
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
-            controller.campaignEngine = engine;
+            controller.CampaignEngine = engine;
             controller.CampaignKey = database.CampaignKey;
-            controller.saveCurrentGameState();
+            controller.GameState_saveCurrent();
 
             m_dictLoadedController[controller.CampaignKey] = controller;
             return database.CampaignKey;
@@ -202,9 +202,9 @@ namespace GenericCampaignMasterLib
 
             CampaignController controller = new CampaignController();
             controller.CampaignDataBase = database;
-            controller.campaignEngine = engine;
+            controller.CampaignEngine = engine;
             controller.CampaignKey = database.CampaignKey;
-            controller.saveCurrentGameState();
+            controller.GameState_saveCurrent();
 
             m_dictLoadedController[controller.CampaignKey] = controller;
             return database.CampaignKey;

@@ -14,7 +14,10 @@ namespace GCML_XNA_Client
     {
         public NuclearUI.Splitter      mSplitterLinks;
         public NuclearUI.Panel         mCenterPanel;
-        
+
+        public NuclearUI.Label         mMessageLabel;
+
+
         //----------------------------------------------------------------------
         public MainMenuManager( GCML_XNA_Client _game, ContentManager _content )
         : base( _game, _game.UIStyle, _content )
@@ -23,30 +26,37 @@ namespace GCML_XNA_Client
             mSplitterLinks = new NuclearUI.Splitter( MenuScreen, NuclearUI.Direction.Left );
             mSplitterLinks.AnchoredRect = NuclearUI.AnchoredRect.CreateFull( 10 );
             mSplitterLinks.Collapsable = true;
-            mSplitterLinks.FirstPaneMinSize = 200;
+            mSplitterLinks.FirstPaneMinSize = 300;
             
             MenuScreen.Root.AddChild(mSplitterLinks);
 
-            // Linkes Menü
             NuclearUI.BoxGroup objBoxGroup = new NuclearUI.BoxGroup( MenuScreen, NuclearUI.Orientation.Vertical, 0, NuclearUI.Anchor.Start );
             mSplitterLinks.FirstPane = objBoxGroup;
 
             mCenterPanel = new NuclearUI.Panel(MenuScreen, Content.Load<Texture2D>("Sprites/UI/Panel04"), MenuScreen.Style.PanelCornerSize);
             mSplitterLinks.SecondPane = mCenterPanel;
-            
+
+
+            mMessageLabel = new NuclearUI.Label(MenuScreen, "", NuclearUI.Anchor.Start);
+            mMessageLabel.WrapText = true;
+
+            mMessageLabel.Text = "In a Galaxy far far away";
+
+            objBoxGroup.AddChild(mMessageLabel, true);
+
             NuclearUI.Button button = new NuclearUI.Button(MenuScreen, "Tick");
             button.ClickHandler = delegate
             {
                 Program.m_objCampaign.Tick();
             };
-            objBoxGroup.AddChild(button, true);
-          
-            objBoxGroup.AddChild(CreateMapPageButton("Rebel Player Map", new GCML.GCMLMapPane_XW(this, 0)), true);
-            objBoxGroup.AddChild(CreateMapPageButton("Empire Player Map", new GCML.GCMLMapPane_XW(this, 1)), true);
-            
-            objBoxGroup.AddChild(CreateMapPageButton("GCML Admin", new GCML.GCMLAdminPane(this)), true);
+            objBoxGroup.AddChild(button, false);
 
-            objBoxGroup.AddChild(CreateMapPageButton("Note Pain", new Demos.NotebookPane(this)), false);
+            objBoxGroup.AddChild(CreateMapPageButton("Rebel Player Map", new GCML.GCMLMapPane_XW(this, 0)), false);
+            objBoxGroup.AddChild(CreateMapPageButton("Empire Player Map", new GCML.GCMLMapPane_XW(this, 1)), false);
+
+            objBoxGroup.AddChild(CreateMapPageButton("GCML Admin", new GCML.GCMLAdminPane(this)), false);
+
+            //objBoxGroup.AddChild(CreateMapPageButton("Note Pain", new Demos.NotebookPane(this)), false);
             
         }
 

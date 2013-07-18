@@ -72,7 +72,7 @@ namespace GenericCampaignMasterLib
 
 			CampaignController controller = new CampaignController();
 			controller.CampaignDataBase = database;
-			controller.campaignEngine = engine;
+			controller.CampaignEngine = engine;
 			controller.CampaignKey = campaignkey;
 			return controller;
 		}

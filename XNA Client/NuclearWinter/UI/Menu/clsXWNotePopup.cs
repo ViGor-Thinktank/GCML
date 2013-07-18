@@ -10,13 +10,7 @@ namespace NuclearWinter.UI
 {
     public class clsXWNotePopup : Popup<IMenuManager>
     {
-        public Label TitleLabel { get; private set; }
         
-        public Group ContentGroup { get; private set; }
-
-        Notebook notebook;
-            
-
         Button mCloseButton;
 
 
@@ -24,40 +18,14 @@ namespace NuclearWinter.UI
         public clsXWNotePopup(IMenuManager _manager)
             : base(_manager)
         {
-          
-            TitleLabel = new Label(Screen, "", Anchor.Start);
-            TitleLabel.Font = Screen.Style.LargeFont;
-            TitleLabel.AnchoredRect = AnchoredRect.CreateTopAnchored(0, 0, 0, Screen.Style.DefaultButtonHeight);
-
-            TitleLabel.Text = "Home 1234";
-            
-            AddChild(TitleLabel);
-            
-            {
-                // Message label
-                ContentGroup = new Group(Screen);
-                ContentGroup.AnchoredRect = AnchoredRect.CreateFull(0, 60, 0, 80);
-                AddChild(ContentGroup);
                         
-                // Close / Cancel
-                mCloseButton = new Button(Screen, i18n.Common.Close);
-                mCloseButton.ClickHandler = delegate { Dismiss(); };
-                mCloseButton.BindPadButton(Buttons.A);
-                //AddChild(mCloseButton); //*/
+            // Close / Cancel
+            mCloseButton = new Button(Screen, "alpha2");
+            mCloseButton.ClickHandler = delegate { Dismiss(); };
+               
+         
 
-                notebook = new Notebook(Manager.MenuScreen);
-                ContentGroup.AddChild(notebook);
-                notebook.HasClosableTabs = true;
-
-                NotebookTab homeTab = new NotebookTab(notebook, "Home", null);
-                                notebook.Tabs.Add(homeTab);
-
-                homeTab.PageGroup.AddChild(mCloseButton);
-
-                homeTab = new NotebookTab(notebook, "Home2", null);
-                homeTab.IsPinned = true;
-                notebook.Tabs.Add(homeTab);
-            }
+           
         }
 
         //----------------------------------------------------------------------
@@ -83,8 +51,28 @@ namespace NuclearWinter.UI
             m_objCommandCollection = objCommandCollection;
 
            // TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID: " + objCommandCollection.aktUnit.Id;
-            
-            
+
+            Notebook notebook = new Notebook(Manager.MenuScreen);
+            AddChild(notebook);
+
+            notebook.HasClosableTabs = true;
+
+            NotebookTab homeTab = new NotebookTab(notebook, "Home", null);
+            homeTab.IsPinned = true;
+            notebook.Tabs.Add(homeTab);
+
+            Button createTab = new Button(Manager.MenuScreen, "Create tab");
+            createTab.AnchoredRect = AnchoredRect.CreateFull(10);
+
+            int iTabCounter = 0;
+            createTab.ClickHandler = delegate
+            {
+                NotebookTab tab = new NotebookTab(notebook, string.Format("Tab {0}", ++iTabCounter), null);
+
+                notebook.Tabs.Add(tab);
+            };
+
+            homeTab.PageGroup.AddChild(createTab);
             
             //mCloseButton.Text = "Schließen";*/
 
@@ -93,7 +81,6 @@ namespace NuclearWinter.UI
         //----------------------------------------------------------------------
         public override void Close()
         {
-            TitleLabel.Text = "";
             
             mCloseButton.Text = i18n.Common.Close;
 
