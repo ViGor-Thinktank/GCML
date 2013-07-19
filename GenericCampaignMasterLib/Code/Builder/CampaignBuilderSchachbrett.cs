@@ -36,7 +36,7 @@ namespace GenericCampaignMasterLib
             database.StorePath = storepath;
             database.init();
             
-            CampaignEngine engine = new CampaignEngine(new Field(9, 9));
+            CampaignEngine engine = new CampaignEngine(new Field(6, 6));
             engine.FieldField.Id = 123;
 
 			CampaignController controller = new CampaignController();

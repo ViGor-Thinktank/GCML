@@ -86,6 +86,8 @@ namespace GCML_XNA_Client.GCML
 
 #endregion 
 
+       
+
         public GCMLMapPane_XW(MainMenuManager _manager, int intPlayerIndex) : base(_manager)
         {
             this.initTextures();
@@ -93,6 +95,8 @@ namespace GCML_XNA_Client.GCML
             this.initMap();
 
             this.m_intPlayerIndex = intPlayerIndex;
+
+            
 
             Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
         }

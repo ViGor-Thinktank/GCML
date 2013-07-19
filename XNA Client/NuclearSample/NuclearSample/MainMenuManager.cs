@@ -61,17 +61,17 @@ namespace GCML_XNA_Client
         }
 
         //----------------------------------------------------------------------
-        NuclearUI.Button CreateMapPageButton( string _strDemoName, NuclearUI.ManagerPane<MainMenuManager> _demoPane )
+        NuclearUI.Button CreateMapPageButton( string _strName, NuclearUI.ManagerPane<MainMenuManager> _Pane )
         {
-            NuclearUI.Button demoPaneButton = new NuclearUI.Button( MenuScreen, _strDemoName );
-            demoPaneButton.ClickHandler = delegate {
+            NuclearUI.Button PaneButton = new NuclearUI.Button( MenuScreen, _strName );
+            PaneButton.ClickHandler = delegate {
                 /**/
                 mCenterPanel.Clear();
-                mCenterPanel.AddChild( _demoPane );
+                mCenterPanel.AddChild( _Pane );
                 
             };
 
-            return demoPaneButton;
+            return PaneButton;
         }
     }
 }

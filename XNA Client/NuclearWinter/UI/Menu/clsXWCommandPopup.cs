@@ -29,7 +29,7 @@ namespace NuclearWinter.UI
         {
           
             TitleLabel = new Label(Screen, "", Anchor.Start);
-            TitleLabel.Font = Screen.Style.LargeFont;
+            TitleLabel.Font = Screen.Style.MediumFont;
             TitleLabel.AnchoredRect = AnchoredRect.CreateTopAnchored(0, 0, 0, Screen.Style.DefaultButtonHeight);
             AddChild(TitleLabel);
 
@@ -39,9 +39,12 @@ namespace NuclearWinter.UI
                 ContentGroup.AnchoredRect = AnchoredRect.CreateFull(0, 60, 0, 80);
                 AddChild(ContentGroup);
 
+                
+
+
                 MessageLabel = new Label(Screen, "", Anchor.Start);
                 MessageLabel.WrapText = true;
-
+                MessageLabel.Font = Screen.Style.SmallFont;
                 // Actions
                 mActionsGroup = new BoxGroup(Screen, Orientation.Horizontal, 0, Anchor.End);
                 mActionsGroup.AnchoredRect = AnchoredRect.CreateBottomAnchored(0, 0, 0, Screen.Style.DefaultButtonHeight);

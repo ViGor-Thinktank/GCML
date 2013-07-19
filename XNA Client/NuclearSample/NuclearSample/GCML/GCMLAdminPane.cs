@@ -143,7 +143,7 @@ namespace GCML_XNA_Client.GCML
 
             //erzeuge Spieler2
             ply = Program.m_objCampaign.Player_add("Grand Moff Tarkin", "Imperium");
-            ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|5|5|0|");
+            ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|6|6|0|");
            
         }
 
