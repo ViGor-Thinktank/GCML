@@ -253,6 +253,16 @@ namespace GenericCampaignMasterLib
 
 #region " Unitfactory "
 
+        private int getID(Player owner)
+        {
+            var units = from u in owner.ListUnits
+                        where u.strOwnerID == owner.Id
+                        select u;
+
+            int cnt = units.Count();
+            return cnt+1;
+        }
+
         public clsUnit addUnit(Player owner, clsUnit newUnit, Sektor sektor)
         {
             newUnit.strOwnerID = owner.Id;
@@ -263,6 +273,7 @@ namespace GenericCampaignMasterLib
         //, string strSpawnSektorKoord = "" --> zu dev zwecken 
         internal clsUnit addUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
+            Player objPlayer = getPlayerByID(strPlayerID);
             clsSektorKoordinaten objSpawSek = null;
             if (strSpawnSektorKoord != "")
             {
@@ -275,22 +286,43 @@ namespace GenericCampaignMasterLib
             }
             else
             {
-                objSpawSek = (getPlayerByID(strPlayerID).unitspawnSektor != null ? getPlayerByID(strPlayerID).unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
+                objSpawSek = (objPlayer.unitspawnSektor != null ? objPlayer.unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
             }
             clsUnit newUnit = null;
 
             //Ergibt eineindeutige UnitIDs
-            newUnit = new clsUnit(strPlayerID + getPlayerByID(strPlayerID).ListUnits.Count.ToString(), intUnitTypeID);
+            newUnit = new clsUnit(strPlayerID + objPlayer.ListUnits.Count.ToString(), intUnitTypeID);
             newUnit.strOwnerID = strPlayerID;
 
-
+            if (newUnit.UnitType.m_listUnitSpawn != null && newUnit.UnitType.m_listUnitSpawn.Count == 0)
+            {
+                newUnit.UnitType.m_listUnitSpawn = objPlayer.objPlayerFaction.listUnitspawn;
+            }
             return addUnit(strPlayerID, newUnit, objSpawSek);
         }
+        
         public clsUnit addUnit(string strPlayerID, clsUnit newUnit, clsSektorKoordinaten objSektorKoord)
         {
 
+             
             newUnit.strOwnerID = strPlayerID;
-            getPlayerByID(strPlayerID).ListUnits.Add(newUnit);
+            newUnit.cnt = this.getID(this.getPlayerByID(strPlayerID));
+            List<Player> lisP = null;
+
+            if (newUnit.UnitType.blnAlywaysVisible)
+            {
+                lisP = this.lisPlayers;
+            }
+            else
+            { 
+                lisP = new List<Player> {this.getPlayerByID(strPlayerID)};
+            }
+
+            foreach (Player p in lisP)
+            {
+                p.ListUnits.Add(newUnit);
+            }
+
             this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
 
             return newUnit;
@@ -337,24 +369,24 @@ namespace GenericCampaignMasterLib
         {
             this.lisPlayers.Clear();
         }
-        public Faction addGetFaction(string strFaction)
+        public Faction addGetFaction(string strFaction, List<clsUnitType> listUnitspawn)
         {
             Faction f = null;
 
             if (!dicFactions.ContainsKey(strFaction))
             {
-                f = new Faction(strFaction);
+                f = new Faction(strFaction, listUnitspawn);
                 dicFactions.Add(strFaction,f);
             }
 
             return dicFactions[strFaction];
 
         }
-        public Player addPlayer(string strPlayerName, string strFaction)
+        public Player addPlayer(string strPlayerName, Faction fac)
         {
             Player p = new Player(lisPlayers.Count.ToString());
             p.Playername = strPlayerName;
-            p.objPlayerFaction = addGetFaction(strFaction);
+            p.objPlayerFaction = fac;
             return this.addPlayer(p);
         }
 

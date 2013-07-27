@@ -105,12 +105,34 @@ namespace GCML_XNA_Client.GCML
                 };
                 gridGroup.AddChildAt(button, 0, 4);
 
+                button = new NuclearUI.Button(Manager.MenuScreen, "Init HQ Demo");
+                button.ClickHandler = delegate
+                {
+                    this.InitHQDemo();
+
+                };
+                gridGroup.AddChildAt(button, 1, 4);
+
             }
 
             
             
         }
 
+        private void InitHQDemo()
+        {
+            this.manualDataInit();
+            
+            this.addUnit("Rebel HQ Korvette", "Admiral Ackbar");
+            this.addUnit("Empire HQ Cruiser", "Grand Moff Tarkin");
+            
+            this.addUnit("Planet", "Grand Moff Tarkin", "4|3|0");
+            this.addUnit("Planet", "Grand Moff Tarkin", "0|3|0");
+            this.addUnit("Planet", "Admiral Ackbar", "2|5|0");
+
+            Program.m_objCampaign.Tick();
+        }
+        
         private void InitBuildDemo()
         {
             this.manualDataInit();
@@ -129,20 +151,29 @@ namespace GCML_XNA_Client.GCML
         private void manualDataInit()
         {
             clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader");
-            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "TieF");
             Program.m_objCampaign.UnitType_addNew(objXWing);
+
+            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "TieF");
             Program.m_objCampaign.UnitType_addNew(objTie);
 
-            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> { objXWing }, 0));
-            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", null, 100));
-            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Raumkreuzer", 1, 1, "Cruiser", "kann Tie Schwadronen spawnen", new List<clsUnitType> { objTie }, 1));
+            clsUnitType objStation = new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType>(), 250);
+            Program.m_objCampaign.UnitType_addNew(objStation);
 
-            //erzeuge Spieler1
-            Player ply = Program.m_objCampaign.Player_add("Admiral Ackbar", "Rebellen Allianz");
+            clsUnitType objTrans = new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> { objStation }, 100);
+            Program.m_objCampaign.UnitType_addNew(objTrans);
+            
+            clsUnitType objPlanet = new clsUnitType("Planet", 1, 0, "Planet", "Produziert Resourcen, mit [%intResourceValue%] Punkten beladen. Kann Transporter spawnwn", new List<clsUnitType> { objTrans }, 1000, true, true);
+            Program.m_objCampaign.UnitType_addNew(objPlanet);
+            
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Empire HQ Cruiser", 1, 1, "Cruiser", "Empire HQ", new List<clsUnitType> { objTie }, 250));
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Rebel HQ Korvette", 1, 1, "Korvette", "Rebel HQ", new List<clsUnitType> { objXWing }, 250));
+
+            Faction facRebel = Program.m_objCampaign.Faction_add("Rebellen Allianz", new List<clsUnitType> { objXWing });
+            Player ply = Program.m_objCampaign.Player_add("Admiral Ackbar", facRebel);
             ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|0|0|0|");
 
-            //erzeuge Spieler2
-            ply = Program.m_objCampaign.Player_add("Grand Moff Tarkin", "Imperium");
+            Faction facEmpire = Program.m_objCampaign.Faction_add("Imperium", new List<clsUnitType> { objTie });
+            ply = Program.m_objCampaign.Player_add("Grand Moff Tarkin", facEmpire);
             ply.unitspawnSektor = Program.m_objCampaign.Sektor_getByID("|6|6|0|");
            
         }

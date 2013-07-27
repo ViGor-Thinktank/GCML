@@ -11,9 +11,11 @@ namespace GenericCampaignMasterModel
         public Faction()
             { }
 
-        public Faction(string strFactionName)
-        { this.strFactionName = strFactionName; }
-
+        public Faction(string strFactionName, List<clsUnitType> listUnitspawn = null)
+        { 
+            this.strFactionName = strFactionName;
+            this.listUnitspawn = listUnitspawn;
+        }
 
         private string _id;
         public string Id
@@ -33,6 +35,7 @@ namespace GenericCampaignMasterModel
               return false;
       }
 
+      public List<clsUnitType> listUnitspawn = null;
     }
 
     [Serializable()]

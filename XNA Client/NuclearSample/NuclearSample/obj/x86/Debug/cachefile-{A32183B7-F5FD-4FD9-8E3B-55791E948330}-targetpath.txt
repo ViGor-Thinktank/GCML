@@ -71,3 +71,5 @@ Content\Fonts\MediumMonoFont.xnb
 Content\Sprites\PlaceUnit.xnb
 Content\Sprites\PlaceUnit_Done.xnb
 Content\Sprites\drei.xnb
+Content\Sprites\Korvette.xnb
+Content\Sprites\Planet.xnb

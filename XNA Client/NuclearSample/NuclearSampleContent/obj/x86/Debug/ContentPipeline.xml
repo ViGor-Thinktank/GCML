@@ -658,6 +658,24 @@
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\drei.xnb</Output>
       <Time>2013-07-16T14:57:23.8365992+02:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\Korvette.png</Source>
+      <Name>Sprites\Korvette</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette.xnb</Output>
+      <Time>2013-07-27T00:49:17.3727325+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Planet.png</Source>
+      <Name>Sprites\Planet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Planet.xnb</Output>
+      <Time>2013-07-27T01:20:40.1917379+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

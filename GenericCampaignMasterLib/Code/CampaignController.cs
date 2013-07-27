@@ -125,9 +125,6 @@ namespace GenericCampaignMasterLib
 #endregion
 
        
-
-      
-       
         private void onUnitMove(object sender, SektorEventArgs args)
         {
             Sektor sektor = sender as Sektor;
@@ -181,6 +178,10 @@ namespace GenericCampaignMasterLib
             unitCollisionStack.Add(sektor);
         }
 
+        public Faction Faction_add(string strFactionName, List<clsUnitType> listUnitspawn)
+        {
+            return this.m_campaignEngine.addGetFaction(strFactionName, listUnitspawn);
+        }
       
         public Player Player_getByID(string pID)
         {
@@ -192,9 +193,9 @@ namespace GenericCampaignMasterLib
             return this.m_campaignEngine.getPlayerByName(strName);
         }
 
-        public Player Player_add(string strPlayerName, string strFaction)
+        public Player Player_add(string strPlayerName, Faction fac)
         {
-            return this.m_campaignEngine.addPlayer(strPlayerName, strFaction);
+            return this.m_campaignEngine.addPlayer(strPlayerName, fac);
         }
 
         public List<Player> Player_getPlayerList()
@@ -238,8 +239,6 @@ namespace GenericCampaignMasterLib
         //, string strSpawnSektorKoord = "" --> zu devzwecken 
         public clsUnit Unit_createNew(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
-
-
             clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);

@@ -24,15 +24,17 @@ namespace GenericCampaignMasterModel
             m_objUnitType = UnitType;
             m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
             this.intResourceValue = UnitType.intResourceValue;
+
         }
 
         public int intMovement { get { return m_objUnitType.intMovement; } }
         public int intSichtweite { get { return m_objUnitType.intSichtweite; } }
         public int intResourceValue = 0;
 
-
         public string strOwnerID = "";
 
+        public int cnt = -1;
+        
         private string m_strId = "-1";
         public string Id 
         { 

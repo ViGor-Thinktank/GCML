@@ -14,7 +14,9 @@ namespace GenericCampaignMasterModel
         protected  int m_intMovement = 0;
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
-        private List<clsUnitType> m_listUnitSpawn = null;
+        public List<clsUnitType> m_listUnitSpawn = null;
+
+        public bool blnAlywaysVisible = false;
         
         //Q&D Dev Zwischenlösung
         public clsUnitType firstUnitSpawnType
@@ -41,7 +43,7 @@ namespace GenericCampaignMasterModel
 
 
         //q&d lösung für einfache Uniterzeugung
-        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", List<clsUnitType> listUnitspawn = null, int intResourceValue = -1)
+        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", List<clsUnitType> listUnitspawn = null, int intResourceValue = -1, bool blnResourceProduzent = false, bool blnAlywaysVisible = false)
         {
             this.strBez = strBez;
             this.intSichtweite = intSichtweite;
@@ -50,6 +52,7 @@ namespace GenericCampaignMasterModel
             this.m_listUnitSpawn = listUnitspawn;
             this.intResourceValue = intResourceValue;
             this.strDescription = strDescription;
+            this.blnAlywaysVisible = blnAlywaysVisible;
         }
 
         //Konstruktoren

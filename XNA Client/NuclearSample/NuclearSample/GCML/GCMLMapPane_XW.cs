@@ -31,20 +31,23 @@ namespace GCML_XNA_Client.GCML
         {
             m_dicTextures = new Dictionary<string, Texture2D>();
             this.loadTexture("Stars");
+            this.loadTexture("Planet");
 
             this.loadTexture("TieF");
             this.loadTexture("XW");
 
+            this.loadTexture("Korvette");
+            this.loadTexture("Cruiser");
 
             this.loadTexture("Transport");
-            this.loadTexture("Cruiser");
             this.loadTexture("Station");
 
+            //Zahlen
             this.loadTexture("eins");
             this.loadTexture("zwei");
             this.loadTexture("drei");
 
-
+            //Icons
             this.loadTexture("Move");
             this.loadTexture("Move_Done");
             
@@ -69,13 +72,13 @@ namespace GCML_XNA_Client.GCML
         {
             switch (Index)
             {
-                case 0:
+                case 1:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["eins"], false);
 
-                case 1:
+                case 2:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["zwei"], false);
 
-                case 2:
+                case 3:
                     return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["drei"], false);
 
                 default:
@@ -184,6 +187,7 @@ namespace GCML_XNA_Client.GCML
             GenericCampaignMasterModel.Player aktPly = Program.m_objCampaign.Campaign_getStateForPlayer(m_intPlayerIndex.ToString());
             if (aktPly != null && aktPly.ListUnits != null)
             {
+                
                 foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)
                 {
                     foreach (clsUnit aktUnit in aktSek.ListUnits)
@@ -194,10 +198,10 @@ namespace GCML_XNA_Client.GCML
                 
             }
         }
-
+        
         private void drawUnit(clsUnit aktUnit, GenericCampaignMasterModel.Player aktPly)
         {
-            NuclearUI.Image imgNumber = newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit));
+            NuclearUI.Image imgNumber = newNumberCounter(aktUnit.cnt);
 
             clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
 
@@ -207,9 +211,10 @@ namespace GCML_XNA_Client.GCML
                 imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
 
             m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-            if (imgNumber != null)
-                m_gridMap.AddChildAt(newNumberCounter(aktPly.ListUnits.IndexOf(aktUnit)), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-
+            if (imgNumber != null && objUnit.objUnit.strOwnerID == aktPly.Id)
+            {
+                m_gridMap.AddChildAt(newNumberCounter(aktUnit.cnt), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+            }
 
             if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted && objUnit.objUnit.strOwnerID == aktPly.Id)
             {
