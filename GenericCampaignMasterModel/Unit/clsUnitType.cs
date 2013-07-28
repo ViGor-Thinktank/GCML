@@ -27,8 +27,6 @@ namespace GenericCampaignMasterModel
             }
         }
 
-        private int m_intResourceValue = -1;
-
         public string strClientData = ""; //extra Daten die der Client benötigt && verwaltet, Beispiel Texturen Infos
         public string strDescription = "";
 
@@ -36,23 +34,23 @@ namespace GenericCampaignMasterModel
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
         public int intMovement  { get { return m_intMovement; } set { m_intMovement = value; } }
-        public int intResourceValue { get { return m_intResourceValue; } set { m_intResourceValue = value; } }
-
-        public bool blnCanStoreResourceValue { get { return m_intResourceValue != -1; } }
+       
+        public bool blnCanStoreResourceValue { get { return intMaxResourceValue != -1; } }
         public bool blnCanSpawnUnits { get { return m_listUnitSpawn != null; } }
 
 
         //q&d lösung für einfache Uniterzeugung
-        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", List<clsUnitType> listUnitspawn = null, int intResourceValue = -1, bool blnResourceProduzent = false, bool blnAlywaysVisible = false)
+        public clsUnitType(string strBez, int intSichtweite, int intMovement, string strTexture, string strDescription = "", List<clsUnitType> listUnitspawn = null, int intMaxResourceValue = -1, bool blnResourceProduzent = false, bool blnAlywaysVisible = false)
         {
             this.strBez = strBez;
             this.intSichtweite = intSichtweite;
             this.intMovement = intMovement;
             this.strClientData = "Texture:=" + strTexture ;
             this.m_listUnitSpawn = listUnitspawn;
-            this.intResourceValue = intResourceValue;
+            this.intMaxResourceValue = intMaxResourceValue;
             this.strDescription = strDescription;
             this.blnAlywaysVisible = blnAlywaysVisible;
+            this.intCreateValuePerRound = blnAlywaysVisible ? 100 : 0;
         }
 
         //Konstruktoren
@@ -88,6 +86,13 @@ namespace GenericCampaignMasterModel
                 }
             }
 
+            if (CallingUnit.UnitType.intCreateValuePerRound > 0)
+            {
+                cmd = new comCreateResource(CallingUnit);
+                cmdlist.Add(cmd);
+
+            }
+
             return cmdlist;
         }
 
@@ -107,5 +112,9 @@ namespace GenericCampaignMasterModel
 
             return placeUnitCommands.ToList<ICommand>();
         }
+
+        public int intMaxResourceValue { get; set; }
+
+        public int intCreateValuePerRound { get; set; }
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CampaignState.cs" />
     <Compile Include="Commands\clsCommandCollection.cs" />
+    <Compile Include="Commands\comCreateResource.cs" />
     <Compile Include="Commands\comDropResource.cs">
       <SubType>Code</SubType>
     </Compile>

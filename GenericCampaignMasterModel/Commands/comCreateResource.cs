@@ -5,9 +5,9 @@ using System.Text;
 
 namespace GenericCampaignMasterModel.Commands
 {
-    public class comDropResource : clsCommandBaseClass 
+    class comCreateResource: clsCommandBaseClass 
     {
-        private clsUnit m_objDeliverUnit
+        private clsUnit m_objRecieveUnit
         {
             get
             {
@@ -18,13 +18,10 @@ namespace GenericCampaignMasterModel.Commands
                 base.m_objUnitToCommand = value;
             }        
         }
-        private clsUnit m_objRecieveUnit { get; set; }
 
-        private int m_intValue { get { return this.m_objDeliverUnit.intResourceValue; } }
-
-        public comDropResource(clsUnit objDeliverUnit, clsUnit objRecieveUnit) : base("DropResource")
+        public comCreateResource(clsUnit objRecieveUnit)
+            : base("CreateResource")
         {
-            this.m_objDeliverUnit = objDeliverUnit;
             this.m_objRecieveUnit = objRecieveUnit;
         }
 
@@ -32,21 +29,21 @@ namespace GenericCampaignMasterModel.Commands
 		{
             base.markExecute();
 
-            this.m_objRecieveUnit.intResourceValue += this.m_objDeliverUnit.intResourceValue;
-            this.m_objDeliverUnit.intResourceValue = 0;
+            this.m_objRecieveUnit.intResourceValue += this.m_objRecieveUnit.UnitType.intCreateValuePerRound;
+            
         }
 
         public override string strInfo
         {
             get
             {
-                return "Resource Value" + this.m_intValue.ToString();
+                return "cerate Resource Value" + this.m_objRecieveUnit.UnitType.intCreateValuePerRound.ToString();
             }
         }
 
         public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
-            return new facDropResourceFactory(objUnit, FieldField);
+            return null;
         }
-    }
+}
 }

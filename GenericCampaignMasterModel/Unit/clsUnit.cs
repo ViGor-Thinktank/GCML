@@ -22,8 +22,8 @@ namespace GenericCampaignMasterModel
         {
             m_strId = unitId;
             m_objUnitType = UnitType;
-            m_strBezeichnung = UnitType.strBez + " " + unitId.ToString();
-            this.intResourceValue = UnitType.intResourceValue;
+            strBezeichnung = UnitType.strBez + " " + unitId.ToString();
+            this.intResourceValue = 0;
 
         }
 
@@ -42,12 +42,7 @@ namespace GenericCampaignMasterModel
             set { m_strId = value; }
         }
 
-        private string m_strBezeichnung = "";
-        public string Bezeichnung
-        {
-            get { return m_strBezeichnung; }
-            set { m_strBezeichnung = value; }
-        }
+        public string strBezeichnung;
 
         private clsUnitType m_objUnitType;
         public clsUnitType UnitType

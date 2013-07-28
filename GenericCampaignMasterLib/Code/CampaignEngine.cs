@@ -161,10 +161,11 @@ namespace GenericCampaignMasterLib
             foreach (ICommand cmdRaw in objCommands.listRawCommands)
 			{
                 clsFactoryBase objCommandFactory = cmdRaw.getCommandFactory(objAktUnit, FieldField);
-                objCommandFactory.actingPlayer = getPlayerByID(objAktUnit.strOwnerID);
+                
                 
                 if (objCommandFactory != null)
                 {
+                    objCommandFactory.actingPlayer = getPlayerByID(objAktUnit.strOwnerID);
                     objCommands.useFactory(objCommandFactory);
                 }
                 else

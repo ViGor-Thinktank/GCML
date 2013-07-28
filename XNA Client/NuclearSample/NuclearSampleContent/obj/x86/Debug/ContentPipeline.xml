@@ -676,6 +676,24 @@
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Planet.xnb</Output>
       <Time>2013-07-27T01:20:40.1917379+02:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\CreateResource.png</Source>
+      <Name>Sprites\CreateResource</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource.xnb</Output>
+      <Time>2013-07-28T22:07:30.1894867+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\CreateResource_done.png</Source>
+      <Name>Sprites\CreateResource_done</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource_done.xnb</Output>
+      <Time>2013-07-28T22:19:54.9886497+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

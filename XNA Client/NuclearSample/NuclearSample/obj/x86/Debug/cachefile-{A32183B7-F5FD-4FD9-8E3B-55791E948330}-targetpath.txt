@@ -73,3 +73,5 @@ Content\Sprites\PlaceUnit_Done.xnb
 Content\Sprites\drei.xnb
 Content\Sprites\Korvette.xnb
 Content\Sprites\Planet.xnb
+Content\Sprites\CreateResource.xnb
+Content\Sprites\CreateResource_done.xnb

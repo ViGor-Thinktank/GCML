@@ -53,6 +53,10 @@ namespace GCML_XNA_Client.GCML
             
             this.loadTexture("DropResource");
             this.loadTexture("DropResource_Done");
+            
+            this.loadTexture("CreateResource");
+            this.loadTexture("CreateResource_Done");
+
 
             this.loadTexture("PlaceUnit");
             this.loadTexture("PlaceUnit_Done");
