@@ -89,6 +89,7 @@
     <Compile Include="Sektor\SektorType_base.cs" />
     <Compile Include="Sektor\SektorType_heavyTerrain.cs" />
     <Compile Include="Unit\clsUnit.cs" />
+    <Compile Include="Unit\clsUnitGroup.cs" />
     <Compile Include="Unit\clsUnitType.cs" />
     <Compile Include="Unit\clsUnitTypeCollection.cs" />
   </ItemGroup>
