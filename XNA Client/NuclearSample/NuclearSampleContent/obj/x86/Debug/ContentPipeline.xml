@@ -503,7 +503,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XW.xnb</Output>
-      <Time>2013-03-08T21:57:55.9291848+01:00</Time>
+      <Time>2013-07-30T01:46:19.1793637+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\eins.png</Source>
@@ -693,6 +693,15 @@
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource_done.xnb</Output>
       <Time>2013-07-28T22:19:54.9886497+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\YW.png</Source>
+      <Name>Sprites\YW</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YW.xnb</Output>
+      <Time>2013-07-30T01:50:31.7670112+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

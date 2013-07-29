@@ -35,6 +35,7 @@ namespace GCML_XNA_Client.GCML
 
             this.loadTexture("TieF");
             this.loadTexture("XW");
+            this.loadTexture("YW");
 
             this.loadTexture("Korvette");
             this.loadTexture("Cruiser");

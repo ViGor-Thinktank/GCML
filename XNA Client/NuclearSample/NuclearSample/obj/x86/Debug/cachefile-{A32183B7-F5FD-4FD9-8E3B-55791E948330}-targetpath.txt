@@ -75,3 +75,4 @@ Content\Sprites\Korvette.xnb
 Content\Sprites\Planet.xnb
 Content\Sprites\CreateResource.xnb
 Content\Sprites\CreateResource_done.xnb
+Content\Sprites\YW.xnb

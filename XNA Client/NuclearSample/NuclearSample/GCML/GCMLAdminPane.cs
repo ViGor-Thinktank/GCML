@@ -124,6 +124,14 @@ namespace GCML_XNA_Client.GCML
             this.manualDataInit();
             
             this.addUnit("Rebel HQ Korvette", "Admiral Ackbar");
+
+            this.addUnit("XWing", "Admiral Ackbar", "1|0|0");
+            this.addUnit("XWing", "Admiral Ackbar", "1|0|0");
+            this.addUnit("YWing", "Admiral Ackbar", "1|0|0");
+
+            this.addUnit("XWing", "Admiral Ackbar", "1|1|0");
+            this.addUnit("YWing", "Admiral Ackbar", "1|2|0");
+            
             this.addUnit("Empire HQ Cruiser", "Grand Moff Tarkin");
             
             this.addUnit("Planet", "Grand Moff Tarkin", "4|3|0");
@@ -150,10 +158,13 @@ namespace GCML_XNA_Client.GCML
 
         private void manualDataInit()
         {
-            clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "Standart Rebellen Kampfgeschwader");
+            clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "X-Wing");
             Program.m_objCampaign.UnitType_addNew(objXWing);
 
-            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "TieF");
+            clsUnitType objYWing = new clsUnitType("YWing", 1, 1, "YW", "Y-Wing");
+            Program.m_objCampaign.UnitType_addNew(objYWing);
+
+            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "Tie Fighter");
             Program.m_objCampaign.UnitType_addNew(objTie);
 
             clsUnitType objStation = new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType>(), 250);
