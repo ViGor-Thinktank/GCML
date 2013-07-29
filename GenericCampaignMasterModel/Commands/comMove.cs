@@ -8,7 +8,7 @@ namespace GenericCampaignMasterModel.Commands
     public class comMove : clsCommandBaseClass
     {
         
-        public comMove(clsUnit Unit) : base("Move")
+        public comMove(clsUnitGroup Unit) : base("Move")
         {
             this.m_objUnitToCommand = Unit;
         }
@@ -23,7 +23,7 @@ namespace GenericCampaignMasterModel.Commands
         }
 
 
-        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
         {
             return new facMoveFactory(objUnit, FieldField);
 

@@ -60,7 +60,7 @@ namespace GenericCampaignMasterModel
 
         public Faction objPlayerFaction = null;
       
-        public List<clsUnit> ListUnits = new List<clsUnit>();
+        public List<clsUnitGroup> ListUnits = new List<clsUnitGroup>();
 
         public Sektor unitspawnSektor;
 
@@ -78,7 +78,7 @@ namespace GenericCampaignMasterModel
 
         #endregion
 
-        public clsUnit getUnitByID(string strUnitID)
+        public clsUnitGroup getUnitByID(string strUnitID)
         {
             return (from u in this.ListUnits
                            where u.Id == strUnitID

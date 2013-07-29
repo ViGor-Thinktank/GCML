@@ -56,7 +56,7 @@ namespace GenericCampaignMasterLib
         }
 
         private List<Sektor> unitCollisionStack = new List<Sektor>();
-        private List<clsUnit> unitActedStack = new List<clsUnit>();
+        private List<clsUnitGroup> unitActedStack = new List<clsUnitGroup>();
         private List<Player> lstFinishedPlayers = new List<Player>();
         private Dictionary<string, ICommand> m_dictCommandCache = new Dictionary<string, ICommand>();
 
@@ -98,7 +98,7 @@ namespace GenericCampaignMasterLib
             this.onTick = null;
             foreach (Player p in m_campaignEngine.lisPlayers)
             {
-                foreach (clsUnit u in p.ListUnits)
+                foreach (clsUnitGroup u in p.ListUnits)
                 {
                     this.onTick += new delTick(u.CampaignController_onTick);
                 }
@@ -155,7 +155,7 @@ namespace GenericCampaignMasterLib
             {
                 List<Player> unitOwnersInSektor = new List<Player>();
 
-                foreach (clsUnit unit in sektor.ListUnits)
+                foreach (clsUnitGroup unit in sektor.ListUnits)
                 {
                     Player owner = m_campaignEngine.getUnitOwner(unit);
                     if (!unitOwnersInSektor.Contains(owner))
@@ -203,14 +203,14 @@ namespace GenericCampaignMasterLib
             return m_campaignEngine.lisPlayers;
         }
 
-        public List<clsUnit> Player_getActiveUnitsForPlayer(Player player)
+        public List<clsUnitGroup> Player_getActiveUnitsForPlayer(Player player)
         {
-            List<clsUnit> unitsForPlayer = player.ListUnits;
+            List<clsUnitGroup> unitsForPlayer = player.ListUnits;
             var lstUnitsCanAct = from u in player.ListUnits
                                  where !unitActedStack.Contains(u)
                                  select u;
 
-            return new List<clsUnit>(lstUnitsCanAct);
+            return new List<clsUnitGroup>(lstUnitsCanAct);
         }
 
         public void Player_endRound(Player p)
@@ -230,35 +230,35 @@ namespace GenericCampaignMasterLib
             while (m_campaignEngine.ResourceHandler.CreatedUnitIds.Count > 0)
             {
                 string newUnitId = m_campaignEngine.ResourceHandler.CreatedUnitIds.Pop();
-                clsUnit unit = m_campaignEngine.getUnit(newUnitId);
+                clsUnitGroup unit = m_campaignEngine.getUnit(newUnitId);
                 this.onTick += new delTick(unit.CampaignController_onTick);
             }
 
         }
 
         //, string strSpawnSektorKoord = "" --> zu devzwecken 
-        public clsUnit Unit_createNew(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
+        public clsUnitGroup Unit_createNew(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
-            clsUnit newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
+            clsUnitGroup newUnit = this.m_campaignEngine.addUnit(strPlayerID, intUnitTypeID, strSpawnSektorKoord);
 
             this.onTick += new delTick(newUnit.CampaignController_onTick);
 
             return newUnit;
         }
 
-        public clsUnit Unit_getByID(string strUnitId)
+        public clsUnitGroup Unit_getByID(string strUnitId)
 		{
             return m_campaignEngine.getUnit(strUnitId);
 		}
 
         public UnitInfo Unit_getInfoByID(string unitId)
         {
-            clsUnit unit = Unit_getByID(unitId);
+            clsUnitGroup unit = Unit_getByID(unitId);
             UnitInfo info = m_campaignEngine.getUnitInfo(unit);
             return info;
         }
 
-        public clsCommandCollection Unit_getCommandsForUnit(clsUnit unit)
+        public clsCommandCollection Unit_getCommandsForUnit(clsUnitGroup unit)
         {
             clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
 
@@ -270,7 +270,7 @@ namespace GenericCampaignMasterLib
             return objCommands;
         }
 
-        public Sektor Unit_getSektorForUnit(clsUnit unit)
+        public Sektor Unit_getSektorForUnit(clsUnitGroup unit)
         {
             return CampaignEngine.FieldField.getSektorForUnit(unit);
         }
@@ -382,18 +382,18 @@ namespace GenericCampaignMasterLib
 
         public int UnitType_addNew(clsUnitType newUnit)
         {
-            return clsUnit.objUnitTypeFountain.addNewType(newUnit);
+            return clsUnitGroup.objUnitTypeFountain.addNewType(newUnit);
         }
 
         public clsUnitType UnitType_getTypeByName(string strUnitName)
         {
-            return clsUnit.objUnitTypeFountain.getTypeByName(strUnitName);
+            return clsUnitGroup.objUnitTypeFountain.getTypeByName(strUnitName);
         }
 
         public clsUnitType UnitType_getTypeByID(int intUnitID)
         {
-            if (clsUnit.objUnitTypeFountain.dicUnitTypeData.ContainsKey(intUnitID.ToString()))
-                return clsUnit.objUnitTypeFountain.dicUnitTypeData[intUnitID.ToString()];
+            if (clsUnitGroup.objUnitTypeFountain.dicUnitTypeData.ContainsKey(intUnitID.ToString()))
+                return clsUnitGroup.objUnitTypeFountain.dicUnitTypeData[intUnitID.ToString()];
             else
                 return null;
         }

@@ -7,13 +7,13 @@ namespace GenericCampaignMasterModel.Commands
 {
     public abstract class clsSektorFactoryBase : clsFactoryBase
     {
-        public clsSektorFactoryBase(clsUnit Unit, Field FieldField)
+        public clsSektorFactoryBase(clsUnitGroup Unit, Field FieldField)
         {
             this.m_Unit = Unit;
             this.m_FieldField = FieldField;
             this.m_DirectionVektors = m_FieldField.getDirectionVectors();
         }
-        protected clsUnit m_Unit;
+        protected clsUnitGroup m_Unit;
         protected List<clsSektorKoordinaten> m_DirectionVektors;
         protected Sektor m_originSektor;
         private Field m_FieldField = null;

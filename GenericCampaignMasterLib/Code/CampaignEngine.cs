@@ -35,7 +35,7 @@ namespace GenericCampaignMasterLib
             state.FieldDimension = this.FieldField.FieldDimension;
             state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
             state.ListUnitInfo = this.getUnitInfo();
-            state.ListUnitTypes = clsUnit.objUnitTypeFountain;
+            state.ListUnitTypes = clsUnitGroup.objUnitTypeFountain;
             state.ListResourceInfo = this.ResourceHandler.getResourceInfo();
             state.Save();
             return state;
@@ -60,19 +60,18 @@ namespace GenericCampaignMasterLib
             engine.CampaignName = state.ContainsKey("campaignname") ? state["campaignname"] : "OLDCAMPAIGN";
             engine.setPlayerList(lstPlayers);
 
-            clsUnit.objUnitTypeFountain.dicUnitTypeData = state.getDicUnitTypeInfo();
+            clsUnitGroup.objUnitTypeFountain.dicUnitTypeData = state.getDicUnitTypeInfo();
             
             // Units platzieren
             foreach (UnitInfo uInfo in state.getListUnitInfo())
             {
-                Type unitType = Type.GetType(uInfo.unitType);
                 //UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
 
                 Player aktP = (from p in lstPlayers
                                where p.Id == uInfo.playerId
                                select p).First();
 
-                clsUnit unit = aktP.getUnitByID(uInfo.unitId);
+                clsUnitGroup unit = aktP.getUnitByID(uInfo.unitId);
 
                 //clsUnit unit = new clsUnit(uInfo.unitId);
                 field.dicSektors[uInfo.sektorId].addUnit(unit);
@@ -147,7 +146,7 @@ namespace GenericCampaignMasterLib
 
 #endregion
        
-        public clsCommandCollection getCommandsForUnit(clsUnit objAktUnit)
+        public clsCommandCollection getCommandsForUnit(clsUnitGroup objAktUnit)
 		{
             clsCommandCollection objCommands = new clsCommandCollection();
 
@@ -186,7 +185,7 @@ namespace GenericCampaignMasterLib
                 this.onEngineStatus(strStatus);
         }
    
-        public Sektor getSektorContainingUnit(clsUnit u)
+        public Sektor getSektorContainingUnit(clsUnitGroup u)
         {
             return FieldField.getSektorForUnit(u);
             
@@ -197,7 +196,7 @@ namespace GenericCampaignMasterLib
             List<UnitInfo> result = new List<UnitInfo>();
             foreach(Player p in lisPlayers)
             {
-                foreach (clsUnit u in p.ListUnits)
+                foreach (clsUnitGroup u in p.ListUnits)
                 {
                     UnitInfo info = getUnitInfo(u);
                     result.Add(info);
@@ -207,7 +206,7 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
-        public UnitInfo getUnitInfo(clsUnit unit)
+        public UnitInfo getUnitInfo(clsUnitGroup unit)
         {
             Sektor s = getSektorContainingUnit(unit);
             Player owner = getUnitOwner(unit);
@@ -219,13 +218,12 @@ namespace GenericCampaignMasterLib
             uInfo.sektorId = sektorId;
             uInfo.unitId = unit.Id.ToString();
             uInfo.playerId = ownerId;
-            uInfo.unitType = unit.UnitType.GetType().ToString();
-
+      
             return uInfo;
 
         }
 
-        public Player getUnitOwner(clsUnit unit)
+        public Player getUnitOwner(clsUnitGroup unit)
         {
 
             var owner = (from p in lisPlayers
@@ -235,7 +233,7 @@ namespace GenericCampaignMasterLib
             return owner as Player;
         }
 
-        public clsUnit getUnit(string id)
+        public clsUnitGroup getUnit(string id)
 		{
             var units = from p in lisPlayers
 						from u in p.ListUnits
@@ -264,7 +262,7 @@ namespace GenericCampaignMasterLib
             return cnt+1;
         }
 
-        public clsUnit addUnit(Player owner, clsUnit newUnit, Sektor sektor)
+        public clsUnitGroup addUnit(Player owner, clsUnitGroup newUnit, Sektor sektor)
         {
             newUnit.strOwnerID = owner.Id;
             owner.ListUnits.Add(newUnit);
@@ -272,7 +270,7 @@ namespace GenericCampaignMasterLib
             return newUnit;
         }
         //, string strSpawnSektorKoord = "" --> zu dev zwecken 
-        internal clsUnit addUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
+        internal clsUnitGroup addUnit(string strPlayerID, int intUnitTypeID, string strSpawnSektorKoord = "")
         {
             Player objPlayer = getPlayerByID(strPlayerID);
             clsSektorKoordinaten objSpawSek = null;
@@ -289,45 +287,46 @@ namespace GenericCampaignMasterLib
             {
                 objSpawSek = (objPlayer.unitspawnSektor != null ? objPlayer.unitspawnSektor.objSektorKoord : this.FieldField.nullSektorKoord);
             }
-            clsUnit newUnit = null;
-
+            
             //Ergibt eineindeutige UnitIDs
-            newUnit = new clsUnit(strPlayerID + objPlayer.ListUnits.Count.ToString(), intUnitTypeID);
-            newUnit.strOwnerID = strPlayerID;
 
-            if (newUnit.UnitType.m_listUnitSpawn != null && newUnit.UnitType.m_listUnitSpawn.Count == 0)
+            clsUnitGroup objUnitGroup = null;
+            Sektor s = FieldField.dicSektors[objSpawSek.uniqueIDstr()];
+            if (s.ListUnits.Count<clsUnitGroup>((n => n.strOwnerID == strPlayerID)) > 0)
             {
-                newUnit.UnitType.m_listUnitSpawn = objPlayer.objPlayerFaction.listUnitspawn;
-            }
-            return addUnit(strPlayerID, newUnit, objSpawSek);
-        }
-        
-        public clsUnit addUnit(string strPlayerID, clsUnit newUnit, clsSektorKoordinaten objSektorKoord)
-        {
-
-             
-            newUnit.strOwnerID = strPlayerID;
-            newUnit.cnt = this.getID(this.getPlayerByID(strPlayerID));
-            List<Player> lisP = null;
-
-            if (newUnit.UnitType.blnAlywaysVisible)
-            {
-                lisP = this.lisPlayers;
+                objUnitGroup = s.ListUnits.First<clsUnitGroup>(u => u.strOwnerID == strPlayerID);
+                objUnitGroup.addNewUnit(objPlayer, intUnitTypeID);
             }
             else
-            { 
-                lisP = new List<Player> {this.getPlayerByID(strPlayerID)};
-            }
-
-            foreach (Player p in lisP)
             {
-                p.ListUnits.Add(newUnit);
+                objUnitGroup = new clsUnitGroup(objPlayer, intUnitTypeID);
+                objUnitGroup.strOwnerID = strPlayerID;
+                objUnitGroup.cnt = this.getID(this.getPlayerByID(strPlayerID));
+
+                List<Player> lisP = null;
+
+                if (objUnitGroup.blnAlywaysVisible)
+                {
+                    lisP = this.lisPlayers;
+                }
+                else
+                {
+                    lisP = new List<Player> { this.getPlayerByID(strPlayerID) };
+                }
+
+                foreach (Player p in lisP)
+                {
+                    p.ListUnits.Add(objUnitGroup);
+                }
+
+                this.FieldField.get(objSpawSek).ListUnits.Add(objUnitGroup);
+
+
             }
 
-            this.FieldField.get(objSektorKoord).ListUnits.Add(newUnit);
-
-            return newUnit;
+            return objUnitGroup;
         }
+        
         
 #endregion
 
@@ -412,7 +411,7 @@ namespace GenericCampaignMasterLib
         {
             clsViewableSectorFactory facViewSek = new clsViewableSectorFactory(this.FieldField);
 
-            foreach (clsUnit aktUnit in p.ListUnits)
+            foreach (clsUnitGroup aktUnit in p.ListUnits)
             {
                 facViewSek.getVisibleSektorsFromUnitSektor(this.getSektorContainingUnit(aktUnit), aktUnit.intSichtweite);
             }

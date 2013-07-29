@@ -8,7 +8,7 @@ namespace GenericCampaignMasterModel.Commands
     public class facPlaceUnitFactory : clsSektorFactoryBase
     {
 
-        public facPlaceUnitFactory(clsUnit u, Field FieldField)
+        public facPlaceUnitFactory(clsUnitGroup u, Field FieldField)
             : base(u, FieldField)
         {
             //set Members
@@ -26,7 +26,7 @@ namespace GenericCampaignMasterModel.Commands
 
                 if (newSek != null && aktSek.strUniqueID != newSek.strUniqueID)
                 {
-                    comPlaceUnit readyCmd = new comPlaceUnit(m_Unit, this.actingPlayer, m_Unit.UnitType.firstUnitSpawnType);
+                    comPlaceUnit readyCmd = new comPlaceUnit(m_Unit, this.actingPlayer, m_Unit.firstUnitSpawnType);
 
                     readyCmd.TargetSektor = this.FieldField.get(newSek.objSektorKoord);
 

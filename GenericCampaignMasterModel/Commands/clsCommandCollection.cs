@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class clsCommandCollection
     {
-        public clsUnit aktUnit = null;
+        public clsUnitGroup aktUnit = null;
 
         public List<ICommand> listReadyCommands = null;
         public List<ICommand> listRawCommands = null;

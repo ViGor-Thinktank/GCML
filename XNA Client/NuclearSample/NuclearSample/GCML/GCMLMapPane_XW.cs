@@ -19,7 +19,7 @@ namespace GCML_XNA_Client.GCML
         private int m_intPlayerIndex;
 
         private Dictionary<NuclearUI.Image, string> m_dicCommandIcons;
-        private Dictionary<NuclearUI.Image, clsUnit> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnit>();
+        private Dictionary<NuclearUI.Image, clsUnitGroup> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnitGroup>();
 
         private NuclearUI.GridGroup m_gridMap;
 
@@ -150,7 +150,7 @@ namespace GCML_XNA_Client.GCML
         
         private void imgUnit_ClickHandler(NuclearUI.Image sender)
         {
-            clsUnit aktUnit = m_dicUnits[sender];
+            clsUnitGroup aktUnit = m_dicUnits[sender];
     
             clsGCML_Unit Unit = new clsGCML_Unit(aktUnit);
 
@@ -194,7 +194,7 @@ namespace GCML_XNA_Client.GCML
                 
                 foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)
                 {
-                    foreach (clsUnit aktUnit in aktSek.ListUnits)
+                    foreach (clsUnitGroup aktUnit in aktSek.ListUnits)
                     {
                         drawUnit(aktUnit, aktPly);
                     }                    
@@ -203,21 +203,27 @@ namespace GCML_XNA_Client.GCML
             }
         }
         
-        private void drawUnit(clsUnit aktUnit, GenericCampaignMasterModel.Player aktPly)
+        private void drawUnit(clsUnitGroup aktUnit, GenericCampaignMasterModel.Player aktPly)
         {
             NuclearUI.Image imgNumber = newNumberCounter(aktUnit.cnt);
 
             clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
+            NuclearUI.Image imgUnit = null;
 
-            NuclearUI.Image imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[objUnit.strTexName], false);
-            m_dicUnits.Add(imgUnit, aktUnit);
-            if (aktUnit.strOwnerID == aktPly.Id)
-                imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
-
-            m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-            if (imgNumber != null && objUnit.objUnit.strOwnerID == aktPly.Id)
+            foreach (string strTex in objUnit.strTexNames)
             {
-                m_gridMap.AddChildAt(newNumberCounter(aktUnit.cnt), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+                imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[strTex], false);
+                m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+            }
+            if (aktUnit.strOwnerID == aktPly.Id)
+            {
+                imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
+                m_dicUnits.Add(imgUnit, aktUnit);
+            
+                if (imgNumber != null)
+                {
+                    m_gridMap.AddChildAt(newNumberCounter(aktUnit.cnt), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
+                }
             }
 
             if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted && objUnit.objUnit.strOwnerID == aktPly.Id)

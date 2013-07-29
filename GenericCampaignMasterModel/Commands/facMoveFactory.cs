@@ -10,7 +10,7 @@ namespace GenericCampaignMasterModel.Commands
     {
         private List<string> m_listKnownMovements = new List<string>();
 
-        public facMoveFactory(clsUnit u, Field FieldField) : base(u, FieldField)
+        public facMoveFactory(clsUnitGroup u, Field FieldField) : base(u, FieldField)
         {
             
             //set Members

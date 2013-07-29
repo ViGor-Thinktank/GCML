@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     class comCreateResource: clsCommandBaseClass 
     {
-        private clsUnit m_objRecieveUnit
+        private clsUnitGroup m_objRecieveUnit
         {
             get
             {
@@ -19,7 +19,7 @@ namespace GenericCampaignMasterModel.Commands
             }        
         }
 
-        public comCreateResource(clsUnit objRecieveUnit)
+        public comCreateResource(clsUnitGroup objRecieveUnit)
             : base("CreateResource")
         {
             this.m_objRecieveUnit = objRecieveUnit;
@@ -29,7 +29,7 @@ namespace GenericCampaignMasterModel.Commands
 		{
             base.markExecute();
 
-            this.m_objRecieveUnit.intResourceValue += this.m_objRecieveUnit.UnitType.intCreateValuePerRound;
+            this.m_objRecieveUnit.addResourceValue(this.m_objRecieveUnit.intCreateValuePerRound);
             
         }
 
@@ -37,11 +37,11 @@ namespace GenericCampaignMasterModel.Commands
         {
             get
             {
-                return "cerate Resource Value" + this.m_objRecieveUnit.UnitType.intCreateValuePerRound.ToString();
+                return "cerate Resource Value" + this.m_objRecieveUnit.intCreateValuePerRound.ToString();
             }
         }
 
-        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
         {
             return null;
         }

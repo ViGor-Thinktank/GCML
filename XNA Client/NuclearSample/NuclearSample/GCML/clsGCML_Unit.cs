@@ -7,33 +7,41 @@ namespace GCML_XNA_Client.GCML
 {
     class clsGCML_Unit 
     {
-        public clsGCML_Unit(GenericCampaignMasterModel.clsUnit newUnit)
+        public clsGCML_Unit(GenericCampaignMasterModel.clsUnitGroup newUnit)
         {
             objUnit = newUnit;
         }
         
-        public GenericCampaignMasterModel.clsUnit objUnit;
+        public GenericCampaignMasterModel.clsUnitGroup objUnit;
 
-        private Dictionary<string, string> m_dicClientData;
-        private Dictionary<string, string> dicClientData
+        private Dictionary<string, List<string>> m_dicClientData;
+        
+        private Dictionary<string, List<string>> dicClientData
         {
             get 
             {
                 if (m_dicClientData == null)
                 {
-                    m_dicClientData = new Dictionary<string, string>();
+                    m_dicClientData = new Dictionary<string, List<string>>();
 
-                    foreach (string str in objUnit.UnitType.strClientData.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries))
+                    foreach (string str in objUnit.strClientData.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        string[] strSplit = str.Split(new string[] { ":=" }, StringSplitOptions.None);
-                        m_dicClientData.Add(strSplit[0], strSplit[1]);
+                        foreach (string strData in str.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            string[] strSplit = strData.Split(new string[] { ":=" }, StringSplitOptions.None);
+                            if (!m_dicClientData.ContainsKey(strSplit[0]))
+                            { 
+                                m_dicClientData.Add(strSplit[0], new List<string>());
+                            }
+                            m_dicClientData[strSplit[0]].Add(strSplit[1]);
+                        }
                     }
                 }
                 return m_dicClientData;
             }
         }
 
-        public string strTexName
+        public List<string> strTexNames
         {
             get
             {

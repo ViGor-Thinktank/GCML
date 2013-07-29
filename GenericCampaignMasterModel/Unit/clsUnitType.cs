@@ -61,43 +61,6 @@ namespace GenericCampaignMasterModel
             m_strBez = strDefaultBez;
         }
 
-        //Funktionen
-        public List<ICommand> getTypeCommands(clsUnit CallingUnit)
-        {
-            List<ICommand> cmdlist = new List<ICommand>();
-
-            ICommand cmd;
-
-            if (CallingUnit.intMovement > 0)
-            {
-                cmd = new comMove(CallingUnit);
-                cmdlist.Add(cmd);
-            }
-
-            if (CallingUnit.intResourceValue > 0)
-            {
-                cmd = new comDropResource(CallingUnit, null);
-                cmdlist.Add(cmd);
-
-                if (CallingUnit.UnitType.blnCanSpawnUnits)
-                {
-                    cmd = new comPlaceUnit(CallingUnit);
-                    cmdlist.Add(cmd);
-                }
-            }
-
-            if (CallingUnit.UnitType.intCreateValuePerRound > 0)
-            {
-                cmd = new comCreateResource(CallingUnit);
-                cmdlist.Add(cmd);
-
-            }
-
-            return cmdlist;
-        }
-
-
-
         public List<ICommand> getResourceCommands(Player owner)
         {
             List<ICommand> placeUnitCommands = new List<ICommand>();

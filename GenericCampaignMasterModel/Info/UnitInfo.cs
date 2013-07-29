@@ -10,6 +10,5 @@ namespace GenericCampaignMasterModel
         public string playerId;
         public string sektorId;
         public string unitId;
-        public string unitType;
     }
 }

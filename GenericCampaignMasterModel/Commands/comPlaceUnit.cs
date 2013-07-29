@@ -13,13 +13,13 @@ namespace GenericCampaignMasterModel.Commands
 
         private Player m_Owner = null;
         
-        public comPlaceUnit(clsUnit Unit)
+        public comPlaceUnit(clsUnitGroup Unit)
             : base("PlaceUnit")
         {
             this.m_objUnitToCommand = Unit;
         }
 
-        public comPlaceUnit(clsUnit Unit, Player owner, clsUnitType UnitTypeToPlace)
+        public comPlaceUnit(clsUnitGroup Unit, Player owner, clsUnitType UnitTypeToPlace)
             : base("PlaceUnit")
         {   
             this.m_objUnitToCommand = Unit;
@@ -55,7 +55,7 @@ namespace GenericCampaignMasterModel.Commands
             }
         }
 
-        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
         {
             return new facPlaceUnitFactory(objUnit, FieldField);
         }
