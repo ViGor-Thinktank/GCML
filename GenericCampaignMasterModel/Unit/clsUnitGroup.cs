@@ -174,7 +174,10 @@ namespace GenericCampaignMasterModel
 
 
 
-        public clsUnitType firstUnitSpawnType { get { return m_listUnits[0].objUnitType.firstUnitSpawnType; } }
+        public clsUnitType firstUnitSpawnType { 
+            get
+            { return m_listUnits.First<clsUnit>(t => t.objUnitType.m_listUnitSpawn != null).objUnitType.m_listUnitSpawn[0]; }
+        }
 
         public int intCreateValuePerRound { get { return m_listUnits.Sum<clsUnit>(w => w.objUnitType.intCreateValuePerRound); } }
 
