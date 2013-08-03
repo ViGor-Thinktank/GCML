@@ -260,7 +260,24 @@ namespace GenericCampaignMasterLib
 
         public clsCommandCollection Unit_getCommandsForUnit(clsUnitGroup unit)
         {
-            clsCommandCollection objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
+            clsCommandCollection objCommands;
+
+            if (!unitCollisionStack.Contains(this.Unit_getSektorForUnit(unit)))
+            {
+                objCommands = this.m_campaignEngine.getCommandsForUnit(unit);
+            }
+            else
+            {
+                //Q&&D
+                objCommands = new clsCommandCollection();
+
+                objCommands.aktUnit = unit;
+
+                objCommands.listRawCommands = new List<ICommand> { new comSolveKollision() }; 
+                objCommands.listReadyCommands = new List<ICommand>();                      // Liste mit ausführbaren Commands - Enthalten zB explizite Position / Zielsektoren
+
+            }
+
 
             foreach (ICommand cmd in objCommands.listReadyCommands)
             {

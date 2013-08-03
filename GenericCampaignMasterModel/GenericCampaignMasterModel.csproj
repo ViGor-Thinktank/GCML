@@ -53,6 +53,7 @@
     <Compile Include="Commands\comPlaceUnit.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\comSolveKollision.cs" />
     <Compile Include="Commands\facDropResourceFactory.cs">
       <SubType>Code</SubType>
     </Compile>
