@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class clsCommandCollection
     {
-        public clsUnitGroup aktUnit = null;
+        public clsUnit aktUnit = null;
 
         public List<ICommand> listReadyCommands = null;
         public List<ICommand> listRawCommands = null;
@@ -34,6 +34,10 @@ namespace GenericCampaignMasterModel.Commands
 
         public List<ICommand> listReadyCommandsWithTypeFilter(ICommand aktCommandType)
         {
+            if (aktCommandType.GetType() == typeof(comSolveKollision))
+            {
+                return listReadyCommands;
+            }
             List<ICommand> listReadyCommandsFilter = new List<ICommand>();
 
             foreach (ICommand aktCom in listReadyCommands)

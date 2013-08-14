@@ -13,6 +13,8 @@ namespace GCML_XNA_Client.GCML
 {
     class GCMLAdminPane: NuclearUI.ManagerPane<MainMenuManager>
     {
+        private bool m_blnInit = false;
+
         //----------------------------------------------------------------------
         public GCMLAdminPane(MainMenuManager _manager)
         : base( _manager )
@@ -113,10 +115,36 @@ namespace GCML_XNA_Client.GCML
                 };
                 gridGroup.AddChildAt(button, 1, 4);
 
+                button = new NuclearUI.Button(Manager.MenuScreen, "Planet Randomizer");
+                button.ClickHandler = delegate
+                {
+                    this.setRandomPlanets();
+
+                };
+                gridGroup.AddChildAt(button, 2, 4);
+
             }
 
             
             
+        }
+        
+        private void setRandomPlanets()
+        {
+            this.manualDataInit();
+
+            this.addUnit("Planet", "Grand Moff Tarkin", "1|3|0");
+            this.addUnit("Planet", "Grand Moff Tarkin", "4|2|0");
+               
+           /* Random objRand = new Random(DateTime.Now.Millisecond);
+
+            for (int i = 0; i < 2; i++)
+            {
+                this.addUnit("Planet", "Grand Moff Tarkin", objRand.Next(0, 6).ToString() + "|" + objRand.Next(0, 6).ToString() + "|0");
+                
+            }*/
+
+            Program.m_objCampaign.Tick();
         }
 
         private void InitHQDemo()
@@ -151,13 +179,17 @@ namespace GCML_XNA_Client.GCML
 
         private void addUnit(string strUnit, string strSpieler, string strSektor = "")
         {
-            int XW_ID = Program.m_objCampaign.UnitType_getTypeByName(strUnit).ID;
+            int Unit_ID = Program.m_objCampaign.UnitType_getTypeByName(strUnit).ID;
             Player ply = Program.m_objCampaign.Player_getByName(strSpieler);
-            Program.m_objCampaign.Unit_createNew(ply.Id, XW_ID, strSektor);
+            Program.m_objCampaign.Unit_createNew(ply.Id, Unit_ID, strSektor);
         }
 
         private void manualDataInit()
         {
+            if (m_blnInit)
+                return;
+
+            m_blnInit = true;
             clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "X-Wing");
             Program.m_objCampaign.UnitType_addNew(objXWing);
 
@@ -173,7 +205,7 @@ namespace GCML_XNA_Client.GCML
             clsUnitType objTrans = new clsUnitType("Raumtransporter", 0, 1, "Transport", "Blind, langsam und mit [%intResourceValue%] Punkten beladen", new List<clsUnitType> { objStation }, 100);
             Program.m_objCampaign.UnitType_addNew(objTrans);
             
-            clsUnitType objPlanet = new clsUnitType("Planet", 1, 0, "Planet", "Produziert Resourcen, mit [%intResourceValue%] Punkten beladen. Kann Transporter spawnwn", new List<clsUnitType> { objTrans }, 1000, true, true);
+            clsUnitType objPlanet = new clsUnitType("Planet", 0, 0, "Planet", "Produziert Resourcen, mit [%intResourceValue%] Punkten beladen. Kann Transporter spawnwn", new List<clsUnitType> { objTrans }, 1000, true, true);
             Program.m_objCampaign.UnitType_addNew(objPlanet);
             
             Program.m_objCampaign.UnitType_addNew(new clsUnitType("Empire HQ Cruiser", 1, 1, "Cruiser", "Empire HQ", new List<clsUnitType> { objTie }, 250));
@@ -193,7 +225,7 @@ namespace GCML_XNA_Client.GCML
         {
             Program.objCampaignState = new clsCampaignInfo();
 
-            if (System.IO.File.Exists(".\\CCDate.dat")) //&& MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (false && System.IO.File.Exists(".\\CCDate.dat"))// && MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.objCampaignState.load();
                 Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
@@ -202,7 +234,7 @@ namespace GCML_XNA_Client.GCML
             }
             else
             {
-                Program.m_objCampaign = new CampaignBuilderSchach().buildNew();
+                Program.m_objCampaign = new CampaignBuilderSchach().buildNew(7);
             }
 
             //Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);

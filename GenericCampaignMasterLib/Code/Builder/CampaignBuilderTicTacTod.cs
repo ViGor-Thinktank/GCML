@@ -61,8 +61,8 @@ namespace GenericCampaignMasterLib
             Player player1 = new Player("1");
             Player player2 = new Player("2");
 
-            clsUnitGroup unit1 = new clsUnitGroup(player1, 0);
-            clsUnitGroup unit2 = new clsUnitGroup(player2, 0);
+            clsUnit unit1 = new clsUnit(player1, 0);
+            clsUnit unit2 = new clsUnit(player2, 0);
 
             engine.addPlayer(player1);
             engine.addPlayer(player2);

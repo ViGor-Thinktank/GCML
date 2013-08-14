@@ -84,7 +84,6 @@ namespace NuclearWinter.UI
             TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID: " + objCommandCollection.aktUnit.Id;
             MessageLabel.Text = objCommandCollection.aktUnit.strDescription;
 
-            
             ContentGroup.Clear();
             ContentGroup.AddChild(MessageLabel);
             
@@ -101,9 +100,9 @@ namespace NuclearWinter.UI
                 mActionsGroup.AddChild(mCommandButton);
             }
 
-            //immer
+            
             mActionsGroup.AddChild(mCloseButton);
-            //*/
+            
             mCommandCallback = _commandCallback;
         }
 

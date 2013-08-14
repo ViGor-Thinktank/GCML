@@ -12,8 +12,6 @@ namespace GenericCampaignMasterModel
         {
             m_objSektorType = new clsSektorType_base();
         }
-
-
         public Sektor(string sektorId) 
         {
             m_strID = sektorId;
@@ -25,9 +23,8 @@ namespace GenericCampaignMasterModel
             m_objSektorType = objSektorType; 
         }
         
-
         private string m_strID;
-        private List<clsUnitGroup> m_ListUnits = new List<clsUnitGroup>();
+        private List<clsUnit> m_ListUnits = new List<clsUnit>();
 
         private clsSektorType_base m_objSektorType;
 
@@ -43,7 +40,7 @@ namespace GenericCampaignMasterModel
             }
         }
 
-        public List<clsUnitGroup> ListUnits 
+        public List<clsUnit> ListUnits 
         { 
             get 
             {
@@ -65,20 +62,19 @@ namespace GenericCampaignMasterModel
 
         public clsSektorKoordinaten objSektorKoord { get; set; }
 
-
-
-        public void addUnit(clsUnitGroup unit)
+        public void addUnit(clsUnit unit)
 		{
 			m_ListUnits.Add (unit);
-
+            unit.MoveHistory_add(this);
+			
             if(onUnitEnteredSektor != null)
                 onUnitEnteredSektor(this, new SektorEventArgs(unit, this));
 		}
 
-        public void removeUnit(clsUnitGroup unit)
+        public void removeUnit(clsUnit unit)
 		{
 
-            clsUnitGroup aktUnit = null;
+            clsUnit aktUnit = null;
 
             var objUnitList = from u in this.m_ListUnits
                                 where u.Id == unit.Id

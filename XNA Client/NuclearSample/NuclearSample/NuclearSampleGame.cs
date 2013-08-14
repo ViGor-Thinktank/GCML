@@ -32,8 +32,8 @@ namespace GCML_XNA_Client
         {
             Content.RootDirectory = "Content";
 
-            Graphics.PreferredBackBufferWidth = 1000;
-            Graphics.PreferredBackBufferHeight = 500;
+            Graphics.PreferredBackBufferWidth = 800;
+            Graphics.PreferredBackBufferHeight = 600;
 
         }
 
@@ -42,16 +42,15 @@ namespace GCML_XNA_Client
         {
             base.Initialize();
 
-            //Init 5x5 Feld
             Program.objCampaignState = new GCML.clsCampaignInfo();
-            Program.m_objCampaign = new CampaignBuilderSchach().buildNew();
+            Program.m_objCampaign = new CampaignBuilderSchach().buildNew(7);
            
             SetWindowTitle("GCML Demo");
 
             //------------------------------------------------------------------
             Window.AllowUserResizing = true;
             
-            Form.MinimumSize = new System.Drawing.Size(800, 500);
+            Form.MinimumSize = new System.Drawing.Size(800,600);
 
             IsMouseVisible = true;
 

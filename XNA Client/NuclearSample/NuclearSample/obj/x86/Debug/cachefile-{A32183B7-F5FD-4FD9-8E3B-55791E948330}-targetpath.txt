@@ -76,3 +76,7 @@ Content\Sprites\Planet.xnb
 Content\Sprites\CreateResource.xnb
 Content\Sprites\CreateResource_done.xnb
 Content\Sprites\YW.xnb
+Content\Sprites\Transporter_imp.xnb
+Content\Sprites\Transporter_imp_groß.xnb
+Content\Sprites\DestroyUnit.xnb
+Content\Sprites\DestroyUnit_done.xnb

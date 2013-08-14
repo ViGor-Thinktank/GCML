@@ -7,10 +7,10 @@ namespace GenericCampaignMasterModel
 {
     public class SektorEventArgs
     {
-        public clsUnitGroup actingUnit;
+        public clsUnit actingUnit;
         public Sektor eventSektor;
 
-        public SektorEventArgs(clsUnitGroup unit, Sektor sektor)
+        public SektorEventArgs(clsUnit unit, Sektor sektor)
         {
             actingUnit = unit;
             eventSektor = sektor;

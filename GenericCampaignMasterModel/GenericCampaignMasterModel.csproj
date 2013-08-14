@@ -44,6 +44,7 @@
     <Compile Include="CampaignState.cs" />
     <Compile Include="Commands\clsCommandCollection.cs" />
     <Compile Include="Commands\comCreateResource.cs" />
+    <Compile Include="Commands\comDestroyUnit.cs" />
     <Compile Include="Commands\comDropResource.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +54,7 @@
     <Compile Include="Commands\comPlaceUnit.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\comSolveKollision.cs" />
     <Compile Include="Commands\facDropResourceFactory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -66,6 +68,7 @@
     <Compile Include="Commands\facSektorFactoryBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\facSolveKollision.cs" />
     <Compile Include="Commands\facViewableSectorFactory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,8 +91,8 @@
     <Compile Include="Sektor\SektorKoordinaten.cs" />
     <Compile Include="Sektor\SektorType_base.cs" />
     <Compile Include="Sektor\SektorType_heavyTerrain.cs" />
+    <Compile Include="Unit\clsSubUnit.cs" />
     <Compile Include="Unit\clsUnit.cs" />
-    <Compile Include="Unit\clsUnitGroup.cs" />
     <Compile Include="Unit\clsUnitType.cs" />
     <Compile Include="Unit\clsUnitTypeCollection.cs" />
   </ItemGroup>

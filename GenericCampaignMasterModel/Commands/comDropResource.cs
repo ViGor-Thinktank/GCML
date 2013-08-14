@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class comDropResource : clsCommandBaseClass 
     {
-        private clsUnitGroup m_objDeliverUnit
+        private clsUnit m_objDeliverUnit
         {
             get
             {
@@ -18,11 +18,11 @@ namespace GenericCampaignMasterModel.Commands
                 base.m_objUnitToCommand = value;
             }        
         }
-        private clsUnitGroup m_objRecieveUnit { get; set; }
+        private clsUnit m_objRecieveUnit { get; set; }
 
         private int m_intValue { get { return this.m_objDeliverUnit.intResourceValue; } }
 
-        public comDropResource(clsUnitGroup objDeliverUnit, clsUnitGroup objRecieveUnit) : base("DropResource")
+        public comDropResource(clsUnit objDeliverUnit, clsUnit objRecieveUnit) : base("DropResource")
         {
             this.m_objDeliverUnit = objDeliverUnit;
             this.m_objRecieveUnit = objRecieveUnit;
@@ -43,7 +43,7 @@ namespace GenericCampaignMasterModel.Commands
             }
         }
 
-        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
             return new facDropResourceFactory(objUnit, FieldField);
         }

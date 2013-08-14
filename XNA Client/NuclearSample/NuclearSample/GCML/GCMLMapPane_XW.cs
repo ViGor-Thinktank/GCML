@@ -19,7 +19,7 @@ namespace GCML_XNA_Client.GCML
         private int m_intPlayerIndex;
 
         private Dictionary<NuclearUI.Image, string> m_dicCommandIcons;
-        private Dictionary<NuclearUI.Image, clsUnitGroup> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnitGroup>();
+        private Dictionary<NuclearUI.Image, clsUnit> m_dicUnits = new Dictionary<NuclearUI.Image, clsUnit>();
 
         private NuclearUI.GridGroup m_gridMap;
 
@@ -61,6 +61,9 @@ namespace GCML_XNA_Client.GCML
 
             this.loadTexture("PlaceUnit");
             this.loadTexture("PlaceUnit_Done");
+
+            this.loadTexture("DestroyUnit");
+            this.loadTexture("DestroyUnit_Done");
 
         }
 
@@ -151,7 +154,7 @@ namespace GCML_XNA_Client.GCML
         
         private void imgUnit_ClickHandler(NuclearUI.Image sender)
         {
-            clsUnitGroup aktUnit = m_dicUnits[sender];
+            clsUnit aktUnit = m_dicUnits[sender];
     
             clsGCML_Unit Unit = new clsGCML_Unit(aktUnit);
 
@@ -166,8 +169,6 @@ namespace GCML_XNA_Client.GCML
             Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
             Manager.XWCommandPopup.Open(500, 300);
 
-            
-           
         }
 
         protected void initMap()
@@ -195,7 +196,7 @@ namespace GCML_XNA_Client.GCML
                 
                 foreach (Sektor aktSek in aktPly.dicVisibleSectors.Values)
                 {
-                    foreach (clsUnitGroup aktUnit in aktSek.ListUnits)
+                    foreach (clsUnit aktUnit in aktSek.ListUnits)
                     {
                         drawUnit(aktUnit, aktPly);
                     }                    
@@ -204,7 +205,7 @@ namespace GCML_XNA_Client.GCML
             }
         }
         
-        private void drawUnit(clsUnitGroup aktUnit, GenericCampaignMasterModel.Player aktPly)
+        private void drawUnit(clsUnit aktUnit, GenericCampaignMasterModel.Player aktPly)
         {
             NuclearUI.Image imgNumber = newNumberCounter(aktUnit.cnt);
 

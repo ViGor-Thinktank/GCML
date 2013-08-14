@@ -7,8 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class comMove : clsCommandBaseClass
     {
-        
-        public comMove(clsUnitGroup Unit) : base("Move")
+        public comMove(clsUnit Unit) : base("Move")
         {
             this.m_objUnitToCommand = Unit;
         }
@@ -18,24 +17,22 @@ namespace GenericCampaignMasterModel.Commands
         public override void Execute()
 		{
             base.markExecute();
-			OriginSektor.removeUnit(this.m_objUnitToCommand);
+            OriginSektor.removeUnit(this.m_objUnitToCommand);
 			TargetSektor.addUnit(this.m_objUnitToCommand);
         }
 
-
-        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
             return new facMoveFactory(objUnit, FieldField);
 
         }
+        
         public override string strInfo
         {
             get
             {
                 return this.OriginSektor.strUniqueID + " -> " + TargetSektor.strUniqueID;
             }
-        }
-
-        
+        }       
     }
 }

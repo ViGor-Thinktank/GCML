@@ -5,39 +5,29 @@ using System.Text;
 
 namespace GenericCampaignMasterModel.Commands
 {
-    public class comPlaceUnit : clsCommandBaseClass
+    public class comDestroyUnit : clsCommandBaseClass
     {
-      
         public string UnitId { get; private set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
-        private clsUnitType m_UnitTypeToPlace = null;
 
         private Player m_Owner = null;
         
-        public comPlaceUnit(clsUnit Unit)
-            : base("PlaceUnit")
-        {
-            this.m_objUnitToCommand = Unit;
-        }
-
-        public comPlaceUnit(clsUnit Unit, Player owner, clsUnitType UnitTypeToPlace)
-            : base("PlaceUnit")
+        public comDestroyUnit(clsUnit Unit, Player owner)
+            : base("DestroyUnit")
         {   
             this.m_objUnitToCommand = Unit;
             this.m_Owner = owner;
-            this.m_UnitTypeToPlace = UnitTypeToPlace;
-        }
-
-        public string strNewOwner()
-        {
-            return this.m_objUnitToCommand.strOwnerID;
-        }
-        public int intNewUnitTypeID()
-        {
-            return this.m_UnitTypeToPlace.ID;
         }
 
         public override void Execute() 
         {
+            foreach (clsUnit aktU in this.m_Owner.ListUnits)
+            {
+                if (aktU.Id == m_objUnitToCommand.Id)
+                {
+                    this.m_Owner.ListUnits.Remove(aktU);
+                    break;
+                }
+            }
             base.markExecute();
         }
 
@@ -50,14 +40,13 @@ namespace GenericCampaignMasterModel.Commands
         {
             get
             {
-
-                return "";
+                return "Destroy " + m_objUnitToCommand.strBez;
             }
         }
 
         public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
-            return new facPlaceUnitFactory(objUnit, FieldField);
+            return null;
         }
         
     }

@@ -7,12 +7,12 @@ namespace GCML_XNA_Client.GCML
 {
     class clsGCML_Unit 
     {
-        public clsGCML_Unit(GenericCampaignMasterModel.clsUnitGroup newUnit)
+        public clsGCML_Unit(GenericCampaignMasterModel.clsUnit newUnit)
         {
             objUnit = newUnit;
         }
         
-        public GenericCampaignMasterModel.clsUnitGroup objUnit;
+        public GenericCampaignMasterModel.clsUnit objUnit;
 
         private Dictionary<string, List<string>> m_dicClientData;
         

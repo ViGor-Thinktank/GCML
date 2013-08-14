@@ -21,7 +21,7 @@ namespace GenericCampaignMasterModel.Commands
         string CommandId { get; set; }
         CommandInfo getInfo();
 
-        clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField);
+        clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField);
         event delControllerEvent onControllerEvent;
     }
 
@@ -66,10 +66,10 @@ namespace GenericCampaignMasterModel.Commands
         private string m_strTypeName = "";
 
         //bis jetzt, betrifft ein Command, immer, eine Unit
-        protected clsUnitGroup m_objUnitToCommand { get; set; }
+        protected clsUnit m_objUnitToCommand { get; set; }
         public Sektor TargetSektor { get; set; }
 
-        public abstract clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField);
+        public abstract clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField);
 
         private bool m_blnExecuted = false;
         public bool blnExecuted { get { return m_blnExecuted; } }

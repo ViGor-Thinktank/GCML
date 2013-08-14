@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     class comCreateResource: clsCommandBaseClass 
     {
-        private clsUnitGroup m_objRecieveUnit
+        private clsUnit m_objRecieveUnit
         {
             get
             {
@@ -19,7 +19,7 @@ namespace GenericCampaignMasterModel.Commands
             }        
         }
 
-        public comCreateResource(clsUnitGroup objRecieveUnit)
+        public comCreateResource(clsUnit objRecieveUnit)
             : base("CreateResource")
         {
             this.m_objRecieveUnit = objRecieveUnit;
@@ -41,7 +41,7 @@ namespace GenericCampaignMasterModel.Commands
             }
         }
 
-        public override clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
+        public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
             return null;
         }

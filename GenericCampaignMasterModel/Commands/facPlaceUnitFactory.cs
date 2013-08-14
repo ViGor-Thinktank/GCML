@@ -8,7 +8,7 @@ namespace GenericCampaignMasterModel.Commands
     public class facPlaceUnitFactory : clsSektorFactoryBase
     {
 
-        public facPlaceUnitFactory(clsUnitGroup u, Field FieldField)
+        public facPlaceUnitFactory(clsUnit u, Field FieldField)
             : base(u, FieldField)
         {
             //set Members

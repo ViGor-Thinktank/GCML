@@ -50,7 +50,7 @@ namespace GenericCampaignMasterModel
             this.intMaxResourceValue = intMaxResourceValue;
             this.strDescription = strDescription;
             this.blnAlywaysVisible = blnAlywaysVisible;
-            this.intCreateValuePerRound = blnAlywaysVisible ? 100 : 0;
+            this.intCreateValuePerRound = blnAlywaysVisible ? 10 : 0;
         }
 
         //Konstruktoren

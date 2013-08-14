@@ -56,7 +56,7 @@ namespace GenericCampaignMasterModel.Commands
             else
             {
                 //den eigenen Sektor sieht die Unit immer
-                if (this.m_ListVisibleSektors.Count == 0)
+                if (!this.m_ListVisibleSektors.ContainsKey(aktOriginSektor.strUniqueID))
                 {
                     this.m_ListVisibleSektors.Add(aktOriginSektor.strUniqueID, aktOriginSektor);
                 }

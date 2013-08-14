@@ -26,25 +26,38 @@ namespace GenericCampaignMasterLib
 			return controller;
         }
 
+        private int m_size = 5;
+
+        public CampaignController buildNew(int intSize)
+        {
+            m_size = intSize;
+            return init();
+        }
+
         public override CampaignController buildNew()
+        {
+            return init();
+		}
+
+        private CampaignController init()
         {
             string campaignkey = Guid.NewGuid().ToString();
             string storepath = Environment.CurrentDirectory;
-			
+
             CampaignDatabaseRaptorDb database = new CampaignDatabaseRaptorDb();
             database.CampaignKey = campaignkey;
             database.StorePath = storepath;
             database.init();
-            
-            CampaignEngine engine = new CampaignEngine(new Field(6, 6));
+
+            CampaignEngine engine = new CampaignEngine(new Field(m_size, m_size));
             engine.FieldField.Id = 123;
 
-			CampaignController controller = new CampaignController();
-			controller.CampaignDataBase = database;
-			controller.CampaignEngine = engine;
-			controller.CampaignKey = campaignkey;
-			return controller;
-		}
+            CampaignController controller = new CampaignController();
+            controller.CampaignDataBase = database;
+            controller.CampaignEngine = engine;
+            controller.CampaignKey = campaignkey;
+            return controller;
+        }
 		
 	}
 

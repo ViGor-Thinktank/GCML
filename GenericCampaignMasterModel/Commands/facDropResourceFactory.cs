@@ -7,7 +7,7 @@ namespace GenericCampaignMasterModel.Commands
 {
     public class facDropResourceFactory : clsSektorFactoryBase
     {
-        private clsUnitGroup m_objDeliverUnit
+        private clsUnit m_objDeliverUnit
         {
             get
             {
@@ -15,9 +15,9 @@ namespace GenericCampaignMasterModel.Commands
             }
         }
 
-        private List<clsUnitGroup> m_listPossibleDrops = new List<clsUnitGroup>();
+        private List<clsUnit> m_listPossibleDrops = new List<clsUnit>();
 
-        public facDropResourceFactory(clsUnitGroup objDeliverUnit, Field FieldField)
+        public facDropResourceFactory(clsUnit objDeliverUnit, Field FieldField)
             : base(objDeliverUnit, FieldField)
         {
             //Init Stuff
@@ -40,7 +40,7 @@ namespace GenericCampaignMasterModel.Commands
                 {
                     if (newSek.ListUnits.Count > 0)
                     {
-                        foreach (clsUnitGroup objPosibleRecieverUnit in newSek.ListUnits)
+                        foreach (clsUnit objPosibleRecieverUnit in newSek.ListUnits)
                         {
                             if (objPosibleRecieverUnit.Id != m_objDeliverUnit.Id
                                     && objPosibleRecieverUnit.blnCanStoreResourceValue 

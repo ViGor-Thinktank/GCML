@@ -68,7 +68,7 @@ namespace GenericCampaignMasterModel
             return m_command.getInfo();
         }
 
-        public clsFactoryBase getCommandFactory(clsUnitGroup objUnit, Field FieldField)
+        public clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
             return null;
         }
