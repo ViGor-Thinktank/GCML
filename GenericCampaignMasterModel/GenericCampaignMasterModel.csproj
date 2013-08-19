@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CampaignState.cs" />
     <Compile Include="Commands\clsCommandCollection.cs" />
+    <Compile Include="Commands\comConvertUnit.cs" />
     <Compile Include="Commands\comCreateResource.cs" />
     <Compile Include="Commands\comDestroyUnit.cs" />
     <Compile Include="Commands\comDropResource.cs">
@@ -55,20 +56,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\comSolveKollision.cs" />
-    <Compile Include="Commands\facDropResourceFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Commands\facFactoryBase.cs" />
-    <Compile Include="Commands\facMoveFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Commands\facPlaceUnitFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Commands\facSektorFactoryBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Commands\facSolveKollision.cs" />
     <Compile Include="Commands\facViewableSectorFactory.cs">
       <SubType>Code</SubType>
     </Compile>

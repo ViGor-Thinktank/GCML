@@ -13,6 +13,7 @@ namespace GenericCampaignMasterModel.Commands
           
         }
 
+
         public override void Execute()
         {
             base.markExecute();
@@ -30,7 +31,44 @@ namespace GenericCampaignMasterModel.Commands
         public override clsFactoryBase getCommandFactory(clsUnit objUnit, Field FieldField)
         {
             return new facSolveKollision(objUnit, FieldField);
+
         }
+    }
+
+    public class facSolveKollision : clsSektorFactoryBase
+    {
+        public facSolveKollision(clsUnit u, Field FieldField)
+            : base(u, FieldField)
+        {
+
+            //set Members
+            m_Unit = u;
+
+            //Init Stuff
+            m_originSektor = FieldField.getSektorForUnit(u);
+
+        }
+
+        private void createSolveCommands()
+        {
+            comMove readyCmd = new comMove(m_Unit);
+            readyCmd.OriginSektor = m_originSektor;
+            Sektor targetSek = this.FieldField.dicSektors[m_Unit.MoveHistory_lastSektorID];
+            readyCmd.TargetSektor = targetSek;
+            this.raiseOnNewCommand(readyCmd);
+
+            comDestroyUnit desCmd = new comDestroyUnit(this.m_Unit, this.actingPlayer, this.FieldField);
+            this.raiseOnNewCommand(desCmd);
+
+            //m_originSektor.ListUnits.FindAll(
+
+        }
+
+        public override void go()
+        {
+            this.createSolveCommands();
+        }
+
     }
         
 }

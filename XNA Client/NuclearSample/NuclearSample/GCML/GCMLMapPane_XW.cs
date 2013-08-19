@@ -217,6 +217,7 @@ namespace GCML_XNA_Client.GCML
                 imgUnit = new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures[strTex], false);
                 m_gridMap.AddChildAt(imgUnit, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
             }
+
             if (aktUnit.strOwnerID == aktPly.Id)
             {
                 imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);

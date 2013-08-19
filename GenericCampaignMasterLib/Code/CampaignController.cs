@@ -270,6 +270,7 @@ namespace GenericCampaignMasterLib
         public clsCommandCollection Unit_getCommandsForUnit(clsUnit unit)
         {
             clsCommandCollection objCommands;
+
             objCommands = this.m_campaignEngine.getCommandsForUnit(unit, unitCollisionStack.Contains(this.Unit_getSektorForUnit(unit)));
 
             foreach (ICommand cmd in objCommands.listReadyCommands)

@@ -153,16 +153,14 @@ namespace GenericCampaignMasterLib
 
         public clsCommandCollection getCommandsForUnit(clsUnit objAktUnit, bool blnCollision)
 		{
-             clsCommandCollection objCommands = new clsCommandCollection();
+            clsCommandCollection objCommands = new clsCommandCollection();
 
             objCommands.aktUnit = objAktUnit;
 
             // Unfertige Commands von der Unit - Enthalten zB keine Position-/Zielsektoren
 
             objCommands.listRawCommands = (!blnCollision ? objAktUnit.getTypeCommands() : new List<ICommand> { new comSolveKollision() });                  
-
-            //objCommands.listRawCommands = objAktUnit.getTypeCommands();                  
-            
+    
             objCommands.listReadyCommands = new List<ICommand>();                      // Liste mit ausführbaren Commands - Enthalten zB explizite Position / Zielsektoren
 
             objCommands.onStatus += new Field.delStatus(General_onNewStatus);
@@ -259,7 +257,7 @@ namespace GenericCampaignMasterLib
                 
 		}
 
-#region " Unitfactory "
+#region Unitfactory
 
         private int getID(Player owner)
         {

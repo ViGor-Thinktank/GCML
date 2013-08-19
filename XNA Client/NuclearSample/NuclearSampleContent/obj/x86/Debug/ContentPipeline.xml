@@ -596,42 +596,6 @@
       <Time>2013-08-07T21:33:08.5594264+02:00</Time>
     </Item>
     <Item>
-      <Source>Fonts\LargeFont.spritefont</Source>
-      <Name>Fonts\LargeFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\LargeFont.xnb</Output>
-      <Time>2013-08-07T21:33:08.0914256+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\MediumFont.spritefont</Source>
-      <Name>Fonts\MediumFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumFont.xnb</Output>
-      <Time>2013-08-07T21:33:08.1226257+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\SmallFont.spritefont</Source>
-      <Name>Fonts\SmallFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\SmallFont.xnb</Output>
-      <Time>2013-08-07T21:33:08.1538257+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\MediumMonoFont.spritefont</Source>
-      <Name>Fonts\MediumMonoFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
-      <Time>2013-08-07T21:33:08.1382257+02:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\PlaceUnit.png</Source>
       <Name>Sprites\PlaceUnit</Name>
       <Importer>TextureImporter</Importer>
@@ -738,6 +702,42 @@
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DestroyUnit_done.xnb</Output>
       <Time>2013-08-14T21:52:28.801866+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\LargeFont.spritefont</Source>
+      <Name>Fonts\LargeFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\LargeFont.xnb</Output>
+      <Time>2013-08-07T21:33:08.0914256+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\MediumFont.spritefont</Source>
+      <Name>Fonts\MediumFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumFont.xnb</Output>
+      <Time>2013-08-07T21:33:08.1226257+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SmallFont.spritefont</Source>
+      <Name>Fonts\SmallFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\SmallFont.xnb</Output>
+      <Time>2013-08-07T21:33:08.1538257+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\MediumMonoFont.spritefont</Source>
+      <Name>Fonts\MediumMonoFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
+      <Time>2013-08-07T21:33:08.1382257+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

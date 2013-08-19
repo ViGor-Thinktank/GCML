@@ -29,4 +29,20 @@ namespace GenericCampaignMasterModel.Commands
         }
 
     }
+
+    public abstract class clsSektorFactoryBase : clsFactoryBase
+    {
+        public clsSektorFactoryBase(clsUnit Unit, Field FieldField)
+        {
+            this.m_Unit = Unit;
+            this.m_FieldField = FieldField;
+            this.m_DirectionVektors = m_FieldField.getDirectionVectors();
+        }
+        protected clsUnit m_Unit;
+        protected List<clsSektorKoordinaten> m_DirectionVektors;
+        protected Sektor m_originSektor;
+        private Field m_FieldField = null;
+        protected Field FieldField { get { return m_FieldField; } }
+
+    }
 }

@@ -5,38 +5,28 @@ using System.Text;
 
 namespace GenericCampaignMasterModel.Commands
 {
-    public class comDestroyUnit : clsCommandBaseClass
+    public class comConvertUnit : clsCommandBaseClass
     {
-        public string UnitId { get; private set; }    // ID für erzeugte Unit == ResourceID, damit der Controller die neue Unit registrieren kann.
-
         private Player m_Owner = null;
         private Field m_FieldField = null;
-        public comDestroyUnit(clsUnit Unit, Player owner, Field FieldField)
-            : base("DestroyUnit")
+        
+        public comConvertUnit(clsUnit Unit, Player owner, Field FieldField)
+            : base("ConvertUnit")
         {   
             this.m_objUnitToCommand = Unit;
             this.m_Owner = owner;
             this.m_FieldField = FieldField;
         }
 
-        public override void Execute() 
+        public override void Execute()
         {
-            foreach (clsUnit aktU in this.m_Owner.ListUnits)
-            {
-                if (aktU.Id == m_objUnitToCommand.Id)
-                {
-                    this.m_Owner.ListUnits.Remove(aktU);
-                    Sektor sek = this.m_FieldField.getSektorForUnit(aktU);
-                    sek.removeUnit(aktU);
-                    break;
-                }
-            }
+         
             base.markExecute();
         }
 
         public new void Register()
         {
-            
+
         }
 
         public override string strInfo
@@ -51,6 +41,6 @@ namespace GenericCampaignMasterModel.Commands
         {
             return null;
         }
-        
+
     }
 }
