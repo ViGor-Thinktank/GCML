@@ -35,14 +35,14 @@ namespace GCML_XNA_Client.GCML
                 };
                 gridGroup.AddChildAt(button, 0, 0);
                 
-                NuclearUI.Button initButton = new NuclearUI.Button(Manager.MenuScreen, "add X-Wing");
+                NuclearUI.Button initButton = new NuclearUI.Button(Manager.MenuScreen, "X-Wing");
                 initButton.ClickHandler = delegate
                 {
                     this.addUnit("XWing", "Admiral Ackbar");
                 };
                 gridGroup.AddChildAt(initButton, 0, 3);
 
-                NuclearUI.Button tieButton = new NuclearUI.Button(Manager.MenuScreen, "add Tie");
+                NuclearUI.Button tieButton = new NuclearUI.Button(Manager.MenuScreen, "Tie");
                 tieButton.ClickHandler = delegate
                 {
                     this.addUnit("Tie", "Grand Moff Tarkin");
@@ -50,21 +50,21 @@ namespace GCML_XNA_Client.GCML
 
                 gridGroup.AddChildAt(tieButton, 1, 3);
 
-                button = new NuclearUI.Button(Manager.MenuScreen, "add Station");
+                button = new NuclearUI.Button(Manager.MenuScreen, "Station");
                 button.ClickHandler = delegate
                 {
                     this.addUnit("Raumstation", "Admiral Ackbar");
                 };
                 gridGroup.AddChildAt(button, 2, 3);
 
-                button = new NuclearUI.Button(Manager.MenuScreen, "add Kreuzer");
+                button = new NuclearUI.Button(Manager.MenuScreen, "Kreuzer");
                 button.ClickHandler = delegate
                 {
                     this.addUnit("Raumkreuzer", "Grand Moff Tarkin");
                 };
                 gridGroup.AddChildAt(button, 3, 3);
 
-                button = new NuclearUI.Button(Manager.MenuScreen, "add Transporter");
+                button = new NuclearUI.Button(Manager.MenuScreen, "Transporter");
                 button.ClickHandler = delegate
                 {
                     this.addUnit("Raumtransporter", "Admiral Ackbar");
@@ -122,6 +122,14 @@ namespace GCML_XNA_Client.GCML
 
                 };
                 gridGroup.AddChildAt(button, 2, 4);
+
+                button = new NuclearUI.Button(Manager.MenuScreen, "UnitPopup Test");
+                button.ClickHandler = delegate
+                {
+                    this.setRandomPlanets();
+
+                };
+                gridGroup.AddChildAt(button, 3, 4);
 
             }
 

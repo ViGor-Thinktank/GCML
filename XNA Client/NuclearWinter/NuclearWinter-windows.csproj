@@ -133,6 +133,7 @@
     <Compile Include="UI\Menu\clsXWCommandPopup.cs" />
     <Compile Include="UI\Menu\IMenuManager.cs" />
     <Compile Include="UI\Menu\clsXWNotePopup.cs" />
+    <Compile Include="UI\Menu\clsXWUnitManagerPopup.cs" />
     <Compile Include="UI\Menu\ManagerPane.cs" />
     <Compile Include="UI\Menu\MenuManager.cs" />
     <Compile Include="UI\Menu\MessagePopup.cs" />

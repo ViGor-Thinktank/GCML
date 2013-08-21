@@ -739,6 +739,33 @@
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
       <Time>2013-08-07T21:33:08.1382257+02:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\grid10.png</Source>
+      <Name>Sprites\grid10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid10.xnb</Output>
+      <Time>2013-08-20T08:11:03.614227+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\grid7.png</Source>
+      <Name>Sprites\grid7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid7.xnb</Output>
+      <Time>2013-08-20T08:11:17.1716509+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\grid8.png</Source>
+      <Name>Sprites\grid8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid8.xnb</Output>
+      <Time>2013-08-20T08:27:35.1601742+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

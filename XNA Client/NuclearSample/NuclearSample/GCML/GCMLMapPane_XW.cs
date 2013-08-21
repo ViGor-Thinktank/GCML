@@ -30,7 +30,11 @@ namespace GCML_XNA_Client.GCML
         private void initTextures()
         {
             m_dicTextures = new Dictionary<string, Texture2D>();
+            
             this.loadTexture("Stars");
+            this.loadTexture("Grid7");
+            this.loadTexture("Grid8");
+            this.loadTexture("Grid10");
             this.loadTexture("Planet");
 
             this.loadTexture("TieF");
@@ -175,13 +179,20 @@ namespace GCML_XNA_Client.GCML
         {
             
             this.Clear();
-            
+
+            int intGridWidth = Program.m_objCampaign.FieldField.FieldDimension.X + 1;
+            int intGridHeight = Program.m_objCampaign.FieldField.FieldDimension.Y + 1;
+
             //Background Image
             NuclearUI.Image imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures["Stars"], false);
             AddChild(imgMap);
 
-            int intGridWidth = Program.m_objCampaign.FieldField.FieldDimension.X+1;
-            int intGridHeight = Program.m_objCampaign.FieldField.FieldDimension.Y+1;
+            string strGrid = "Grid" + intGridWidth.ToString();
+            if (this.m_dicTextures.ContainsKey(strGrid))
+            {
+                imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures[strGrid], false);
+                AddChild(imgMap);
+            }
 
             //Grid erzeugen
             m_gridMap = new NuclearUI.GridGroup(Manager.MenuScreen, intGridHeight, intGridWidth, false, 0);

@@ -60,8 +60,6 @@ namespace GenericCampaignMasterModel.Commands
             comDestroyUnit desCmd = new comDestroyUnit(this.m_Unit, this.actingPlayer, this.FieldField);
             this.raiseOnNewCommand(desCmd);
 
-            //m_originSektor.ListUnits.FindAll(
-
         }
 
         public override void go()
