@@ -144,17 +144,11 @@ namespace GenericCampaignMasterModel
             }
         }
 
-        public string strDescription
+        public List<clsSubUnit> lisSubUnits
         {
             get
             {
-                string strDes = "";
-                foreach (clsSubUnit u in m_listUnits)
-                {
-                    strDes += u.objUnitType.strDescription.Replace("[%intResourceValue%]", intResourceValue.ToString());
-                    strDes += System.Environment.NewLine;
-                }
-                return strDes;
+                return m_listUnits;
             }
         }
 
@@ -163,10 +157,17 @@ namespace GenericCampaignMasterModel
             get
             {
                 string strDes = "";
-                foreach (clsSubUnit u in m_listUnits)
+                if (m_listUnits.Count > 0)
                 {
-                    strDes += u.objUnitType.strBez;
-                    strDes += System.Environment.NewLine;
+                    strDes = "Gruppe";
+                }
+                else if (m_listUnits.Count == 1)
+                {
+                    strDes = m_listUnits[0].objUnitType.strBez;
+                }
+                else
+                {
+                    strDes = "leere Gruppe";
                 }
                 return strDes;
             }

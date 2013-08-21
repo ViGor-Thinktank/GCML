@@ -61,7 +61,7 @@ namespace NuclearWinter.UI
         public float    OutlineRadius;
 
         public bool     HasEllipsis { get { return mstrDisplayedText != mstrText; } }
-
+        public object   objVarData;
         //----------------------------------------------------------------------
         string          mstrText;
         string          mstrDisplayedText;

@@ -20,7 +20,7 @@ namespace NuclearWinter.UI
         Button mCloseButton;
 
         Action mCloseCallback;
-        Action<ICommand, clsCommandCollection> mCommandCallback;
+        Action<object> mCommandCallback;
 
 
         //----------------------------------------------------------------------
@@ -69,20 +69,11 @@ namespace NuclearWinter.UI
 
 
         }
-        private void imgCommandIcon_ClickHandler(Button sender)
+        
+        public void Setup(clsUnit aktUnit, Action<object> _commandCallback)
         {
-            this.Confirm((ICommand)sender.Tag);
-        }
-
-        private clsCommandCollection m_objCommandCollection;
-
-        //----------------------------------------------------------------------
-        public void Setup(clsCommandCollection objCommandCollection, Action<ICommand, clsCommandCollection> _commandCallback)
-        {
-            m_objCommandCollection = objCommandCollection;
-
-            TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID: " + objCommandCollection.aktUnit.Id;
-            MessageLabel.Text = objCommandCollection.aktUnit.strDescription;
+            TitleLabel.Text = aktUnit.strBez + " ID: " + aktUnit.Id;
+            MessageLabel.Text = "aktUnit.lisSubUnits";
 
             ContentGroup.Clear();
             ContentGroup.AddChild(MessageLabel);
@@ -91,22 +82,11 @@ namespace NuclearWinter.UI
 
             mActionsGroup.Clear();
             
-            foreach (ICommand aktCommandType in objCommandCollection.listRawCommands)
-            {
-                Button mCommandButton = new Button(Screen);
-                mCommandButton.Text = aktCommandType.strTypeName;
-                mCommandButton.Tag = aktCommandType;
-                mCommandButton.ClickHandler = new Action<Button>(imgCommandIcon_ClickHandler);
-                mActionsGroup.AddChild(mCommandButton);
-            }
-
-            
             mActionsGroup.AddChild(mCloseButton);
             
             mCommandCallback = _commandCallback;
         }
 
-        //----------------------------------------------------------------------
         public override void Close()
         {
             TitleLabel.Text = "";
@@ -122,7 +102,6 @@ namespace NuclearWinter.UI
             base.Close();
         }
 
-        //----------------------------------------------------------------------
         protected override void Dismiss()
         {
             var closeCallback = mCloseCallback;
@@ -132,13 +111,13 @@ namespace NuclearWinter.UI
 
         }
 
-        //----------------------------------------------------------------------
-        protected void Confirm(ICommand chosenCommand)
+        protected void Confirm()
         {
             var confirmCallback = mCommandCallback;
             Close();
 
-            confirmCallback(chosenCommand, m_objCommandCollection);
+            object something = new object();
+            confirmCallback(something);
         }
     }
 }
