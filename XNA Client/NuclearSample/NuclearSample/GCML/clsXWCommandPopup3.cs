@@ -71,10 +71,12 @@ namespace GCML_XNA_Client.GCML
         private void entfernen_ClickHandler(Button sender)
         {
             int id = ((clsSubUnit)sender.Tag).ID;
-            m_objCommandCollection.aktUnit.removeSubUnitByID(id);
+            
+            Program.m_objCampaign.Unit_RemoveSubunit(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id, id) 
+            
             if (m_objCommandCollection.aktUnit.lisSubUnits.Count == 0)
             {
-                Program.m_objCampaign.Unit_remove(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id);
+                Program.m_objCampaign.Unit_Remove(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id);
             }
         }
 

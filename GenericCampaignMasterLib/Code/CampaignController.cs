@@ -246,11 +246,20 @@ namespace GenericCampaignMasterLib
             return newUnit;
         }
 
-        public void Unit_remove(string strPlayerID, string strUnitID)
+        public void Unit_Remove(string strPlayerID, string strUnitID)
         {
             if (strPlayerID == Unit_getByID(strUnitID).strOwnerID)
             {
                 this.m_campaignEngine.removeUnit(strUnitID);
+            }
+        }
+
+        public void Unit_RemoveSubunit(string strPlayerID, string strUnitID, int intSubUnitID)
+        {
+            clsUnit aktUnit = this.Unit_getByID(strUnitID);
+            if (strPlayerID == aktUnit.strOwnerID)
+            {
+                aktUnit.removeSubUnitByID(intSubUnitID);
             }
         }
 
