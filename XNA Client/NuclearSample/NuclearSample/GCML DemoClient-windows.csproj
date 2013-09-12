@@ -121,6 +121,7 @@
     <Compile Include="GCML\clsGCML_Unit.cs" />
     <Compile Include="GCML\GCMLAdminPane.cs" />
     <Compile Include="GCML\GCMLMapPane_XW.cs" />
+    <Compile Include="GCML\clsXWCommandPopup3.cs" />
     <Compile Include="MainMenuManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

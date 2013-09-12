@@ -101,8 +101,6 @@ namespace GCML_XNA_Client.GCML
 
 #endregion 
 
-       
-
         public GCMLMapPane_XW(MainMenuManager _manager, int intPlayerIndex) : base(_manager)
         {
             this.initTextures();
@@ -169,9 +167,10 @@ namespace GCML_XNA_Client.GCML
             m_dicCommandIcons = new Dictionary<NuclearUI.Image, string>();
 
             clsCommandCollection tm = Program.m_objCampaign.Unit_getCommandsForUnit(aktUnit);
-           
-            Manager.XWCommandPopup.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
-            Manager.XWCommandPopup.Open(500, 300);
+            
+            clsXWCommandPopup pp = new clsXWCommandPopup(Manager);
+            pp.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
+            pp.Open(500, 500);
 
         }
 

@@ -18,11 +18,13 @@ namespace GenericCampaignMasterModel
             addNewSubUnit(objOwner, intUnitTypeID);
         }
 
+        #region " SubUnit Management"
+
         public void addNewSubUnit(Player objOwner, int intUnitTypeID)
         {
             clsUnitType UnitType = objUnitTypeFountain.getUnitType(intUnitTypeID);
 
-            clsSubUnit newUnit = new clsSubUnit(UnitType);
+            clsSubUnit newUnit = new clsSubUnit(UnitType, m_listUnits.Count);
             if (newUnit.objUnitType.m_listUnitSpawn != null && newUnit.objUnitType.m_listUnitSpawn.Count == 0)
             {
                 newUnit.objUnitType.m_listUnitSpawn = objOwner.objPlayerFaction.listUnitspawn;
@@ -30,6 +32,23 @@ namespace GenericCampaignMasterModel
 
             this.m_listUnits.Add(newUnit);
         }
+
+        public void removeSubUnitByID(int intSubUnitID)
+        {
+            //googeln:
+            //this.m_listUnits.Find(
+
+            foreach (clsSubUnit aktSub in m_listUnits)
+            {
+                if (aktSub.ID == intSubUnitID)
+                {
+                    m_listUnits.Remove(aktSub);
+                    break;
+                }
+            }
+        }
+
+        #endregion
 
         private List<clsSubUnit> m_listUnits = new List<clsSubUnit>();
 

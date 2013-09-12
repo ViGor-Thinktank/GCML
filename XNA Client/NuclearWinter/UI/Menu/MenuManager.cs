@@ -20,23 +20,7 @@ namespace NuclearWinter.UI
         // Popup
         public Screen                   PopupScreen             { get; private set; }
         public MessagePopup             MessagePopup            { get; private set; }
-        public clsXWCommandPopup        XWCommandPopup          { get; private set; }
-
-        private clsXWNotePopup m_XWNotePopup = null;
-        
-        public clsXWNotePopup           XWNotePopup
-        {
-            get
-            {
-                if (m_XWNotePopup == null)
-                    m_XWNotePopup = new clsXWNotePopup(this);
-                return m_XWNotePopup;
-            }
-            private set
-            {
-                m_XWNotePopup = value;
-            }
-        }
+        public GCML.clsXWCommandPopupBase    XWCommandPopup { get; set; }
 
         public IEnumerable<Panel>       PopupStack              { get { return (IEnumerable<Panel>)mPopupStack; } }
         public Panel                    TopMostPopup            { get { return mPopupStack.Count > 0 ? mPopupStack.Peek() : null; } }
@@ -59,7 +43,7 @@ namespace NuclearWinter.UI
             PopupScreen         = new NuclearWinter.UI.Screen( _game, _style, _game.GraphicsDevice.Viewport.Width, _game.GraphicsDevice.Viewport.Height );
             mPopupStack         = new Stack<Panel>();
             MessagePopup        = new MessagePopup( this );
-            XWCommandPopup      = new clsXWCommandPopup(this);
+            XWCommandPopup      = null;
             
             mPopupFade          = new NuclearWinter.UI.Image( PopupScreen, Game.WhitePixelTex, true );
             mPopupFade.Color    = PopupScreen.Style.PopupBackgroundFadeColor;

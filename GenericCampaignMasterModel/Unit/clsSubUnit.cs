@@ -8,10 +8,13 @@ namespace GenericCampaignMasterModel
 {
     public class clsSubUnit
     {
-        public clsSubUnit(clsUnitType objUnitType)
+        public clsSubUnit(clsUnitType objUnitType, int ID)
         {
+            this.ID = ID;
             this.m_objUnitType = objUnitType;
         }
+
+        public int ID = -1;
 
         public int intMovement { get { return m_objUnitType.intMovement; } }
         public int intSichtweite { get { return m_objUnitType.intSichtweite; } }

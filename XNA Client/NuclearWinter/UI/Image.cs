@@ -23,6 +23,9 @@ namespace NuclearWinter.UI
 
         public Color Color = Color.White;
 
+        public object objVarData;
+        
+
         public Action<Image>    ClickHandler;
         public Action<Image>    MouseEnterHandler;
         public Action<Image>    MouseOutHandler;

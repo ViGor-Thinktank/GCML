@@ -22,6 +22,9 @@ namespace GCML_XNA_Client
         public MainMenuManager( GCML_XNA_Client _game, ContentManager _content )
         : base( _game, _game.UIStyle, _content )
         {
+            //Basic Inits im Manager
+            this.XWCommandPopup = new GCML.clsXWCommandPopup(this);
+
             // Splitter
             mSplitterLinks = new NuclearUI.Splitter( MenuScreen, NuclearUI.Direction.Left );
             mSplitterLinks.AnchoredRect = NuclearUI.AnchoredRect.CreateFull( 10 );
