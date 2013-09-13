@@ -12,7 +12,8 @@ namespace GCML_XNA_Client.GCML
 {
     public class clsXWCommandPopup : NuclearWinter.UI.GCML.clsXWCommandPopupBase 
     {
-        public string strDEbug = "foo";
+        private clsUnit m_aktUnit;
+
         public Label TitleLabel { get; private set; }
         public Label MessageLabel { get; private set; }
 
@@ -71,29 +72,37 @@ namespace GCML_XNA_Client.GCML
         private void entfernen_ClickHandler(Button sender)
         {
             int id = ((clsSubUnit)sender.Tag).ID;
-            
-            Program.m_objCampaign.Unit_RemoveSubunit(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id, id) 
+
+            Program.m_objCampaign.Unit_RemoveSubunit(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id, id);
             
             if (m_objCommandCollection.aktUnit.lisSubUnits.Count == 0)
             {
                 Program.m_objCampaign.Unit_Remove(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id);
+                this.Close();
             }
+            Refresh();
         }
 
-
-        public override void Setup(clsCommandCollection objCommandCollection, Action<ICommand, clsCommandCollection> _commandCallback)
+        
+        public override void Setup(clsUnit aktUnit, Action<ICommand, clsCommandCollection> _commandCallback)
         {
-            m_objCommandCollection = objCommandCollection;
+            m_aktUnit = aktUnit;
+            m_objCommandCollection = Program.m_objCampaign.Unit_getCommandsForUnit(aktUnit);
+            mCommandCallback = _commandCallback;
 
+            Refresh();
+        }
+        
+        public void Refresh()
+        {
             mActionsGroup.Clear();
 
-            TitleLabel.Text = objCommandCollection.aktUnit.strBez + " ID " + objCommandCollection.aktUnit.Id;
+            TitleLabel.Text = m_aktUnit.strBez + " ID " + m_aktUnit.Id;
 
             ContentGroup.Clear();
-            //ContentGroup.AddChild(MessageLabel);
 
-            List<clsSubUnit> lisSubUnits = objCommandCollection.aktUnit.lisSubUnits;
-            m_gridSubUnitRooster = new GridGroup(Manager.MenuScreen, 4 /*lisSubUnits.Count*/, 4, false, 0);
+            List<clsSubUnit> lisSubUnits = m_aktUnit.lisSubUnits;
+            m_gridSubUnitRooster = new GridGroup(Manager.MenuScreen, 4, lisSubUnits.Count, false, 0);
             ContentGroup.AddChild(m_gridSubUnitRooster);
             for (int i = 0; i < lisSubUnits.Count; i++)
             {
@@ -102,8 +111,7 @@ namespace GCML_XNA_Client.GCML
 
                 Label subLabel = new Label(Manager.MenuScreen);
                 subLabel.Font = Screen.Style.SmallFont;
-                //subLabel.Text = "Move: " + lisSubUnits[i].objUnitType.intMovement.ToString(); 
-                subLabel.Text = this.strDEbug;
+                subLabel.Text = "Move: " + lisSubUnits[i].objUnitType.intMovement.ToString(); 
                 m_gridSubUnitRooster.AddChildAt(subLabel, 1, i);
 
                 subLabel = new Label(Manager.MenuScreen);
@@ -122,20 +130,24 @@ namespace GCML_XNA_Client.GCML
                 imgBtn.ClickHandler = new Action<Image>(entfernen_ClickHandler);
                 m_gridSubUnitRooster.AddChildAt(imgBtn, 3, i);
                 */
+
+                BoxGroup testGroup = new BoxGroup(Screen, Orientation.Horizontal, 0, Anchor.End);
+                m_gridSubUnitRooster.AddChildAt(testGroup, 3, i);
+
                 //add Roosterrow
                 Button mCommandButton = new Button(Screen);
                 mCommandButton.Text = "Destroy " + lisSubUnits[i].ID.ToString();
                 mCommandButton.Tag = lisSubUnits[i];
                 mCommandButton.ClickHandler = new Action<Button>(entfernen_ClickHandler);
-                mActionsGroup.AddChild(mCommandButton);
+                testGroup.AddChild(mCommandButton);
 
             }
 
-            
+
             mCloseButton.Text = "Schließen";
 
-            
-            foreach (ICommand aktCommandType in objCommandCollection.listRawCommands)
+
+            foreach (ICommand aktCommandType in m_objCommandCollection.listRawCommands)
             {
                 Button mCommandButton = new Button(Screen);
                 mCommandButton.Text = aktCommandType.strTypeName;
@@ -147,7 +159,7 @@ namespace GCML_XNA_Client.GCML
 
             mActionsGroup.AddChild(mCloseButton);
 
-            mCommandCallback = _commandCallback;
+            
         }
 
         //----------------------------------------------------------------------

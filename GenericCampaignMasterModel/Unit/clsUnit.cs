@@ -33,19 +33,16 @@ namespace GenericCampaignMasterModel
             this.m_listUnits.Add(newUnit);
         }
 
-        public void removeSubUnitByID(int intSubUnitID)
+        public bool removeSubUnitByID(int intSubUnitID)
         {
-            //googeln:
-            //this.m_listUnits.Find(
+            clsSubUnit aktSub = this.m_listUnits.Find( delegate(clsSubUnit bk) { return bk.ID == intSubUnitID; } );
 
-            foreach (clsSubUnit aktSub in m_listUnits)
+            if (aktSub != null)
             {
-                if (aktSub.ID == intSubUnitID)
-                {
-                    m_listUnits.Remove(aktSub);
-                    break;
-                }
+                m_listUnits.Remove(aktSub);
+                return true;
             }
+            return false;
         }
 
         #endregion

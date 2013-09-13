@@ -32,8 +32,8 @@ namespace NuclearWinter.UI.GCML
 
         }
 
-        public abstract void Setup(clsCommandCollection objCommandCollection, Action<ICommand, clsCommandCollection> _commandCallback);
         
+        public abstract void Setup(clsUnit aktUnit, Action<ICommand, clsCommandCollection> _commandCallback);
         
         
     }

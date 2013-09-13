@@ -247,7 +247,7 @@ namespace GenericCampaignMasterLib
 						where u.Id.ToString() == id
 						select u;
             
-            //korrekter Ansatz: Wenn es mehr als einen Traffer bei einer eineindeutigen Suche gibt, ist das ein Fehler! 
+            //korrekter Ansatz: Wenn es mehr als einen Traffer bei einer eineindeutigen Suche gibt, dann ist das ein Fehler! 
             if (units.Count() == 0)
                 throw new Exception("kein Treffer für id " + id);
             else if (units.Count() == 1)

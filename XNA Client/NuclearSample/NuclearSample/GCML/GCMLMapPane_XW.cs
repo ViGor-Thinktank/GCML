@@ -166,11 +166,8 @@ namespace GCML_XNA_Client.GCML
 
             m_dicCommandIcons = new Dictionary<NuclearUI.Image, string>();
 
-            clsCommandCollection tm = Program.m_objCampaign.Unit_getCommandsForUnit(aktUnit);
-            
-            clsXWCommandPopup pp = new clsXWCommandPopup(Manager);
-            pp.Setup(tm, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
-            pp.Open(500, 500);
+            Manager.XWCommandPopup.Setup(aktUnit, new Action<ICommand, clsCommandCollection>(this.XWCommandPopup_Confirm));
+            Manager.XWCommandPopup.Open(500, 500);
 
         }
 
@@ -186,12 +183,14 @@ namespace GCML_XNA_Client.GCML
             NuclearUI.Image imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures["Stars"], false);
             AddChild(imgMap);
 
+            /*
             string strGrid = "Grid" + intGridWidth.ToString();
             if (this.m_dicTextures.ContainsKey(strGrid))
             {
                 imgMap = new NuclearUI.Image(Manager.MenuScreen, m_dicTextures[strGrid], false);
                 AddChild(imgMap);
             }
+             * */
 
             //Grid erzeugen
             m_gridMap = new NuclearUI.GridGroup(Manager.MenuScreen, intGridHeight, intGridWidth, false, 0);
