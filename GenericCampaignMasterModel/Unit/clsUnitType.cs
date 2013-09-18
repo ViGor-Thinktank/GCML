@@ -79,5 +79,13 @@ namespace GenericCampaignMasterModel
         public int intMaxResourceValue { get; set; }
 
         public int intCreateValuePerRound { get; set; }
-    }
+
+        public string strIconName
+        {
+            get
+            {
+                return this.strBez + "_Icon";
+            }
+        }
+        }
 }

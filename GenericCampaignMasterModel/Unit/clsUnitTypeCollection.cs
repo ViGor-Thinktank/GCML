@@ -17,8 +17,7 @@ namespace GenericCampaignMasterModel
             {
                 if (m_dicUnitTypeData == null)
                 {
-                    m_dicUnitTypeData = new Dictionary<string, clsUnitType>();
-                    this.initNewData();
+                    m_dicUnitTypeData = new Dictionary<string, clsUnitType>();                   
                 }
                 return m_dicUnitTypeData;
             }
@@ -29,18 +28,7 @@ namespace GenericCampaignMasterModel
 
         }
 
-        public void initNewData()
-        {
-            //erster Debugtype
-            clsUnitType newType = new clsUnitType();
-            newType.strBez = "böhmische Dragonerschwadron";
-            newType.intMovement = 2;
-            newType.intSichtweite = 1;
-
-            this.addNewType(newType);
-        }
-
-
+      
         internal clsUnitType getUnitType(int intUnitTypeID)
         {
             if (dicUnitTypeData.ContainsKey(intUnitTypeID.ToString()))

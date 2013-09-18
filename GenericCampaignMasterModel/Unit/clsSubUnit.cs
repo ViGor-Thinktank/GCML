@@ -16,6 +16,8 @@ namespace GenericCampaignMasterModel
 
         public int ID = -1;
 
+        private string strIconName { get { return m_objUnitType.strIconName; } }
+
         public int intMovement { get { return m_objUnitType.intMovement; } }
         public int intSichtweite { get { return m_objUnitType.intSichtweite; } }
         public int intResourceValue = 0;

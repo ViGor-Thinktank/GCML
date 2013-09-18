@@ -68,7 +68,6 @@ namespace GCML_XNA_Client.GCML
         private clsCommandCollection m_objCommandCollection;
         private GridGroup m_gridSubUnitRooster;
 
-
         private void entfernen_ClickHandler(Button sender)
         {
             int id = ((clsSubUnit)sender.Tag).ID;
@@ -79,11 +78,11 @@ namespace GCML_XNA_Client.GCML
             {
                 Program.m_objCampaign.Unit_Remove(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id);
                 this.Close();
+                //explosion auf Einheit legen
             }
             Refresh();
         }
 
-        
         public override void Setup(clsUnit aktUnit, Action<ICommand, clsCommandCollection> _commandCallback)
         {
             m_aktUnit = aktUnit;
@@ -102,44 +101,38 @@ namespace GCML_XNA_Client.GCML
             ContentGroup.Clear();
 
             List<clsSubUnit> lisSubUnits = m_aktUnit.lisSubUnits;
-            m_gridSubUnitRooster = new GridGroup(Manager.MenuScreen, 4, lisSubUnits.Count, false, 0);
+            m_gridSubUnitRooster = new GridGroup(Manager.MenuScreen, 5, lisSubUnits.Count, false, 0);
             ContentGroup.AddChild(m_gridSubUnitRooster);
+            
             for (int i = 0; i < lisSubUnits.Count; i++)
             {
-                Image imgBtn = new Image(Manager.MenuScreen, base.Manager.Content.Load<Texture2D>("Sprites/awing"));
+                Image imgBtn = new Image(Manager.MenuScreen, base.Manager.Content.Load<Texture2D>("Sprites/" + lisSubUnits[i].objUnitType.strIconName));
                 m_gridSubUnitRooster.AddChildAt(imgBtn, 0, i);
 
                 Label subLabel = new Label(Manager.MenuScreen);
                 subLabel.Font = Screen.Style.SmallFont;
-                subLabel.Text = "Move: " + lisSubUnits[i].objUnitType.intMovement.ToString(); 
+                subLabel.Text = lisSubUnits[i].objUnitType.strClientData;
                 m_gridSubUnitRooster.AddChildAt(subLabel, 1, i);
 
                 subLabel = new Label(Manager.MenuScreen);
                 subLabel.Font = Screen.Style.SmallFont;
-                subLabel.Text = "See: " + lisSubUnits[i].objUnitType.intSichtweite.ToString();
+                subLabel.Text = "Move: " + lisSubUnits[i].objUnitType.intMovement.ToString();
                 m_gridSubUnitRooster.AddChildAt(subLabel, 2, i);
 
-                /*subLabel = new Label(Manager.MenuScreen);
+                subLabel = new Label(Manager.MenuScreen);
                 subLabel.Font = Screen.Style.SmallFont;
-                subLabel.Text = "Exterminate";
-                subLabel.ClickHandler = new Action<Label>(entfernen_ClickHandler);
+                subLabel.Text = "See: " + lisSubUnits[i].objUnitType.intSichtweite.ToString();
                 m_gridSubUnitRooster.AddChildAt(subLabel, 3, i);
 
-/*                imgBtn = new Image(Manager.MenuScreen, base.Manager.Content.Load<Texture2D>("Sprites/DestroyUnit_done"));
-                imgBtn.objVarData = lisSubUnits[i];
-                imgBtn.ClickHandler = new Action<Image>(entfernen_ClickHandler);
-                m_gridSubUnitRooster.AddChildAt(imgBtn, 3, i);
-                */
-
-                BoxGroup testGroup = new BoxGroup(Screen, Orientation.Horizontal, 0, Anchor.End);
-                m_gridSubUnitRooster.AddChildAt(testGroup, 3, i);
+                BoxGroup testGroup = new BoxGroup(Screen, Orientation.Vertical, 0, Anchor.Center);
+                m_gridSubUnitRooster.AddChildAt(testGroup, 4, i);
 
                 //add Roosterrow
                 Button mCommandButton = new Button(Screen);
                 mCommandButton.Text = "Destroy " + lisSubUnits[i].ID.ToString();
                 mCommandButton.Tag = lisSubUnits[i];
                 mCommandButton.ClickHandler = new Action<Button>(entfernen_ClickHandler);
-                testGroup.AddChild(mCommandButton);
+                testGroup.AddChild(mCommandButton, false);
 
             }
 

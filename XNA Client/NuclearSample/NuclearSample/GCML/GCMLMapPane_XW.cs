@@ -37,20 +37,16 @@ namespace GCML_XNA_Client.GCML
             this.loadTexture("Grid10");
             this.loadTexture("Planet");
 
-            this.loadTexture("TieF");
-            this.loadTexture("XW");
-            this.loadTexture("YW");
+            this.loadTexture("Tie");
+            this.loadTexture("TieA");
+            this.loadTexture("XWing");
+            this.loadTexture("YWing");
 
             this.loadTexture("Korvette");
             this.loadTexture("Cruiser");
 
             this.loadTexture("Transport");
             this.loadTexture("Station");
-
-            //Zahlen
-            this.loadTexture("eins");
-            this.loadTexture("zwei");
-            this.loadTexture("drei");
 
             //Icons
             this.loadTexture("Move");
@@ -61,7 +57,6 @@ namespace GCML_XNA_Client.GCML
             
             this.loadTexture("CreateResource");
             this.loadTexture("CreateResource_Done");
-
 
             this.loadTexture("PlaceUnit");
             this.loadTexture("PlaceUnit_Done");
@@ -80,24 +75,7 @@ namespace GCML_XNA_Client.GCML
 
         }
 
-        private NuclearUI.Image newNumberCounter(int Index)
-        {
-            switch (Index)
-            {
-                case 1:
-                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["eins"], false);
-
-                case 2:
-                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["zwei"], false);
-
-                case 3:
-                    return new NuclearUI.Image(Manager.MenuScreen, this.m_dicTextures["drei"], false);
-
-                default:
-                    return null;
-
-            }
-        }
+        
 
 #endregion 
 
@@ -108,8 +86,6 @@ namespace GCML_XNA_Client.GCML
             this.initMap();
 
             this.m_intPlayerIndex = intPlayerIndex;
-
-            
 
             Program.m_objCampaign.onHasTicked += new CampaignController.delTick(m_objCampaign_onTick);
         }
@@ -216,8 +192,6 @@ namespace GCML_XNA_Client.GCML
         
         private void drawUnit(clsUnit aktUnit, GenericCampaignMasterModel.Player aktPly)
         {
-            NuclearUI.Image imgNumber = newNumberCounter(aktUnit.cnt);
-
             clsGCML_Unit objUnit = new clsGCML_Unit(aktUnit);
             NuclearUI.Image imgUnit = null;
 
@@ -232,10 +206,8 @@ namespace GCML_XNA_Client.GCML
                 imgUnit.ClickHandler = new Action<NuclearUI.Image>(imgUnit_ClickHandler);
                 m_dicUnits.Add(imgUnit, aktUnit);
             
-                if (imgNumber != null)
-                {
-                    m_gridMap.AddChildAt(newNumberCounter(aktUnit.cnt), objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
-                }
+                NuclearUI.Label lblZahl = new NuclearUI.Label(Manager.MenuScreen, aktUnit.cnt.ToString());
+                m_gridMap.AddChildAt(lblZahl, objUnit.aktSektor.objSektorKoord.X, objUnit.aktSektor.objSektorKoord.Y);
             }
 
             if (objUnit.objUnit.aktCommand != null && !objUnit.objUnit.aktCommand.blnExecuted && objUnit.objUnit.strOwnerID == aktPly.Id)
@@ -262,10 +234,6 @@ namespace GCML_XNA_Client.GCML
 
                 if (imgDoneIcon != null)
                     m_gridMap.AddChildAt(imgDoneIcon, x_offset, y_offset);
-
-                if (imgNumber != null)
-                    m_gridMap.AddChildAt(imgNumber, x_offset, y_offset);
-
 
             }
         }

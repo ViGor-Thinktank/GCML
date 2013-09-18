@@ -479,51 +479,6 @@
       <Time>2013-08-23T20:51:16.7387865+02:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\Map_klein.png</Source>
-      <Name>Sprites\Map_klein</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Map_klein.xnb</Output>
-      <Time>2013-08-23T20:51:14.9846862+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\TieF.png</Source>
-      <Name>Sprites\TieF</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieF.xnb</Output>
-      <Time>2013-08-23T20:51:15.6757257+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\XW.png</Source>
-      <Name>Sprites\XW</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XW.xnb</Output>
-      <Time>2013-08-23T20:51:16.6357806+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\eins.png</Source>
-      <Name>Sprites\eins</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\eins.xnb</Output>
-      <Time>2013-08-23T20:51:16.729786+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\zwei.png</Source>
-      <Name>Sprites\zwei</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\zwei.xnb</Output>
-      <Time>2013-08-23T20:51:16.8557932+02:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\stars.jpg</Source>
       <Name>Sprites\stars</Name>
       <Importer>TextureImporter</Importer>
@@ -614,15 +569,6 @@
       <Time>2013-08-23T20:51:15.3937096+02:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\drei.png</Source>
-      <Name>Sprites\drei</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\drei.xnb</Output>
-      <Time>2013-08-23T20:51:16.7147852+02:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\Korvette.png</Source>
       <Name>Sprites\Korvette</Name>
       <Importer>TextureImporter</Importer>
@@ -657,33 +603,6 @@
       <Options>None</Options>
       <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource_done.xnb</Output>
       <Time>2013-08-23T20:51:14.6996699+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\YW.png</Source>
-      <Name>Sprites\YW</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YW.xnb</Output>
-      <Time>2013-08-23T20:51:16.6567818+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Transporter_imp.png</Source>
-      <Name>Sprites\Transporter_imp</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transporter_imp.xnb</Output>
-      <Time>2013-08-23T20:51:15.7037273+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Transporter_imp_groß.jpg</Source>
-      <Name>Sprites\Transporter_imp_groß</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transporter_imp_groß.xnb</Output>
-      <Time>2013-08-23T20:51:15.7227284+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\DestroyUnit.png</Source>
@@ -767,13 +686,103 @@
       <Time>2013-08-23T20:51:16.7937897+02:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\AWing.png</Source>
-      <Name>Sprites\AWing</Name>
+      <Source>Sprites\XWing.png</Source>
+      <Name>Sprites\XWing</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\AWing.xnb</Output>
-      <Time>2013-09-10T08:12:07.3221076+02:00</Time>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing.xnb</Output>
+      <Time>2013-09-17T09:04:55.472055+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\XWing_Icon.png</Source>
+      <Name>Sprites\XWing_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing_Icon.xnb</Output>
+      <Time>2013-09-02T20:50:41.8101844+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\YWing.png</Source>
+      <Name>Sprites\YWing</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing.xnb</Output>
+      <Time>2013-08-23T20:51:16.6567818+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\YWing_Icon.png</Source>
+      <Name>Sprites\YWing_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing_Icon.xnb</Output>
+      <Time>2013-09-02T20:50:41.9021896+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Tie.png</Source>
+      <Name>Sprites\Tie</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie.xnb</Output>
+      <Time>2013-09-18T09:04:34.8381261+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Tie_Icon.png</Source>
+      <Name>Sprites\Tie_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie_Icon.xnb</Output>
+      <Time>2013-09-02T20:50:41.7891832+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Cruiser_Icon.png</Source>
+      <Name>Sprites\Cruiser_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser_Icon.xnb</Output>
+      <Time>2013-08-23T20:51:14.7586733+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Korvette_Icon.png</Source>
+      <Name>Sprites\Korvette_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette_Icon.xnb</Output>
+      <Time>2013-08-23T20:51:14.9596848+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Station_Icon.png</Source>
+      <Name>Sprites\Station_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station_Icon.xnb</Output>
+      <Time>2013-08-23T20:51:15.6557246+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\TieA.png</Source>
+      <Name>Sprites\TieA</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA.xnb</Output>
+      <Time>2013-09-18T09:45:10.2393471+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\TieA_Icon.png</Source>
+      <Name>Sprites\TieA_Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA_Icon.xnb</Output>
+      <Time>2013-09-02T20:50:41.7451807+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

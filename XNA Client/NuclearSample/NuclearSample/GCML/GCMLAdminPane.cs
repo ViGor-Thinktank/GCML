@@ -71,6 +71,12 @@ namespace GCML_XNA_Client.GCML
                 };
                 gridGroup.AddChildAt(button, 4, 3);
 
+                button = new NuclearUI.Button(Manager.MenuScreen, "TieA");
+                button.ClickHandler = delegate
+                {
+                    this.addUnit("TieA", "Grand Moff Tarkin");
+                };
+                gridGroup.AddChildAt(button, 4, 4);
 
                 button = new NuclearUI.Button(Manager.MenuScreen, "safe State");
                 button.ClickHandler = delegate
@@ -159,7 +165,7 @@ namespace GCML_XNA_Client.GCML
         {
             this.manualDataInit();
             
-            this.addUnit("Rebel HQ Korvette", "Admiral Ackbar");
+            this.addUnit("Korvette", "Admiral Ackbar");
 
             this.addUnit("XWing", "Admiral Ackbar", "1|0|0");
             this.addUnit("XWing", "Admiral Ackbar", "1|0|0");
@@ -168,7 +174,7 @@ namespace GCML_XNA_Client.GCML
             this.addUnit("XWing", "Admiral Ackbar", "1|1|0");
             this.addUnit("YWing", "Admiral Ackbar", "1|2|0");
             
-            this.addUnit("Empire HQ Cruiser", "Grand Moff Tarkin");
+            this.addUnit("Cruiser", "Grand Moff Tarkin");
             
             this.addUnit("Planet", "Grand Moff Tarkin", "4|3|0");
             this.addUnit("Planet", "Grand Moff Tarkin", "0|3|0");
@@ -198,13 +204,16 @@ namespace GCML_XNA_Client.GCML
                 return;
 
             m_blnInit = true;
-            clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XW", "X-Wing");
+            clsUnitType objXWing = new clsUnitType("XWing", 2, 1, "XWing", "X-Wing");
             Program.m_objCampaign.UnitType_addNew(objXWing);
 
-            clsUnitType objYWing = new clsUnitType("YWing", 1, 1, "YW", "Y-Wing");
+            clsUnitType objYWing = new clsUnitType("YWing", 1, 1, "YWing", "Y-Wing");
             Program.m_objCampaign.UnitType_addNew(objYWing);
 
-            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "Tie Fighter");
+            clsUnitType objTie = new clsUnitType("Tie", 1, 2, "Tie");
+            Program.m_objCampaign.UnitType_addNew(objTie);
+
+            objTie = new clsUnitType("TieA", 2, 2, "TieA");
             Program.m_objCampaign.UnitType_addNew(objTie);
 
             clsUnitType objStation = new clsUnitType("Raumstation", 2, 0, "Station", "mit [%intResourceValue%] Punkten beladen", new List<clsUnitType>(), 250);
@@ -216,8 +225,8 @@ namespace GCML_XNA_Client.GCML
             clsUnitType objPlanet = new clsUnitType("Planet", 0, 0, "Planet", "Produziert Resourcen, mit [%intResourceValue%] Punkten beladen. Kann Transporter spawnwn", new List<clsUnitType> { objTrans }, 1000, true, true);
             Program.m_objCampaign.UnitType_addNew(objPlanet);
             
-            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Empire HQ Cruiser", 1, 1, "Cruiser", "Empire HQ", new List<clsUnitType> { objTie }, 250));
-            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Rebel HQ Korvette", 1, 1, "Korvette", "Rebel HQ", new List<clsUnitType> { objXWing }, 250));
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Cruiser", 1, 1, "Cruiser", "Empire HQ", new List<clsUnitType> { objTie }, 250));
+            Program.m_objCampaign.UnitType_addNew(new clsUnitType("Korvette", 1, 1, "Korvette", "Rebel HQ", new List<clsUnitType> { objXWing }, 250));
 
             Faction facRebel = Program.m_objCampaign.Faction_add("Rebellen Allianz", new List<clsUnitType> { objXWing });
             Player ply = Program.m_objCampaign.Player_add("Admiral Ackbar", facRebel);
