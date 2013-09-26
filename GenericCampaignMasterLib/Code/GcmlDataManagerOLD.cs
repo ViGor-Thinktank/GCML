@@ -10,7 +10,7 @@ using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterLib
 {
-    public sealed class GcmlDataManager
+    public class GcmlDataManagerOLD : IGcmlDataManager
     {
         private string STOREPATH = "c:\\temp\\";     // jaja ich weiss
         private string PLAYER_DB = "GCML_PLAYERS";
@@ -22,17 +22,17 @@ namespace GenericCampaignMasterLib
         private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
         private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
 
-        private static GcmlDataManager instance = null;
+        private static GcmlDataManagerOLD instance = null;
 
-        private GcmlDataManager() { }
+        private GcmlDataManagerOLD() { }
 
-        public static GcmlDataManager Instance
+        public static GcmlDataManagerOLD Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new GcmlDataManager();
+                    instance = new GcmlDataManagerOLD();
                     instance.init();
                 }
 
@@ -238,7 +238,7 @@ namespace GenericCampaignMasterLib
             return result;
         }
 
-        ~GcmlDataManager()
+        ~GcmlDataManagerOLD()
         {
             //foreach (ICampaignDatabase cmp in m_dictRunningCampaigns.Values)
             //    cmp.close();

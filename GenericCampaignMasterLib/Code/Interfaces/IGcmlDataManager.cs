@@ -1,0 +1,25 @@
+﻿#define USENOSQL
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.IO;
+using RaptorDB;
+using GenericCampaignMasterModel;
+
+namespace GenericCampaignMasterLib
+{
+    public interface IGcmlDataManager
+    {
+         List<string> getRunningCampaignIds();
+         CampaignController getController(string campaignId);
+         string getPlayerId(string playername);
+         Player getPlayer(string playerId);
+         Dictionary<string, Player> getPlayerList();
+         List<string> getRunningPlayerCampaigns(string playerid);
+         string createNewCampaign(string playerid, string fielddimension);
+         string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer);
+        
+    }
+}
