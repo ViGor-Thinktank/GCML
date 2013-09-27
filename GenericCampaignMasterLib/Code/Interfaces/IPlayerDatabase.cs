@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterModel;
 
-namespace GenericCampaignMasterLib.Code.Interfaces
+namespace GenericCampaignMasterLib
 {
-    interface IPlayerDatabase
+    public interface IPlayerDatabase
     {
+        Player getPlayer(string id);
     }
 }
