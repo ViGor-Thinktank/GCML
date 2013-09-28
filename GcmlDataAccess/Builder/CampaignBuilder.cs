@@ -13,8 +13,8 @@ namespace GcmlDataAccess
     {
         IGcmlDataManager datamanager;
 
-        CampaignBuilder instance = null;
-        public CampaignBuilder Instance
+        private static CampaignBuilder instance = null;
+        public static CampaignBuilder Instance
         {
             get
             {

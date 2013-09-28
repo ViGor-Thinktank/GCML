@@ -132,6 +132,10 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GcmlDataAccess\GcmlDataAccess.csproj">
+      <Project>{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}</Project>
+      <Name>GcmlDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
       <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
       <Name>GenericCampaignMasterLib</Name>

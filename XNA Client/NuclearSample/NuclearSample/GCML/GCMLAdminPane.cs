@@ -6,7 +6,8 @@ using System.Text;
 using NuclearUI = NuclearWinter.UI;
 
 using GenericCampaignMasterLib;
-using GenericCampaignMasterModel; 
+using GenericCampaignMasterModel;
+using GcmlDataAccess;
 
 
 namespace GCML_XNA_Client.GCML
@@ -245,13 +246,13 @@ namespace GCML_XNA_Client.GCML
             if (false && System.IO.File.Exists(".\\CCDate.dat"))// && MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.objCampaignState.load();
-                Program.m_objCampaign = new CampaignBuilderSchach().restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
+                Program.m_objCampaign = CampaignBuilder.Instance.restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
                 List<Player> listPlayers = Program.m_objCampaign.Player_getPlayerList();
            
             }
             else
             {
-                Program.m_objCampaign = new CampaignBuilderSchach().buildNew(7);
+                Program.m_objCampaign = CampaignBuilder.Instance.buildNew();
             }
 
             //Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);
