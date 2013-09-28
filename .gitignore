@@ -13,6 +13,7 @@
 *FileListAbsolute*
 obj/*
 Debug/*
+bin/*
 _UpgradeReport_Files/*
 GenericCampaignMasterLib/bin/*
 GenericCampaignMasterLib/obj/*
@@ -22,6 +23,7 @@ GenericCampaignMasterLibModel/bin/*
 GenericCampaignMasterModel/obj/Debug/*
 CampaignMasterWeb/obj/Debug/*
 GcmlWebService/obj/Debug/*
+GcmlDataAccess/bin/*
 
 XNA Client/NuclearSample/NuclearSample/bin/*
 XNA Client/NuclearSample/NuclearSample/obj/*
@@ -36,6 +38,7 @@ UpgradeLog.*
 .DS_Store
 
 test-results/*
+Debug/*
 
 
 

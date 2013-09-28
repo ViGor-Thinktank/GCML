@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>RaptorDB</id>
+    <version>2.6</version>
+    <title>RaptorDB</title>
+    <authors>Mehdi Gholam</authors>
+    <owners>Mehdi Gholam</owners>
+    <licenseUrl>http://www.codeproject.com/info/cpol10.aspx</licenseUrl>
+    <projectUrl>http://www.codeproject.com/Articles/316816/RaptorDB-The-Key-Value-Store-V2</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>RaptorDB is a extremely small size and fast embedded, noSql, persisted dictionary database using b+tree or MurMur hash indexing.</description>
+    <releaseNotes>post back code from RaptorDB the doc store;
+added more data types (uint,short,double,float,datetime...);added locks to the indexfile;updated logger;updated safe dictionary with locks;changed to Path.DirectorySeparatorChar for Mono/MonoDroid support;bug fix edge case in WAHbitarray;updated storage file</releaseNotes>
+    <copyright />
+    <language />
+  </metadata>
+</package>
