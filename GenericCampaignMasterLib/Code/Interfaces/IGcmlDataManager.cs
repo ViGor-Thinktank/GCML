@@ -13,8 +13,8 @@ namespace GenericCampaignMasterLib
          List<string> getRunningCampaignIds();
          CampaignController getController(string campaignId);
          string getPlayerId(string playername);
-         Player getPlayer(string playerId);
-         Dictionary<string, Player> getPlayerList();
+         PlayerInfo getPlayer(string playerId);
+         Dictionary<string, PlayerInfo> getPlayerList();
          List<CampaignInfo> getRunningPlayerCampaigns(string playerid);
          string createNewCampaign(string playerid, string fielddimension);
          string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer);

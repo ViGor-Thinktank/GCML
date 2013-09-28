@@ -24,6 +24,9 @@ GenericCampaignMasterModel/obj/Debug/*
 CampaignMasterWeb/obj/Debug/*
 GcmlWebService/obj/Debug/*
 GcmlDataAccess/bin/*
+*/bin/*
+*/Debug/*
+*/obj/*
 
 XNA Client/NuclearSample/NuclearSample/bin/*
 XNA Client/NuclearSample/NuclearSample/obj/*

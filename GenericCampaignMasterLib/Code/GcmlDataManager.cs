@@ -42,24 +42,24 @@ namespace GenericCampaignMasterLib
 
         public string getPlayerId(string playername)
         {
-            Player p = playerDb.getPlayerByName(playername);
-            return p.Id;
+            PlayerInfo p = playerDb.getPlayerByName(playername);
+            return p.playerId;
         }
 
-        public Player getPlayer(string id)
+        public PlayerInfo getPlayer(string id)
         {
             return playerDb.getPlayer(id);
         }
 
-        public Dictionary<string, Player> getPlayerList()
+        public Dictionary<string, PlayerInfo> getPlayerList()
         {
             return playerDb.getAllPlayers();
         }
 
         public List<CampaignInfo> getRunningPlayerCampaigns(string playerid)
         {
-            Player p = playerDb.getPlayer(playerid);
-            return campaignDb.getCampaignsForPlayer(p.Id);
+            PlayerInfo p = playerDb.getPlayer(playerid);
+            return campaignDb.getCampaignsForPlayer(p.playerId);
         }
 
         public string createNewCampaign(string playerid, string fielddimension)
@@ -69,7 +69,10 @@ namespace GenericCampaignMasterLib
 
         public string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
         {
-            Player p = playerDb.getPlayer(playerid);
+            PlayerInfo p = playerDb.getPlayer(playerid);
+            if (p == null)
+                return null;
+
             string campaignId = campaignDb.createNewCampaign(p, campaignname, fielddim);
             return campaignId;
         }
