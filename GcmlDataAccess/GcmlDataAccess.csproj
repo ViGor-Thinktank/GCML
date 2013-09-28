@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RaptorDB">
+      <HintPath>Alien\RaptorDB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +50,16 @@
     <Compile Include="Builder\CampaignBuilderTicTacTod.cs" />
     <Compile Include="CampaignDatabaseRaptorDb_OLD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj">
+      <Project>{EEFBF3FC-F556-46E6-A761-19A8829E158B}</Project>
+      <Name>GenericCampaignMasterLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">
+      <Project>{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}</Project>
+      <Name>GenericCampaignMasterModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

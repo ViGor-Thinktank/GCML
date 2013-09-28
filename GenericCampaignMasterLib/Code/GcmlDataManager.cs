@@ -25,8 +25,6 @@ namespace GenericCampaignMasterLib
             this.playerDb = _playerDb;
         }
 
-        
-
         // Das Interface stellt die Abwärtskompatibilität sicher.
         #region IGcmlDataManager
         public List<string> getRunningCampaignIds()
@@ -44,8 +42,8 @@ namespace GenericCampaignMasterLib
 
         public string getPlayerId(string playername)
         {
-            throw new NotImplementedException();
-
+            Player p = playerDb.getPlayerByName(playername);
+            return p.Id;
         }
 
         public Player getPlayer(string id)
@@ -53,14 +51,15 @@ namespace GenericCampaignMasterLib
             return playerDb.getPlayer(id);
         }
 
-        public Dictionary<string, GenericCampaignMasterModel.Player> getPlayerList()
+        public Dictionary<string, Player> getPlayerList()
         {
-            throw new NotImplementedException();
+            return playerDb.getAllPlayers();
         }
 
-        public List<string> getRunningPlayerCampaigns(string playerid)
+        public List<CampaignInfo> getRunningPlayerCampaigns(string playerid)
         {
-            throw new NotImplementedException();
+            Player p = playerDb.getPlayer(playerid);
+            return campaignDb.getCampaignsForPlayer(p.Id);
         }
 
         public string createNewCampaign(string playerid, string fielddimension)
@@ -68,9 +67,11 @@ namespace GenericCampaignMasterLib
             throw new NotImplementedException();
         }
 
-        public string createNewCampaign(string playerid, string campaignname, GenericCampaignMasterModel.clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
+        public string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
         {
-            throw new NotImplementedException();
+            Player p = playerDb.getPlayer(playerid);
+            string campaignId = campaignDb.createNewCampaign(p, campaignname, fielddim);
+            return campaignId;
         }
         #endregion
 
