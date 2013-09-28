@@ -45,7 +45,7 @@ namespace GcmlDataAccess
             throw new NotImplementedException();
         }
 
-        public string createNewCampaign(Player p, string campaignname, clsSektorKoordinaten fielddim)
+        public string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim)
         {
             throw new NotImplementedException();
         }

@@ -62,9 +62,9 @@ namespace GenericCampaignMasterLib
             return campaignDb.getCampaignsForPlayer(p.playerId);
         }
 
-        public string createNewCampaign(string playerid, string fielddimension)
+        public string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim)
         {
-            throw new NotImplementedException();
+            return campaignDb.createNewCampaign(campaignname, fielddim);   
         }
 
         public string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
@@ -73,8 +73,10 @@ namespace GenericCampaignMasterLib
             if (p == null)
                 return null;
 
-            string campaignId = campaignDb.createNewCampaign(p, campaignname, fielddim);
+            string campaignId = campaignDb.createNewCampaign(campaignname, fielddim);
             return campaignId;
+
+            // TODO: Player hinzufügen
         }
         #endregion
 

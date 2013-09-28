@@ -2,24 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GenericCampaignMasterLib;
+using GenericCampaignMasterModel;
+using Ninject;
 
-namespace GenericCampaignMasterLib
+
+namespace GcmlDataAccess
 {
-    public abstract class CampaignBuilder
+    public class CampaignBuilder
     {
-        public virtual CampaignController getCurrentGame(string campaignKey)
+        IGcmlDataManager datamanager;
+
+        CampaignBuilder instance = null;
+        public CampaignBuilder Instance
         {
-            return new CampaignController();
+            get
+            {
+                if (instance == null)
+                    instance = new CampaignBuilder();
+
+                return instance;
+            }
+        }
+        
+        private CampaignBuilder() 
+        {
+            var kernel = new StandardKernel();
+            kernel.Bind<ICampaignDatabase>().To<CampaignDbRaptor>();
+            kernel.Bind<IPlayerDatabase>().To<PlayerDbRaptor>();
+            kernel.Bind<IGcmlDataManager>().To<GcmlDataManager>();
+
+            datamanager = kernel.Get<IGcmlDataManager>();
         }
 
-		public virtual CampaignController restoreFromDb(string campaignKey, string stateKey)
+        public CampaignController getCurrentGame(string campaignKey)
         {
-            return new CampaignController();
+            return datamanager.getController(campaignKey);
         }
 
-        public virtual CampaignController buildNew()
+        public CampaignController restoreFromDb(string campaignKey, string stateKey)
         {
-            return new CampaignController();
+            return datamanager.getController(campaignKey);
+        }
+
+        public CampaignController buildNew()
+        {
+            clsSektorKoordinaten koord = new clsSektorKoordinaten(7, 7);
+            string newCampaignId = datamanager.createNewCampaign("testkampagne", koord);
+            CampaignController ctr = datamanager.getController(newCampaignId);
+
+            return ctr;
         }
 
     }

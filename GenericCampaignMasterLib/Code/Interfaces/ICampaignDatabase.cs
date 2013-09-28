@@ -14,7 +14,7 @@ namespace GenericCampaignMasterLib
         List<string> getAllCampaignKeys();
         CampaignState getCampaignStateForCampaign(string campaignKey);
         List<CampaignInfo> getCampaignsForPlayer(string p);
-        string createNewCampaign(PlayerInfo p, string campaignname, clsSektorKoordinaten fielddim);
+        string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim);
 
         // Alte Methoden. Ursprünglicher Ansatz: Pro Campaign eine DB mit ICampaignDatabase.
         string CampaignKey { get; set; }
