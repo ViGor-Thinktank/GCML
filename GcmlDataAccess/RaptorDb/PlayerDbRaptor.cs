@@ -20,6 +20,11 @@ namespace GcmlDataAccess
             playerDb = RaptorDB<string>.Open(dbpath, false);
         }
 
+        ~PlayerDbRaptor()
+        {
+            playerDb.Shutdown();
+        }
+
 
         public PlayerInfo getPlayer(string id)
         {

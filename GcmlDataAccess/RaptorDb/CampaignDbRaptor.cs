@@ -13,11 +13,15 @@ namespace GcmlDataAccess
     {
         RaptorDB<string> campaignDb;
 
-
         public CampaignDbRaptor()
         {
             string dbpath = Path.Combine(Properties.Settings.Default.DbStorepath, "CAMPAIGNDB");
             campaignDb = RaptorDB<string>.Open(dbpath, false);
+        }
+
+        ~CampaignDbRaptor()
+        {
+            campaignDb.Shutdown();
         }
 
         public List<string> getAllCampaignKeys()
@@ -37,7 +41,12 @@ namespace GcmlDataAccess
 
         public CampaignState getCampaignStateForCampaign(string campaignKey)
         {
-            throw new NotImplementedException();
+            CampaignState result = null;
+            string str;
+            if (campaignDb.Get(campaignKey, out str))
+                result = CampaignState.FromString(str);
+
+            return result;
         }
 
         public List<CampaignInfo> getCampaignsForPlayer(string p)
@@ -47,7 +56,18 @@ namespace GcmlDataAccess
 
         public string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim)
         {
-            throw new NotImplementedException();
+            string newCampaignId = Guid.NewGuid().ToString();
+
+            Field field = new Field(fielddim);
+            CampaignEngine engine = new CampaignEngine(field);
+            CampaignController controller = new CampaignController(engine);
+            controller.CampaignKey = newCampaignId;
+            controller.CampaignEngine = engine;
+
+            CampaignState state = engine.getState();
+            campaignDb.Set(newCampaignId, state.ToString());
+
+            return newCampaignId;
         }
 
         public string CampaignKey

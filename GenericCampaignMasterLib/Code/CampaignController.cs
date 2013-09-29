@@ -110,6 +110,7 @@ namespace GenericCampaignMasterLib
 
         public string GameState_saveCurrent()
         {
+            throw new Exception("-> GcmlDataManager");
             CampaignState state = m_campaignEngine.getState();
             string key = m_campaignDataBase.saveGameState(state);
             return key;
@@ -117,6 +118,7 @@ namespace GenericCampaignMasterLib
 
         public void GameState_restoreByKey(string key)
         {
+            throw new Exception("-> GcmlDataManager");
             CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
             CampaignEngine engine = CampaignEngine.restoreFromState(state);
             initEngine(engine);
