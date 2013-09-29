@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.WebPages.OAuth.de</id>
+    <version>2.0.20710.0</version>
+    <title>Deutsche Ressourcen für die Microsoft WebPages OAuth-Bibliothek</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/WebPages_2_eula_DEU.htm</licenseUrl>
+    <projectUrl>http://www.asp.net/web-pages</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dieses Paket enthält die deutschen Satellitenassemblys für ASP.NET Web Pages OAuth.</description>
+    <summary>Deutsche Ressourcen für das Microsoft.AspNet.WebPages.OAuth-Paket</summary>
+    <language>de</language>
+    <tags>Microsoft AspNet WebPages AspNetWebPages OpenId OAuth authentication</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.WebPages.OAuth" version="[2.0.20710.0]" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

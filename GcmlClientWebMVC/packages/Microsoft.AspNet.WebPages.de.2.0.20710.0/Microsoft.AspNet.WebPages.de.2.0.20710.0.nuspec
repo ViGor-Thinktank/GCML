@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.WebPages.de</id>
+    <version>2.0.20710.0</version>
+    <title>Deutsche Ressourcen für Microsoft ASP.NET Web Pages 2</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/WebPages_2_eula_DEU.htm</licenseUrl>
+    <projectUrl>http://www.asp.net/web-pages</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Dieses Paket enthält die deutschen Satellitenassemblys für ASP.NET Web Pages 2.</description>
+    <summary>Deutsche Ressourcen für das Microsoft.AspNet.WebPages-Paket</summary>
+    <language>de</language>
+    <tags>Microsoft AspNet WebPages AspNetWebPages</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.WebPages" version="[2.0.20710.0]" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

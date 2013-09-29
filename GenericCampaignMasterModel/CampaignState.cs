@@ -110,6 +110,12 @@ namespace GenericCampaignMasterModel
             return m_serializer.Serialize(this);
         }
 
+        public static CampaignState FromString(string stateStr)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            CampaignState result = serializer.Deserialize<CampaignState>(stateStr);
+            return result;
+        }
 
         
     }

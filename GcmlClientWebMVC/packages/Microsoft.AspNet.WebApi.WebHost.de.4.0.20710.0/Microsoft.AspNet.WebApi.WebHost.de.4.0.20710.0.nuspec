@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.WebApi.WebHost.de</id>
+    <version>4.0.20710.0</version>
+    <title>Deutsche Ressourcen für Microsoft ASP.NET Web API Web Host</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/MVC_4_eula_DEU.htm</licenseUrl>
+    <projectUrl>http://www.asp.net/web-api</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Dieses Paket enthält die deutschen Satellitenassemblys für ASP.NET Web API Web Host.</description>
+    <summary>Deutsche Ressourcen für das Microsoft.AspNet.WebApi.WebHost-Paket</summary>
+    <language>de</language>
+    <tags>Microsoft AspNet WebApi AspNetWebApi WebHost</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="[4.0.20710.0]" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlClientWebMVC", "GcmlClientWebMVC\GcmlClientWebMVC.csproj", "{2C53DD7A-2CFF-477D-85DE-5D14E47150E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterLib", "..\GenericCampaignMasterLib\GenericCampaignMasterLib.csproj", "{EEFBF3FC-F556-46E6-A761-19A8829E158B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterModel", "..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj", "{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlDataAccess", "..\GcmlDataAccess\GcmlDataAccess.csproj", "{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C53DD7A-2CFF-477D-85DE-5D14E47150E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C53DD7A-2CFF-477D-85DE-5D14E47150E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C53DD7A-2CFF-477D-85DE-5D14E47150E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C53DD7A-2CFF-477D-85DE-5D14E47150E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEFBF3FC-F556-46E6-A761-19A8829E158B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEFBF3FC-F556-46E6-A761-19A8829E158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEFBF3FC-F556-46E6-A761-19A8829E158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEFBF3FC-F556-46E6-A761-19A8829E158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4D345A-FEC4-47B5-AE52-CB27C741C8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

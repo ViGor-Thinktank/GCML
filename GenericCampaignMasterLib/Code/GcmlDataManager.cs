@@ -1,251 +1,84 @@
-﻿#define USENOSQL
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
-using System.IO;
-using RaptorDB;
+using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterLib
 {
-    public sealed class GcmlDataManager
+
+    /// <summary>
+    /// GcmlDataManager liefert den Zugriff auf alle Spieler und Kampagnen. Liefert immer
+    /// den CampaignController mit dem aktuell gültigen EngineState. Die eigentliche Speicherung
+    /// erfolgt in ICampaignDatabase und IPlayerDatabase und ist damit unabhängig von der 
+    /// eigentlichen Datenbank.
+    /// </summary>
+    public class GcmlDataManager : IGcmlDataManager
     {
-        private string STOREPATH = "c:\\temp\\";     // jaja ich weiss
-        private string PLAYER_DB = "GCML_PLAYERS";
-        private string CAMPAIGN_DB = "GCML_CAMPAIGNS";
+        ICampaignDatabase campaignDb;
+        IPlayerDatabase playerDb;
 
-        private RaptorDB<string> m_playerDb;
-        private RaptorDB<string> m_campaignDb;
-
-        private Dictionary<string, ICampaignDatabase> m_dictRunningCampaigns = new Dictionary<string, ICampaignDatabase>();         // Dictionary mit allen gefundenen (Db-Dateien im Verzeichnis) Kampagnen
-        private Dictionary<string, CampaignController> m_dictLoadedController = new Dictionary<string, CampaignController>();       // aus der Db geladener Controller wird im Speicher vorgehalten. Bei GetController aktuellen State in Db speichern.
-
-        private static GcmlDataManager instance = null;
-
-        private GcmlDataManager() { }
-
-        public static GcmlDataManager Instance
+        public GcmlDataManager(ICampaignDatabase _campaignDb, IPlayerDatabase _playerDb)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GcmlDataManager();
-                    instance.init();
-                }
-
-                return instance;
-            }
+            this.campaignDb = _campaignDb;
+            this.playerDb = _playerDb;
         }
 
-        private void init()
-        {
-#if USENOSQL
-            string playerdbfile = Path.Combine(STOREPATH, PLAYER_DB);
-            string campaigndbfile = Path.Combine(STOREPATH, CAMPAIGN_DB);
-
-            m_playerDb = RaptorDB<string>.Open(playerdbfile, false);
-            m_campaignDb = RaptorDB<string>.Open(campaigndbfile, true);
-
-            if (m_campaignDb.Count() > 0)
-            {
-                for (int i = 0; i < m_campaignDb.Count(); i++)
-                {
-                    string campaignStr = m_campaignDb.FetchRecordString(i);
-                    string campaignKey = campaignStr.Split('#')[0];
-                    string dbfilepath = campaignStr.Split('#')[1];
-
-                    CampaignDatabaseRaptorDb db = new CampaignDatabaseRaptorDb();
-                    db.CampaignKey = campaignKey;
-                    db.StorePath = dbfilepath;
-                    db.init();
-
-                    m_dictRunningCampaigns.Add(campaignKey, (ICampaignDatabase)db);
-                }
-            }
-#endif
-
-        }
-
+        // Das Interface stellt die Abwärtskompatibilität sicher.
+        #region IGcmlDataManager
         public List<string> getRunningCampaignIds()
         {
-            return m_dictRunningCampaigns.Keys.ToList<string>();
+            return campaignDb.getAllCampaignKeys();
         }
-
 
         public CampaignController getController(string campaignId)
         {
-            CampaignController controller;
-            if ((!String.IsNullOrEmpty(campaignId)) &&
-                (m_dictLoadedController.ContainsKey(campaignId)))
-            {
-                controller = m_dictLoadedController[campaignId];
-            }
-            else
-            {
-                ICampaignDatabase db = m_dictRunningCampaigns[campaignId];
-                CampaignState state = db.getLastGameState();
-                CampaignEngine engine = CampaignEngine.restoreFromState(state);
-                controller = new CampaignController(engine);
-                controller.CampaignKey = campaignId;
-                controller.CampaignDataBase = db;
-                m_dictLoadedController[campaignId] = controller;
-            }
-
+            CampaignState state = campaignDb.getCampaignStateForCampaign(campaignId);
+            CampaignEngine engine = CampaignEngine.restoreFromState(state);
+            CampaignController controller = new CampaignController(engine);
             return controller;
         }
 
         public string getPlayerId(string playername)
         {
-            string playerId = "";
-            var players = from p in getPlayerList().Values
-                          where p.Playername == playername
-                          select p;
-
-            if (players.Count() > 0)
-            {
-                playerId = players.First().Id;
-            }
-            else
-            {
-                playerId = Guid.NewGuid().ToString();
-                Player pnew = new Player();
-                pnew.Playername = playername;
-                pnew.Id = playerId;
-
-                m_playerDb.Set(playerId, pnew.ToString());
-            }
-
-            return playerId;
+            PlayerInfo p = playerDb.getPlayerByName(playername);
+            return p.playerId;
         }
 
-        public Player getPlayer(string playerId)
+        public PlayerInfo getPlayer(string id)
         {
-            string strPlayer;
-            m_playerDb.Get(playerId, out strPlayer);
-            Player player = Player.FromString(strPlayer);
-
-            return player;
+            return playerDb.getPlayer(id);
         }
 
-        public Dictionary<string, Player> getPlayerList()
+        public Dictionary<string, PlayerInfo> getPlayerList()
         {
-            Dictionary<string, Player> result = new Dictionary<string, Player>();
-            for (int i = 0; i < m_playerDb.Count(); i++)
-            {
-                string pstr = m_playerDb.FetchRecordString(i);
-                Player p = Player.FromString(pstr);
-                result.Add(p.Id, p);
-            }
-
-            return result;
+            return playerDb.getAllPlayers();
         }
 
-
-        public List<string> getRunningPlayerCampaigns(string playerid)
+        public List<CampaignInfo> getRunningPlayerCampaigns(string playerid)
         {
-            List<string> campaignIds = m_dictRunningCampaigns.Keys.ToList<string>();
-            var campaigns = from id in campaignIds
-                            from pl in getController(id).Player_getPlayerList()
-                            where pl.Id == playerid
-                            select id;
-            return campaigns.ToList<string>();
+            PlayerInfo p = playerDb.getPlayer(playerid);
+            return campaignDb.getCampaignsForPlayer(p.playerId);
         }
 
-        public string createNewCampaign(string playerid, string fielddimension)
+        public string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim)
         {
-            Player player = getPlayer(playerid);
-            if (player == null)
-                return "";
-
-            // Datenbank
-            ICampaignDatabase database = (ICampaignDatabase)getCampaignDbOrNew("");
-
-            // Spielfeld
-            Field field = new Field(3, 3);
-
-            // Engine
-            CampaignEngine engine = new CampaignEngine(field);
-            engine.FieldField.Id = 123;
-            engine.addPlayer(player);
-            //engine.addUnit(player.Id, 0, field.getSektorList()[0]);
-
-            CampaignController controller = new CampaignController();
-            controller.CampaignDataBase = database;
-            controller.CampaignEngine = engine;
-            controller.CampaignKey = database.CampaignKey;
-            controller.GameState_saveCurrent();
-
-            m_dictLoadedController[controller.CampaignKey] = controller;
-            return database.CampaignKey;
+            return campaignDb.createNewCampaign(campaignname, fielddim);   
         }
 
         public string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer)
         {
-            Player player = getPlayer(playerid);
-            if (player == null)
-                return "";
+            PlayerInfo p = playerDb.getPlayer(playerid);
+            if (p == null)
+                return null;
 
-            // Datenbank
-            ICampaignDatabase database = (ICampaignDatabase)getCampaignDbOrNew("");
+            string campaignId = campaignDb.createNewCampaign(campaignname, fielddim);
+            return campaignId;
 
-            // Spielfeld
-            Field field = new Field(fielddim);
-
-            // Engine
-            CampaignEngine engine = new CampaignEngine(field);
-            engine.CampaignName = campaignname;
-            engine.FieldField.Id = 123;
-            engine.addPlayer(player);
-
-            CampaignController controller = new CampaignController();
-            controller.CampaignDataBase = database;
-            controller.CampaignEngine = engine;
-            controller.CampaignKey = database.CampaignKey;
-            controller.GameState_saveCurrent();
-
-            m_dictLoadedController[controller.CampaignKey] = controller;
-            return database.CampaignKey;
+            // TODO: Player hinzufügen
         }
-
-
-        private ICampaignDatabase getCampaignDbOrNew(string campaignId)
-        {
-            ICampaignDatabase result = null;
-            if (!m_dictRunningCampaigns.ContainsKey(campaignId) || String.IsNullOrEmpty(campaignId))
-            {
-#if USENOSQL
-                CampaignDatabaseRaptorDb rdb = new CampaignDatabaseRaptorDb();
-                rdb.CampaignKey = Guid.NewGuid().ToString();
-                rdb.StorePath = STOREPATH;
-                rdb.init();
-                result = rdb;
-
-#else
-#endif
-
-                m_dictRunningCampaigns.Add(result.CampaignKey, result);
-                m_campaignDb.Set(result.CampaignKey, result.CampaignKey + "#" + STOREPATH);
-                m_campaignDb.SaveIndex();
-            }
-            else
-            {
-                result = (ICampaignDatabase)m_dictRunningCampaigns[campaignId];
-            }
-
-            return result;
-        }
-
-        ~GcmlDataManager()
-        {
-            //foreach (ICampaignDatabase cmp in m_dictRunningCampaigns.Values)
-            //    cmp.close();
-            //m_campaignDb.Shutdown();
-            //m_playerDb.Shutdown();
-        }
-
+        #endregion
 
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Web.Optimization.de</id>
+    <version>1.0.0</version>
+    <title>Deutsche Ressourcen für Microsoft ASP.NET Web Optimization</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/weboptimization_1_eula_DEU.htm</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Dieses Paket enthält die deutschen Satellitenassemblys für ASP.NET Web Optimization.</description>
+    <summary>Deutsche Ressourcen für das Microsoft.AspNet.Web.Optimization-Paket</summary>
+    <language>de</language>
+    <tags>Microsoft AspNet optimization bundling minification</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.Web.Optimization" version="[1.0.0]" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

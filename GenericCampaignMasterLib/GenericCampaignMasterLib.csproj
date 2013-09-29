@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RaptorDB">
-      <HintPath>Alien\RaptorDB.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -43,18 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Builder\CampaignBuilderSchachbrett.cs" />
     <Compile Include="Code\CampaignController.cs" />
     <Compile Include="Code\CampaignEngine.cs" />
-    <Compile Include="Code\Db\CampaignDatabaseRaptorDb.cs" />
-    <Compile Include="Code\Db\ICampaignDatabase.cs" />
     <Compile Include="Code\GcmlDataManager.cs" />
+    <Compile Include="Code\Interfaces\IGcmlDataManager.cs" />
+    <Compile Include="Code\Interfaces\ICampaignDatabase.cs" />
+    <Compile Include="Code\Interfaces\IPlayerDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\Builder\CampaignBuilder.cs" />
-    <Compile Include="Code\Builder\CampaignBuilderTicTacTod.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Dok\ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +57,7 @@
       <Name>GenericCampaignMasterModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

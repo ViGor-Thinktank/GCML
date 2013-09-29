@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-using GenericCampaignMasterLib; 
+using GenericCampaignMasterLib;
+using GcmlDataAccess;
 
 
 using NuclearWinter;
@@ -43,7 +44,7 @@ namespace GCML_XNA_Client
             base.Initialize();
 
             Program.objCampaignState = new GCML.clsCampaignInfo();
-            Program.m_objCampaign = new CampaignBuilderSchach().buildNew(7);
+            Program.m_objCampaign = CampaignBuilder.Instance.buildNew();
            
             SetWindowTitle("GCML Demo");
 
