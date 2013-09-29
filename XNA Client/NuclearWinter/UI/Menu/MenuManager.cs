@@ -18,9 +18,9 @@ namespace NuclearWinter.UI
 
         //----------------------------------------------------------------------
         // Popup
-        public Screen                   PopupScreen             { get; private set; }
-        public MessagePopup             MessagePopup            { get; private set; }
-        public GCML.clsXWCommandPopupBase    XWCommandPopup { get; set; }
+        public Screen                       PopupScreen             { get; private set; }
+        public MessagePopup                 MessagePopup            { get; private set; }
+        public GCML.clsXWCommandPopupBase   XWCommandPopup { get; set; }
 
         public IEnumerable<Panel>       PopupStack              { get { return (IEnumerable<Panel>)mPopupStack; } }
         public Panel                    TopMostPopup            { get { return mPopupStack.Count > 0 ? mPopupStack.Peek() : null; } }

@@ -78,7 +78,8 @@ namespace GCML_XNA_Client.GCML
             {
                 Program.m_objCampaign.Unit_Remove(this.m_objCommandCollection.aktUnit.strOwnerID, this.m_objCommandCollection.aktUnit.Id);
                 this.Close();
-                //explosion auf Einheit legen
+                base.raiseUnitWasDestroyd(this.m_objCommandCollection.aktUnit);
+                
             }
             Refresh();
         }
@@ -111,7 +112,7 @@ namespace GCML_XNA_Client.GCML
 
                 Label subLabel = new Label(Manager.MenuScreen);
                 subLabel.Font = Screen.Style.SmallFont;
-                subLabel.Text = lisSubUnits[i].objUnitType.strClientData;
+                subLabel.Text = lisSubUnits[i].objUnitType.strBez;
                 m_gridSubUnitRooster.AddChildAt(subLabel, 1, i);
 
                 subLabel = new Label(Manager.MenuScreen);

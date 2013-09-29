@@ -63,7 +63,7 @@ namespace GenericCampaignMasterLib
         public event Field.delStatus onStatus;
         public event delTick onTick;
         public event delTick onHasTicked;
-        
+
 #endregion
 
         public void Global_onStatus(string strText)

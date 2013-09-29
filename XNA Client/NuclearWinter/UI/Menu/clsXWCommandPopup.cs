@@ -12,6 +12,9 @@ namespace NuclearWinter.UI.GCML
 {
     public abstract class clsXWCommandPopupBase : NuclearWinter.UI.Popup<IMenuManager>
     {
+        public event delUnitWasDestroyd onUnitWasDestroyd;
+        public delegate void delUnitWasDestroyd(clsUnit objUnit);
+
         //----------------------------------------------------------------------
         public clsXWCommandPopupBase(IMenuManager _manager)
             : base(_manager)
@@ -32,9 +35,13 @@ namespace NuclearWinter.UI.GCML
 
         }
 
-        
         public abstract void Setup(clsUnit aktUnit, Action<ICommand, clsCommandCollection> _commandCallback);
-        
-        
+
+
+
+        public void raiseUnitWasDestroyd(clsUnit aktUnit)
+        {
+            onUnitWasDestroyd(aktUnit);
+        }
     }
 }

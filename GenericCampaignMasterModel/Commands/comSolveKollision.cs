@@ -57,9 +57,11 @@ namespace GenericCampaignMasterModel.Commands
             readyCmd.TargetSektor = targetSek;
             this.raiseOnNewCommand(readyCmd);
 
-            comDestroyUnit desCmd = new comDestroyUnit(this.m_Unit, this.actingPlayer, this.FieldField);
-            this.raiseOnNewCommand(desCmd);
-
+            readyCmd = new comMove(m_Unit);
+            readyCmd.OriginSektor = m_originSektor;
+            targetSek = m_originSektor;
+            readyCmd.TargetSektor = targetSek;
+            this.raiseOnNewCommand(readyCmd);
         }
 
         public override void go()

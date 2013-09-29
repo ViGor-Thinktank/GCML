@@ -28,7 +28,6 @@ namespace GenericCampaignMasterModel
 
         }
 
-      
         internal clsUnitType getUnitType(int intUnitTypeID)
         {
             if (dicUnitTypeData.ContainsKey(intUnitTypeID.ToString()))
