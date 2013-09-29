@@ -23,6 +23,9 @@ GenericCampaignMasterLibModel/bin/*
 GenericCampaignMasterModel/obj/Debug/*
 CampaignMasterWeb/obj/Debug/*
 GcmlWebService/obj/Debug/*
+GcmlClientWebMVC/GcmlClientWebMVC/obj/Debug/*
+GcmlClientWebMVC/GcmlClientWebMVC/bin/*
+
 GcmlDataAccess/bin/*
 */bin/*
 */Debug/*
