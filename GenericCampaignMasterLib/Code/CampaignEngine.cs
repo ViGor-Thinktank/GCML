@@ -9,6 +9,7 @@ namespace GenericCampaignMasterLib
 {
     public class CampaignEngine
     {
+        public string CampaignId { get; set; }
         public string CampaignName { get; set; }
         
         public event Field.delStatus onStatus;
@@ -30,6 +31,7 @@ namespace GenericCampaignMasterLib
         {
             CampaignState state = new CampaignState();
             state.CampaignName = this.CampaignName;
+            state.CampaignId = this.CampaignId;
             state.ListPlayers = this.lisPlayers;
             state.DicSektors = this.FieldField.dicSektors;
             state.FieldDimension = this.FieldField.FieldDimension;

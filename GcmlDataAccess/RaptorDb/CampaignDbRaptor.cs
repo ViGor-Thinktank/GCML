@@ -30,10 +30,8 @@ namespace GcmlDataAccess
             foreach (var v in campaignDb.EnumerateStorageFile())
             {
                 byte[] key = v.Key;
-
                 string str = Convert.ToString(key);
                 result.Add(str);
-
             }
 
             return result;
@@ -49,9 +47,22 @@ namespace GcmlDataAccess
             return result;
         }
 
-        public List<CampaignInfo> getCampaignsForPlayer(string p)
+        public List<CampaignInfo> getCampaignsForPlayer(string playerId)
         {
-            throw new NotImplementedException();
+            List<CampaignInfo> result = new List<CampaignInfo>();
+            foreach (var c in campaignDb.EnumerateStorageFile())
+            {
+                string id = System.Text.Encoding.Default.GetString(c.Key);
+                CampaignState state = getCampaignStateForCampaign(id);
+
+                if((state != null) && (state.getListPlayers().Find(p => p.Id == playerId) != null))
+                {
+                    var info = new CampaignInfo(){ campaignId = state.CampaignId, campaignName = state.CampaignName };
+                    result.Add(info);
+                 }
+            }
+            
+            return result;
         }
 
         public string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim)
@@ -60,9 +71,11 @@ namespace GcmlDataAccess
 
             Field field = new Field(fielddim);
             CampaignEngine engine = new CampaignEngine(field);
+            engine.CampaignName = campaignname;
+            engine.CampaignId = newCampaignId;
+            
             CampaignController controller = new CampaignController(engine);
             controller.CampaignKey = newCampaignId;
-            controller.CampaignEngine = engine;
 
             CampaignState state = engine.getState();
             campaignDb.Set(newCampaignId, state.ToString());

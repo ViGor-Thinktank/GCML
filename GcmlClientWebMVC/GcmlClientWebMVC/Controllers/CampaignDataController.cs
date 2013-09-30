@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GenericCampaignMasterLib;
+using GenericCampaignMasterModel;
+using GcmlDataAccess;
 
 namespace GcmlClientWebMVC.Controllers
 {
@@ -14,7 +17,12 @@ namespace GcmlClientWebMVC.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            string playername = User.Identity.Name;
+            string playerid = CampaignBuilder.Instance.DataManager.getPlayerId(playername);
+
+            List<CampaignInfo> lstCampaigns = CampaignBuilder.Instance.DataManager.getRunningPlayerCampaigns(playerid);
+
+            return View(lstCampaigns);
         }
 
         //
@@ -42,6 +50,15 @@ namespace GcmlClientWebMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
+
+                string name = collection.Get("campaignname");
+                int x = -1;
+                int y = -1;
+
+                Int32.TryParse(collection.Get("fieldx"), out x);
+                Int32.TryParse(collection.Get("fieldy"), out y);
+
+                string newcampaignid = CampaignBuilder.Instance.DataManager.createNewCampaign(name, new clsSektorKoordinaten() { X = x, Y = y });
 
                 return RedirectToAction("Index");
             }
@@ -94,7 +111,7 @@ namespace GcmlClientWebMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+               
                 return RedirectToAction("Index");
             }
             catch

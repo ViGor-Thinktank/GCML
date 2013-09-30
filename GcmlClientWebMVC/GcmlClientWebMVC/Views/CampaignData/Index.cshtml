@@ -1,4 +1,4 @@
-﻿@model GenericCampaignMasterModel.CampaignInfo
+﻿@model IEnumerable<GenericCampaignMasterModel.CampaignInfo>
 
 @{
     ViewBag.Title = "Index";
@@ -6,3 +6,11 @@
 }
 
 <h2>Index</h2>
+@{ 
+    <ul>
+    @foreach(var cmp in Model)
+    {
+        <li>@cmp.campaignId - @cmp.campaignName</li>
+    }   
+        </ul> 
+}

@@ -13,6 +13,7 @@ namespace GenericCampaignMasterModel
     public class CampaignState : Dictionary<string, string>
     {
         public string CampaignName { get; set; }
+        public string CampaignId { get; set; }
         public List<Player> ListPlayers { get; set; }
         public Dictionary<string, Sektor> DicSektors { get; set; }
         public clsSektorKoordinaten FieldDimension { get; set; }
@@ -50,8 +51,11 @@ namespace GenericCampaignMasterModel
 
         public List<Player> getListPlayers()
         {
-             return (List<Player>)m_serializer.Deserialize<List<Player>>(this["players"]);
-            
+            List<Player> result = new List<Player>(); 
+            List<Player> tmp = (List<Player>) m_serializer.Deserialize<List<Player>>(this["players"]);
+            if (tmp != null)
+                return tmp;
+            return result;
         }
 		
 		public List<UnitInfo> getListUnitInfo()
@@ -96,6 +100,7 @@ namespace GenericCampaignMasterModel
         public void Save()
         {
             this["campaignname"] = this.CampaignName;
+            this["campaignid"] = this.CampaignId;
             this["players"] = m_serializer.Serialize (this.ListPlayers);
             this["sektors"] = m_serializer.Serialize (this.DicSektors.Values);
             this["fielddimension"] = m_serializer.Serialize(this.FieldDimension);

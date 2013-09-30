@@ -12,6 +12,10 @@ namespace GcmlDataAccess
     public class CampaignBuilder
     {
         IGcmlDataManager datamanager;
+        public IGcmlDataManager DataManager 
+        {
+            get { return datamanager; }
+        }
 
         private static CampaignBuilder instance = null;
         public static CampaignBuilder Instance
