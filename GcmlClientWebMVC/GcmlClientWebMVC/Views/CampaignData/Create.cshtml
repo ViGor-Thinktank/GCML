@@ -1,21 +1,33 @@
 ﻿@model GenericCampaignMasterModel.CampaignInfo
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create new Campaign";
     Layout = "~/Views/Shared/_GcmlLayout.cshtml";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>CampaignInfo</legend>
-        <span>Name: @Html.TextBox("campaignname")</span>
-        <span>X:&nbsp;@Html.TextBox("fieldx")</span>
-        <span>Y:&nbsp;@Html.TextBox("fieldy")</span>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>@Html.TextBox("campaignname")</td>
+            </tr>
+            <tr>
+                <td>X</td>
+                <td>@Html.TextBox("fieldx", 6, new { size = "5" })</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>@Html.TextBox("fieldy", 6, new { size = "5" })</td>
+            </tr>
+        </table>
         <p>
             <input type="submit" value="Create" />
         </p>

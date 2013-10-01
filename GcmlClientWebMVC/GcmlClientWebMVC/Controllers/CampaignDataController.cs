@@ -60,6 +60,14 @@ namespace GcmlClientWebMVC.Controllers
 
                 string newcampaignid = CampaignBuilder.Instance.DataManager.createNewCampaign(name, new clsSektorKoordinaten() { X = x, Y = y });
 
+                // Angemeldeten Spieler hinzufügen
+                PlayerInfo pinfo = CampaignBuilder.Instance.DataManager.getPlayerByName(User.Identity.Name);
+
+                CampaignController ctrl = CampaignBuilder.Instance.DataManager.getController(newcampaignid);
+                ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
+
+                CampaignBuilder.Instance.DataManager.safeCampaignState(ctrl.CampaignEngine.getState());
+
                 return RedirectToAction("Index");
             }
             catch

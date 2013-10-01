@@ -9,10 +9,10 @@ namespace GenericCampaignMasterModel
     public class Faction : IEquatable<Faction>
     {
         public Faction()
-            { }
+        { }
 
         public Faction(string strFactionName, List<clsUnitType> listUnitspawn = null)
-        { 
+        {
             this.strFactionName = strFactionName;
             this.listUnitspawn = listUnitspawn;
         }
@@ -24,30 +24,30 @@ namespace GenericCampaignMasterModel
             set { this._id = value; }
         }
 
-      public string strFactionName { get; set; }
+        public string strFactionName { get; set; }
 
-      public bool Equals(Faction other)
-      {
-          if ((this.Id == other.Id) &&
-               (this.strFactionName == other.strFactionName))
-              return true;
-          else
-              return false;
-      }
+        public bool Equals(Faction other)
+        {
+            if ((this.Id == other.Id) &&
+                 (this.strFactionName == other.strFactionName))
+                return true;
+            else
+                return false;
+        }
 
-      public List<clsUnitType> listUnitspawn = null;
+        public List<clsUnitType> listUnitspawn = null;
     }
 
     [Serializable()]
     public class Player : IEquatable<Player>
     {
-      
+
 
         private string _id;
-        public string Id 
-        { 
+        public string Id
+        {
             get { return _id; }
-            set { this._id = value;  }
+            set { this._id = value; }
         }
 
         public string Playername { get; set; }
@@ -55,11 +55,18 @@ namespace GenericCampaignMasterModel
         public Player() { }
         public Player(string playerId)
         {
-            this._id = playerId;            
+            this._id = playerId;
         }
 
+        public Player(PlayerInfo pinfo)
+        {
+            this.Id = pinfo.playerId;
+            this.Playername = pinfo.playerName;
+        }
+
+
         public Faction objPlayerFaction = null;
-      
+
         public List<clsUnit> ListUnits = new List<clsUnit>();
 
         public Sektor unitspawnSektor;
@@ -68,7 +75,7 @@ namespace GenericCampaignMasterModel
         public List<Sektor> accessibleSectors { get; set; } // Sektoren in denen produzierte Einheiten plaziert werden können.
 
         #region IEquatable<Player> Member
-        
+
         // TODO: Wenn Ressourcen und ListUnits implementiert sind,
         // Equals Erweitern!
         public bool Equals(Player other)
@@ -81,8 +88,8 @@ namespace GenericCampaignMasterModel
         public clsUnit getUnitByID(string strUnitID)
         {
             return (from u in this.ListUnits
-                           where u.Id == strUnitID
-                           select u).First();
+                    where u.Id == strUnitID
+                    select u).First();
         }
 
         public void Done()

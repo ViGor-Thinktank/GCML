@@ -23,7 +23,10 @@ namespace GenericCampaignMasterModel
         {
             get
             {
-                return m_listUnitSpawn[0];
+                if (m_listUnitSpawn.Count() > 0)
+                    return m_listUnitSpawn[0];
+                else
+                    return new clsUnitType();
             }
         }
 

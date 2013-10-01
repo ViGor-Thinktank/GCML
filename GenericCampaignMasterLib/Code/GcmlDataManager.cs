@@ -40,6 +40,11 @@ namespace GenericCampaignMasterLib
             return controller;
         }
 
+        public PlayerInfo getPlayerByName(string playername)
+        {
+            return playerDb.getPlayerByName(playername);
+        }
+
         public string getPlayerId(string playername)
         {
             PlayerInfo p = playerDb.getPlayerByName(playername);
@@ -77,6 +82,11 @@ namespace GenericCampaignMasterLib
             return campaignId;
 
             // TODO: Player hinzufügen
+        }
+
+        public void safeCampaignState(CampaignState state)
+        {
+            campaignDb.saveGameState(state);
         }
         #endregion
 
