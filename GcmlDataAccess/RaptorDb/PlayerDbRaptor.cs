@@ -48,6 +48,7 @@ namespace GcmlDataAccess
 
             PlayerInfo result = null;
             System.Text.UTF8Encoding  enc = new UTF8Encoding();
+            System.Text.UnicodeEncoding enc2 = new UnicodeEncoding();
 
             foreach (var kv in playerDb.EnumerateStorageFile())
             {
@@ -55,7 +56,7 @@ namespace GcmlDataAccess
                 string keyStr = enc.GetString(key);
 
                 byte[] val = kv.Data;
-                string valStr = enc.GetString(val);
+                string valStr = enc2.GetString(val);
 
                 if (valStr == playername)
                 {

@@ -112,6 +112,7 @@ namespace GenericCampaignMasterModel
 
         public override string ToString()
         {
+            Save();
             return m_serializer.Serialize(this);
         }
 
@@ -119,6 +120,15 @@ namespace GenericCampaignMasterModel
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             CampaignState result = serializer.Deserialize<CampaignState>(stateStr);
+            result.CampaignName = result["campaignname"];
+            result.CampaignId = result["campaignid"];
+            //result.ListPlayers = serializer.Deserialize<List<Player>>(result["players"]);
+            //result.DicSektors = serializer.Deserialize<Dictionary<string, Sektor>>(result["sektors"]);
+            //serializer.Deserialize<string>(result["fielddimension"]
+            //serializer.Deserialize<string>(result["fieldtype"]
+            //serializer.Deserialize<string>(result["unitinfo"]
+            //serializer.Deserialize<string>(result["unittypesinfo"]
+            //serializer.Deserialize<string>(result["resourceinfo"]
             return result;
         }
 

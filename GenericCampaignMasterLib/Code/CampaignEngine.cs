@@ -59,6 +59,7 @@ namespace GenericCampaignMasterLib
 
             // Engine erstellen
             CampaignEngine engine = new CampaignEngine((Field)field);
+            engine.CampaignId = state.CampaignId;
             engine.CampaignName = state.ContainsKey("campaignname") ? state["campaignname"] : "OLDCAMPAIGN";
             engine.setPlayerList(lstPlayers);
 

@@ -16,15 +16,15 @@
         <legend>CampaignInfo</legend>
         <table>
             <tr>
-                <td>Name</td>
-                <td>@Html.TextBox("campaignname")</td>
+                <td>@Html.LabelFor(c => c.campaignName)</td>
+                <td>@Html.TextBoxFor(c => c.campaignName)</td>
             </tr>
             <tr>
-                <td>X</td>
+                <td>@Html.Label("fieldx")</td>
                 <td>@Html.TextBox("fieldx", 6, new { size = "5" })</td>
             </tr>
             <tr>
-                <td>Y</td>
+                <td>@Html.Label("fieldy")</td>
                 <td>@Html.TextBox("fieldy", 6, new { size = "5" })</td>
             </tr>
         </table>

@@ -6,12 +6,14 @@ using System.IO;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 using RaptorDB;
+using NLog;
 
 namespace GcmlDataAccess
 {
     public class CampaignDbRaptor : ICampaignDatabase
     {
         RaptorDB<string> campaignDb;
+        NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();
 
         public CampaignDbRaptor()
         {
@@ -42,7 +44,18 @@ namespace GcmlDataAccess
             CampaignState result = null;
             string str;
             if (campaignDb.Get(campaignKey, out str))
-                result = CampaignState.FromString(str);
+            {
+                try
+                {
+                    result = CampaignState.FromString(str);
+                }
+                catch (Exception e)
+                {
+                    log.ErrorException("Fehler beim Deserialisieren von State " + campaignKey, e);
+                    campaignDb.RemoveKey(campaignKey);
+                    log.Warn("State " + campaignKey + " gelöscht. Daten: " + str);
+                }
+            }
 
             return result;
         }
@@ -97,7 +110,8 @@ namespace GcmlDataAccess
 
         public string saveGameState(CampaignState state)
         {
-            throw new NotImplementedException();
+            campaignDb.Set(state.CampaignId, state.ToString());
+            return state.CampaignId;
         }
 
         public CampaignState getLastGameState()

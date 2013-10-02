@@ -26,6 +26,7 @@ GcmlWebService/obj/Debug/*
 GcmlClientWebMVC/GcmlClientWebMVC/obj/Debug/*
 GcmlClientWebMVC/GcmlClientWebMVC/bin/*
 GcmlClientWebMVC/GcmlClientWebMVC/App_Data/*
+GcmlClientWebMVC/packages/*
 
 GcmlDataAccess/bin/*
 */bin/*

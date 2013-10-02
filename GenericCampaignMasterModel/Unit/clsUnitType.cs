@@ -14,6 +14,8 @@ namespace GenericCampaignMasterModel
         protected  int m_intMovement = 0;
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
+
+        [NonSerialized]
         public List<clsUnitType> m_listUnitSpawn = new List<clsUnitType>();
 
         public bool blnAlywaysVisible = false;
@@ -26,7 +28,7 @@ namespace GenericCampaignMasterModel
                 if (m_listUnitSpawn.Count() > 0)
                     return m_listUnitSpawn[0];
                 else
-                    return new clsUnitType();
+                    return null;
             }
         }
 
