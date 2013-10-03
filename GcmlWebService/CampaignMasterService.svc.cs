@@ -86,7 +86,7 @@ namespace GcmlWebService
             CampaignController controller = GcmlDataManager.Instance.getController(campaignid);
             List<Sektor> lstsek = controller.getUnitCollisions();
 
-            List <SektorInfo> collInfo = (from s in lstsek
+            List <SektorInfo> collInfo =     (from s in lstsek
                                          select s.getInfo()).ToList<SektorInfo>();
             return collInfo;
         }

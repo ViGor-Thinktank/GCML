@@ -28,9 +28,10 @@ namespace GcmlClientWebMVC.Controllers
         //
         // GET: /CampaignData/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            CampaignInfo cmpinf = CampaignBuilder.Instance.getCurrentGame(id).Campaign_getInfo();
+            return View(cmpinf);
         }
 
         //

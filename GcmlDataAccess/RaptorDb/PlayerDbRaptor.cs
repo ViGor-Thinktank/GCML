@@ -20,12 +20,6 @@ namespace GcmlDataAccess
             playerDb = RaptorDB<string>.Open(dbpath, false);
         }
 
-        ~PlayerDbRaptor()
-        {
-            playerDb.Shutdown();
-        }
-
-
         public PlayerInfo getPlayer(string id)
         {
             PlayerInfo result = null;
@@ -74,6 +68,11 @@ namespace GcmlDataAccess
             }
 
             return result;
+        }
+
+        public void close()
+        {
+            playerDb.Shutdown();
         }
     }
 }

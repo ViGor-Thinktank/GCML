@@ -10,7 +10,8 @@
     <ul>
     @foreach(var cmp in Model)
     {
-        <li>@cmp.campaignId - @cmp.campaignName</li>
+        
+        <li>@cmp.campaignId - @cmp.campaignName - @Html.ActionLink("Load", "Details", new { id = cmp.campaignId })</li>
     }   
         </ul> 
 }

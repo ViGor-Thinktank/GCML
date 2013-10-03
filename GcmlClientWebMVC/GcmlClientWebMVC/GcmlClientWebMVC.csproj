@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CampaignDataController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -306,6 +307,7 @@
     <Content Include="Views\Shared\_GcmlLayout.cshtml" />
     <Content Include="Views\CampaignData\Index.cshtml" />
     <Content Include="Views\CampaignData\Create.cshtml" />
+    <Content Include="Views\CampaignData\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

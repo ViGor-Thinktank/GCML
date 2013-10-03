@@ -349,7 +349,7 @@ namespace GenericCampaignMasterLib
         public CampaignInfo Campaign_getInfo()
         {
             CampaignInfo nfo = new CampaignInfo();
-            nfo.campaignId = this.CampaignKey;
+            nfo.campaignId = this.CampaignEngine.CampaignId;
             nfo.campaignName = this.CampaignEngine.CampaignName;
             
             nfo.players = new Dictionary<string, string>();

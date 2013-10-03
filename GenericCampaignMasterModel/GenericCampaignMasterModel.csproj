@@ -64,6 +64,7 @@
     <Compile Include="Field\Field.cs" />
     <Compile Include="Info\CampaignInfo.cs" />
     <Compile Include="Info\CommandInfo.cs" />
+    <Compile Include="Info\FieldInfo.cs" />
     <Compile Include="Info\PlayerInfo.cs" />
     <Compile Include="Info\ResourceInfo.cs" />
     <Compile Include="Info\SektorInfo.cs" />

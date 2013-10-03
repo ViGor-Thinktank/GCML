@@ -21,11 +21,6 @@ namespace GcmlDataAccess
             campaignDb = RaptorDB<string>.Open(dbpath, false);
         }
 
-        ~CampaignDbRaptor()
-        {
-            campaignDb.Shutdown();
-        }
-
         public List<string> getAllCampaignKeys()
         {
             List<string> result = new List<string>();
@@ -141,7 +136,7 @@ namespace GcmlDataAccess
 
         public void close()
         {
-            throw new NotImplementedException();
+            campaignDb.Shutdown();
         }
     }
 }

@@ -11,5 +11,6 @@ namespace GenericCampaignMasterLib
         PlayerInfo getPlayer(string id);
         Dictionary<string, PlayerInfo> getAllPlayers();
         PlayerInfo getPlayerByName(string playername);
+        void close();
     }
 }

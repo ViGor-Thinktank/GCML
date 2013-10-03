@@ -25,6 +25,12 @@ namespace GenericCampaignMasterLib
             this.playerDb = _playerDb;
         }
 
+        ~GcmlDataManager()
+        {
+            this.campaignDb.close();
+            this.playerDb.close();
+        }
+
         // Das Interface stellt die Abwärtskompatibilität sicher.
         #region IGcmlDataManager
         public List<string> getRunningCampaignIds()

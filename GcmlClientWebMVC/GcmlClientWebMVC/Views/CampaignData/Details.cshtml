@@ -1,0 +1,41 @@
+﻿@model GenericCampaignMasterModel.CampaignInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_GcmlLayout.cshtml";
+}
+
+<h2>@Model.campaignName</h2>
+<i>@Model.campaignId</i>
+
+<fieldset>
+    <legend>CampaignInfo</legend>
+</fieldset>
+<p>
+    <div id="campaignArea">
+        @Ajax.ActionLink("Load", "Get", "api/gcmlgame", new { id = Model.campaignId }, new AjaxOptions() { UpdateTargetId = "field", InsertionMode = InsertionMode.InsertAfter })
+        <div id="field">
+        </div>
+    </div>
+
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            //alert(gameUrl('@Model.campaignId'));
+            $.getJSON(gameUrl('@Model.campaignId'), function (data) {
+                $("#field").text = data;
+            });
+
+        });
+
+
+
+        function gameUrl(id) { return "/api/game/" + (id || ""); }
+    </script>
+
+}
