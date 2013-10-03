@@ -13,7 +13,6 @@
 </fieldset>
 <p>
     <div id="campaignArea">
-        @Ajax.ActionLink("Load", "Get", "api/gcmlgame", new { id = Model.campaignId }, new AjaxOptions() { UpdateTargetId = "field", InsertionMode = InsertionMode.InsertAfter })
         <div id="field">
         </div>
     </div>
@@ -24,11 +23,41 @@
 
 @section scripts
 {
+    <!-- Mustache Templates -->
+    <script src="~/Scripts/mustache.js"></script>
+    <script id="tplCampaign" type="text/html">
+        <div id="campaignInfo">
+            {{#Campaign}}
+                <h3>{{campaignName}}</h3>
+                {{#players}}
+                    <b>{{playerName}}</b>
+                {{/players}}
+            {{/Campaign}}
+        </div>
+    </script>
+
+    <script id="tplField" type="text/html">
+      <table>
+        {{#ListSektors}}
+          <tr>
+              <td>{{sektorId}}</td>
+          </tr>
+        {{/ListSektors}}
+       </table>
+    </script>
+
     <script>
         $(function () {
-            //alert(gameUrl('@Model.campaignId'));
             $.getJSON(gameUrl('@Model.campaignId'), function (data) {
-                $("#field").text = data;
+                //alert(data.Campaign.campaignName);
+                //$.each(data, function (key, val) {
+                //    $("#field").append("<p>" + key + " : " + val + "</p>");
+                //});
+                var html = Mustache.render($("#tplCampaign").html(), data);
+                var sektors = Mustache.render($("#tplField").html(), data);
+                $("#field").html(html);
+                $("#field").append(sektors);
+                
             });
 
         });
@@ -37,5 +66,7 @@
 
         function gameUrl(id) { return "/api/game/" + (id || ""); }
     </script>
+
+
 
 }

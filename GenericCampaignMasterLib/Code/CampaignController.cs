@@ -351,13 +351,7 @@ namespace GenericCampaignMasterLib
             CampaignInfo nfo = new CampaignInfo();
             nfo.campaignId = this.CampaignEngine.CampaignId;
             nfo.campaignName = this.CampaignEngine.CampaignName;
-            
-            nfo.players = new Dictionary<string, string>();
-            foreach (Player p in this.CampaignEngine.lisPlayers)
-            {
-                nfo.players.Add(p.Id, p.Playername);
-            }
-
+            nfo.players = this.CampaignEngine.lisPlayers.Select(p => p.getPlayerInfo()).ToList<PlayerInfo>();
             
             return nfo;
         }

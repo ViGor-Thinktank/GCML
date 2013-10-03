@@ -9,9 +9,7 @@ namespace GenericCampaignMasterModel
     {
         public string campaignId;
         public string campaignName;
-        public Dictionary<string, string> players;
-        //
+        public IEnumerable<PlayerInfo> players;
         public GenericCampaignMasterModel.CampaignState objCampaignData;
-
     }
 }
