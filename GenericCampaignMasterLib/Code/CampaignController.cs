@@ -42,7 +42,10 @@ namespace GenericCampaignMasterLib
 
         }
 
-		public string CampaignKey { get; set;}
+		public string CampaignKey 
+        {
+            get { return m_campaignEngine.CampaignId; }
+        }
 
         public Field FieldField
         {

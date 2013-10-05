@@ -64,7 +64,7 @@ namespace GenericCampaignMasterLib
 
         public Dictionary<string, PlayerInfo> getPlayerList()
         {
-            return playerDb.getAllPlayers();
+            return playerDb.getAllPlayers().ToDictionary(x => x.playerId, x => x);
         }
 
         public List<CampaignInfo> getRunningPlayerCampaigns(string playerid)
@@ -94,6 +94,12 @@ namespace GenericCampaignMasterLib
         {
             campaignDb.saveGameState(state);
         }
+
+        public void addPlayer(PlayerInfo player)
+        {
+            playerDb.addPlayer(player);
+        }
+
         #endregion
 
     }

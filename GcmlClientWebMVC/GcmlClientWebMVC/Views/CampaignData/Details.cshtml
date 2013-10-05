@@ -11,60 +11,111 @@
 <fieldset>
     <legend>CampaignInfo</legend>
 </fieldset>
-<p>
-    <div id="campaignArea">
-        <div id="field">
-        </div>
-    </div>
 
+<h3>Player</h3>
+<ul data-bind="foreach: playerlist">
+    <li>
+        <span data-bind="text: playerName"></span>
+    </li>
+</ul>
+<form>
+    Spieler hinzufügen:&nbsp;<input data-bind="value: newPlayerName"/>
+    <button data-bind="click: addPlayer">Hinzufügen</button>
+
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: sektorfield">
+        <tr data-bind="foreach: $data">
+            <td data-bind="attr: { id: $data.sektorId }">
+                <b data-bind="text: $data.sektorId"></b>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
     @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 
 @section scripts
 {
-    <!-- Mustache Templates -->
-    <script src="~/Scripts/mustache.js"></script>
-    <script id="tplCampaign" type="text/html">
-        <div id="campaignInfo">
-            {{#Campaign}}
-                <h3>{{campaignName}}</h3>
-                {{#players}}
-                    <b>{{playerName}}</b>
-                {{/players}}
-            {{/Campaign}}
-        </div>
-    </script>
-
-    <script id="tplField" type="text/html">
-      <table>
-        {{#ListSektors}}
-          <tr>
-              <td>{{sektorId}}</td>
-          </tr>
-        {{/ListSektors}}
-       </table>
-    </script>
-
+    <script src="~/Scripts/knockout-2.3.0.js"></script>
     <script>
-        $(function () {
+        function Player(data) {
+            this.playerId = ko.observable(data.playerId);
+            this.playerName = ko.observable(data.playerName);
+        }
+
+        function FieldViewModel() {
+            var self = this;
+
+            self.campaignId = ko.observable();
+            self.campaignName = ko.observable();
+            self.x = ko.observable(10);
+            self.y = ko.observable(22);
+            self.sektorfield = ko.observableArray();
+
+            self.playerlist = ko.observableArray([]);
+            self.updatePlayerList = function () {
+                self.playerlist.removeAll();
+                $.getJSON(playerUrl(), "", function (data) {
+                    $.each(data, function (idx, data) {
+                        self.playerlist.push(new Player({ playerId: data.playerId, playerName: data.playerName }));
+                    });
+                });
+            };
+
+            self.newPlayerName = ko.observable();
+            self.addPlayer = function () {
+                if (self.newPlayerName !== "") {
+                    var p = new Player({ playerName: self.newPlayerName() });
+
+                    $.ajax(playerUrl(), {
+                        data: ko.toJSON(p),
+                        type: "post", contentType: "application/json",
+                        success: function (result) {
+                            self.updatePlayerList();
+                        }
+                    });
+
+                    self.newPlayerName = "";
+                }
+            };
+
             $.getJSON(gameUrl('@Model.campaignId'), function (data) {
+
+                $.each(data.Campaign.players, function (idx, val) {
+                    self.playerlist.push(new Player(val));
+                });
+
+                $.each(data.SektorField, function (idx, val) {
+                    self.sektorfield.push(val);
+                });
+
+                //self.sektorfield = data.SektorField;
                 //alert(data.Campaign.campaignName);
+                //$.map(data.ListSektors, function(val, key) {
                 //$.each(data, function (key, val) {
                 //    $("#field").append("<p>" + key + " : " + val + "</p>");
                 //});
-                var html = Mustache.render($("#tplCampaign").html(), data);
-                var sektors = Mustache.render($("#tplField").html(), data);
-                $("#field").html(html);
-                $("#field").append(sektors);
-                
+
+                //$("#field").html();
+                //$("#field").append(data.ListSektors.join());
+
             });
+        }
 
-        });
-
-
-
+        ko.applyBindings(new FieldViewModel());
         function gameUrl(id) { return "/api/game/" + (id || ""); }
+        function playerUrl(id) { return "/api/player/" + (id || ""); }
     </script>
 
 

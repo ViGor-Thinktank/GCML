@@ -20,5 +20,7 @@ namespace GenericCampaignMasterLib
         string createNewCampaign(string campaignname, clsSektorKoordinaten fielddim);
         string createNewCampaign(string playerid, string campaignname, clsSektorKoordinaten fielddim, int anzUnitsPerPlayer);
         void safeCampaignState(CampaignState state);
+
+        void addPlayer(PlayerInfo player);
     }
 }

@@ -9,8 +9,10 @@ namespace GenericCampaignMasterLib
     public interface IPlayerDatabase
     {
         PlayerInfo getPlayer(string id);
-        Dictionary<string, PlayerInfo> getAllPlayers();
+        List<PlayerInfo> getAllPlayers();
         PlayerInfo getPlayerByName(string playername);
         void close();
+
+        string addPlayer(PlayerInfo player);
     }
 }

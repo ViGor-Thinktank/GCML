@@ -30,17 +30,9 @@ namespace GcmlDataAccess
             return result;
         }
 
-        public Dictionary<string, PlayerInfo> getAllPlayers()
+        public List<PlayerInfo> getAllPlayers()
         {
-            throw new NotImplementedException();
-        }
-
-        public PlayerInfo getPlayerByName(string playername)
-        {
-            if(String.IsNullOrEmpty(playername))
-                return null;
-
-            PlayerInfo result = null;
+            List<PlayerInfo> result = new List<PlayerInfo>();
             System.Text.UTF8Encoding  enc = new UTF8Encoding();
             System.Text.UnicodeEncoding enc2 = new UnicodeEncoding();
 
@@ -52,27 +44,50 @@ namespace GcmlDataAccess
                 byte[] val = kv.Data;
                 string valStr = enc2.GetString(val);
 
-                if (valStr == playername)
-                {
-                    result = new PlayerInfo() { playerId = keyStr, playerName = valStr };
-                    break;
-                }
-            }
-
-            // Playername nicht gefunden - neuen anlegen
-            if (result == null)
-            {
-                string id = Guid.NewGuid().ToString();
-                playerDb.Set(id, playername);
-                result = new PlayerInfo() { playerId = id, playerName = playername };
+                var np = new PlayerInfo() { playerId = keyStr, playerName = valStr };
+                result.Add(np);
             }
 
             return result;
         }
 
+
+        public PlayerInfo getPlayerByName(string playername)
+        {
+            if(String.IsNullOrEmpty(playername))
+                return null;
+
+            PlayerInfo result = getAllPlayers().Where(p => p.playerName== playername).FirstOrDefault();
+
+            // Playername nicht gefunden - neuen anlegen
+            if (result == null)
+            {
+                var pinfo = new PlayerInfo() { playerName = playername };
+                string newid = addNewPlayer(pinfo);
+                result = getPlayer(newid);
+            }
+
+            return result;
+        }
+
+        public string addPlayer(PlayerInfo pinfo)
+        {
+            return addNewPlayer(pinfo);
+        }
+
         public void close()
         {
             playerDb.Shutdown();
+        }
+
+        private string addNewPlayer(PlayerInfo pinfo)
+        {
+            if(String.IsNullOrEmpty(pinfo.playerName))
+                throw new Exception("Kein Name für Spieler");
+            string pid = Guid.NewGuid().ToString();
+            playerDb.Set(pid, pinfo.playerName);
+
+            return pid;
         }
     }
 }

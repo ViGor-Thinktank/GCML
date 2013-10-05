@@ -83,10 +83,9 @@ namespace GcmlDataAccess
             engine.CampaignId = newCampaignId;
             
             CampaignController controller = new CampaignController(engine);
-            controller.CampaignKey = newCampaignId;
-
             CampaignState state = engine.getState();
-            campaignDb.Set(newCampaignId, state.ToString());
+
+            safeStateToDb(state);
 
             return newCampaignId;
         }
@@ -105,7 +104,7 @@ namespace GcmlDataAccess
 
         public string saveGameState(CampaignState state)
         {
-            campaignDb.Set(state.CampaignId, state.ToString());
+            safeStateToDb(state);
             return state.CampaignId;
         }
 
@@ -137,6 +136,15 @@ namespace GcmlDataAccess
         public void close()
         {
             campaignDb.Shutdown();
+        }
+
+        private void safeStateToDb(CampaignState state)
+        {
+            lock (campaignDb)
+            {
+                campaignDb.Set(state.CampaignId, state.ToString());
+                campaignDb.SaveIndex();
+            }
         }
     }
 }

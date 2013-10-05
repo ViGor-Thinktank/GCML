@@ -25,11 +25,28 @@ namespace GcmlClientWebMVC.Controllers
         public FieldInfo Get(string id)
         {
             CampaignController controller = campaignCtx.getCurrentGame(id);
+
+            // SektorInfo in 2 dimensionalen Array liefern
+            int x = controller.CampaignEngine.FieldField.FieldDimension.X;
+            int y = controller.CampaignEngine.FieldField.FieldDimension.Y;
+            
+            SektorInfo[,] sektorArr = new SektorInfo[y, x];
+            
+            for (int iy = 0; iy < y; iy++)
+            {
+                for (int jx = 0; jx < x; jx++)
+                {
+                    var sektor = controller.CampaignEngine.FieldField.get(new clsSektorKoordinaten(jx, iy){});
+                    sektorArr[iy, jx] = sektor.getInfo();
+                }
+            }
+
             return new FieldInfo()
             {
                 Campaign = controller.Campaign_getInfo(),
                 FieldKoord = controller.CampaignEngine.FieldField.FieldDimension,
-                ListSektors = controller.CampaignEngine.FieldField.getSektorList().Select(s => s.getInfo())
+                ListSektors = controller.CampaignEngine.FieldField.getSektorList().Select(s => s.getInfo()),
+                SektorField = sektorArr
             };
         }
 
