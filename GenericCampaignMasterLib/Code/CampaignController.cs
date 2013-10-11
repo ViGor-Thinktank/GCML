@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 using GenericCampaignMasterModel;
 using GenericCampaignMasterModel.Commands;
@@ -322,16 +323,29 @@ namespace GenericCampaignMasterLib
 
         public Sektor Sektor_getByID(string sektorId)
         {
-            return m_campaignEngine.FieldField.dicSektors[sektorId];/*
-            Sektor result = new Sektor();
-            var query = from s in m_campaignEngine.FieldField.dicSektors.Values
-                        where s.Id == sektorId
-                        select s;
-            if (query.Count() > 0)
-                result = query.First<Sektor>();
+            // Ggf. SektorID-Format konvertieren.
+            if (sektorId.Contains('|'))
+            {
+                int[] koordValues = new int[] { 0, 0, 0 };
+                var match = Regex.Match(sektorId, @"\|?([0-9]+)\|([0-9]+)\|([0-9]+)\|?");
+                
+                if ((match.Success) && (match.Groups.Count > koordValues.Length))
+                {
+                    for (int i = 0; i < koordValues.Length; i++)
+                    {
+                        var g = match.Groups[i + 1].Value;
+                        if(!Int32.TryParse(g, out koordValues[i]))
+                            throw new Exception("Fehler beim Konvertieren der SektorId " + sektorId);
+                    }
 
-            return result;*/
+                    string sektorIdKonverted = clsSektorKoordinaten.getKoordsFormatted(koordValues[0], koordValues[1], koordValues[2]);
+                    sektorId = sektorIdKonverted;
+                }
+            }
+
+            return m_campaignEngine.FieldField.dicSektors[sektorId];
         }
+
         public List<Sektor> Sektor_getUnitCollisions()
         {
             return unitCollisionStack;

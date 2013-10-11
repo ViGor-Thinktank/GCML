@@ -51,7 +51,15 @@ namespace GenericCampaignMasterModel
 
         public virtual string uniqueIDstr()
         {
-            return String.Format("{0:D2}_{1:D2}_{2:D2}", this.X, this.Y, this.Z);
+            return clsSektorKoordinaten.getKoordsFormatted(this.X, this.Y, this.Z);
+        }
+
+        /// <summary>
+        /// Formatiert xyz Koordinaten in einem String. Soll einheitliches Format sicherstellen.
+        /// </summary>
+        public static string getKoordsFormatted(int x = 0, int y = 0, int z = 0)
+        {
+               return String.Format("{0:D2}_{1:D2}_{2:D2}", x, y, z);
         }
 
         public static clsSektorKoordinaten operator +(clsSektorKoordinaten c1, clsSektorKoordinaten c2)
