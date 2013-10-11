@@ -1,0 +1,48 @@
+﻿@model GenericCampaignMasterModel.CampaignInfo
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit campaign details for @Model.campaignName</legend>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(c => c.campaignId)</td>
+                <td>
+                    <i>@Model.campaignId</i>
+                    @Html.HiddenFor(c => c.campaignId)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.campaignName)</td>
+                <td>@Html.TextBoxFor(c => c.campaignName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.players)</td>
+                <td>@Html.ListBoxFor(c => c.players,
+                                    new SelectList(Model.players, "PlayerId", "PlayerName")
+                    )
+                </td>
+            </tr>
+
+
+        </table>
+
+
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

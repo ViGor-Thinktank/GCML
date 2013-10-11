@@ -5,13 +5,33 @@
     Layout = "~/Views/Shared/_GcmlLayout.cshtml";
 }
 
+<h1>My Campaigns</h1>
 <h2>Index</h2>
 @{ 
+    
     <ul>
-    @foreach(var cmp in Model)
-    {
+        @foreach (var cmp in Model)
+        {
         
-        <li>@cmp.campaignId - @cmp.campaignName - @Html.ActionLink("Load", "Details", new { id = cmp.campaignId })</li>
-    }   
-        </ul> 
+            @*<li>@cmp.campaignName  - @Ajax.ActionLink("Details", "Details", new { id = cmp.campaignId }, new AjaxOptions { UpdateTargetId = "campaignDetails", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }) - @Html.ActionLink("Load Campaign", "Board", new { id = cmp.campaignId })</li>*@
+            <li>@cmp.campaignName  - <a href="#" class="campaignEditLink" data-campaignid="@cmp.campaignId">Edit</a> - @Html.ActionLink("Load Campaign", "Board", new { id = cmp.campaignId })</li>
+        }
+    </ul> 
 }
+
+<div id="campaignEdit"></div>
+
+@section scripts
+{
+<script>
+    $(function()
+    {
+        $(".campaignEditLink").click(function (sender) {
+            var id = $(this).attr("data-campaignid");
+            $("#campaignEdit").load("CampaignData/Edit/" + id);
+        });
+    });
+
+
+</script>
+    }

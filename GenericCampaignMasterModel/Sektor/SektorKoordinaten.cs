@@ -51,11 +51,7 @@ namespace GenericCampaignMasterModel
 
         public virtual string uniqueIDstr()
         {
-            string result = "|";
-            foreach (int i in m_lstIntPosition)
-                result += i.ToString() + "|";
-            
-            return result;
+            return String.Format("{0:D2}_{1:D2}_{2:D2}", this.X, this.Y, this.Z);
         }
 
         public static clsSektorKoordinaten operator +(clsSektorKoordinaten c1, clsSektorKoordinaten c2)

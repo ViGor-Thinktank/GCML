@@ -1,0 +1,21 @@
+﻿body {
+}
+
+
+.sektor {
+    border:1px;
+    border-color:black;
+    border-style:dashed
+}
+
+.sektorSelected {
+    border:6px;
+    border-color:red;
+    border-style:solid
+}
+
+.sektorHovered {
+    border:6px;
+    border-color:lightsalmon;
+    border-style:solid
+}

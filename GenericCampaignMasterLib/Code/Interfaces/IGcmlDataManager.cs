@@ -22,5 +22,7 @@ namespace GenericCampaignMasterLib
         void safeCampaignState(CampaignState state);
 
         void addPlayer(PlayerInfo player);
+
+        void updateCampaign(CampaignInfo cmpinfo);
     }
 }

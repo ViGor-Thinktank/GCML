@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenericCampaignMasterModel
 {
     public class PlayerInfo
     {
-        public string playerId;
-        public string playerName;
+        [Display(Name = "Player id")]
+        public string playerId { get; set; }
+
+        [Display(Name = "Player name")]
+        public string playerName { get; set; }
     }
 }

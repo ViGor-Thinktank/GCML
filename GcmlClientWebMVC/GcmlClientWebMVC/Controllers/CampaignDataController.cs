@@ -30,9 +30,18 @@ namespace GcmlClientWebMVC.Controllers
 
         public ActionResult Details(string id)
         {
+            return View();
+        }
+
+
+        
+        // Lädt die Spielfeldansicht für die Kampagne
+        public ActionResult Board(string id)
+        {
             CampaignInfo cmpinf = CampaignBuilder.Instance.getCurrentGame(id).Campaign_getInfo();
             return View(cmpinf);
         }
+
 
         //
         // GET: /CampaignData/Create
@@ -80,20 +89,21 @@ namespace GcmlClientWebMVC.Controllers
         //
         // GET: /CampaignData/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            CampaignInfo cmpinf = CampaignBuilder.Instance.getCurrentGame(id).Campaign_getInfo();
+            return PartialView("_Edit", cmpinf);
         }
 
         //
         // POST: /CampaignData/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CampaignInfo cmpinfo)
         {
             try
             {
-                // TODO: Add update logic here
+                CampaignBuilder.Instance.DataManager.updateCampaign(cmpinfo);
 
                 return RedirectToAction("Index");
             }

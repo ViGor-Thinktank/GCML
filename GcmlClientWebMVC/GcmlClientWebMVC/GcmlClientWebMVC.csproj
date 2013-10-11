@@ -194,6 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\GCML.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -308,7 +309,8 @@
     <Content Include="Views\Shared\_GcmlLayout.cshtml" />
     <Content Include="Views\CampaignData\Index.cshtml" />
     <Content Include="Views\CampaignData\Create.cshtml" />
-    <Content Include="Views\CampaignData\Details.cshtml" />
+    <Content Include="Views\CampaignData\Board.cshtml" />
+    <Content Include="Views\CampaignData\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

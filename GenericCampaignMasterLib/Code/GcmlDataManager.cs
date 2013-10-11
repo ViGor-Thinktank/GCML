@@ -100,6 +100,12 @@ namespace GenericCampaignMasterLib
             playerDb.addPlayer(player);
         }
 
+        public void updateCampaign(CampaignInfo cmpinfo)
+        {
+
+
+        }
+
         #endregion
 
     }

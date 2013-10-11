@@ -1,7 +1,7 @@
 ﻿@model GenericCampaignMasterModel.CampaignInfo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Board";
     Layout = "~/Views/Shared/_GcmlLayout.cshtml";
 }
 
@@ -12,17 +12,17 @@
     <legend>CampaignInfo</legend>
 </fieldset>
 
-<h3>Player</h3>
+<h3>Playerlist</h3>
 <ul data-bind="foreach: playerlist">
     <li>
         <span data-bind="text: playerName"></span>
     </li>
 </ul>
-<form>
+@*<form>
     Spieler hinzufügen:&nbsp;<input data-bind="value: newPlayerName"/>
     <button data-bind="click: addPlayer">Hinzufügen</button>
 
-</form>
+</form>*@
 
 <table>
     <thead>
@@ -33,7 +33,7 @@
     </thead>
     <tbody data-bind="foreach: sektorfield">
         <tr data-bind="foreach: $data">
-            <td data-bind="attr: { id: $data.sektorId }">
+            <td data-bind="attr: { id: $data.sektorId }, click: $root.sektorClicked, event: { mouseover: $root.sektorHoverEnable, mouseout: $root.sektorHoverDisable } " class="sektor">
                 <b data-bind="text: $data.sektorId"></b>
             </td>
         </tr>
@@ -73,6 +73,7 @@
                 });
             };
 
+            // Spieler hinzufügen
             self.newPlayerName = ko.observable();
             self.addPlayer = function () {
                 if (self.newPlayerName !== "") {
@@ -89,7 +90,8 @@
                     self.newPlayerName = "";
                 }
             };
-
+                      
+            // Spielfeld laden
             $.getJSON(gameUrl('@Model.campaignId'), function (data) {
 
                 $.each(data.Campaign.players, function (idx, val) {
@@ -109,13 +111,48 @@
 
                 //$("#field").html();
                 //$("#field").append(data.ListSektors.join());
-
             });
+
+            // UI
+            self.hoveredSektor = ko.observable();
+            self.selectedSektor = ko.observable();
+
+
+            // Click-Event für Sektor
+            self.sektorClicked = function (data, event) {
+                $(".sektor").removeClass("sektorSelected");
+                $("#" + data.sektorId).addClass("sektorSelected");
+            };
+
+            self.sektorHoverEnable = function (data, event) {
+                $("#" + data.sektorId).addClass("sektorHovered");
+            };
+
+            self.sektorHoverDisable = function (data, event) {
+                $("#" + data.sektorId).removeClass("sektorHovered");
+            };
         }
 
         ko.applyBindings(new FieldViewModel());
         function gameUrl(id) { return "/api/game/" + (id || ""); }
         function playerUrl(id) { return "/api/player/" + (id || ""); }
+
+        //// Click-Event für Sektor
+        //function sektorClicked(data, event) {
+        //    $(".sektor").removeClass("sektorSelected");
+        //    $("#" + data.sektorId).addClass("sektorSelected");
+        //}
+
+        //function sektorHoverEnable(data, event) {
+        //    $("#" + data.sektorId).addClass("sektorHovered");
+        //}
+
+        //function sektorHoverDisable(data, event) {
+        //    $("#" + data.sektorId).removeClass("sektorHovered");
+        //}
+
+
+
     </script>
 
 
