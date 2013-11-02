@@ -102,8 +102,28 @@ namespace GenericCampaignMasterLib
 
         public void updateCampaign(CampaignInfo cmpinfo)
         {
+            string id = cmpinfo.campaignId;
+            CampaignState state = campaignDb.getCampaignStateForCampaign(id);
 
+            state.CampaignName = cmpinfo.campaignName;
 
+            if (cmpinfo.players != null)
+            {
+                foreach (var pinfo in cmpinfo.players)
+                {
+                    if (!playerDb.getAllPlayers().Exists(p => p.playerId == pinfo.playerId))
+                        playerDb.addPlayer(pinfo);
+
+                    if (!state.ListPlayers.Exists(pl => pl.Id == pinfo.playerId))
+                    {
+                        Player p = new Player(pinfo);
+                        state.ListPlayers.Add(p);
+                    }
+
+                }
+            }
+
+            campaignDb.saveGameState(state);
         }
 
         #endregion

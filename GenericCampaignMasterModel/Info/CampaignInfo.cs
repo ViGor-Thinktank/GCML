@@ -9,12 +9,9 @@ namespace GenericCampaignMasterModel
 {
     public class CampaignInfo
     {
-        public string campaignId;
-
-        [Display(Name="Name")]
-        public string campaignName;
-
-        public IEnumerable<PlayerInfo> players;
+        public string campaignId { get; set; }
+        public string campaignName { get; set; }
+        public IEnumerable<PlayerInfo> players { get; set; }
         public GenericCampaignMasterModel.CampaignState objCampaignData;
     }
 }

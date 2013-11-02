@@ -29,7 +29,7 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getState()
         {
-            CampaignState state = new CampaignState();
+            CampaignState state = CampaignState.NewInstance();
             state.CampaignName = this.CampaignName;
             state.CampaignId = this.CampaignId;
             state.ListPlayers = this.lisPlayers;

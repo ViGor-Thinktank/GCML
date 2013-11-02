@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFocus.xnb</Output>
-      <Time>2013-08-23T20:51:15.8517358+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFocus.xnb</Output>
+      <Time>2013-09-14T13:55:46.4150171+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrame.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrame.xnb</Output>
-      <Time>2013-08-23T20:51:15.8647365+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4150171+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameDown.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameDown.xnb</Output>
-      <Time>2013-08-23T20:51:15.8717369+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameDown.xnb</Output>
+      <Time>2013-09-14T13:55:46.4160172+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonHover.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonHover.xnb</Output>
-      <Time>2013-08-23T20:51:15.9697425+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonHover.xnb</Output>
+      <Time>2013-09-14T13:55:46.4190173+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\SpinningWheel.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SpinningWheel.xnb</Output>
-      <Time>2013-08-23T20:51:16.3037617+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SpinningWheel.xnb</Output>
+      <Time>2013-09-14T13:55:46.4270178+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ActiveTab.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ActiveTab.xnb</Output>
-      <Time>2013-08-23T20:51:15.7927324+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ActiveTab.xnb</Output>
+      <Time>2013-09-14T13:55:46.4140171+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ActiveTabFocused.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ActiveTabFocused.xnb</Output>
-      <Time>2013-08-23T20:51:15.8407352+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ActiveTabFocused.xnb</Output>
+      <Time>2013-09-14T13:55:46.4150171+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameLeft.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameLeft.xnb</Output>
-      <Time>2013-08-23T20:51:15.8857377+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameLeft.xnb</Output>
+      <Time>2013-09-14T13:55:46.4160172+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameLeftDown.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameLeftDown.xnb</Output>
-      <Time>2013-08-23T20:51:15.9097391+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameLeftDown.xnb</Output>
+      <Time>2013-09-14T13:55:46.4170172+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameMiddle.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameMiddle.xnb</Output>
-      <Time>2013-08-23T20:51:15.9167395+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameMiddle.xnb</Output>
+      <Time>2013-09-14T13:55:46.4170172+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameMiddleDown.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameMiddleDown.xnb</Output>
-      <Time>2013-08-23T20:51:15.9297403+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameMiddleDown.xnb</Output>
+      <Time>2013-09-14T13:55:46.4170172+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameRight.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameRight.xnb</Output>
-      <Time>2013-08-23T20:51:15.9447411+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameRight.xnb</Output>
+      <Time>2013-09-14T13:55:46.4180173+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonFrameRightDown.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameRightDown.xnb</Output>
-      <Time>2013-08-23T20:51:15.9577419+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonFrameRightDown.xnb</Output>
+      <Time>2013-09-14T13:55:46.4180173+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ButtonPress.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonPress.xnb</Output>
-      <Time>2013-08-23T20:51:15.9767429+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ButtonPress.xnb</Output>
+      <Time>2013-09-14T13:55:46.4190173+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\DropDownArrow.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\DropDownArrow.xnb</Output>
-      <Time>2013-08-23T20:51:16.0187453+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\DropDownArrow.xnb</Output>
+      <Time>2013-09-14T13:55:46.4200174+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\EditBoxFrame.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\EditBoxFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.0367464+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\EditBoxFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4200174+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\IndicatorFrame.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\IndicatorFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.0507472+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\IndicatorFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4210175+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListFrame.png</Source>
@@ -160,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.0627479+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4220175+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListRowFrame.png</Source>
@@ -169,8 +169,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.0767487+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4220175+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListRowFrameFocused.png</Source>
@@ -178,8 +178,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameFocused.xnb</Output>
-      <Time>2013-08-23T20:51:16.0897494+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameFocused.xnb</Output>
+      <Time>2013-09-14T13:55:46.4220175+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListRowFrameHover.png</Source>
@@ -187,8 +187,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameHover.xnb</Output>
-      <Time>2013-08-23T20:51:16.0977499+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameHover.xnb</Output>
+      <Time>2013-09-14T13:55:46.4230176+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListRowFrameSelected.png</Source>
@@ -196,8 +196,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameSelected.xnb</Output>
-      <Time>2013-08-23T20:51:16.1097506+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowFrameSelected.xnb</Output>
+      <Time>2013-09-14T13:55:46.4230176+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ListRowInsertMarker.png</Source>
@@ -205,8 +205,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowInsertMarker.xnb</Output>
-      <Time>2013-08-23T20:51:16.134752+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ListRowInsertMarker.xnb</Output>
+      <Time>2013-09-14T13:55:46.4230176+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Panel01.png</Source>
@@ -214,8 +214,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel01.xnb</Output>
-      <Time>2013-08-23T20:51:16.151753+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel01.xnb</Output>
+      <Time>2013-09-14T13:55:46.4240176+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Panel02.png</Source>
@@ -223,8 +223,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel02.xnb</Output>
-      <Time>2013-08-23T20:51:16.1667538+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel02.xnb</Output>
+      <Time>2013-09-14T13:55:46.4240176+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Panel03.png</Source>
@@ -232,8 +232,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel03.xnb</Output>
-      <Time>2013-08-23T20:51:16.1837548+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel03.xnb</Output>
+      <Time>2013-09-14T13:55:46.4250177+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Panel04.png</Source>
@@ -241,8 +241,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel04.xnb</Output>
-      <Time>2013-08-23T20:51:16.2447583+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Panel04.xnb</Output>
+      <Time>2013-09-14T13:55:46.4250177+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\PopupFrame.png</Source>
@@ -250,8 +250,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\PopupFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.2607592+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\PopupFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4260177+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\ProgressBar.png</Source>
@@ -259,8 +259,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ProgressBar.xnb</Output>
-      <Time>2013-08-23T20:51:16.2727599+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\ProgressBar.xnb</Output>
+      <Time>2013-09-14T13:55:46.4260177+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\SmallSpinningWheel.png</Source>
@@ -268,8 +268,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SmallSpinningWheel.xnb</Output>
-      <Time>2013-08-23T20:51:16.2887608+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SmallSpinningWheel.xnb</Output>
+      <Time>2013-09-14T13:55:46.4260177+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\SplitterCollapseArrow.png</Source>
@@ -277,8 +277,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterCollapseArrow.xnb</Output>
-      <Time>2013-08-23T20:51:16.3167624+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterCollapseArrow.xnb</Output>
+      <Time>2013-09-14T13:55:46.4270178+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\SplitterDragHandle.png</Source>
@@ -286,8 +286,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterDragHandle.xnb</Output>
-      <Time>2013-08-23T20:51:16.3477642+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterDragHandle.xnb</Output>
+      <Time>2013-09-14T13:55:46.4280179+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\SplitterFrame.png</Source>
@@ -295,8 +295,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.361765+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\SplitterFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4280179+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Tab.png</Source>
@@ -304,8 +304,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Tab.xnb</Output>
-      <Time>2013-08-23T20:51:16.3787659+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Tab.xnb</Output>
+      <Time>2013-09-14T13:55:46.4280179+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TabClose.png</Source>
@@ -313,8 +313,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabClose.xnb</Output>
-      <Time>2013-08-23T20:51:16.4067675+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabClose.xnb</Output>
+      <Time>2013-09-14T13:55:46.4290179+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TabCloseDown.png</Source>
@@ -322,8 +322,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabCloseDown.xnb</Output>
-      <Time>2013-08-23T20:51:16.4217684+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabCloseDown.xnb</Output>
+      <Time>2013-09-14T13:55:46.4290179+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TabCloseHover.png</Source>
@@ -331,8 +331,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabCloseHover.xnb</Output>
-      <Time>2013-08-23T20:51:16.4357692+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TabCloseHover.xnb</Output>
+      <Time>2013-09-14T13:55:46.430018+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TextAreaGutterFrame.png</Source>
@@ -340,8 +340,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TextAreaGutterFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.4467698+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TextAreaGutterFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.430018+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TooltipFrame.png</Source>
@@ -349,8 +349,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TooltipFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.4527702+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TooltipFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.431018+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewBranch.png</Source>
@@ -358,8 +358,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranch.xnb</Output>
-      <Time>2013-08-23T20:51:16.4777716+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranch.xnb</Output>
+      <Time>2013-09-14T13:55:46.4320181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewBranchClosed.png</Source>
@@ -367,8 +367,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchClosed.xnb</Output>
-      <Time>2013-08-23T20:51:16.4857721+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchClosed.xnb</Output>
+      <Time>2013-09-14T13:55:46.4320181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewBranchLast.png</Source>
@@ -376,8 +376,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchLast.xnb</Output>
-      <Time>2013-08-23T20:51:16.4927725+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchLast.xnb</Output>
+      <Time>2013-09-14T13:55:46.4320181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewBranchOpen.png</Source>
@@ -385,8 +385,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchOpen.xnb</Output>
-      <Time>2013-08-23T20:51:16.501773+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchOpen.xnb</Output>
+      <Time>2013-09-14T13:55:46.4330181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewBranchOpenEmpty.png</Source>
@@ -394,8 +394,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchOpenEmpty.xnb</Output>
-      <Time>2013-08-23T20:51:16.5097734+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewBranchOpenEmpty.xnb</Output>
+      <Time>2013-09-14T13:55:46.4330181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewCheckBoxFrame.png</Source>
@@ -403,8 +403,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewCheckBoxFrame.xnb</Output>
-      <Time>2013-08-23T20:51:16.5227742+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewCheckBoxFrame.xnb</Output>
+      <Time>2013-09-14T13:55:46.4330181+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\CheckBoxFrameHover.png</Source>
@@ -412,8 +412,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\CheckBoxFrameHover.xnb</Output>
-      <Time>2013-08-23T20:51:15.9997443+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\CheckBoxFrameHover.xnb</Output>
+      <Time>2013-09-14T13:55:46.4190173+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewContainerFrameSelected.png</Source>
@@ -421,8 +421,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewContainerFrameSelected.xnb</Output>
-      <Time>2013-08-23T20:51:16.5387751+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewContainerFrameSelected.xnb</Output>
+      <Time>2013-09-14T13:55:46.4340182+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\TreeViewLine.png</Source>
@@ -430,8 +430,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewLine.xnb</Output>
-      <Time>2013-08-23T20:51:16.5527759+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\TreeViewLine.xnb</Output>
+      <Time>2013-09-14T13:55:46.4350183+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\UnreadTabMarker.png</Source>
@@ -439,8 +439,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\UnreadTabMarker.xnb</Output>
-      <Time>2013-08-23T20:51:16.5737771+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\UnreadTabMarker.xnb</Output>
+      <Time>2013-09-14T13:55:46.4350183+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\VerticalScrollbar.png</Source>
@@ -448,8 +448,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\VerticalScrollbar.xnb</Output>
-      <Time>2013-08-23T20:51:16.5877779+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\VerticalScrollbar.xnb</Output>
+      <Time>2013-09-14T13:55:46.4360183+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Checked.png</Source>
@@ -457,8 +457,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Checked.xnb</Output>
-      <Time>2013-08-23T20:51:16.0137451+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Checked.xnb</Output>
+      <Time>2013-09-14T13:55:46.4200174+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\UI\Unchecked.png</Source>
@@ -466,8 +466,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Unchecked.xnb</Output>
-      <Time>2013-08-23T20:51:16.5607764+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\UI\Unchecked.xnb</Output>
+      <Time>2013-09-14T13:55:46.4350183+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\gcml_logo_big.png</Source>
@@ -475,8 +475,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\gcml_logo_big.xnb</Output>
-      <Time>2013-08-23T20:51:16.7387865+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\gcml_logo_big.xnb</Output>
+      <Time>2013-09-14T13:55:46.4720204+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stars.jpg</Source>
@@ -484,8 +484,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\stars.xnb</Output>
-      <Time>2013-08-23T20:51:16.8377922+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\stars.xnb</Output>
+      <Time>2013-09-14T13:55:46.4760206+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Move.png</Source>
@@ -493,8 +493,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move.xnb</Output>
-      <Time>2013-08-23T20:51:16.8097906+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move.xnb</Output>
+      <Time>2013-09-14T13:55:46.4750205+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Move_Done.png</Source>
@@ -502,8 +502,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move_Done.xnb</Output>
-      <Time>2013-08-23T20:51:15.0426895+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Move_Done.xnb</Output>
+      <Time>2013-09-14T13:55:46.4040165+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Cruiser.png</Source>
@@ -511,8 +511,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser.xnb</Output>
-      <Time>2013-08-23T20:51:14.7586733+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser.xnb</Output>
+      <Time>2013-09-14T13:55:46.3990162+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Station.png</Source>
@@ -520,8 +520,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station.xnb</Output>
-      <Time>2013-08-23T20:51:15.6557246+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station.xnb</Output>
+      <Time>2013-09-14T13:55:46.4100168+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Transport.png</Source>
@@ -529,8 +529,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transport.xnb</Output>
-      <Time>2013-08-23T20:51:15.6847262+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Transport.xnb</Output>
+      <Time>2013-09-14T13:55:46.4120169+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\DropResource.png</Source>
@@ -538,8 +538,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource.xnb</Output>
-      <Time>2013-08-23T20:51:14.8866806+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource.xnb</Output>
+      <Time>2013-09-14T13:55:46.4010163+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\DropResource_Done.png</Source>
@@ -547,8 +547,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource_Done.xnb</Output>
-      <Time>2013-08-23T20:51:14.9416837+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DropResource_Done.xnb</Output>
+      <Time>2013-09-14T13:55:46.4010163+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\PlaceUnit.png</Source>
@@ -556,8 +556,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit.xnb</Output>
-      <Time>2013-08-23T20:51:15.2287002+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit.xnb</Output>
+      <Time>2013-09-14T13:55:46.4060166+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\PlaceUnit_Done.png</Source>
@@ -565,8 +565,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit_Done.xnb</Output>
-      <Time>2013-08-23T20:51:15.3937096+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\PlaceUnit_Done.xnb</Output>
+      <Time>2013-09-14T13:55:46.4070167+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Korvette.png</Source>
@@ -574,8 +574,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette.xnb</Output>
-      <Time>2013-08-23T20:51:14.9596848+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette.xnb</Output>
+      <Time>2013-09-14T13:55:46.4020164+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Planet.png</Source>
@@ -583,8 +583,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Planet.xnb</Output>
-      <Time>2013-08-23T20:51:15.4607134+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Planet.xnb</Output>
+      <Time>2013-09-14T13:55:46.4070167+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\CreateResource.png</Source>
@@ -592,8 +592,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource.xnb</Output>
-      <Time>2013-08-23T20:51:14.6876692+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource.xnb</Output>
+      <Time>2013-09-14T13:55:46.3980161+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\CreateResource_done.png</Source>
@@ -601,8 +601,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource_done.xnb</Output>
-      <Time>2013-08-23T20:51:14.6996699+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\CreateResource_done.xnb</Output>
+      <Time>2013-09-14T13:55:46.3980161+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\DestroyUnit.png</Source>
@@ -610,8 +610,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DestroyUnit.xnb</Output>
-      <Time>2013-08-23T20:51:14.8116763+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DestroyUnit.xnb</Output>
+      <Time>2013-09-14T13:55:46.4000163+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\DestroyUnit_done.png</Source>
@@ -619,44 +619,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DestroyUnit_done.xnb</Output>
-      <Time>2013-08-23T20:51:14.8256771+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\LargeFont.spritefont</Source>
-      <Name>Fonts\LargeFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\LargeFont.xnb</Output>
-      <Time>2013-08-23T20:51:14.4316546+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\MediumFont.spritefont</Source>
-      <Name>Fonts\MediumFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumFont.xnb</Output>
-      <Time>2013-08-23T20:51:14.438655+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\SmallFont.spritefont</Source>
-      <Name>Fonts\SmallFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\SmallFont.xnb</Output>
-      <Time>2013-08-23T20:51:14.5126592+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\MediumMonoFont.spritefont</Source>
-      <Name>Fonts\MediumMonoFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
-      <Time>2013-08-23T20:51:14.5056588+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\DestroyUnit_done.xnb</Output>
+      <Time>2013-09-14T13:55:46.4000163+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\grid10.png</Source>
@@ -664,8 +628,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid10.xnb</Output>
-      <Time>2013-08-29T08:29:35.116583+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid10.xnb</Output>
+      <Time>2013-09-14T13:55:46.4730204+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\grid7.png</Source>
@@ -673,8 +637,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid7.xnb</Output>
-      <Time>2013-08-23T20:51:16.7777888+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid7.xnb</Output>
+      <Time>2013-09-14T13:55:46.4740205+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\grid8.png</Source>
@@ -682,8 +646,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid8.xnb</Output>
-      <Time>2013-08-23T20:51:16.7937897+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\grid8.xnb</Output>
+      <Time>2013-09-14T13:55:46.4740205+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\XWing.png</Source>
@@ -691,8 +655,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing.xnb</Output>
-      <Time>2013-09-17T09:04:55.472055+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing.xnb</Output>
+      <Time>2013-09-28T17:43:09.0610354+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\XWing_Icon.png</Source>
@@ -700,8 +664,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing_Icon.xnb</Output>
-      <Time>2013-09-02T20:50:41.8101844+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\XWing_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0610354+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\YWing.png</Source>
@@ -709,8 +673,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing.xnb</Output>
-      <Time>2013-08-23T20:51:16.6567818+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing.xnb</Output>
+      <Time>2013-09-28T17:43:09.0620355+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\YWing_Icon.png</Source>
@@ -718,8 +682,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing_Icon.xnb</Output>
-      <Time>2013-09-02T20:50:41.9021896+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\YWing_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0630355+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Tie.png</Source>
@@ -727,8 +691,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie.xnb</Output>
-      <Time>2013-09-18T09:04:34.8381261+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie.xnb</Output>
+      <Time>2013-09-28T17:43:09.0300336+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Tie_Icon.png</Source>
@@ -736,8 +700,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie_Icon.xnb</Output>
-      <Time>2013-09-02T20:50:41.7891832+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Tie_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0560351+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Cruiser_Icon.png</Source>
@@ -745,8 +709,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser_Icon.xnb</Output>
-      <Time>2013-08-23T20:51:14.7586733+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Cruiser_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0050322+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Korvette_Icon.png</Source>
@@ -754,8 +718,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette_Icon.xnb</Output>
-      <Time>2013-08-23T20:51:14.9596848+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Korvette_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.018033+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Station_Icon.png</Source>
@@ -763,8 +727,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station_Icon.xnb</Output>
-      <Time>2013-08-23T20:51:15.6557246+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\Station_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0280335+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\TieA.png</Source>
@@ -772,8 +736,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA.xnb</Output>
-      <Time>2013-09-18T13:02:37.6353189+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA.xnb</Output>
+      <Time>2013-09-28T17:43:09.0310337+02:00</Time>
     </Item>
     <Item>
       <Source>Sprites\TieA_Icon.png</Source>
@@ -781,8 +745,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA_Icon.xnb</Output>
-      <Time>2013-09-02T20:50:41.7451807+02:00</Time>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Sprites\TieA_Icon.xnb</Output>
+      <Time>2013-09-28T17:43:09.0320338+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\LargeFont.spritefont</Source>
+      <Name>Fonts\LargeFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\LargeFont.xnb</Output>
+      <Time>2013-09-14T13:55:46.3940159+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\MediumFont.spritefont</Source>
+      <Name>Fonts\MediumFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumFont.xnb</Output>
+      <Time>2013-09-14T13:55:46.3940159+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SmallFont.spritefont</Source>
+      <Name>Fonts\SmallFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\SmallFont.xnb</Output>
+      <Time>2013-09-14T13:55:46.395016+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\MediumMonoFont.spritefont</Source>
+      <Name>Fonts\MediumMonoFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\Fonts\MediumMonoFont.xnb</Output>
+      <Time>2013-09-14T13:55:46.395016+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -790,39 +790,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSampleContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSampleContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Florian\Documents\GitHub\GCML XNA Client\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSampleContent\</RootDirectory>
+      <LoggerRootDirectory>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSampleContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\users\hagen2\Documents\git\GCML\XNA Client\NuclearSample\NuclearSample\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-05-29T16:55:44.6214293+02:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-09-14T14:23:48.746241+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

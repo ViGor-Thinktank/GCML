@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterModel"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlDataAccess", "..\GcmlDataAccess\GcmlDataAccess.csproj", "{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterLibTests", "..\GenericCampaignMasterLibTests\GenericCampaignMasterLibTests.csproj", "{021DC51A-DA4F-4666-AACE-C679C5D674BA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TESTS", "TESTS", "{EBE7CB22-8E9E-4D5A-8D33-4E99567B1D96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlUnitTests", "GcmlUnitTests\GcmlUnitTests.csproj", "{314B7ADC-0543-473C-86AD-2ADA81E7F35B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +35,15 @@ Global
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.Build.0 = Release|Any CPU
-		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{314B7ADC-0543-473C-86AD-2ADA81E7F35B} = {EBE7CB22-8E9E-4D5A-8D33-4E99567B1D96}
 	EndGlobalSection
 EndGlobal
