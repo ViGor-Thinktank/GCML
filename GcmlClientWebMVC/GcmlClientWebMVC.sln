@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterModel"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlDataAccess", "..\GcmlDataAccess\GcmlDataAccess.csproj", "{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCampaignMasterLibTests", "..\GenericCampaignMasterLibTests\GenericCampaignMasterLibTests.csproj", "{021DC51A-DA4F-4666-AACE-C679C5D674BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DBD1C08-7C57-4384-9053-E6BA2B7EE457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021DC51A-DA4F-4666-AACE-C679C5D674BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

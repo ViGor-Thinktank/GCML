@@ -11,6 +11,9 @@ using GcmlDataAccess;
 
 namespace GcmlClientWebMVC.Controllers
 {
+    /// <summary>
+    /// GameController liefert die Spielfelddaten für eine laufende Kampagne (WebApi).
+    /// </summary>
     public class GameController : ApiController
     {
         CampaignBuilder campaignCtx  = CampaignBuilder.Instance;
