@@ -32,7 +32,7 @@ namespace GenericCampaignMasterLib
             CampaignState state = CampaignState.NewInstance();
             state.CampaignName = this.CampaignName;
             state.CampaignId = this.CampaignId;
-            state.ListPlayers = this.lisPlayers;
+            state.ListPlayers = this.lisPlayers.Select(p => p.getPlayerInfo()).ToList<PlayerInfo>();
             state.DicSektors = this.FieldField.dicSektors;
             state.FieldDimension = this.FieldField.FieldDimension;
             state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;

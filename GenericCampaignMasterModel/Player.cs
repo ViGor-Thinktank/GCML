@@ -35,7 +35,7 @@ namespace GenericCampaignMasterModel
                 return false;
         }
 
-        public List<clsUnitType> listUnitspawn = null;
+        public List<clsUnitType> listUnitspawn { get; set; }
     }
 
     [Serializable()]

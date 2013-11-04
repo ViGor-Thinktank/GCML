@@ -14,7 +14,7 @@ namespace GenericCampaignMasterModel
     {
         public string CampaignName { get; set; }
         public string CampaignId { get; set; }
-        public List<Player> ListPlayers { get; set; }
+        public List<PlayerInfo> ListPlayers { get; set; }
         public List<SektorInfo> ListSektorInfo { get; set; }
         public clsSektorKoordinaten FieldDimension { get; set; }
         public string FieldType { get; set; }
@@ -142,11 +142,10 @@ namespace GenericCampaignMasterModel
             CampaignState result = CampaignState.NewInstance();
             result.CampaignName = stateData["campaignname"];
             result.CampaignId = stateData["campaignid"];
-            result.ListPlayers = serializer.Deserialize<List<Player>>(stateData["players"]);
+            result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["players"]);
             result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
-            //result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(result["fielddimension"]);
-            
-            //serializer.Deserialize<string>(result["fieldtype"]
+            result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
+            result.FieldType = stateData["fieldtype"];
             //serializer.Deserialize<string>(result["unitinfo"]
             //serializer.Deserialize<string>(result["unittypesinfo"]
             //serializer.Deserialize<string>(result["resourceinfo"]
@@ -159,7 +158,7 @@ namespace GenericCampaignMasterModel
             CampaignState result = new CampaignState();
             result.CampaignId = string.Empty;
             result.CampaignName = string.Empty;
-            result.ListPlayers = new List<Player>();
+            result.ListPlayers = new List<PlayerInfo>();
             result.ListSektorInfo = new List<SektorInfo>();
             //result.DicSektors = new Dictionary<string, Sektor>();
             result.FieldDimension = new clsSektorKoordinaten();

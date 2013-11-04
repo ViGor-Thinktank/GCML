@@ -114,10 +114,9 @@ namespace GenericCampaignMasterLib
                     if (!playerDb.getAllPlayers().Exists(p => p.playerId == pinfo.playerId))
                         playerDb.addPlayer(pinfo);
 
-                    if (!state.ListPlayers.Exists(pl => pl.Id == pinfo.playerId))
+                    if (!state.ListPlayers.Exists(pl => pl.playerId == pinfo.playerId))
                     {
-                        Player p = new Player(pinfo);
-                        state.ListPlayers.Add(p);
+                        state.ListPlayers.Add(pinfo);
                     }
 
                 }

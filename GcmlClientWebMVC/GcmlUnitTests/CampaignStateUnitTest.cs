@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
+using Ploeh.AutoFixture;
 
 namespace GcmlUnitTests
 {
@@ -10,8 +12,13 @@ namespace GcmlUnitTests
     {
         private CampaignState getTestState()
         {
+           
             CampaignState result = CampaignState.NewInstance();
 
+            var fixture = new Fixture();
+            result.CampaignId = fixture.Create<string>();
+            result.CampaignName = fixture.Create<string>();
+            result.ListPlayers = fixture.Create<List<PlayerInfo>>();
 
             return result;
         }
