@@ -81,7 +81,7 @@ namespace GcmlDataAccess
             CampaignEngine engine = new CampaignEngine(field);
             engine.CampaignName = campaignname;
             engine.CampaignId = newCampaignId;
-            
+
             CampaignController controller = new CampaignController(engine);
             CampaignState state = engine.getState();
 

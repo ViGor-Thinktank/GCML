@@ -33,7 +33,8 @@ namespace GenericCampaignMasterLib
             state.CampaignName = this.CampaignName;
             state.CampaignId = this.CampaignId;
             state.ListPlayers = this.lisPlayers.Select(p => p.getPlayerInfo()).ToList<PlayerInfo>();
-            state.DicSektors = this.FieldField.dicSektors;
+            //state.DicSektors = this.FieldField.dicSektors;
+            //state.ListSektorInfo = this.FieldField.dicSektors.Select(s => s.Value.getInfo
             state.FieldDimension = this.FieldField.FieldDimension;
             state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
             state.ListUnitInfo = this.getUnitInfo();
@@ -46,22 +47,19 @@ namespace GenericCampaignMasterLib
         public static CampaignEngine restoreFromState(CampaignState state)
         {
             List<Player> lstPlayers = state.getListPlayers();
-            List<Sektor> lstSektors = state.getListSektors();
- 
 
             // Feld erstellen;
             //Type fieldType = Type.GetType(state.getFieldtype());  // Todo: GetType funktioniert nicht obwohl GenericCampaignMasterModel.Field korrekt ist
-            Type fieldType = typeof(GenericCampaignMasterModel.Field);      
-           
             
+            // Feld mit Sektoren erzeugen.
             clsSektorKoordinaten objSekKoord = state.getListDimensions();
+            Type fieldType = typeof(GenericCampaignMasterModel.Field);      
             Field field = (Field)Activator.CreateInstance(fieldType, new object[] { objSekKoord });
-            field.setSektorList(lstSektors);
 
             // Engine erstellen
             CampaignEngine engine = new CampaignEngine((Field)field);
             engine.CampaignId = state.CampaignId;
-            engine.CampaignName = state.ContainsKey("campaignname") ? state["campaignname"] : "OLDCAMPAIGN";
+            engine.CampaignName = state.CampaignName;
             engine.setPlayerList(lstPlayers);
 
             clsUnit.objUnitTypeFountain.dicUnitTypeData = state.getDicUnitTypeInfo();

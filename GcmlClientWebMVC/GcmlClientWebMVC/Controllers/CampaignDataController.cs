@@ -12,15 +12,18 @@ namespace GcmlClientWebMVC.Controllers
     [Authorize]
     public class CampaignDataController : Controller
     {
+        IGcmlDataManager dataManager = CampaignBuilder.Instance.DataManager;
+
+
         //
         // GET: /CampaignData/
 
         public ActionResult Index()
         {
             string playername = User.Identity.Name;
-            string playerid = CampaignBuilder.Instance.DataManager.getPlayerId(playername);
+            string playerid = dataManager.getPlayerId(playername);
 
-            List<CampaignInfo> lstCampaigns = CampaignBuilder.Instance.DataManager.getRunningPlayerCampaigns(playerid);
+            List<CampaignInfo> lstCampaigns  = dataManager.getRunningPlayerCampaigns(playerid);
 
             return View(lstCampaigns);
         }
@@ -38,7 +41,7 @@ namespace GcmlClientWebMVC.Controllers
         // Lädt die Spielfeldansicht für die Kampagne
         public ActionResult Board(string id)
         {
-            CampaignInfo cmpinf = CampaignBuilder.Instance.getCurrentGame(id).Campaign_getInfo();
+            CampaignInfo cmpinf = dataManager.getController(id).Campaign_getInfo();
             return View(cmpinf);
         }
 
@@ -59,8 +62,6 @@ namespace GcmlClientWebMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
                 string name = collection.Get("campaignname");
                 int x = -1;
                 int y = -1;
@@ -68,15 +69,15 @@ namespace GcmlClientWebMVC.Controllers
                 Int32.TryParse(collection.Get("fieldx"), out x);
                 Int32.TryParse(collection.Get("fieldy"), out y);
 
-                string newcampaignid = CampaignBuilder.Instance.DataManager.createNewCampaign(name, new clsSektorKoordinaten() { X = x, Y = y });
+                string newcampaignid = dataManager.createNewCampaign(name, new clsSektorKoordinaten() { X = x, Y = y });
 
                 // Angemeldeten Spieler hinzufügen
-                PlayerInfo pinfo = CampaignBuilder.Instance.DataManager.getPlayerByName(User.Identity.Name);
+                PlayerInfo pinfo = dataManager.getPlayerByName(User.Identity.Name);
 
-                CampaignController ctrl = CampaignBuilder.Instance.DataManager.getController(newcampaignid);
+                CampaignController ctrl = dataManager.getController(newcampaignid);
                 ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
 
-                CampaignBuilder.Instance.DataManager.safeCampaignState(ctrl.CampaignEngine.getState());
+                dataManager.safeCampaignState(ctrl.CampaignEngine.getState());
 
                 return RedirectToAction("Index");
             }
@@ -91,7 +92,7 @@ namespace GcmlClientWebMVC.Controllers
 
         public ActionResult Edit(string id)
         {
-            CampaignInfo cmpinf = CampaignBuilder.Instance.getCurrentGame(id).Campaign_getInfo();
+            CampaignInfo cmpinf = dataManager.getController(id).Campaign_getInfo();
             return PartialView("_Edit", cmpinf);
         }
 
@@ -103,7 +104,7 @@ namespace GcmlClientWebMVC.Controllers
         {
             try
             {
-                CampaignBuilder.Instance.DataManager.updateCampaign(cmpinfo);
+                dataManager.updateCampaign(cmpinfo);
 
                 return RedirectToAction("Index");
             }

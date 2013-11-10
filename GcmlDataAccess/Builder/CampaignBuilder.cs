@@ -39,15 +39,15 @@ namespace GcmlDataAccess
             datamanager = kernel.Get<IGcmlDataManager>();
         }
 
-        public CampaignController getCurrentGame(string campaignKey)
-        {
-            return datamanager.getController(campaignKey);
-        }
+        //public CampaignController getCurrentGame(string campaignKey)
+        //{
+        //    return datamanager.getController(campaignKey);
+        //}
 
-        public CampaignController restoreFromDb(string campaignKey, string stateKey)
-        {
-            return datamanager.getController(campaignKey);
-        }
+        //public CampaignController restoreFromDb(string campaignKey, string stateKey)
+        //{
+        //    return datamanager.getController(campaignKey);
+        //}
 
         public CampaignController buildNew()
         {

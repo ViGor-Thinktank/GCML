@@ -16,7 +16,8 @@ namespace GcmlClientWebMVC.Controllers
     /// </summary>
     public class GameController : ApiController
     {
-        CampaignBuilder campaignCtx  = CampaignBuilder.Instance;
+        //CampaignBuilder campaignCtx  = CampaignBuilder.Instance;
+        IGcmlDataManager dataManager = CampaignBuilder.Instance.DataManager;
 
         // GET api/game
         public IEnumerable<string> Get()
@@ -27,7 +28,7 @@ namespace GcmlClientWebMVC.Controllers
         // GET api/game/5
         public FieldInfo Get(string id)
         {
-            CampaignController controller = campaignCtx.getCurrentGame(id);
+            CampaignController controller = dataManager.getController(id);
 
             // SektorInfo in 2 dimensionalen Array liefern
             int x = controller.CampaignEngine.FieldField.FieldDimension.X;
