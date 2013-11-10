@@ -8,6 +8,10 @@ namespace GenericCampaignMasterModel
 {
     public class clsUnitTypeCollection
     {
+        public List<UnitTypeInfo> UnitTypeList 
+        {
+            get { return this.dicUnitTypeData.Select(u => u.Value.getInfo()).ToList<UnitTypeInfo>(); }
+        }
 
         private Dictionary<string, clsUnitType> m_dicUnitTypeData = null;
 

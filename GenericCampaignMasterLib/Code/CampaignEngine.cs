@@ -37,7 +37,7 @@ namespace GenericCampaignMasterLib
             state.FieldDimension = this.FieldField.FieldDimension;
             state.FieldType = this.FieldField.GetType().AssemblyQualifiedName;
             state.ListUnitInfo = this.getUnitInfo();
-            state.ListUnitTypes = clsUnit.objUnitTypeFountain;
+            state.ListUnitTypes = clsUnit.objUnitTypeFountain.UnitTypeList;
             state.ListResourceInfo = this.ResourceHandler.getResourceInfo();
             state.Save();
             return state;

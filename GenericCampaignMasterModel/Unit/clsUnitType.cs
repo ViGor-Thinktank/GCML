@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GenericCampaignMasterModel.Commands;
+using GenericCampaignMasterModel;
 
 namespace GenericCampaignMasterModel
 {
@@ -11,7 +12,7 @@ namespace GenericCampaignMasterModel
 
         //Eigenschaften
         private string m_strBez = "";
-        protected  int m_intMovement = 0;
+        protected int m_intMovement = 0;
         protected int m_intSichtweite = 0;
         private int m_ID = -1;
 
@@ -19,7 +20,7 @@ namespace GenericCampaignMasterModel
         public List<clsUnitType> m_listUnitSpawn = new List<clsUnitType>();
 
         public bool blnAlywaysVisible = false;
-        
+
         //Q&D Dev Zwischenlösung
         public clsUnitType firstUnitSpawnType
         {
@@ -38,8 +39,8 @@ namespace GenericCampaignMasterModel
         public int ID { get { return m_ID; } set { m_ID = value; } }
         public string strBez { get { return m_strBez; } set { m_strBez = value; } }
         public int intSichtweite { get { return m_intSichtweite; } set { m_intSichtweite = value; } }
-        public int intMovement  { get { return m_intMovement; } set { m_intMovement = value; } }
-       
+        public int intMovement { get { return m_intMovement; } set { m_intMovement = value; } }
+
         public bool blnCanStoreResourceValue { get { return intMaxResourceValue != -1; } }
         public bool blnCanSpawnUnits { get { return m_listUnitSpawn != null; } }
 
@@ -50,7 +51,7 @@ namespace GenericCampaignMasterModel
             this.strBez = strBez;
             this.intSichtweite = intSichtweite;
             this.intMovement = intMovement;
-            this.strClientData = "Texture:=" + strTexture ;
+            this.strClientData = "Texture:=" + strTexture;
             this.m_listUnitSpawn = listUnitspawn;
             this.intMaxResourceValue = intMaxResourceValue;
             this.strDescription = strDescription;
@@ -60,10 +61,22 @@ namespace GenericCampaignMasterModel
 
         //Konstruktoren
         public clsUnitType() { ; }
-        public clsUnitType(int newID, string strDefaultBez )
+        public clsUnitType(int newID, string strDefaultBez)
         {
             m_ID = newID;
             m_strBez = strDefaultBez;
+        }
+
+        public clsUnitType(UnitTypeInfo info)
+        {
+            this.ID = info.ID;
+            this.strBez = info.Bezeichnung;
+            this.intSichtweite = info.Sichtweite;
+            this.intMovement = info.Movement;
+            this.strClientData = info.ClientData;
+            this.strDescription = info.Description;
+            this.intMaxResourceValue = info.MaxResourceValue;
+            this.intCreateValuePerRound = info.CreateValuePerRound;
         }
 
         public List<ICommand> getResourceCommands(Player owner)
@@ -92,5 +105,20 @@ namespace GenericCampaignMasterModel
                 return this.strBez + "_Icon";
             }
         }
+
+        public UnitTypeInfo getInfo()
+        {
+            UnitTypeInfo result = new UnitTypeInfo();
+            result.ID = ID;
+            result.Bezeichnung = strBez;
+            result.Sichtweite = intSichtweite;
+            result.Movement = intMovement;
+            result.ClientData = strClientData;
+            result.Description = strDescription;
+            result.MaxResourceValue = intMaxResourceValue;
+            result.CreateValuePerRound = intCreateValuePerRound;
+            return result;
         }
+
+    }
 }

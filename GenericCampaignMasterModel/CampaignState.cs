@@ -19,7 +19,7 @@ namespace GenericCampaignMasterModel
         public clsSektorKoordinaten FieldDimension { get; set; }
         public string FieldType { get; set; }
         public List<UnitInfo> ListUnitInfo { get; set; }
-        public clsUnitTypeCollection ListUnitTypes { get; set; }
+        public List<UnitTypeInfo> ListUnitTypes { get; set; }
         public List<ResourceInfo> ListResourceInfo { get; set; }
 
         public Dictionary<string, Sektor> DicSektors 
@@ -36,6 +36,7 @@ namespace GenericCampaignMasterModel
 
             }
         }
+        //public clsUnitTypeCollection ListUnitTypes { get; set; }
 
 
         private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
@@ -146,8 +147,9 @@ namespace GenericCampaignMasterModel
             result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
             result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
             result.FieldType = stateData["fieldtype"];
-            //serializer.Deserialize<string>(result["unitinfo"]
-            //serializer.Deserialize<string>(result["unittypesinfo"]
+            result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
+            result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
+            //
             //serializer.Deserialize<string>(result["resourceinfo"]
             return result;
         }
@@ -164,7 +166,7 @@ namespace GenericCampaignMasterModel
             result.FieldDimension = new clsSektorKoordinaten();
             result.FieldType = string.Empty;
             result.ListUnitInfo = new List<UnitInfo>();
-            result.ListUnitTypes = new clsUnitTypeCollection();
+            result.ListUnitTypes = new List<UnitTypeInfo>();
             result.ListResourceInfo = new List<ResourceInfo>();
 
             return result;

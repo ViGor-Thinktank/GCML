@@ -12,13 +12,16 @@ namespace GcmlUnitTests
     {
         private CampaignState getTestState()
         {
-           
             CampaignState result = CampaignState.NewInstance();
 
             var fixture = new Fixture();
             result.CampaignId = fixture.Create<string>();
             result.CampaignName = fixture.Create<string>();
             result.ListPlayers = fixture.Create<List<PlayerInfo>>();
+            result.ListSektorInfo = fixture.Create<List<SektorInfo>>();
+            result.FieldDimension = fixture.Create<clsSektorKoordinaten>();
+            result.FieldType = fixture.Create<string>();
+            result.ListUnitTypes = fixture.Create<List<UnitTypeInfo>>();
 
             return result;
         }

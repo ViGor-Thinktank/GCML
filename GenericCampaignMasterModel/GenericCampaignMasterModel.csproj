@@ -85,6 +85,7 @@
     <Compile Include="Unit\clsUnit.cs" />
     <Compile Include="Unit\clsUnitType.cs" />
     <Compile Include="Unit\clsUnitTypeCollection.cs" />
+    <Compile Include="Info\UnitTypeInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

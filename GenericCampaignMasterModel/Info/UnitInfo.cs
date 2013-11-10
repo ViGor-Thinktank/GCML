@@ -7,8 +7,8 @@ namespace GenericCampaignMasterModel
 {
     public struct UnitInfo
     {
-        public string playerId;
-        public string sektorId;
-        public string unitId;
+        public string playerId { get; set; }
+        public string sektorId { get; set; }
+        public string unitId { get; set; }
     }
 }
