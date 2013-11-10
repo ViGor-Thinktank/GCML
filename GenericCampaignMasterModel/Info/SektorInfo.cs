@@ -9,6 +9,6 @@ namespace GenericCampaignMasterModel
     {
         public string sektorId;
         public clsSektorKoordinaten sektorKoordinaten;
-        public List<string> containedUnitIds;
+        //public List<string> containedUnitIds;
     }
 }

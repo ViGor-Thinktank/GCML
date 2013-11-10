@@ -44,7 +44,7 @@ namespace GenericCampaignMasterModel
         #region Get-Methoden
         public List<Sektor> getListSektors()
         {
-            return (List<Sektor>)m_serializer.Deserialize<List<Sektor>>(this["sektors"]);
+            return ListSektorInfo.Select(si => new Sektor(si)).ToList<Sektor>();
         }
 
         public Player getPlayer(string strPlayerID)
@@ -69,19 +69,13 @@ namespace GenericCampaignMasterModel
 
         public List<Player> getListPlayers()
         {
-            List<Player> result = new List<Player>(); 
-            List<Player> tmp = (List<Player>) m_serializer.Deserialize<List<Player>>(this["players"]);
-            if (tmp != null)
-                return tmp;
-            return result;
+            return ListPlayers.Select(pi => new Player(pi)).ToList<Player>();
         }
-		
-		public List<UnitInfo> getListUnitInfo()
-		{	
-			string strUnitInfo = this["unitinfo"];
-			List<UnitInfo> lstUnitInfo = (List<UnitInfo>)m_serializer.Deserialize<List<UnitInfo>>(strUnitInfo);
-			return lstUnitInfo;
-		}
+
+        public List<UnitInfo> getListUnitInfo()
+        {
+            return ListUnitInfo;
+        }
 
         public Dictionary<string, clsUnitType> getDicUnitTypeInfo()
         {
@@ -93,7 +87,7 @@ namespace GenericCampaignMasterModel
 
         public clsSektorKoordinaten getListDimensions()
         {
-            return (clsSektorKoordinaten)m_serializer.Deserialize<clsSektorKoordinaten>(this["fielddimension"]);
+            return FieldDimension;
         }
 
         public string getFieldtype()

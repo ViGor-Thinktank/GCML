@@ -47,6 +47,7 @@ namespace GenericCampaignMasterLib
         {
             List<Player> lstPlayers = state.getListPlayers();
             List<Sektor> lstSektors = state.getListSektors();
+ 
 
             // Feld erstellen;
             //Type fieldType = Type.GetType(state.getFieldtype());  // Todo: GetType funktioniert nicht obwohl GenericCampaignMasterModel.Field korrekt ist

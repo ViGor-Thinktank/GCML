@@ -22,6 +22,13 @@ namespace GenericCampaignMasterModel
             m_strID = sektorId;
             m_objSektorType = objSektorType; 
         }
+
+        public Sektor(SektorInfo info)
+        {
+            this.Id = info.sektorId;
+            this.objSektorKoord = info.sektorKoordinaten;
+            this.m_objSektorType = new clsSektorType_base();
+        }
         
         private string m_strID;
         private List<clsUnit> m_ListUnits = new List<clsUnit>();
@@ -114,8 +121,8 @@ namespace GenericCampaignMasterModel
             SektorInfo sektornfo = new SektorInfo();
             sektornfo.sektorId = this.strUniqueID;
             sektornfo.sektorKoordinaten = this.objSektorKoord;
-            sektornfo.containedUnitIds = (from u in this.ListUnits
-                                          select u.Id).ToList<string>();
+            //sektornfo.containedUnitIds = (from u in this.ListUnits
+            //                              select u.Id).ToList<string>();
             return sektornfo;
         }
     }
