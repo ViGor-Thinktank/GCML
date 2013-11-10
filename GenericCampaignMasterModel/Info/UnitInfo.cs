@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GenericCampaignMasterModel
 {
-    public struct UnitInfo
+    public class UnitInfo
     {
         public string playerId { get; set; }
         public string sektorId { get; set; }

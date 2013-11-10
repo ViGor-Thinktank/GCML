@@ -143,8 +143,8 @@ namespace GenericCampaignMasterModel
             result.FieldType = stateData["fieldtype"];
             result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
             result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
-            //
-            //serializer.Deserialize<string>(result["resourceinfo"]
+            result.ListResourceInfo = serializer.Deserialize<List<ResourceInfo>>(stateData["resourceinfo"]);
+            
             return result;
         }
 
