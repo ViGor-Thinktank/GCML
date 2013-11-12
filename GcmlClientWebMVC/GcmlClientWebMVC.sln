@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TESTS", "TESTS", "{EBE7CB22
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlUnitTests", "GcmlUnitTests\GcmlUnitTests.csproj", "{314B7ADC-0543-473C-86AD-2ADA81E7F35B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{4C842E89-4102-4AFC-BF91-CF8C172E0A48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,11 +41,16 @@ Global
 		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{314B7ADC-0543-473C-86AD-2ADA81E7F35B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{314B7ADC-0543-473C-86AD-2ADA81E7F35B} = {EBE7CB22-8E9E-4D5A-8D33-4E99567B1D96}
+		{4C842E89-4102-4AFC-BF91-CF8C172E0A48} = {EBE7CB22-8E9E-4D5A-8D33-4E99567B1D96}
 	EndGlobalSection
 EndGlobal

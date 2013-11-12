@@ -14,19 +14,28 @@ namespace GcmlDataAccess
             return CampaignState.NewInstance();
         }
 
-        public CampaignState newCampaign(CampaignInfo info)
-        {
-            return CampaignState.NewInstance();
-        }
+        //public CampaignState newCampaign(CampaignInfo info)
+        //{
+        //    return CampaignState.NewInstance();
+        //}
 
         public bool safeCampaignState(CampaignState state)
         {
-            return true;
+            bool result = false;
+            using (var gcmlcontext = new GcmlDbContext())
+            {
+                gcmlcontext.CampaignStates.Add(state);
+                gcmlcontext.SaveChanges();
+                result = true;
+            }
+            return result;
         }
 
         public List<PlayerInfo> getPlayers()
         {
-            return new List<PlayerInfo>();
+            List<PlayerInfo> result =  new List<PlayerInfo>();
+
+            return result;
         }
 
         public PlayerInfo getPlayerInfo(string playerId)

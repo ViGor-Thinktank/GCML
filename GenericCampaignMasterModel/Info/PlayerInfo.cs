@@ -8,10 +8,11 @@ namespace GenericCampaignMasterModel
 {
     public class PlayerInfo
     {
-        [Display(Name = "Player id")]
+        [Key]
+        [Display(Name = "Player Id")]
         public string playerId { get; set; }
 
-        [Display(Name = "Player name")]
+        [Display(Name = "Player Name")]
         public string playerName { get; set; }
     }
 }

@@ -7,13 +7,15 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
 using System.Web.Script.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenericCampaignMasterModel
 {
     public class CampaignState : Dictionary<string, string>
     {
-        public string CampaignName { get; set; }
+        [Key]
         public string CampaignId { get; set; }
+        public string CampaignName { get; set; }
         public List<PlayerInfo> ListPlayers { get; set; }
         public List<SektorInfo> ListSektorInfo { get; set; }
         public clsSektorKoordinaten FieldDimension { get; set; }

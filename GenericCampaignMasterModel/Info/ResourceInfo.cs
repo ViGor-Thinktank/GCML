@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenericCampaignMasterModel
 {
     public class ResourceInfo
     {
-        public string resourceId;
-        public string ownerId;
-        public string resourceableType;
+        [Key]
+        public string resourceId { get; set; }
+        public string ownerId { get; set; }
+        public string resourceableType { get; set; }
     }
 }
