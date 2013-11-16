@@ -10,7 +10,7 @@ using NLog;
 
 namespace GcmlDataAccess
 {
-    public class CampaignDbRaptor : ICampaignDatabase
+    public class CampaignDbRaptor
     {
         RaptorDB<string> campaignDb;
         NLog.Logger log = NLog.LogManager.GetCurrentClassLogger();

@@ -9,7 +9,7 @@ namespace GcmlDataAccess
 {
     
     // Todo: Umbenennen - ist die eigentliche DataAccess-Klasse.
-    public class GcmlDataDb
+    public class GcmlDataDb : IGcmlDataDb
     {
         public CampaignState getCampaignState(string campaignId)
         {

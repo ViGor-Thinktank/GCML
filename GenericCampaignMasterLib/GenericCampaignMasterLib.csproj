@@ -42,10 +42,6 @@
   <ItemGroup>
     <Compile Include="Code\CampaignController.cs" />
     <Compile Include="Code\CampaignEngine.cs" />
-    <Compile Include="Code\GcmlDataManager.cs" />
-    <Compile Include="Code\Interfaces\IGcmlDataManager.cs" />
-    <Compile Include="Code\Interfaces\ICampaignDatabase.cs" />
-    <Compile Include="Code\Interfaces\IPlayerDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

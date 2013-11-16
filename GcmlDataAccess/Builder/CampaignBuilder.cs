@@ -31,12 +31,12 @@ namespace GcmlDataAccess
         
         private CampaignBuilder() 
         {
-            var kernel = new StandardKernel();
-            kernel.Bind<ICampaignDatabase>().To<CampaignDbRaptor>();
-            kernel.Bind<IPlayerDatabase>().To<PlayerDbRaptor>();
-            kernel.Bind<IGcmlDataManager>().To<GcmlDataManager>();
+        //    var kernel = new StandardKernel();
+        //    kernel.Bind<ICampaignDatabase>().To<CampaignDbRaptor>();
+        //    kernel.Bind<IPlayerDatabase>().To<PlayerDbRaptor>();
+        //    kernel.Bind<IGcmlDataManager>().To<GcmlDataManagerRaptorDb>();
 
-            datamanager = kernel.Get<IGcmlDataManager>();
+        //    datamanager = kernel.Get<IGcmlDataManager>();
         }
 
         //public CampaignController getCurrentGame(string campaignKey)

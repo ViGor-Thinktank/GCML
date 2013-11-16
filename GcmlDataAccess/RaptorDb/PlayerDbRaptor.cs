@@ -10,7 +10,7 @@ using RaptorDB;
 
 namespace GcmlDataAccess
 {
-    public class PlayerDbRaptor : IPlayerDatabase
+    public class PlayerDbRaptor
     {
         RaptorDB<string> playerDb;
 

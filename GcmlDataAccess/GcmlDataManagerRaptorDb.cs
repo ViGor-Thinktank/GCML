@@ -5,7 +5,7 @@ using System.Text;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 
-namespace GenericCampaignMasterLib
+namespace GcmlDataAccess
 {
 
     /// <summary>
@@ -14,18 +14,18 @@ namespace GenericCampaignMasterLib
     /// erfolgt in ICampaignDatabase und IPlayerDatabase und ist damit unabhängig von der 
     /// eigentlichen Datenbank.
     /// </summary>
-    public class GcmlDataManager : IGcmlDataManager
+    public class GcmlDataManagerRaptorDb : IGcmlDataManager
     {
-        ICampaignDatabase campaignDb;
-        IPlayerDatabase playerDb;
+        CampaignDbRaptor campaignDb;
+        PlayerDbRaptor playerDb;
 
-        public GcmlDataManager(ICampaignDatabase _campaignDb, IPlayerDatabase _playerDb)
+        public GcmlDataManagerRaptorDb(CampaignDbRaptor _campaignDb, PlayerDbRaptor _playerDb)
         {
             this.campaignDb = _campaignDb;
             this.playerDb = _playerDb;
         }
 
-        ~GcmlDataManager()
+        ~GcmlDataManagerRaptorDb()
         {
             this.campaignDb.close();
             this.playerDb.close();

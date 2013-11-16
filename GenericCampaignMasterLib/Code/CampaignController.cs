@@ -35,13 +35,13 @@ namespace GenericCampaignMasterLib
 
         }
 
-        private ICampaignDatabase m_campaignDataBase;
-        public ICampaignDatabase CampaignDataBase
-        {
-            get { return m_campaignDataBase; }
-            set { m_campaignDataBase = value; }
+        //private ICampaignDatabase m_campaignDataBase;
+        //public ICampaignDatabase CampaignDataBase
+        //{
+        //    get { return m_campaignDataBase; }
+        //    set { m_campaignDataBase = value; }
 
-        }
+        //}
 
 		public string CampaignKey 
         {
@@ -115,17 +115,17 @@ namespace GenericCampaignMasterLib
         public string GameState_saveCurrent()
         {
             throw new Exception("-> GcmlDataManager");
-            CampaignState state = m_campaignEngine.getState();
-            string key = m_campaignDataBase.saveGameState(state);
-            return key;
+            //CampaignState state = m_campaignEngine.getState();
+            //string key = m_campaignDataBase.saveGameState(state);
+            //return key;
         }
 
         public void GameState_restoreByKey(string key)
         {
             throw new Exception("-> GcmlDataManager");
-            CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
-            CampaignEngine engine = CampaignEngine.restoreFromState(state);
-            initEngine(engine);
+            //CampaignState state = m_campaignDataBase.getCampaignStateByKey(key);
+            //CampaignEngine engine = CampaignEngine.restoreFromState(state);
+            //initEngine(engine);
         }
 
 #endregion
