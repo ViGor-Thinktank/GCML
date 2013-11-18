@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
@@ -8,12 +10,45 @@ using GenericCampaignMasterModel;
 namespace GcmlDataAccess
 {
     
-    // Todo: Umbenennen - ist die eigentliche DataAccess-Klasse.
-    public class GcmlDataDb : IGcmlDataDb
+    public class GcmlDataAccessSqlServer : IGcmlDataAccess
     {
-        public CampaignState getCampaignState(string campaignId)
+        public CampaignController getCampaignController(string campaignId)
         {
-            return CampaignState.NewInstance();
+            CampaignController result = null;
+            using (var ctx = new GcmlDbContext())
+            {
+                var existing = ctx.CampaignStates.Where(c => c.CampaignId == campaignId).FirstOrDefault();
+                if (existing != null)
+                {
+                    CampaignEngine engine = CampaignEngine.restoreFromState(existing);
+                    result = new CampaignController(engine);
+                }
+            }
+
+            return result;
+        }
+
+        public string createNewCampaign(CampaignInfo info)
+        {
+            string newCampaignId = Guid.NewGuid().ToString();
+            info.campaignId = newCampaignId;
+
+            Field field = new Field(info.FieldDimension);
+            CampaignEngine engine = new CampaignEngine(field);
+            engine.CampaignName = info.campaignName;
+            engine.CampaignId = info.campaignId;
+
+            CampaignController controller = new CampaignController(engine);
+            CampaignState state = engine.getState();
+
+            using (var ctx = new GcmlDbContext())
+            {
+                ctx.CampaignStates.Add(state);
+                ctx.SaveChanges();
+            }
+
+            return newCampaignId;
+
         }
 
         public bool safeCampaignState(CampaignState state)
@@ -53,7 +88,7 @@ namespace GcmlDataAccess
             PlayerInfo result = new PlayerInfo();
             using (var ctx = new GcmlDbContext())
             {
-                result = ctx.Players.Where(p => p.playerId == playerId).FirstOrDefault();
+                result = ctx.Players.FirstOrDefault(p => p.playerId == playerId);
             }
 
             return result;
@@ -64,7 +99,7 @@ namespace GcmlDataAccess
             List<CampaignInfo> result =  new List<CampaignInfo>();
             using(var ctx = new GcmlDbContext())
             {
-                PlayerInfo player = ctx.Players.Where(p => p.playerId == playerId).FirstOrDefault();
+                PlayerInfo player = ctx.Players.FirstOrDefault(p => p.playerId == playerId);
                 if (player != null)
                 {
                     var states = from state in ctx.CampaignStates

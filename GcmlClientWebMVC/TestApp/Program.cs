@@ -25,11 +25,11 @@ namespace TestApp
 
             //}
 
-            GcmlDataDb db = new GcmlDataDb();
-            db.safeCampaignState(state);
+            GcmlDataAccess.GcmlDataAccessSqlServer accessSqlServer = new GcmlDataAccess.GcmlDataAccessSqlServer();
+            accessSqlServer.safeCampaignState(state);
             state.ListPlayers.Add(new PlayerInfo() { playerId = "1234", playerName = "asdf" });
 
-            db.safeCampaignState(state);
+            accessSqlServer.safeCampaignState(state);
 
         }
     }

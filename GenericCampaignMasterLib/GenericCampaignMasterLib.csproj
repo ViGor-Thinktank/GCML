@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\CampaignController.cs" />
-    <Compile Include="Code\CampaignEngine.cs" />
+    <Compile Include="CampaignController.cs" />
+    <Compile Include="CampaignEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
