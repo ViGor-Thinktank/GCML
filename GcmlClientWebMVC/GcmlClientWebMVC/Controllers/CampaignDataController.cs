@@ -23,11 +23,16 @@ namespace GcmlClientWebMVC.Controllers
             List <CampaignInfo> lstCampaigns = new List<CampaignInfo>();
             string playername = User.Identity.Name;
 
-            var firstOrDefault = data.getPlayers().FirstOrDefault(p => p.playerName == playername);
-            if (firstOrDefault != null)
+            var player = data.getPlayers().FirstOrDefault(p => p.playerName == playername);
+            if (player != null)
             {
-                string playerid = firstOrDefault.playerName;
+                string playerid = player.playerName;
                 lstCampaigns = data.getCampaignsForPlayer(playerid);
+            }
+            else
+            {
+                PlayerInfo newpPlayerInfo = new PlayerInfo() {playerId = "", playerName = playername};
+                data.safePlayer(newpPlayerInfo);
             }
 
             return View(lstCampaigns);
@@ -74,21 +79,23 @@ namespace GcmlClientWebMVC.Controllers
                 Int32.TryParse(collection.Get("fieldx"), out x);
                 Int32.TryParse(collection.Get("fieldy"), out y);
 
+                // Angemeldeten Spieler hinzufügen
+                PlayerInfo pinfo = data.getPlayerByName(User.Identity.Name);
+
                 CampaignInfo newCampaignInfo = new CampaignInfo()
                 {
                     campaignId = "",
                     campaignName = name,
-                    FieldDimension = new clsSektorKoordinaten() {X = x, Y = y}
+                    FieldDimension = new clsSektorKoordinaten() {X = x, Y = y},
+                    ListPlayerInfo = new List<PlayerInfo>(){ pinfo }
                 };
-
                 string newcampaignid = data.createNewCampaign(newCampaignInfo);
 
-                // Angemeldeten Spieler hinzufügen
-                PlayerInfo pinfo = data.getPlayerInfo(User.Identity.Name);
+                
 
                 CampaignController ctrl = data.getCampaignController(newcampaignid);
-                ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
-                data.safeCampaignState(ctrl.CampaignEngine.getState());
+                //ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
+                //data.safeCampaignState(ctrl.CampaignEngine.getState());
 
                 return RedirectToAction("Index");
             }

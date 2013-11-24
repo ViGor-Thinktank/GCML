@@ -116,7 +116,7 @@ namespace GenericCampaignMasterModel
         {
             this["campaignname"] = this.CampaignName;
             this["campaignid"] = this.CampaignId;
-            this["players"] = m_serializer.Serialize (this.ListPlayers);
+            this["ListPlayerInfo"] = m_serializer.Serialize (this.ListPlayers);
             this["sektors"] = m_serializer.Serialize (this.ListSektorInfo);
             this["fielddimension"] = m_serializer.Serialize(this.FieldDimension);
             this["fieldtype"] = this.FieldType;
@@ -139,7 +139,7 @@ namespace GenericCampaignMasterModel
             CampaignState result = CampaignState.NewInstance();
             result.CampaignName = stateData["campaignname"];
             result.CampaignId = stateData["campaignid"];
-            result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["players"]);
+            result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["ListPlayerInfo"]);
             result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
             result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
             result.FieldType = stateData["fieldtype"];

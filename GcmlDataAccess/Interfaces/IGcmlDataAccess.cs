@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using GenericCampaignMasterModel;
+
 namespace GenericCampaignMasterLib
 {
     public interface IGcmlDataAccess
     {
-        System.Collections.Generic.List<GenericCampaignMasterModel.CampaignInfo> getCampaignsForPlayer(string playerId);
-        GenericCampaignMasterLib.CampaignController getCampaignController(string campaignId);
-        GenericCampaignMasterModel.PlayerInfo getPlayerInfo(string playerId);
-        System.Collections.Generic.List<GenericCampaignMasterModel.PlayerInfo> getPlayers();
-        string createNewCampaign(GenericCampaignMasterModel.CampaignInfo info);
-        bool safeCampaignState(GenericCampaignMasterModel.CampaignState state);
-        bool safePlayer(GenericCampaignMasterModel.PlayerInfo info);
+        List<CampaignInfo> getCampaignsForPlayer(string playerId);
+        CampaignController getCampaignController(string campaignId);
+        PlayerInfo getPlayerInfo(string playerId);
+        PlayerInfo getPlayerByName(string playername);
+        List<PlayerInfo> getPlayers();
+        string createNewCampaign(CampaignInfo info);
+        bool safeCampaignState(CampaignState state);
+        bool safePlayer(PlayerInfo info);
     }
 }

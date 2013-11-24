@@ -415,7 +415,7 @@ namespace GenericCampaignMasterLib
             return objNewPlayer;
         }
 
-        public void setPlayerList(List<Player> list)
+        public void setPlayerList(IEnumerable<Player> list)
         {
             foreach (Player aktPlayer in list)
             {

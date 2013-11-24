@@ -24,9 +24,9 @@
                 <td>@Html.TextBoxFor(c => c.campaignName)</td>
             </tr>
             <tr>
-                <td>@Html.LabelFor(c => c.players)</td>
-                <td>@Html.ListBoxFor(c => c.players,
-                                    new SelectList(Model.players, "PlayerId", "PlayerName")
+                <td>@Html.LabelFor(c => c.ListPlayerInfo)</td>
+                <td>@Html.ListBoxFor(c => c.ListPlayerInfo,
+                                    new SelectList(Model.ListPlayerInfo, "PlayerId", "PlayerName")
                     )
                 </td>
             </tr>

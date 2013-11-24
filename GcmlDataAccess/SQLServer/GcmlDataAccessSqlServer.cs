@@ -1,23 +1,25 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 
 namespace GcmlDataAccess
 {
-    
     public class GcmlDataAccessSqlServer : IGcmlDataAccess
     {
+        public GcmlDataAccessSqlServer()
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<GcmlDbContext>());
+        }
+
         public CampaignController getCampaignController(string campaignId)
         {
             CampaignController result = null;
             using (var ctx = new GcmlDbContext())
             {
-                var existing = ctx.CampaignStates.Where(c => c.CampaignId == campaignId).FirstOrDefault();
+                var existing = ctx.CampaignStates.FirstOrDefault(c => c.CampaignId == campaignId);
                 if (existing != null)
                 {
                     CampaignEngine engine = CampaignEngine.restoreFromState(existing);
@@ -37,6 +39,7 @@ namespace GcmlDataAccess
             CampaignEngine engine = new CampaignEngine(field);
             engine.CampaignName = info.campaignName;
             engine.CampaignId = info.campaignId;
+            engine.setPlayerList(info.ListPlayerInfo.Select(p => new Player(p)).AsEnumerable());
 
             CampaignController controller = new CampaignController(engine);
             CampaignState state = engine.getState();
@@ -77,7 +80,7 @@ namespace GcmlDataAccess
             List<PlayerInfo> result =  new List<PlayerInfo>();
             using (var ctx = new GcmlDbContext())
             {
-                result = ctx.Players.ToList<PlayerInfo>();
+                result = ctx.Players.ToList();
             }
 
             return result;
@@ -85,10 +88,21 @@ namespace GcmlDataAccess
 
         public PlayerInfo getPlayerInfo(string playerId)
         {
-            PlayerInfo result = new PlayerInfo();
+            PlayerInfo result = null;
             using (var ctx = new GcmlDbContext())
             {
                 result = ctx.Players.FirstOrDefault(p => p.playerId == playerId);
+            }
+
+            return result;
+        }
+
+        public PlayerInfo getPlayerByName(string playername)
+        {
+            PlayerInfo result = null;
+            using (var ctx = new GcmlDbContext())
+            {
+                result = ctx.Players.FirstOrDefault(p => p.playerName == playername);
             }
 
             return result;
@@ -108,7 +122,7 @@ namespace GcmlDataAccess
                                            {
                                                campaignId = state.CampaignId,
                                                campaignName = state.CampaignName,
-                                               players = state.ListPlayers
+                                               ListPlayerInfo = state.ListPlayers
                                            };
                     result = states.ToList<CampaignInfo>();
                 }
@@ -119,9 +133,16 @@ namespace GcmlDataAccess
         public bool safePlayer(PlayerInfo info)
         {
             bool result = false;
+            
+            if (String.IsNullOrEmpty(info.playerName))
+                return false;
+            else if (String.IsNullOrEmpty(info.playerId))
+                info.playerId = Guid.NewGuid().ToString();
+            
             using (var ctx = new GcmlDbContext())
             {
-                var existing = ctx.Players.Find(info);
+                var existing = ctx.Players.Find(info.playerId);
+                
                 if (existing == null)
                     ctx.Players.Add(info);
                 else

@@ -12,7 +12,5 @@ namespace GcmlDataAccess
     {
         public DbSet<CampaignState> CampaignStates { get; set; }
         public DbSet<PlayerInfo> Players { get; set; }
-
-
     }
 }

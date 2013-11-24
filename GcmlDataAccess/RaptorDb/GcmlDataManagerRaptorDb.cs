@@ -107,9 +107,9 @@ namespace GcmlDataAccess
 
             state.CampaignName = cmpinfo.campaignName;
 
-            if (cmpinfo.players != null)
+            if (cmpinfo.ListPlayerInfo != null)
             {
-                foreach (var pinfo in cmpinfo.players)
+                foreach (var pinfo in cmpinfo.ListPlayerInfo)
                 {
                     if (!playerDb.getAllPlayers().Exists(p => p.playerId == pinfo.playerId))
                         playerDb.addPlayer(pinfo);
