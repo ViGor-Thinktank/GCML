@@ -39,7 +39,7 @@ namespace GcmlDataAccess
             CampaignEngine engine = new CampaignEngine(field);
             engine.CampaignName = info.campaignName;
             engine.CampaignId = info.campaignId;
-            engine.setPlayerList(info.ListPlayerInfo.Select(p => new Player(p)).AsEnumerable());
+            //engine.setPlayerList(info.ListPlayerInfo.Select(p => new Player(p)).AsEnumerable());
 
             CampaignController controller = new CampaignController(engine);
             CampaignState state = engine.getState();

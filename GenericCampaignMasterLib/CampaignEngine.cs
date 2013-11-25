@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Linq;
 using GenericCampaignMasterModel;
@@ -29,7 +30,7 @@ namespace GenericCampaignMasterLib
 
         public CampaignState getState()
         {
-            CampaignState state = CampaignState.NewInstance();
+            CampaignState state = new CampaignState();
             state.CampaignName = this.CampaignName;
             state.CampaignId = this.CampaignId;
             state.ListPlayers = this.lisPlayers.Select(p => p.getPlayerInfo()).ToList<PlayerInfo>();
@@ -40,19 +41,24 @@ namespace GenericCampaignMasterLib
             state.ListUnitInfo = this.getUnitInfo();
             state.ListUnitTypes = clsUnit.objUnitTypeFountain.UnitTypeList;
             state.ListResourceInfo = this.ResourceHandler.getResourceInfo();
-            state.Save();
             return state;
         }
 
         public static CampaignEngine restoreFromState(CampaignState state)
         {
-            List<Player> lstPlayers = state.getListPlayers();
+            List<Player> lstPlayers = new List<Player>();
+            foreach (var pi in state.ListPlayers)
+            {
+                Player p = new Player(pi);
+                lstPlayers.Add(p);
+            }
+
 
             // Feld erstellen;
             //Type fieldType = Type.GetType(state.getFieldtype());  // Todo: GetType funktioniert nicht obwohl GenericCampaignMasterModel.Field korrekt ist
             
             // Feld mit Sektoren erzeugen.
-            clsSektorKoordinaten objSekKoord = state.getListDimensions();
+            clsSektorKoordinaten objSekKoord = state.FieldDimension;
             Type fieldType = typeof(GenericCampaignMasterModel.Field);      
             Field field = (Field)Activator.CreateInstance(fieldType, new object[] { objSekKoord });
 
@@ -65,7 +71,7 @@ namespace GenericCampaignMasterLib
             clsUnit.objUnitTypeFountain.dicUnitTypeData = state.getDicUnitTypeInfo();
             
             // Units platzieren
-            foreach (UnitInfo uInfo in state.getListUnitInfo())
+            foreach (UnitInfo uInfo in state.ListUnitInfo)
             {
                 //UnitTypeBase newUnitType = (UnitTypeBase)Activator.CreateInstance(unitType);
 
@@ -82,7 +88,7 @@ namespace GenericCampaignMasterLib
             // Ressourcehandler erzeugen und Ressourcen wiederherstellen
             ResourceHandler resHandler = new ResourceHandler();
             engine.ResourceHandler = resHandler;
-            foreach (ResourceInfo resInfo in state.getListResourceInfo())
+            foreach (ResourceInfo resInfo in state.ListResourceInfo)
             {
                 string strResType = resInfo.resourceableType;
                 Type resType = Type.GetType(strResType);

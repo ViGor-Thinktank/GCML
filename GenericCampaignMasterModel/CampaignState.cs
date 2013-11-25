@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GenericCampaignMasterModel
 {
-    public class CampaignState : Dictionary<string, string>
+    public class CampaignState
     {
         [Key]
         public string CampaignId { get; set; }
@@ -44,136 +44,112 @@ namespace GenericCampaignMasterModel
         private JavaScriptSerializer m_serializer = new JavaScriptSerializer();
 
         #region Get-Methoden
-        public List<Sektor> getListSektors()
-        {
-            return ListSektorInfo.Select(si => new Sektor(si)).ToList<Sektor>();
-        }
+        //public List<Sektor> getListSektors()
+        //{
+        //    return ListSektorInfo.Select(si => new Sektor(si)).ToList<Sektor>();
+        //}
 
-        public Player getPlayer(string strPlayerID)
-        {
+        //public Player getPlayer(string strPlayerID)
+        //{
 
-            List<Player> lisP = getListPlayers();
+        //    List<Player> lisP = getListPlayers();
             
-            var varPlayerList = from p in lisP
-                         where p.Id == strPlayerID
-                         select p;
+        //    var varPlayerList = from p in lisP
+        //                 where p.Id == strPlayerID
+        //                 select p;
 
 
             
-            if (varPlayerList.Count() == 1)
-                return varPlayerList.First();
-            else if (varPlayerList.Count() > 1)
-                throw new Exception("mehr als ein Treffer für PlayerID " + strPlayerID);
-            else
-                throw new Exception("kein Treffer für PlayerID " + strPlayerID);
+        //    if (varPlayerList.Count() == 1)
+        //        return varPlayerList.First();
+        //    else if (varPlayerList.Count() > 1)
+        //        throw new Exception("mehr als ein Treffer für PlayerID " + strPlayerID);
+        //    else
+        //        throw new Exception("kein Treffer für PlayerID " + strPlayerID);
 
-        }
+        //}
 
-        public List<Player> getListPlayers()
-        {
-            return ListPlayers.Select(pi => new Player(pi)).ToList<Player>();
-        }
+        //public List<Player> getListPlayers()
+        //{
+        //    return ListPlayers.Select(pi => new Player(pi)).ToList<Player>();
+        //}
 
-        public List<UnitInfo> getListUnitInfo()
-        {
-            return ListUnitInfo;
-        }
+        //public List<UnitInfo> getListUnitInfo()
+        //{
+        //    return ListUnitInfo;
+        //}
 
         public Dictionary<string, clsUnitType> getDicUnitTypeInfo()
         {
-            string strUnitInfo = this.Keys.Contains("unittypesinfo") ? this["unittypesinfo"] : "";
-
-            Dictionary<string, clsUnitType> dicUnitTypeInfo = (Dictionary<string, clsUnitType>)m_serializer.Deserialize<Dictionary<string, clsUnitType>>(strUnitInfo);
-            return dicUnitTypeInfo;
+           Dictionary<string, clsUnitType> result = new Dictionary<string, clsUnitType>();
+            foreach (var ui in ListUnitTypes)
+                result.Add(ui.ID.ToString(), new clsUnitType(ui));
+            return result;
         }
 
-        public clsSektorKoordinaten getListDimensions()
-        {
-            return FieldDimension;
-        }
+        //public clsSektorKoordinaten getListDimensions()
+        //{
+        //    return FieldDimension;
+        //}
 
-        public string getFieldtype()
-        {
+        //public string getFieldtype()
+        //{
         
-            return this["fieldtype"];
-        }
+        //    return this["fieldtype"];
+        //}
 
-        public List<ResourceInfo> getListResourceInfo()
-        {
-            List<ResourceInfo> lstResInfo;
-            string strResInfo = this.Keys.Contains("resourceinfo") ? this["resourceinfo"] : "";
+        //public List<ResourceInfo> getListResourceInfo()
+        //{
+        //    List<ResourceInfo> lstResInfo;
+        //    string strResInfo = this.Keys.Contains("resourceinfo") ? this["resourceinfo"] : "";
 
-            if (String.IsNullOrEmpty(strResInfo))
-                lstResInfo = new List<ResourceInfo>();
-            else
-                lstResInfo = (List<ResourceInfo>)m_serializer.Deserialize<List<ResourceInfo>>(strResInfo);
+        //    if (String.IsNullOrEmpty(strResInfo))
+        //        lstResInfo = new List<ResourceInfo>();
+        //    else
+        //        lstResInfo = (List<ResourceInfo>)m_serializer.Deserialize<List<ResourceInfo>>(strResInfo);
             
-            return lstResInfo;
-        }
+        //    return lstResInfo;
+        //}
         #endregion
 
-        public void Save()
-        {
-            this["campaignname"] = this.CampaignName;
-            this["campaignid"] = this.CampaignId;
-            this["ListPlayerInfo"] = m_serializer.Serialize (this.ListPlayers);
-            this["sektors"] = m_serializer.Serialize (this.ListSektorInfo);
-            this["fielddimension"] = m_serializer.Serialize(this.FieldDimension);
-            this["fieldtype"] = this.FieldType;
-			this["unitinfo"] = m_serializer.Serialize(this.ListUnitInfo);
-            this["unittypesinfo"] = m_serializer.Serialize(this.ListUnitTypes);
-            this["resourceinfo"] = m_serializer.Serialize(this.ListResourceInfo);
-        }
+
 
         public override string ToString()
         {
-            Save();
-            return m_serializer.Serialize(this as Dictionary<string, string>);
+            return m_serializer.Serialize(this);
         }
 
-        public static CampaignState FromString(string stateStr)
-        {
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, string> stateData = serializer.Deserialize<Dictionary<string, string>>(stateStr);
+        //public static CampaignState FromString(string stateStr)
+        //{
+        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
+        //    Dictionary<string, string> stateData = serializer.Deserialize<CampaignState>(stateStr);
 
-            CampaignState result = CampaignState.NewInstance();
-            result.CampaignName = stateData["campaignname"];
-            result.CampaignId = stateData["campaignid"];
-            result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["ListPlayerInfo"]);
-            result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
-            result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
-            result.FieldType = stateData["fieldtype"];
-            result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
-            result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
-            result.ListResourceInfo = serializer.Deserialize<List<ResourceInfo>>(stateData["resourceinfo"]);
+        //    CampaignState result = CampaignState();
+        //    result.CampaignName = stateData["campaignname"];
+        //    result.CampaignId = stateData["campaignid"];
+        //    result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["ListPlayerInfo"]);
+        //    result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
+        //    result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
+        //    result.FieldType = stateData["fieldtype"];
+        //    result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
+        //    result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
+        //    result.ListResourceInfo = serializer.Deserialize<List<ResourceInfo>>(stateData["resourceinfo"]);
             
-            return result;
-        }
+        //    return result;
+        //}
 
-
-        public static CampaignState NewInstance()
+        public CampaignState()
         {
-            CampaignState result = new CampaignState();
-            result.CampaignId = string.Empty;
-            result.CampaignName = string.Empty;
-            result.ListPlayers = new List<PlayerInfo>();
-            result.ListSektorInfo = new List<SektorInfo>();
+            CampaignId = string.Empty;
+            CampaignName = string.Empty;
+            ListPlayers = new List<PlayerInfo>();
+            ListSektorInfo = new List<SektorInfo>();
             //result.DicSektors = new Dictionary<string, Sektor>();
-            result.FieldDimension = new clsSektorKoordinaten();
-            result.FieldType = string.Empty;
-            result.ListUnitInfo = new List<UnitInfo>();
-            result.ListUnitTypes = new List<UnitTypeInfo>();
-            result.ListResourceInfo = new List<ResourceInfo>();
-
-            return result;
+            FieldDimension = new clsSektorKoordinaten();
+            FieldType = string.Empty;
+            ListUnitInfo = new List<UnitInfo>();
+            ListUnitTypes = new List<UnitTypeInfo>();
+            ListResourceInfo = new List<ResourceInfo>();
         }
-
-
-        /// <summary>
-        /// Konstruktor ist private - Klasse kann nicht instanziiert werden, sondern Instanz
-        /// muss mit NewCampaignState() geholt werden. Stellt sicher, dass immer alle Felder initialisiert
-        /// sind (Exceptions beim Serialisieren/Deserialisieren).
-        /// </summary>
-        private CampaignState(){}
     }
 }

@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignBuilder.cs" />
-    <Compile Include="RaptorDb\GcmlDataManagerRaptorDb.cs" />
     <Compile Include="Interfaces\IGcmlDataAccess.cs" />
     <Compile Include="Interfaces\IGcmlDataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +77,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RaptorDb\CampaignDbRaptor.cs" />
-    <Compile Include="RaptorDb\PlayerDbRaptor.cs" />
     <Compile Include="SQLServer\GcmlDataAccessSqlServer.cs" />
     <Compile Include="SQLServer\GcmlDbContext.cs" />
   </ItemGroup>
