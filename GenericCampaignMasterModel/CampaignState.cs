@@ -24,20 +24,20 @@ namespace GenericCampaignMasterModel
         public List<UnitTypeInfo> ListUnitTypes { get; set; }
         public List<ResourceInfo> ListResourceInfo { get; set; }
 
-        public Dictionary<string, Sektor> DicSektors 
-        {
-            get
-            {
-                throw new Exception();
-                Dictionary<string, Sektor> result = new Dictionary<string, Sektor>();
-                return result;
-            }
+        //public Dictionary<string, Sektor> DicSektors 
+        //{
+        //    get
+        //    {
+        //        throw new Exception();
+        //        Dictionary<string, Sektor> result = new Dictionary<string, Sektor>();
+        //        return result;
+        //    }
 
-            set
-            {
+        //    set
+        //    {
 
-            }
-        }
+        //    }
+        //}
         //public clsUnitTypeCollection ListUnitTypes { get; set; }
 
 
@@ -119,24 +119,24 @@ namespace GenericCampaignMasterModel
             return m_serializer.Serialize(this);
         }
 
-        //public static CampaignState FromString(string stateStr)
-        //{
-        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //    Dictionary<string, string> stateData = serializer.Deserialize<CampaignState>(stateStr);
+        public static CampaignState FromString(string stateStr)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            CampaignState stateData = serializer.Deserialize<CampaignState>(stateStr);
 
-        //    CampaignState result = CampaignState();
-        //    result.CampaignName = stateData["campaignname"];
-        //    result.CampaignId = stateData["campaignid"];
-        //    result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["ListPlayerInfo"]);
-        //    result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
-        //    result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
-        //    result.FieldType = stateData["fieldtype"];
-        //    result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
-        //    result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
-        //    result.ListResourceInfo = serializer.Deserialize<List<ResourceInfo>>(stateData["resourceinfo"]);
-            
-        //    return result;
-        //}
+            //CampaignState result = CampaignState();
+            //result.CampaignName = stateData["campaignname"];
+            //result.CampaignId = stateData["campaignid"];
+            //result.ListPlayers = serializer.Deserialize<List<PlayerInfo>>(stateData["ListPlayerInfo"]);
+            //result.ListSektorInfo = serializer.Deserialize<List<SektorInfo>>(stateData["sektors"]);
+            //result.FieldDimension = serializer.Deserialize<clsSektorKoordinaten>(stateData["fielddimension"]);
+            //result.FieldType = stateData["fieldtype"];
+            //result.ListUnitInfo = serializer.Deserialize<List<UnitInfo>>(stateData["unitinfo"]);
+            //result.ListUnitTypes = serializer.Deserialize<List<UnitTypeInfo>>(stateData["unittypesinfo"]);
+            //result.ListResourceInfo = serializer.Deserialize<List<ResourceInfo>>(stateData["resourceinfo"]);
+
+            return stateData;
+        }
 
         public CampaignState()
         {

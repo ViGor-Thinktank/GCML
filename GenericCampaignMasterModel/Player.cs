@@ -60,7 +60,7 @@ namespace GenericCampaignMasterModel
 
         public Player(PlayerInfo pinfo)
         {
-            this.Id = pinfo.playerId;
+            this.Id = pinfo.playerName;
             this.Playername = pinfo.playerName;
         }
 
@@ -102,7 +102,7 @@ namespace GenericCampaignMasterModel
         public PlayerInfo getPlayerInfo()
         {
             PlayerInfo nfo = new PlayerInfo();
-            nfo.playerId = this.Id;
+            //nfo.playerId = this.Id;
             nfo.playerName = this.Playername;
             return nfo;
         }

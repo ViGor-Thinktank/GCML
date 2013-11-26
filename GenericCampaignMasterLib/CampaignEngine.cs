@@ -44,6 +44,23 @@ namespace GenericCampaignMasterLib
             return state;
         }
 
+        public static CampaignState createNewCampaign(CampaignInfo info)
+        {
+            string newCampaignId = Guid.NewGuid().ToString();
+            info.campaignId = newCampaignId;
+
+            Field field = new Field(info.FieldDimension);
+            CampaignEngine engine = new CampaignEngine(field);
+            engine.CampaignName = info.campaignName;
+            engine.CampaignId = info.campaignId;
+            engine.setPlayerList(info.ListPlayerInfo.Select(p => new Player(p)).AsEnumerable());
+
+            CampaignController controller = new CampaignController(engine);
+            CampaignState state = engine.getState();
+
+            return state;
+        }
+
         public static CampaignEngine restoreFromState(CampaignState state)
         {
             List<Player> lstPlayers = new List<Player>();

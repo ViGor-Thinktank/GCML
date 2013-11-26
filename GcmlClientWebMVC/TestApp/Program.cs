@@ -12,24 +12,34 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            CampaignController ctrl = CampaignBuilder.Instance.buildNew();
-            CampaignState state = ctrl.CampaignEngine.getState();
+            GcmlDataAccessSQL da = new GcmlDataAccessSQL();
 
-            //using (GcmlDbContext ctx = new GcmlDbContext())
-            //{
-            //    //ctx.CampaignStates.Add(state);
-            //    //
+            CampaignInfo cinfo = new CampaignInfo()
+            {
+                campaignId = "",
+                campaignName = "test",
+                FieldDimension = new clsSektorKoordinaten(6, 6, 0),
+                ListPlayerInfo = new List<PlayerInfo>(){  }
+            };
 
-            //    //ctx.
-            //    //ctx.SaveChanges();
 
-            //}
+            string campaignid = da.createNewCampaign(cinfo);
 
-            GcmlDataAccess.GcmlDataAccessSqlServer accessSqlServer = new GcmlDataAccess.GcmlDataAccessSqlServer();
-            accessSqlServer.safeCampaignState(state);
-            state.ListPlayers.Add(new PlayerInfo() { playerId = "1234", playerName = "asdf" });
 
-            accessSqlServer.safeCampaignState(state);
+            //GcmlDataAccessEF data = new GcmlDataAccessEF();
+
+            //PlayerInfo pinfo = data.getPlayer("test123");
+
+
+
+
+            //data.createNewCampaign(cinfo);
+
+            //GcmlDataAccess.GcmlDataAccessEF accessSqlServer = new GcmlDataAccess.GcmlDataAccessEF();
+            //accessSqlServer.safeCampaignState(state);
+            //state.ListPlayers.Add(new PlayerInfo() { playerId = "1234", playerName = "asdf" });
+
+            //accessSqlServer.safeCampaignState(state);
 
         }
     }
