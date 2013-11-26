@@ -36,8 +36,8 @@ namespace GcmlDataAccess
             SqlCeCommandBuilder cpplayers = new SqlCeCommandBuilder(daPlayers);
 
             ds = new GcmlData();
-            daCampaignStates.Fill(ds);
-            daPlayers.Fill(ds);
+            daCampaignStates.Fill(ds.CampaignStates);
+            daPlayers.Fill(ds.Player);
         }
 
         public CampaignController getCampaignController(string campaignId)
@@ -46,15 +46,11 @@ namespace GcmlDataAccess
             var stateRow = ds.CampaignStates.FirstOrDefault(r => r.CampaignId == campaignId);
             if (stateRow != null)
             {
-                string statedata = stateRow.CampaignData;
-                CampaignState state = CampaignState.FromString(statedata);
-                CampaignEngine engine = CampaignEngine.restoreFromState(state);
-                result = new CampaignController(engine);
+                result = getControllerFromStateRow(stateRow);
             }
 
             return result;
         }
-
 
         public string createNewCampaign(CampaignInfo info)
         {
@@ -75,14 +71,16 @@ namespace GcmlDataAccess
             string stateStr = state.ToString();
 
             var stateRow = ds.CampaignStates.FirstOrDefault(r => r.CampaignId == state.CampaignId);
-            if (stateRow != null)
-            {
-                stateRow.CampaignData = stateStr;
-                
-            }
-            else
-            {
+            if (stateRow == null)
                 ds.CampaignStates.AddCampaignStatesRow(state.CampaignId, state.CampaignName, stateStr, DateTime.Now);
+            else
+                stateRow.CampaignData = stateStr;
+
+            foreach (var p in state.ListPlayers)
+            {
+                var playerrow = ds.Player.FindByPlayerName(p.playerName);
+                if (playerrow == null)
+                    ds.Player.AddPlayerRow(p.playerName, p.playerName);
             }
 
             daCampaignStates.Update(ds.CampaignStates);
@@ -92,24 +90,56 @@ namespace GcmlDataAccess
             return true;
         }
 
-        public GenericCampaignMasterModel.PlayerInfo getPlayer(string playername)
+        public PlayerInfo getPlayer(string playername)
         {
-            throw new NotImplementedException();
+            PlayerInfo result = new PlayerInfo();
+            var playerrow =  ds.Player.FindByPlayerName(playername);
+            if (playerrow != null)
+            {
+                result = new PlayerInfo();
+                result.playerName = playerrow.PlayerName;
+            }
+
+            return result;
         }
 
-        public List<GenericCampaignMasterModel.PlayerInfo> getPlayers()
+        public List<PlayerInfo> getPlayers()
         {
-            throw new NotImplementedException();
+            return ds.Player.Select(p => new PlayerInfo() {playerName = p.PlayerName}).ToList();
         }
 
-        public List<GenericCampaignMasterModel.CampaignInfo> getCampaignsForPlayer(string playername)
+        public List<CampaignInfo> getCampaignsForPlayer(string playername)
         {
-            throw new NotImplementedException();
+            List<CampaignInfo> result = new List<CampaignInfo>();
+            PlayerInfo player = getPlayer(playername);
+            if (player != null)
+            {
+                // Todo: Optimierung CampaignInfos mit Playern beim Laden erzeugen.
+                foreach (var stater in ds.CampaignStates)
+                {
+                    CampaignController ctrl = getControllerFromStateRow(stater);
+                    if(ctrl.CampaignEngine.lisPlayers.Find(p => p.Playername == playername) != null)
+                        result.Add(ctrl.Campaign_getInfo());
+                }
+            }
+
+            return result;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            conn.Close();
+        }
+
+
+        private CampaignController getControllerFromStateRow(GcmlData.CampaignStatesRow stateRow)
+        {
+            CampaignController result;
+            string statedata = stateRow.CampaignData;
+            CampaignState state = CampaignState.FromString(statedata);
+            CampaignEngine engine = CampaignEngine.restoreFromState(state);
+            result = new CampaignController(engine);
+            return result;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace GcmlClientWebMVC.Controllers
     [Authorize]
     public class CampaignDataController : Controller
     {
-        private IGcmlDataAccess data = new GcmlDataAccessSqlServer();
+        private IGcmlDataAccess data = new GcmlDataAccessSQL();
 
 
         //
@@ -23,17 +23,7 @@ namespace GcmlClientWebMVC.Controllers
             List <CampaignInfo> lstCampaigns = new List<CampaignInfo>();
             string playername = User.Identity.Name;
 
-            var player = data.getPlayers().FirstOrDefault(p => p.playerName == playername);
-            if (player != null)
-            {
-                string playerid = player.playerName;
-                lstCampaigns = data.getCampaignsForPlayer(playerid);
-            }
-            else
-            {
-                PlayerInfo newpPlayerInfo = new PlayerInfo() {playerId = "", playerName = playername};
-                data.safePlayer(newpPlayerInfo);
-            }
+            lstCampaigns = data.getCampaignsForPlayer(playername);
 
             return View(lstCampaigns);
         }
@@ -80,14 +70,14 @@ namespace GcmlClientWebMVC.Controllers
                 Int32.TryParse(collection.Get("fieldy"), out y);
 
                 // Angemeldeten Spieler hinzufügen
-                PlayerInfo pinfo = data.getPlayerByName(User.Identity.Name);
+                //PlayerInfo pinfo = data.getPlayerByName(User.Identity.Name);
 
                 CampaignInfo newCampaignInfo = new CampaignInfo()
                 {
                     campaignId = "",
                     campaignName = name,
                     FieldDimension = new clsSektorKoordinaten() {X = x, Y = y},
-                    ListPlayerInfo = new List<PlayerInfo>(){ pinfo }
+                    ListPlayerInfo = new List<PlayerInfo>() { new PlayerInfo() { playerName = User.Identity.Name } }
                 };
                 string newcampaignid = data.createNewCampaign(newCampaignInfo);
 
@@ -125,7 +115,7 @@ namespace GcmlClientWebMVC.Controllers
                 CampaignController ctrl = data.getCampaignController(cmpinfo.campaignId);
                 ctrl.CampaignEngine.CampaignName = cmpinfo.campaignName;
 
-                data.safeCampaignState(ctrl.CampaignEngine.getState());
+                data.safeCampaignState(ctrl);
 
                 return RedirectToAction("Index");
             }

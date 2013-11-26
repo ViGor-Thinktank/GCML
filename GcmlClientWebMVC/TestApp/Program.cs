@@ -19,7 +19,7 @@ namespace TestApp
                 campaignId = "",
                 campaignName = "test",
                 FieldDimension = new clsSektorKoordinaten(6, 6, 0),
-                ListPlayerInfo = new List<PlayerInfo>(){  }
+                ListPlayerInfo = new List<PlayerInfo>(){ new PlayerInfo(){playerName = "asdf"} }
             };
 
 
