@@ -7,7 +7,7 @@ namespace GcmlDataAccess
     public interface IGcmlDataAccess
     {
         CampaignController getCampaignController(string campaignId);
-        string createNewCampaign(CampaignInfo info);
+        CampaignController createNewCampaign(CampaignInfo info);
         bool safeCampaignState(CampaignController controller);
         PlayerInfo getPlayer(string playername);
         List<PlayerInfo> getPlayers();

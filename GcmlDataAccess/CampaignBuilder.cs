@@ -9,54 +9,55 @@ using Ninject;
 
 namespace GcmlDataAccess
 {
-    public class CampaignBuilder
-    {
-        IGcmlDataManager datamanager;
-        public IGcmlDataManager DataManager 
-        {
-            get { return datamanager; }
-        }
 
-        private static CampaignBuilder instance = null;
-        public static CampaignBuilder Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new CampaignBuilder();
+    //public class CampaignBuilder
+    //{
+    //    IGcmlDataManager datamanager;
+    //    public IGcmlDataManager DataManager 
+    //    {
+    //        get { return datamanager; }
+    //    }
 
-                return instance;
-            }
-        }
+    //    private static CampaignBuilder instance = null;
+    //    public static CampaignBuilder Instance
+    //    {
+    //        get
+    //        {
+    //            if (instance == null)
+    //                instance = new CampaignBuilder();
+
+    //            return instance;
+    //        }
+    //    }
         
-        private CampaignBuilder() 
-        {
-        //    var kernel = new StandardKernel();
-        //    kernel.Bind<ICampaignDatabase>().To<CampaignDbRaptor>();
-        //    kernel.Bind<IPlayerDatabase>().To<PlayerDbRaptor>();
-        //    kernel.Bind<IGcmlDataManager>().To<GcmlDataManagerRaptorDb>();
+    //    private CampaignBuilder() 
+    //    {
+    //    //    var kernel = new StandardKernel();
+    //    //    kernel.Bind<ICampaignDatabase>().To<CampaignDbRaptor>();
+    //    //    kernel.Bind<IPlayerDatabase>().To<PlayerDbRaptor>();
+    //    //    kernel.Bind<IGcmlDataManager>().To<GcmlDataManagerRaptorDb>();
 
-        //    datamanager = kernel.Get<IGcmlDataManager>();
-        }
+    //    //    datamanager = kernel.Get<IGcmlDataManager>();
+    //    }
 
-        //public CampaignController getCurrentGame(string campaignKey)
-        //{
-        //    return datamanager.getController(campaignKey);
-        //}
+    //    //public CampaignController getCurrentGame(string campaignKey)
+    //    //{
+    //    //    return datamanager.getController(campaignKey);
+    //    //}
 
-        //public CampaignController restoreFromDb(string campaignKey, string stateKey)
-        //{
-        //    return datamanager.getController(campaignKey);
-        //}
+    //    //public CampaignController restoreFromDb(string campaignKey, string stateKey)
+    //    //{
+    //    //    return datamanager.getController(campaignKey);
+    //    //}
 
-        public CampaignController buildNew()
-        {
-            clsSektorKoordinaten koord = new clsSektorKoordinaten(7, 7);
-            string newCampaignId = datamanager.createNewCampaign("testkampagne", koord);
-            CampaignController ctr = datamanager.getController(newCampaignId);
+    //    public CampaignController buildNew()
+    //    {
+    //        clsSektorKoordinaten koord = new clsSektorKoordinaten(7, 7);
+    //        string newCampaignId = datamanager.createNewCampaign("testkampagne", koord);
+    //        CampaignController ctr = datamanager.getController(newCampaignId);
 
-            return ctr;
-        }
+    //        return ctr;
+    //    }
 
-    }
+    //}
 }

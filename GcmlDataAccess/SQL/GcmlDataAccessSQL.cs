@@ -52,17 +52,11 @@ namespace GcmlDataAccess
             return result;
         }
 
-        public string createNewCampaign(CampaignInfo info)
+        public CampaignController createNewCampaign(CampaignInfo info)
         {
-            string result = "";
-            CampaignState state = CampaignEngine.createNewCampaign(info);
-            CampaignEngine engine = CampaignEngine.restoreFromState(state);
-            CampaignController controller = new CampaignController(engine);
-
-            if (safeCampaignState(controller))
-                result = state.CampaignId;
-
-            return result;
+            CampaignController controller = CampaignEngine.createNewCampaign(info);
+            safeCampaignState(controller);
+            return controller;
         }
 
         public bool safeCampaignState(CampaignController controller)

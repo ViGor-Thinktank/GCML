@@ -246,13 +246,15 @@ namespace GCML_XNA_Client.GCML
             if (false && System.IO.File.Exists(".\\CCDate.dat"))// && MessageBox.Show("laden?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.objCampaignState.load();
-                Program.m_objCampaign = CampaignBuilder.Instance.restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
+                Program.m_objCampaign = Program.gcmlData.getCampaignController(Program.objCampaignState.strSaveKey);
+                //Program.m_objCampaign = CampaignBuilder.Instance.restoreFromDb(Program.objCampaignState.strCCKey, Program.objCampaignState.strSaveKey);
+                
                 List<Player> listPlayers = Program.m_objCampaign.Player_getPlayerList();
            
             }
             else
             {
-                Program.m_objCampaign = CampaignBuilder.Instance.buildNew();
+                Program.m_objCampaign = Program.gcmlData.createNewCampaign(new CampaignInfo() { campaignId = "", campaignName = "test", FieldDimension = new clsSektorKoordinaten(6, 6, 0) });
             }
 
             //Program.m_objCampaign.onStatus += new Field.delStatus(Global_onStatus);

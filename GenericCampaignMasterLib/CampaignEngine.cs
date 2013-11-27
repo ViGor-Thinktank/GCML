@@ -44,7 +44,7 @@ namespace GenericCampaignMasterLib
             return state;
         }
 
-        public static CampaignState createNewCampaign(CampaignInfo info)
+        public static CampaignController createNewCampaign(CampaignInfo info)
         {
             string newCampaignId = Guid.NewGuid().ToString();
             info.campaignId = newCampaignId;
@@ -56,9 +56,7 @@ namespace GenericCampaignMasterLib
             engine.setPlayerList(info.ListPlayerInfo.Select(p => new Player(p)).AsEnumerable());
 
             CampaignController controller = new CampaignController(engine);
-            CampaignState state = engine.getState();
-
-            return state;
+            return controller;
         }
 
         public static CampaignEngine restoreFromState(CampaignState state)

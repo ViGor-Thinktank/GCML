@@ -12,7 +12,7 @@ namespace GcmlClientWebMVC.Controllers
     [Authorize]
     public class CampaignDataController : Controller
     {
-        private IGcmlDataAccess data = new GcmlDataAccessSQL();
+        private GcmlDataAccessSQL data = new GcmlDataAccessSQL();
 
 
         //
@@ -79,11 +79,8 @@ namespace GcmlClientWebMVC.Controllers
                     FieldDimension = new clsSektorKoordinaten() {X = x, Y = y},
                     ListPlayerInfo = new List<PlayerInfo>() { new PlayerInfo() { playerName = User.Identity.Name } }
                 };
-                string newcampaignid = data.createNewCampaign(newCampaignInfo);
-
                 
-
-                CampaignController ctrl = data.getCampaignController(newcampaignid);
+                CampaignController ctrl = data.createNewCampaign(newCampaignInfo);
                 //ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
                 //data.safeCampaignState(ctrl.CampaignEngine.getState());
 

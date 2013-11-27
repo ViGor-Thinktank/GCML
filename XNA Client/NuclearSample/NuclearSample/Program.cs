@@ -1,5 +1,6 @@
 using System;
 using GenericCampaignMasterLib; 
+using GcmlDataAccess;
 
 namespace GCML_XNA_Client
 {
@@ -7,11 +8,13 @@ namespace GCML_XNA_Client
     {
         public static CampaignController m_objCampaign;
         public static GCML.clsCampaignInfo objCampaignState;
+        public static GcmlDataAccessSQL gcmlData;
 
         static void Main( string[] args )
         {
             // This sample uses an ApplicationMutex to prevent running the game multiple times at once.
             // Useful for games where progress or settings might be overwritten if two instances are running at the same time.
+            gcmlData = new GcmlDataAccessSQL();
             using( NuclearWinter.ApplicationMutex mutex = new NuclearWinter.ApplicationMutex() )
             {
                 if( mutex.HasHandle )

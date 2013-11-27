@@ -9,7 +9,8 @@ using GenericCampaignMasterModel;
 
 namespace GcmlDataAccess
 {
-    public class GcmlDataAccessEF : IGcmlDataAccess
+    //public class GcmlDataAccessEF : IGcmlDataAccess
+    public class GcmlDataAccessEF
     {
         public GcmlDataAccessEF()
         {
@@ -34,30 +35,30 @@ namespace GcmlDataAccess
 
         public string createNewCampaign(CampaignInfo info)
         {
-            CampaignState state = CampaignEngine.createNewCampaign(info);
+            CampaignController ctrl = CampaignEngine.createNewCampaign(info);
 
-            using (var ctx = new GcmlDbContext())
-            {
-                foreach (PlayerInfo nfo in state.ListPlayers)
-                {
-                    //ctx.Players.Attach(nfo);
-                    //nfo.Campaigns = new List<CampaignState>();
-                    //nfo.Campaigns.Add(state);
-                    //ctx.Players.AddOrUpdate(nfo);
-                    PlayerInfo p = getPlayer(nfo.playerName);
-                    p.Campaigns.Add(state);
-                    ctx.Entry(nfo).State = EntityState.Modified;
-                    ctx.SaveChanges();
+            //using (var ctx = new GcmlDbContext())
+            //{
+            //    foreach (PlayerInfo nfo in ctrl.ListPlayers)
+            //    {
+            //        //ctx.Players.Attach(nfo);
+            //        //nfo.Campaigns = new List<CampaignState>();
+            //        //nfo.Campaigns.Add(state);
+            //        //ctx.Players.AddOrUpdate(nfo);
+            //        PlayerInfo p = getPlayer(nfo.playerName);
+            //        p.Campaigns.Add(ctrl);
+            //        ctx.Entry(nfo).State = EntityState.Modified;
+            //        ctx.SaveChanges();
 
-                }
+            //    }
 
-                ctx.CampaignStates.Add(state);
-                ctx.SaveChanges();
+            //    ctx.CampaignStates.Add(ctrl);
+            //    ctx.SaveChanges();
 
-                CampaignState s = ctx.CampaignStates.FirstOrDefault(c => c.CampaignId == state.CampaignId);
-            }
+            //    CampaignState s = ctx.CampaignStates.FirstOrDefault(c => c.CampaignId == ctrl.CampaignId);
+            //}
 
-            return state.CampaignId;
+            return ctrl.CampaignEngine.CampaignId;
 
         }
 

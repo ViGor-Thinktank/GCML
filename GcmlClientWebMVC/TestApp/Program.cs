@@ -23,7 +23,7 @@ namespace TestApp
             };
 
 
-            string campaignid = da.createNewCampaign(cinfo);
+            CampaignController ctrl = da.createNewCampaign(cinfo);
 
 
             //GcmlDataAccessEF data = new GcmlDataAccessEF();

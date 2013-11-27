@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using GenericCampaignMasterLib;
+using GenericCampaignMasterModel;
 using GcmlDataAccess;
 
 
@@ -44,7 +45,8 @@ namespace GCML_XNA_Client
             base.Initialize();
 
             Program.objCampaignState = new GCML.clsCampaignInfo();
-            Program.m_objCampaign = CampaignBuilder.Instance.buildNew();
+
+            Program.m_objCampaign = Program.gcmlData.createNewCampaign(new CampaignInfo() { campaignId = "", campaignName = "test", FieldDimension = new clsSektorKoordinaten(6, 6, 0) });
            
             SetWindowTitle("GCML Demo");
 
