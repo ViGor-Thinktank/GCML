@@ -12,7 +12,7 @@ namespace GcmlClientWebMVC.Controllers
     [Authorize]
     public class CampaignDataController : Controller
     {
-        private GcmlDataAccessSQL data = new GcmlDataAccessSQL();
+        private CampaignRepositorySql data = new CampaignRepositorySql();
 
 
         //

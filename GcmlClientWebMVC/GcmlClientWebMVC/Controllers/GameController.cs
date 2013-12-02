@@ -18,7 +18,7 @@ namespace GcmlClientWebMVC.Controllers
     {
         //CampaignBuilder campaignCtx  = CampaignBuilder.Instance;
         //IGcmlDataManager dataManager = CampaignBuilder.Instance.DataManager;
-        GcmlDataAccessSQL data = new GcmlDataAccessSQL();
+        CampaignRepositorySql data = new CampaignRepositorySql();
 
         // GET api/game
         public IEnumerable<string> Get()

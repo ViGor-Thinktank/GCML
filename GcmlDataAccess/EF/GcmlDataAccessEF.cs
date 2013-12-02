@@ -9,7 +9,7 @@ using GenericCampaignMasterModel;
 
 namespace GcmlDataAccess
 {
-    //public class GcmlDataAccessEF : IGcmlDataAccess
+    //public class GcmlDataAccessEF : ICampaignRepository
     public class GcmlDataAccessEF
     {
         public GcmlDataAccessEF()

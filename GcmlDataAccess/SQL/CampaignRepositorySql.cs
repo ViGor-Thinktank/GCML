@@ -15,14 +15,14 @@ using GenericCampaignMasterModel;
 
 namespace GcmlDataAccess
 {
-    public class GcmlDataAccessSQL : IGcmlDataAccess, IDisposable
+    public class CampaignRepositorySql : ICampaignRepository
     {
         private SqlCeConnection conn;
         private SqlCeDataAdapter daCampaignStates;
         private SqlCeDataAdapter daPlayers;
         private GcmlData ds;
 
-        public GcmlDataAccessSQL()
+        public CampaignRepositorySql()
         {
             string selCampaigns = "select * from CampaignStates";
             string selPlayers = "select * from Player";

@@ -12,7 +12,7 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            GcmlDataAccessSQL da = new GcmlDataAccessSQL();
+            CampaignRepositorySql da = new CampaignRepositorySql();
 
             CampaignInfo cinfo = new CampaignInfo()
             {

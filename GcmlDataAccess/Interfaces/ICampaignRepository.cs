@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 
 namespace GcmlDataAccess
 {
-    public interface IGcmlDataAccess
+    public interface ICampaignRepository : IDisposable
     {
         CampaignController getCampaignController(string campaignId);
         CampaignController createNewCampaign(CampaignInfo info);
