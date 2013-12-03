@@ -46,13 +46,15 @@ namespace GcmlClientWebMVC.Controllers
                 }
             }
 
-            return new FieldInfo()
+            var field = new FieldInfo()
             {
                 Campaign = controller.Campaign_getInfo(),
                 FieldKoord = controller.CampaignEngine.FieldField.FieldDimension,
                 ListSektors = controller.CampaignEngine.FieldField.getSektorList().Select(s => s.getInfo()),
                 SektorField = sektorArr
             };
+
+            return field;
         }
 
         // POST api/game

@@ -68,7 +68,7 @@
                 self.playerlist.removeAll();
                 $.getJSON(playerUrl(), "", function (data) {
                     $.each(data, function (idx, data) {
-                        self.playerlist.push(new Player({ playerId: data.playerId, playerName: data.playerName }));
+                        self.playerlist.push(new Player({ playerName: data.playerName }));
                     });
                 });
             };
@@ -94,9 +94,9 @@
             // Spielfeld laden
             $.getJSON(gameUrl('@Model.campaignId'), function (data) {
 
-                $.each(data.Campaign.players, function (idx, val) {
-                    self.playerlist.push(new Player(val));
-                });
+                //$.each(data.Campaign.players, function (idx, val) {
+                //    self.playerlist.push(new Player(val));
+                //});
 
                 $.each(data.SektorField, function (idx, val) {
                     self.sektorfield.push(val);

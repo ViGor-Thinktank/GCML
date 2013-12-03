@@ -1,0 +1,48 @@
+﻿<header>
+    <h1>My Campaigns</h1>
+</header>
+
+<div id="gcml-content">
+    @if (@User.Identity.IsAuthenticated)
+    {
+        <p><span id="campaignsFound" data-bind=""></span></p>        
+        <table data-bind="template: {name: 'CampaignListTemplate', foreach:  campaignList }">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Player</th>
+                </tr>
+            </thead>
+
+        </table>
+        
+    }
+    else
+    {
+  
+    }
+
+
+</div>
+
+
+@if (@User.Identity.IsAuthenticated)
+{
+    @section scripts {
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/gcml")
+    }
+}
+
+
+<script Id="CampaignListTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: campaignId"></td>
+        <td data-bind="text: campaignName"></td>
+        <td>&nbsp;</td>
+    </tr>
+    
+
+</script>

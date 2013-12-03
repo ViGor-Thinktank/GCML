@@ -45,7 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dok\ClassDiagram1.cd" />
+    <None Include="Dok\ClassDiagram1.cd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericCampaignMasterModel\GenericCampaignMasterModel.csproj">

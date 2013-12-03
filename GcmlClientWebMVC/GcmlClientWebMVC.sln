@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlUnitTests", "GcmlUnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{4C842E89-4102-4AFC-BF91-CF8C172E0A48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlWebApi", "..\GcmlWebApi\GcmlWebApi.csproj", "{796D9CAF-E884-479B-8487-A111FEC72745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcmlWebApi.Tests", "..\GcmlWebApi.Tests\GcmlWebApi.Tests.csproj", "{3E796C69-868E-4A91-A678-CCC8AB08FDDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C842E89-4102-4AFC-BF91-CF8C172E0A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{796D9CAF-E884-479B-8487-A111FEC72745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{796D9CAF-E884-479B-8487-A111FEC72745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{796D9CAF-E884-479B-8487-A111FEC72745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{796D9CAF-E884-479B-8487-A111FEC72745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E796C69-868E-4A91-A678-CCC8AB08FDDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E796C69-868E-4A91-A678-CCC8AB08FDDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E796C69-868E-4A91-A678-CCC8AB08FDDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E796C69-868E-4A91-A678-CCC8AB08FDDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
