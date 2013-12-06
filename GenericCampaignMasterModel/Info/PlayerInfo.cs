@@ -14,9 +14,6 @@ namespace GenericCampaignMasterModel
             Campaigns = new List<CampaignState>();
         }
 
-        //[Key]
-        //public string playerId { get; set; }
-
         [Key]
         [Required]
         public string playerName { get; set; }

@@ -208,17 +208,21 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="Controllers\TodoListController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\ValidateHttpAntiForgeryTokenAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CampaignListDto.cs" />
+    <Compile Include="Models\CommandListDto.cs" />
     <Compile Include="Models\TodoItemDto.cs" />
     <Compile Include="Models\TodoListDto.cs" />
     <Compile Include="Models\TodoList.cs" />
     <Compile Include="Models\TodoItem.cs" />
     <Compile Include="Models\TodoItemContext.cs" />
+    <Compile Include="Models\UnitListDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -390,7 +394,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>53543</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:59340/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

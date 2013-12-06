@@ -1,30 +1,24 @@
 ﻿<header>
-    <h1>My Campaigns</h1>
+    <h1>My CampaignInfos</h1>
 </header>
 
-<div id="gcml-content">
     @if (@User.Identity.IsAuthenticated)
     {
-        <p><span id="campaignsFound" data-bind=""></span></p>        
-        <table data-bind="template: {name: 'CampaignListTemplate', foreach:  campaignList }">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Player</th>
-                </tr>
-            </thead>
-
-        </table>
+        <ul id="CampaignItems" data-bind="template: {name: 'CampaignInfoListTemplate', foreach:  campaignList }"></ul>
+        <!--<button data-bind="click: addCampaignInfo">Add new campaign</button>-->
+        <p>Number campaigns: <b data-bind="text: campaignList().length"></b></p>
+    
+        <div id="gcmlCampaignField" data-bind="with: loadedCampaign">
+            <h1 data-bind="text: campaignName"></h1>
+        </div>
         
+        <textarea data-bind="value: debug" rows="15" cols="50"></textarea>
     }
     else
     {
-  
+        <p>Sie sind nicht eingeloggt.</p>
     }
 
-
-</div>
 
 
 @if (@User.Identity.IsAuthenticated)
@@ -37,12 +31,8 @@
 }
 
 
-<script Id="CampaignListTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: campaignId"></td>
-        <td data-bind="text: campaignName"></td>
-        <td>&nbsp;</td>
-    </tr>
-    
-
+<script Id="CampaignInfoListTemplate" type="text/html">
+    <li>
+        <span data-bind="text: campaignName, attr: {id: campaignId}"></span>&nbsp;<button data-bind="click: $root.loadCampaign"><small>Load</small></button>
+    </li>
 </script>

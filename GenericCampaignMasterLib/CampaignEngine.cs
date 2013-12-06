@@ -221,7 +221,7 @@ namespace GenericCampaignMasterLib
             
         }
 
-        public List<UnitInfo> getUnitInfo()
+        public List<UnitInfo>   getUnitInfo()
         {
             List<UnitInfo> result = new List<UnitInfo>();
             foreach(Player p in lisPlayers)
