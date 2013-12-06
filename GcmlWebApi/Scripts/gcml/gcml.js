@@ -3,7 +3,8 @@ function CampaignInfo() {
     var self = this;
     self.campaignId = "";
     self.campaignName = "";
-    
+    self.fieldDimension = [];
+
     self.sektorField = ko.observableArray();
     self.unitList = ko.observableArray();
     

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace GenericCampaignMasterModel
 {
+    // TODO: Kann raus - ist in CampaignInfo enthalten.
     public class FieldInfo
     {
         public CampaignInfo Campaign { get; set; }

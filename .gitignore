@@ -10,6 +10,9 @@
 *.mgdat
 *.mgrec
 *.bak
+*.mdf
+*.ldf
+*.sdf
 *FileListAbsolute*
 obj/*
 Debug/*

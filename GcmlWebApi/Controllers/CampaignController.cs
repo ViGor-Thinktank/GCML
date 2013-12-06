@@ -27,10 +27,11 @@ namespace GcmlWebApi.Controllers
         }
 
         // GET api/campaign
-        public dynamic Get()
+        public CampaignListDto Get()
         {
             var lst = data.getCampaignsForPlayer(User.Identity.Name);
-            return new {campaignList = lst};
+            CampaignListDto campaignList = new CampaignListDto() {campaignList = lst };
+            return campaignList;
         }
 
         // GET api/campaign/5

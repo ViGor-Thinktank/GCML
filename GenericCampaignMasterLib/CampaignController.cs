@@ -369,7 +369,21 @@ namespace GenericCampaignMasterLib
             nfo.campaignId = this.CampaignEngine.CampaignId;
             nfo.campaignName = this.CampaignEngine.CampaignName;
             nfo.ListPlayerInfo = this.CampaignEngine.lisPlayers.Select(p => p.getPlayerInfo()).ToList<PlayerInfo>();
-            
+            nfo.FieldDimension = this.FieldField.FieldDimension;
+
+            int y = this.FieldField.FieldDimension.Y;
+            int x = this.FieldField.FieldDimension.X;
+            nfo.SektorField = new SektorInfo[y, x];
+
+            for (int iy = 0; iy < y; iy++)
+            {
+                for (int jx = 0; jx < x; jx++)
+                {
+                    var sektor = this.CampaignEngine.FieldField.get(new clsSektorKoordinaten(jx, iy) { });
+                    nfo.SektorField[iy, jx] = sektor.getInfo();
+                }
+            }
+
             return nfo;
         }
 
