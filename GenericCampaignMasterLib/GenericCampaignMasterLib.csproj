@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CampaignController.cs" />
     <Compile Include="CampaignEngine.cs" />
+    <Compile Include="ICampaignController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

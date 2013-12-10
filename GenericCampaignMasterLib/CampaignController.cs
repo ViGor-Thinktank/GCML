@@ -9,7 +9,7 @@ using GenericCampaignMasterModel.Commands;
 
 namespace GenericCampaignMasterLib
 {
-    public class CampaignController
+    public class CampaignController : ICampaignController
     {
         public CampaignController()
         {

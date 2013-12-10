@@ -40,7 +40,7 @@ namespace GcmlDataAccess
             daPlayers.Fill(ds.Player);
         }
 
-        public CampaignController getCampaignController(string campaignId)
+        public ICampaignController getCampaignController(string campaignId)
         {
             CampaignController result = null;
             var stateRow = ds.CampaignStates.FirstOrDefault(r => r.CampaignId == campaignId);
@@ -52,14 +52,14 @@ namespace GcmlDataAccess
             return result;
         }
 
-        public CampaignController createNewCampaign(CampaignInfo info)
+        public ICampaignController createNewCampaign(CampaignInfo info)
         {
             CampaignController controller = CampaignEngine.createNewCampaign(info);
             safeCampaignState(controller);
             return controller;
         }
 
-        public bool safeCampaignState(CampaignController controller)
+        public bool safeCampaignState(ICampaignController controller)
         {
             CampaignState state = controller.CampaignEngine.getState();
             string stateStr = state.ToString();

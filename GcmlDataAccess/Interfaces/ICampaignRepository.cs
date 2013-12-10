@@ -7,9 +7,9 @@ namespace GcmlDataAccess
 {
     public interface ICampaignRepository : IDisposable
     {
-        CampaignController getCampaignController(string campaignId);
-        CampaignController createNewCampaign(CampaignInfo info);
-        bool safeCampaignState(CampaignController controller);
+        ICampaignController getCampaignController(string campaignId);
+        ICampaignController createNewCampaign(CampaignInfo info);
+        bool safeCampaignState(ICampaignController controller);
         PlayerInfo getPlayer(string playername);
         List<PlayerInfo> getPlayers();
         List<CampaignInfo> getCampaignsForPlayer(string playername);

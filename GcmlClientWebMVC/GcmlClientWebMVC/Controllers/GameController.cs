@@ -29,7 +29,7 @@ namespace GcmlClientWebMVC.Controllers
         // GET api/game/5
         public FieldInfo Get(string id)
         {
-            CampaignController controller = data.getCampaignController(id);
+            ICampaignController controller = data.getCampaignController(id);
 
             // SektorInfo in 2 dimensionalen Array liefern
             int x = controller.CampaignEngine.FieldField.FieldDimension.X;

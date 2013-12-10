@@ -80,7 +80,7 @@ namespace GcmlClientWebMVC.Controllers
                     ListPlayerInfo = new List<PlayerInfo>() { new PlayerInfo() { playerName = User.Identity.Name } }
                 };
                 
-                CampaignController ctrl = data.createNewCampaign(newCampaignInfo);
+                ICampaignController ctrl = data.createNewCampaign(newCampaignInfo);
                 //ctrl.CampaignEngine.addPlayer(new Player(pinfo) { });
                 //data.safeCampaignState(ctrl.CampaignEngine.getState());
 
@@ -109,7 +109,7 @@ namespace GcmlClientWebMVC.Controllers
         {
             try
             {
-                CampaignController ctrl = data.getCampaignController(cmpinfo.campaignId);
+                ICampaignController ctrl = data.getCampaignController(cmpinfo.campaignId);
                 ctrl.CampaignEngine.CampaignName = cmpinfo.campaignName;
 
                 data.safeCampaignState(ctrl);

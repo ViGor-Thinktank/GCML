@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using GcmlDataAccess.SQL.GcmlDataTableAdapters;
 using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
@@ -28,14 +29,19 @@ namespace GcmlWebApi.Controllers
         }
 
         // GET api/unit
-        public UnitListDto Get(string campaignId, string sektorId="")
+        public UnitListDto Get(string campaignId)
         {
-            GenericCampaignMasterLib.CampaignController controller = data.getCampaignController(campaignId);
-            Player player = controller.Player_getByName(User.Identity.Name);
-            var units = controller.Player_getUnitsForPlayer(player);
-            List<UnitInfo> lstUnitInfos = units.Select(u => controller.CampaignEngine.getUnitInfo(u)).ToList();
+            List<UnitInfo> foundUnits = null;
 
-            return new UnitListDto() {unitList = lstUnitInfos};
+            if(!String.IsNullOrEmpty(campaignId))
+            {
+                ICampaignController controller = data.getCampaignController(campaignId);
+                Player player = controller.Player_getByName(User.Identity.Name);
+                var units = controller.Player_getUnitsForPlayer(player) ?? new List<clsUnit>();
+                foundUnits = units.Select(u => controller.Unit_getInfoByID(u.Id)).ToList();
+            }
+
+            return new UnitListDto() {unitList = foundUnits};
         }
 
         // GET api/unit/5

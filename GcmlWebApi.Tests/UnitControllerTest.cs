@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GcmlDataAccess;
 using GcmlWebApi.Controllers;
+using GenericCampaignMasterLib;
 using GenericCampaignMasterModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -24,12 +25,14 @@ namespace GcmlWebApi.Tests
         private string _campaignId;
         private string _campaignName;
         private string _playername;
-        private string _sektorId;
 
         private Fixture fixture;
         private MoqMockingKernel kernel;
         private TestContext testContextInstance;
-        
+        private Mock<ICampaignController> _mockController;
+        private Mock<ICampaignRepository> _gcmlRepository;
+        private Player _testPlayer;
+
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -72,9 +75,6 @@ namespace GcmlWebApi.Tests
             _campaignId = fixture.Create<string>();
             _campaignName = fixture.Create<string>();
             _playername = System.Environment.UserDomainName + "\\" + System.Environment.UserName;
-            _sektorId = fixture.Create<string>();
-
-            //kernel.Bind<ICampaignRepository>().ToMock();
         }
         
         //Use TestCleanup to run code after each test has run
@@ -92,7 +92,6 @@ namespace GcmlWebApi.Tests
         /// <returns></returns>
         private Mock<ICampaignRepository> getGcmlRepository()
         {
-
             var campaignInfo = new CampaignInfo()
             {
                 campaignId = _campaignId,
@@ -100,7 +99,7 @@ namespace GcmlWebApi.Tests
                 //ListPlayerInfo = fixture.Create<List<PlayerInfo>>(),
                 SektorField = new SektorInfo[,]
                 {
-                    {new SektorInfo() {sektorId = _sektorId}, fixture.Create<SektorInfo>()},
+                    {fixture.Create<SektorInfo>(), fixture.Create<SektorInfo>()},
                     {fixture.Create<SektorInfo>(), fixture.Create<SektorInfo>()}
                 },
                 ListUnits = new List<UnitInfo>()
@@ -109,10 +108,26 @@ namespace GcmlWebApi.Tests
                 }
             };
 
-            var mockRepo = kernel.GetMock<ICampaignRepository>();
-            mockRepo.Setup(m => m.getCampaignsForPlayer(_playername)).Returns(new List<CampaignInfo>() {campaignInfo});
+            // Testplayer
+            _testPlayer = new Player(new PlayerInfo() {playerName = _playername});
 
-            return mockRepo;
+            // Mock für CampaignController
+            _mockController = kernel.GetMock<ICampaignController>();
+            _mockController.Setup(c => c.Player_getByName(_playername)).Returns(_testPlayer);
+            _mockController.Setup(c => c.Player_getUnitsForPlayer(_testPlayer)).Returns(new List<clsUnit>()
+            {
+                 new clsUnit()
+                 {
+                     Id = fixture.Create<string>()
+                 }
+            });
+
+            // Mock für CampaignRepository
+            _gcmlRepository = kernel.GetMock<ICampaignRepository>();
+            _gcmlRepository.Setup(m => m.getCampaignsForPlayer(_playername)).Returns(new List<CampaignInfo>() {campaignInfo});
+            _gcmlRepository.Setup(m => m.getCampaignController(_campaignId)).Returns(_mockController.Object);
+
+            return _gcmlRepository;
         }
 
         /// <summary>
@@ -127,7 +142,7 @@ namespace GcmlWebApi.Tests
         }
 
         /// <summary>
-        /// Leere Parameter
+        /// Get - Leere Parameter
         ///</summary>
         [TestMethod()]
         public void Get_UnitListDto_Test_EmptyParams()
@@ -135,20 +150,18 @@ namespace GcmlWebApi.Tests
             var repoMock = getGcmlRepository();
             UnitController target = new UnitController(repoMock.Object);
             string campaignId = string.Empty; 
-            string sektorId = string.Empty; 
             
             UnitListDto actual;
-            actual = target.Get(campaignId, sektorId);
+            actual = target.Get(campaignId);
             
             Assert.IsNotNull(actual);
             Assert.IsInstanceOfType(actual, typeof(UnitListDto));
             Assert.IsTrue((actual.unitList == null) || (actual.unitList.Count == 0));
-            repoMock.Verify(r => r.getCampaignsForPlayer(_playername));
         }
 
 
         /// <summary>
-        /// Nur CampaignId - sollte alle Units liefern.
+        /// Get - CampaignId - soll alle Units liefern.
         ///</summary>
         [TestMethod()]
         public void Get_UnitListDto_Test_WithCampaign()
@@ -156,28 +169,12 @@ namespace GcmlWebApi.Tests
             var repoMock = getGcmlRepository();
             UnitController target = new UnitController(repoMock.Object);
 
-            UnitListDto actual;
-            actual = target.Get(_campaignId, string.Empty);
+            UnitListDto actual = target.Get(_campaignId);
 
             Assert.IsNotNull(actual);
             Assert.IsInstanceOfType(actual, typeof(UnitListDto));
-            Assert.IsTrue(actual.unitList.Count > 0);
-        }
-
-        /// <summary>
-        /// CampaignId und SectorId - Liefert Units für einen Sektor.
-        ///</summary>
-        [TestMethod()]
-        public void Get_UnitListDto_Test_WithCampaignAndSector()
-        {
-            var repoMock = getGcmlRepository();
-            UnitController target = new UnitController(repoMock.Object);
-            
-            UnitListDto actual;
-            actual = target.Get(_campaignId, _sektorId);
-
-            Assert.IsNotNull(actual);
-            Assert.IsInstanceOfType(actual, typeof(UnitListDto));
+            _gcmlRepository.Verify(r => r.getCampaignController(_campaignId));
+            _mockController.Verify(c => c.Player_getUnitsForPlayer(_testPlayer));
         }
     }
 }
