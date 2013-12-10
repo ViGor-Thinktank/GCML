@@ -28,7 +28,7 @@ namespace GcmlWebApi.Controllers
         }
 
         // GET api/unit
-        public UnitListDto Get(string campaignId)
+        public UnitListDto Get(string campaignId, string sektorId="")
         {
             GenericCampaignMasterLib.CampaignController controller = data.getCampaignController(campaignId);
             Player player = controller.Player_getByName(User.Identity.Name);

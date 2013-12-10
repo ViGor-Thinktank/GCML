@@ -12,6 +12,6 @@ namespace GenericCampaignMasterModel
         [Key]
         public string sektorId { get; set; }
         public clsSektorKoordinaten sektorKoordinaten { get; set; }
-        //public List<string> containedUnitIds;
+        public List<string> containedUnitIds;
     }
 }

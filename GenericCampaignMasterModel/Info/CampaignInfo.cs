@@ -14,6 +14,7 @@ namespace GenericCampaignMasterModel
         public List<PlayerInfo> ListPlayerInfo { get; set; }
         public clsSektorKoordinaten FieldDimension { get; set; }
         public SektorInfo[,] SektorField { get; set; }
+        public List<UnitInfo> ListUnits { get; set; }
         public CampaignState objCampaignData;
     }
 }

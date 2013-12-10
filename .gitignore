@@ -32,6 +32,14 @@ GcmlClientWebMVC/GcmlClientWebMVC/App_Data/*
 GcmlClientWebMVC/packages/*
 GcmlClientWebMVC/TestApp/bin/*
 GcmlClientWebMVC/TestApp/obj/*
+GcmlClientWebMVC/GcmlUnitTests/obj/*
+GcmlClientWebMVC/GcmlUnitTests/bin/*
+GcmlClientWebMVC/TestResults/*
+
+
+
+
+
 
 
 GcmlDataAccess/bin/*
