@@ -7,64 +7,62 @@
     <ul id="CampaignItems" data-bind="template: { name: 'CampaignInfoListTemplate', foreach: campaignList }"></ul>
     <!--<button data-bind="click: addCampaignInfo">Add new campaign</button>-->
     <p>Number campaigns: <b data-bind="text: campaignList().length"></b></p>
-    
-    <div id="gcmlCampaignField" data-bind="with: loadedCampaign">
+        
+    <div id="gcmlCampaignField" data-bind="with: loadedCampaign, style: { width: $root.fieldWidth() + 'px', height: $root.fieldHeight() + 'px', borderWidth: '5px', borderColor: $root.showcolor, borderStyle: 'solid' }">
         <h1 data-bind="text: campaignName"></h1>
-        <table id="selectable">
-            <tbody data-bind="foreach: sektorField">
-                <tr data-bind="foreach: $data">
-                    @*<td data-bind="click: $root.selectSektor" class="sektor">
-                        <b data-bind="text: $data.sektorId"></b>
-                    </td>*@
-                    <td  class="sektor">
-                        <b data-bind="text: $data.sektorId"></b>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-
+        <ol id="selectable" data-bind="foreach: sektorField">
+            <!-- ko foreach: $data -->
+            <li data-bind="click: $root.selectSektor, text: $data.sektorId, attr: { id: $data.sektorId }"></li>
+            <!-- /ko -->
+        </ol>
     </div>
     
+    <div id="gcmlUnitList"></div>
     
-     <style>
-#feedback { font-size: 1.4em; }
-#selectable .ui-selecting { background: #FECA40; }
-#selectable .ui-selected { background: #F39814; color: white; }
-#selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
-#selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
-</style>
-<script>
-    $(function () {
-        $("#selectable").selectable();
-    });
-</script>
+    <div id="gcmlActionList"></div>
+    
+     <textarea data-bind="value: debug" rows="15" cols="50"></textarea>   
 
-<ol id="selectable">
-<li class="ui-state-default">1</li>
-<li class="ui-state-default">2</li>
-<li class="ui-state-default">3</li>
-<li class="ui-state-default">4</li>
-<li class="ui-state-default">5</li>
-<li class="ui-state-default">6</li>
-<li class="ui-state-default">7</li>
-<li class="ui-state-default">8</li>
-<li class="ui-state-default">9</li>
-<li class="ui-state-default">10</li>
-<li class="ui-state-default">11</li>
-    <li class="ui-state-default">12</li>
-    </ol>
+    <style>
+        #feedback {
+            font-size: 1.4em;
+        }
 
-    
-    
+        #selectable .ui-selecting {
+            background: #FECA40;
+        }
+
+        #selectable .ui-selected {
+            background: #F39814;
+            color: white;
+        }
+
+        #selectable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            #selectable li {
+                margin: 3px;
+                padding: 1px;
+                float: left;
+                width: 100px;
+                height: 80px;
+                font-size: small;
+                text-align: center;
+                border-style: solid;
+                border-color: lightgray;
+                border-width: 1px;
+            }
+    </style>
         
-    <textarea data-bind="value: debug" rows="15" cols="50"></textarea>
+    
 }
 else
 {
     <p>Sie sind nicht eingeloggt.</p>
 }
-
 
 
 @if (@User.Identity.IsAuthenticated)
@@ -73,13 +71,22 @@ else
         @Scripts.Render("~/bundles/knockout")
         @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/gcml")
+
+        <script id="CampaignInfoListTemplate" type="text/html">
+            <li>
+                <span data-bind="text: campaignName, attr: { id: campaignId }"></span>&nbsp;
+        <button data-bind="click: $root.loadCampaign"><small>Load</small></button>
+            </li>
+        </script>
+
+        <script>
+            //$(function () {
+            //    alert("test");
+            //    $("#selectable").selectable();
+            //});
+        </script>
     }
 }
 
 
-<script id="CampaignInfoListTemplate" type="text/html">
-    <li>
-        <span data-bind="text: campaignName, attr: { id: campaignId }"></span>&nbsp;
-        <button data-bind="click: $root.loadCampaign"><small>Load</small></button>
-    </li>
-</script>
+
