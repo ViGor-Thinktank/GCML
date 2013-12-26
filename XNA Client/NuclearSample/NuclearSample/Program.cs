@@ -6,7 +6,7 @@ namespace GCML_XNA_Client
 {
     static class Program
     {
-        public static CampaignController m_objCampaign;
+        public static ICampaignController m_objCampaign;
         public static GCML.clsCampaignInfo objCampaignState;
         public static CampaignRepositorySql gcmlData;
 

@@ -46,7 +46,10 @@ namespace GCML_XNA_Client
 
             Program.objCampaignState = new GCML.clsCampaignInfo();
 
-            Program.m_objCampaign = Program.gcmlData.createNewCampaign(new CampaignInfo() { campaignId = "", campaignName = "test", FieldDimension = new clsSektorKoordinaten(6, 6, 0) });
+            CampaignInfo cnfo = new CampaignInfo();
+            cnfo.campaignName = "test";
+            cnfo.FieldDimension = new clsSektorKoordinaten(6, 6, 0) ;
+            Program.m_objCampaign = Program.gcmlData.createNewCampaign(cnfo);
            
             SetWindowTitle("GCML Demo");
 

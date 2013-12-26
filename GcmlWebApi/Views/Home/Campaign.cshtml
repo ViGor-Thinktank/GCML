@@ -8,21 +8,32 @@
     <!--<button data-bind="click: addCampaignInfo">Add new campaign</button>-->
     <p>Number campaigns: <b data-bind="text: campaignList().length"></b></p>
         
-    <div id="gcmlCampaignField" data-bind="with: loadedCampaign, style: { width: $root.fieldWidth() + 'px', height: $root.fieldHeight() + 'px', borderWidth: '5px', borderColor: $root.showcolor, borderStyle: 'solid' }">
-        <h1 data-bind="text: campaignName"></h1>
-        <ol id="selectable" data-bind="foreach: sektorField">
-            <!-- ko foreach: $data -->
-            <li data-bind="click: $root.selectSektor, text: $data.sektorId, attr: { id: $data.sektorId }"></li>
-            <!-- /ko -->
-        </ol>
-    </div>
     
-    <div id="gcmlUnitList"></div>
+    <!-- Layouttabelle für Spielfeld und Menülisten -->
+    <table>
+        <tr>
+            <td><span id="gcmlCampaignField" data-bind="with: loadedCampaign, style: { width: $root.fieldWidth() + 'px', height: $root.fieldHeight() + 'px', borderWidth: '5px', borderColor: $root.showcolor, borderStyle: 'none', float: 'left' }">
+                <h1 data-bind="text: campaignName"></h1>
+                <ol id="selectable" data-bind="foreach: sektorField">
+                    <!-- ko foreach: $data -->
+                    <li data-bind="click: $root.selectSektor, text: $data.sektorId, attr: { id: $data.sektorId }"></li>
+                    <!-- /ko -->
+                </ol>
+            </span></td>
+            <td>
+                <div id="gcmlUnitList">
+                    <ul>
+                        <li>ccc</li>
+                        <li>ccc</li>
+                        <li>xxx</li>
+                    </ul>
+                </div>
+                <div id="gcmlActionList"></div>
+                <textarea data-bind="value: debug" rows="15" cols="50"></textarea>
+            </td>
+        </tr>
+    </table>
     
-    <div id="gcmlActionList"></div>
-    
-     <textarea data-bind="value: debug" rows="15" cols="50"></textarea>   
-
     <style>
         #feedback {
             font-size: 1.4em;

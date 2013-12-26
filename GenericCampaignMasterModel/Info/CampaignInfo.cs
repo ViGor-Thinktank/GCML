@@ -9,6 +9,17 @@ namespace GenericCampaignMasterModel
 {
     public class CampaignInfo
     {
+        public CampaignInfo()
+        {
+            campaignId = String.Empty;
+            campaignName = String.Empty;
+            ListPlayerInfo = new List<PlayerInfo>();
+            FieldDimension = new clsSektorKoordinaten();
+            SektorField = new SektorInfo[0, 0];
+            ListUnits = new List<UnitInfo>();
+            objCampaignData = new CampaignState();
+        }
+
         public string campaignId { get; set; }
         public string campaignName { get; set; }
         public List<PlayerInfo> ListPlayerInfo { get; set; }
